@@ -143,7 +143,7 @@ export default {
   align-items: baseline;
 
   & &--title {
-    color: var(--b-600);
+    color: #fff;
     font-size: var(--font-size-small);
     font-weight: var(--font-weight-medium);
     margin-left: var(--space-small);
@@ -158,6 +158,10 @@ export default {
   .dropdown-pane {
     top: -132px;
     right: var(--space-normal);
+  }
+
+  &--change-button {
+    color: #fff !important;
   }
 
   .status-items {

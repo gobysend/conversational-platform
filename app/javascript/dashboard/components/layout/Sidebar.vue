@@ -365,6 +365,7 @@ export default {
   margin-bottom: auto;
   margin-left: auto;
   margin-top: auto;
+  color: #fff;
 }
 
 .teams-sidebar-menu + .nested.vertical.menu {

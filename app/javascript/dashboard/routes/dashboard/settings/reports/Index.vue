@@ -78,7 +78,7 @@ export default {
         datasets: [
           {
             label: this.metrics[this.currentSelection].NAME,
-            backgroundColor: '#1f93ff',
+            backgroundColor: '#007dfa',
             data,
           },
         ],

@@ -36,11 +36,12 @@ export default {
   margin-left: auto;
   margin-top: auto;
   position: relative;
+  color: #fff;
 
   .unread-badge {
     background: var(--r-300);
     border-radius: var(--space-small);
-    color: var(--white);
+    color: #007dfa;
     font-size: var(--font-size-micro);
     font-weight: var(--font-weight-black);
     left: var(--space-slab);

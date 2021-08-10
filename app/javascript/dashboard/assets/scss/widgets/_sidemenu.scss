@@ -1,44 +1,60 @@
 .side-menu {
   i {
-    margin-right: $space-smaller;
-    min-width: $space-two;
+    margin-right: 15px;
+    width: 20px;
+    font-size: 20px;
+    line-height: 1;
   }
 }
 
 .sidebar {
   @include border-normal-right;
-  @include background-white;
   @include full-height;
   @include margin(0);
   @include space-between-column;
   width: $nav-bar-width;
   z-index: 1024 - 1;
+  background: #0747a6;
 
   //logo
   .logo {
     img {
-      @include padding($woot-logo-padding);
-      max-height: 108px;
+      height: 60px;
+      width: 125px;
+      padding: 0 25px;
+      box-sizing: content-box;
     }
   }
 
   .main-nav {
     a {
-      border-radius: $space-smaller;
-      color: $color-gray;
-      font-size: $font-size-default;
-      font-weight: $font-weight-medium;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #fff;
+      padding: 8px 10px;
+      line-height: 1.5;
+      margin-bottom: 3px;
 
-      .wrap,
-      .child-icon {
-        &:hover {
-          color: $color-woot;
-        }
+      &:hover {
+        background: #007dfa;
       }
+
+      // .wrap,
+      // .child-icon {
+      //   &:hover {
+      //     color: $color-woot;
+      //   }
+      // }
     }
 
-    .active a .wrap {
-      color: $color-woot;
+    .active a {
+      background: #fff;
+
+      .wrap {
+        //color: $color-woot;
+        color: #0747a6;
+        font-weight: 500;
+      }
     }
   }
 
@@ -68,7 +84,7 @@
   position: relative;
 
   &:hover {
-    background: var(--color-background-light);
+    //background: #007dfa;
   }
 
   .dropdown-pane {
@@ -97,15 +113,15 @@
   .menu-title {
     color: $color-gray;
     font-size: $font-size-medium;
-    margin-top: $space-medium;
+    //margin-top: $space-medium;
 
-    >span {
+    > span {
       margin-left: $space-one;
     }
   }
 }
 
-.menu-title+ul>li>a {
+.menu-title + ul > li > a {
   @include padding($space-micro null);
   color: $medium-gray;
   line-height: $global-lineheight;

@@ -50,10 +50,11 @@ export default {
     margin-bottom: var(--space-micro);
     margin-left: var(--space-one);
     max-width: 12rem;
+    color: #fff;
   }
 
   .current-user--role {
-    color: var(--color-gray);
+    color: #fff;
     font-size: var(--font-size-mini);
     margin-bottom: var(--zero);
     margin-left: var(--space-one);
