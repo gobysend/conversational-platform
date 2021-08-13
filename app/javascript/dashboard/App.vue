@@ -1,5 +1,9 @@
 <template>
-  <div id="app" class="app-wrapper app-root">
+  <div
+    id="app"
+    class="app-wrapper app-root"
+    style="background-color: rgb(249, 251, 253);"
+  >
     <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
@@ -69,8 +73,8 @@ export default {
 
       if (accountId) {
         await this.$store.dispatch('accounts/get');
-        const { locale } = this.getAccount(accountId);
-        this.setLocale(locale);
+        // const { locale } = this.getAccount(accountId);
+        // this.setLocale(locale);
       }
     },
   },

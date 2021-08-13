@@ -130,7 +130,7 @@
   "SIDEBAR": {
     "CONVERSATIONS": "Cuộc trò chuyện",
     "REPORTS": "Báo cáo",
-    "CONTACTS": "Contacts",
+    "CONTACTS": "Liên hệ",
     "SETTINGS": "Cài Đặt",
     "HOME": "Trang Chủ",
     "AGENTS": "Đại lý",
@@ -142,7 +142,7 @@
     "APPLICATIONS": "Applications",
     "LABELS": "Nhãn",
     "TEAMS": "Teams",
-    "ALL_CONTACTS": "All Contacts",
+    "ALL_CONTACTS": "Tất cả liên hệ",
     "TAGGED_WITH": "Tagged with",
     "REPORTS_OVERVIEW": "Overview",
     "CSAT": "CSAT"

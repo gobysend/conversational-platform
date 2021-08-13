@@ -5,6 +5,7 @@ $default-button-height: 4.0rem;
   display: inline-flex;
   height: $default-button-height;
   margin-bottom: 0;
+  padding: 8px 10px;
 
   .button__content {
     width: 100%;

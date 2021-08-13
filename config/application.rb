@@ -25,6 +25,10 @@ module Chatwoot
 
     # Custom chatwoot configurations
     config.x = config_for(:app).with_indifferent_access
+
+    # Set default locale
+    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
+    config.i18n.default_locale = :vi
   end
 
   def self.config

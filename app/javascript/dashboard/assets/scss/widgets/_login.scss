@@ -9,15 +9,14 @@
   padding-top: $space-larger * 1.2;
 
   .login__hero {
-    margin-bottom: $space-larger;
-
     .hero__logo {
-      width: 180px;
+      //width: 180px;
+      margin-bottom: 1.5rem;
     }
 
     .hero__title {
-      font-weight: $font-weight-light;
-      margin-top: $space-larger;
+      font-weight: 400;
+      margin-bottom: 16px;
     }
 
     .hero__sub {
@@ -29,11 +28,11 @@
   // Login box
   .login-box {
     @include background-white;
-    @include border-normal;
-    @include border-top-radius($space-smaller);
-    @include border-right-radius($space-smaller);
-    @include border-bottom-radius($space-smaller);
-    @include border-left-radius($space-smaller);
+    // @include border-normal;
+    // @include border-top-radius($space-smaller);
+    // @include border-right-radius($space-smaller);
+    // @include border-bottom-radius($space-smaller);
+    // @include border-left-radius($space-smaller);
     @include elegant-card;
     padding: $space-large;
 
@@ -43,8 +42,8 @@
 
       input {
         font-size: $font-size-default;
-        height: $space-larger;
-        padding: $space-slab;
+        // height: $space-larger;
+        // padding: $space-slab;
       }
 
       .error {
@@ -53,7 +52,7 @@
     }
 
     .button {
-      height: $space-larger;
+      // height: $space-larger;
     }
   }
 
@@ -61,7 +60,7 @@
     font-size: $font-size-default;
     padding: $space-medium;
 
-    >a {
+    > a {
       font-weight: $font-weight-bold;
     }
   }

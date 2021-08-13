@@ -130,10 +130,10 @@
     }
   },
   "CONTACTS_PAGE": {
-    "HEADER": "Contacts",
+    "HEADER": "Liên hệ",
     "FIELDS": "Contact fields",
     "SEARCH_BUTTON": "Search",
-    "SEARCH_INPUT_PLACEHOLDER": "Search for contacts",
+    "SEARCH_INPUT_PLACEHOLDER": "Tìm liên hệ",
     "LIST": {
       "LOADING_MESSAGE": "Loading contacts...",
       "404": "No contacts matches your search 🔍",
