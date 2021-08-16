@@ -17,44 +17,142 @@ export const getSidebarItems = accountId => ({
       'notifications_index',
     ],
     menuItems: {
-      assignedToMe: {
+      conversations: {
         icon: 'ion-chatbox-working',
         label: 'CONVERSATIONS',
-        hasSubMenu: false,
+        hasSubMenu: true,
         key: '',
-        toState: frontendURL(`accounts/${accountId}/dashboard`),
+        toState: frontendURL(`accounts/${accountId}/conversations`),
         toolTip: 'Conversation from all subscribed inboxes',
-        toStateName: 'home',
+        toStateName: 'conversations',
+        children: [
+          {
+            label: 'ALL_CONVERSATIONS',
+            toState: frontendURL(`accounts/${accountId}/conversations`),
+            toStateName: 'conversations',
+          },
+        ],
       },
       contacts: {
         icon: 'ion-person',
         label: 'CONTACTS',
-        hasSubMenu: false,
+        hasSubMenu: true,
         toState: frontendURL(`accounts/${accountId}/contacts`),
         toStateName: 'contacts_dashboard',
+        children: [
+          {
+            label: 'ALL_CONTACTS',
+            toState: frontendURL(`accounts/${accountId}/contacts`),
+            toStateName: 'contacts_dashboard',
+          },
+        ],
       },
       notifications: {
         icon: 'ion-ios-bell',
         label: 'NOTIFICATIONS',
         hasSubMenu: false,
         toState: frontendURL(`accounts/${accountId}/notifications`),
-        toStateName: 'notifications_dashboard',
+        toStateName: 'notifications_index',
       },
       report: {
         icon: 'ion-arrow-graph-up-right',
         label: 'REPORTS',
-        hasSubMenu: false,
+        hasSubMenu: true,
         toState: frontendURL(`accounts/${accountId}/reports`),
         toStateName: 'settings_account_reports',
+        children: [
+          {
+            label: 'REPORTS_OVERVIEW',
+            toState: frontendURL(`accounts/${accountId}/reports/overview`),
+            toStateName: 'settings_account_reports',
+          },
+          {
+            label: 'CSAT',
+            toState: frontendURL(`accounts/${accountId}/reports/csat`),
+            toStateName: 'csat_reports',
+          },
+        ],
       },
       settings: {
         icon: 'ion-settings',
         label: 'SETTINGS',
-        hasSubMenu: false,
+        hasSubMenu: true,
         toState: frontendURL(`accounts/${accountId}/settings`),
         toStateName: 'settings_home',
+        children: [
+          {
+            icon: 'ion-person-stalker',
+            label: 'AGENTS',
+            hasSubMenu: false,
+            toState: frontendURL(`accounts/${accountId}/settings/agents/list`),
+            toStateName: 'agent_list',
+          },
+          {
+            icon: 'ion-ios-people',
+            label: 'TEAMS',
+            hasSubMenu: false,
+            toState: frontendURL(`accounts/${accountId}/settings/teams/list`),
+            toStateName: 'settings_teams_list',
+          },
+          {
+            icon: 'ion-archive',
+            label: 'INBOXES',
+            hasSubMenu: false,
+            toState: frontendURL(`accounts/${accountId}/settings/inboxes/list`),
+            toStateName: 'settings_inbox_list',
+          },
+          {
+            icon: 'ion-pricetags',
+            label: 'LABELS',
+            hasSubMenu: false,
+            toState: frontendURL(`accounts/${accountId}/settings/labels/list`),
+            toStateName: 'labels_list',
+          },
+          {
+            icon: 'ion-chatbox-working',
+            label: 'CANNED_RESPONSES',
+            hasSubMenu: false,
+            toState: frontendURL(
+              `accounts/${accountId}/settings/canned-response/list`
+            ),
+            toStateName: 'canned_list',
+          },
+          {
+            icon: 'ion-flash',
+            label: 'INTEGRATIONS',
+            hasSubMenu: false,
+            toState: frontendURL(`accounts/${accountId}/settings/integrations`),
+            toStateName: 'settings_integrations',
+          },
+          {
+            icon: 'ion-asterisk',
+            label: 'APPLICATIONS',
+            hasSubMenu: false,
+            toState: frontendURL(`accounts/${accountId}/settings/applications`),
+            toStateName: 'settings_applications',
+          },
+          {
+            icon: 'ion-gear-a',
+            label: 'ACCOUNT_SETTINGS',
+            hasSubMenu: false,
+            toState: frontendURL(`accounts/${accountId}/settings/general`),
+            toStateName: 'general_settings_index',
+          },
+        ],
       },
     },
+  },
+  conversations: {
+    routes: [
+      'conversations',
+      'inbox_dashboard',
+      'inbox_conversation',
+      'conversation_through_inbox',
+      'label_conversations',
+      'conversations_through_label',
+      'team_conversations',
+      'conversations_through_team',
+    ],
   },
   contacts: {
     routes: [

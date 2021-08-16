@@ -1,6 +1,6 @@
 <template>
   <div class="status">
-    <div class="status-view">
+    <div class="status-view" @click="openStatusMenu">
       <availability-status-badge :status="currentUserAvailabilityStatus" />
       <div class="status-view--title">
         {{ availabilityDisplayLabel }}
@@ -156,8 +156,9 @@ export default {
 
 .status-change {
   .dropdown-pane {
-    top: -132px;
-    right: var(--space-normal);
+    //top: -132px;
+    right: 0;
+    bottom: 5rem;
   }
 
   &--change-button {

@@ -1,19 +1,38 @@
 <template>
-  <aside class="sidebar animated shrink columns">
+  <aside
+    class="sidebar animated shrink columns"
+    :class="{
+      'minimal-sidebar': currentRoute != 'home',
+      'has-submenu': has_submenu,
+    }"
+  >
     <div class="logo">
       <router-link :to="dashboardPath" replace>
-        <img :src="globalConfig.logo" :alt="globalConfig.installationName" />
+        <img
+          v-show="currentRoute != 'home'"
+          src="https://cdn-dev.gobysend.com/brand/logo/1621997879Gobysend logo_logomark 200x200 white.png"
+          :alt="globalConfig.installationName"
+          width="35"
+        />
+
+        <img
+          v-show="currentRoute == 'home'"
+          src="https://cdn-dev.gobysend.com/brand/logo/1622268746Gobysend logo_logo dài gray 56PX-27.svg"
+          :alt="globalConfig.installationName"
+          width="125"
+        />
       </router-link>
     </div>
 
     <div class="main-nav">
-      <transition-group name="menu-list" tag="ul" class="menu vertical">
+      <ul class="menu vertical">
         <sidebar-item
           v-for="item in accessibleMenuItems"
           :key="item.toState"
           :menu-item="item"
+          @add-label="showAddLabelPopup"
         />
-        <sidebar-item
+        <!-- <sidebar-item
           v-if="shouldShowTeams"
           :key="teamSection.toState"
           :menu-item="teamSection"
@@ -28,14 +47,14 @@
           :key="labelSection.toState"
           :menu-item="labelSection"
           @add-label="showAddLabelPopup"
-        />
-        <sidebar-item
+        /> -->
+        <!-- <sidebar-item
           v-if="showShowContactSideMenu"
           :key="contactLabelSection.key"
           :menu-item="contactLabelSection"
           @add-label="showAddLabelPopup"
-        />
-      </transition-group>
+        /> -->
+      </ul>
     </div>
 
     <div class="bottom-nav">
@@ -44,7 +63,7 @@
 
     <div class="bottom-nav app-context-menu" @click="toggleOptions">
       <agent-details @show-options="toggleOptions" />
-      <notification-bell />
+      <!-- <notification-bell /> -->
       <span class="current-user--options icon ion-android-more-vertical" />
       <options-menu
         :show="showOptionsMenu"
@@ -80,7 +99,7 @@ import AvailabilityStatus from './AvailabilityStatus';
 import { frontendURL } from '../../helper/URLHelper';
 import { getSidebarItems } from '../../i18n/default-sidebar';
 import alertMixin from 'shared/mixins/alertMixin';
-import NotificationBell from './sidebarComponents/NotificationBell';
+// import NotificationBell from './sidebarComponents/NotificationBell';
 import AgentDetails from './sidebarComponents/AgentDetails.vue';
 import OptionsMenu from './sidebarComponents/OptionsMenu.vue';
 import AccountSelector from './sidebarComponents/AccountSelector.vue';
@@ -92,7 +111,7 @@ export default {
     AgentDetails,
     SidebarItem,
     AvailabilityStatus,
-    NotificationBell,
+    // NotificationBell,
     OptionsMenu,
     AccountSelector,
     AddAccountModal,
@@ -122,21 +141,37 @@ export default {
     sidemenuItems() {
       return getSidebarItems(this.accountId);
     },
-    accessibleMenuItems() {
+    has_submenu() {
+      if (this.currentRoute === 'home') return false;
+
       // get all keys in menuGroup
       const groupKey = Object.keys(this.sidemenuItems);
 
-      let menuItems = [];
-      // Iterate over menuGroup to find the correct group
-      for (let i = 0; i < groupKey.length; i += 1) {
+      for (let i = 1; i < groupKey.length; i += 1) {
         const groupItem = this.sidemenuItems[groupKey[i]];
         // Check if current route is included
         const isRouteIncluded = groupItem.routes.includes(this.currentRoute);
-        if (isRouteIncluded) {
-          menuItems = Object.values(groupItem.menuItems);
-        }
+        if (isRouteIncluded) return true;
       }
 
+      return false;
+    },
+    accessibleMenuItems() {
+      // // get all keys in menuGroup
+      // const groupKey = Object.keys(this.sidemenuItems);
+
+      // let menuItems = [];
+      // // Iterate over menuGroup to find the correct group
+      // for (let i = 0; i < groupKey.length; i += 1) {
+      //   const groupItem = this.sidemenuItems[groupKey[i]];
+      //   // Check if current route is included
+      //   const isRouteIncluded = groupItem.routes.includes(this.currentRoute);
+      //   if (isRouteIncluded) {
+      //     menuItems = Object.values(groupItem.menuItems);
+      //   }
+      // }
+
+      let menuItems = Object.values(this.sidemenuItems.common.menuItems);
       return this.filterMenuItemsByRole(menuItems);
     },
     currentRoute() {
@@ -158,7 +193,7 @@ export default {
         hasSubMenu: true,
         newLink: true,
         key: 'inbox',
-        cssClass: 'menu-title align-justify',
+        cssClass: '',
         toState: frontendURL(`accounts/${this.accountId}/settings/inboxes`),
         toStateName: 'settings_inbox_list',
         newLinkRouteName: 'settings_inbox_new',
@@ -178,7 +213,7 @@ export default {
         hasSubMenu: true,
         newLink: true,
         key: 'label',
-        cssClass: 'menu-title align-justify',
+        cssClass: '',
         toState: frontendURL(`accounts/${this.accountId}/settings/labels`),
         toStateName: 'labels_list',
         showModalForNewItem: true,
@@ -201,7 +236,7 @@ export default {
         hasSubMenu: true,
         key: 'label',
         newLink: false,
-        cssClass: 'menu-title align-justify',
+        cssClass: '',
         toState: frontendURL(`accounts/${this.accountId}/settings/labels`),
         toStateName: 'labels_list',
         showModalForNewItem: true,
@@ -224,7 +259,7 @@ export default {
         hasSubMenu: true,
         newLink: true,
         key: 'team',
-        cssClass: 'menu-title align-justify teams-sidebar-menu',
+        cssClass: ' teams-sidebar-menu',
         toState: frontendURL(`accounts/${this.accountId}/settings/teams`),
         toStateName: 'teams_list',
         newLinkRouteName: 'settings_teams_new',

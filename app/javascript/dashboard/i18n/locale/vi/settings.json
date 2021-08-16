@@ -69,11 +69,7 @@
       },
       "AVAILABILITY": {
         "LABEL": "Khả dụng",
-        "STATUSES_LIST": [
-          "Trực Tuyến",
-          "Bận",
-          "Không Trực Tuyến"
-        ]
+        "STATUSES_LIST": ["Trực Tuyến", "Bận", "Không Trực Tuyến"]
       },
       "EMAIL": {
         "LABEL": "Địa chỉ email của bạn",
@@ -129,13 +125,14 @@
   },
   "SIDEBAR": {
     "CONVERSATIONS": "Cuộc trò chuyện",
+    "ALL_CONVERSATIONS": "Tất cả cuộc trò chuyện",
     "REPORTS": "Báo cáo",
     "CONTACTS": "Liên hệ",
     "SETTINGS": "Cài Đặt",
     "HOME": "Trang Chủ",
     "AGENTS": "Đại lý",
     "INBOXES": "Hộp thư đến",
-    "NOTIFICATIONS": "Notifications",
+    "NOTIFICATIONS": "Thông báo",
     "CANNED_RESPONSES": "Thư mẫu phẩn hồi",
     "INTEGRATIONS": "Tích hợp",
     "ACCOUNT_SETTINGS": "Cài Đặt Tài Khoản",
@@ -143,8 +140,8 @@
     "LABELS": "Nhãn",
     "TEAMS": "Teams",
     "ALL_CONTACTS": "Tất cả liên hệ",
-    "TAGGED_WITH": "Tagged with",
-    "REPORTS_OVERVIEW": "Overview",
+    "TAGGED_WITH": "Được gắn thẻ",
+    "REPORTS_OVERVIEW": "Tổng quan",
     "CSAT": "CSAT"
   },
   "CREATE_ACCOUNT": {
@@ -153,7 +150,7 @@
     "API": {
       "SUCCESS_MESSAGE": "Tài khoản được tạo thành công",
       "EXIST_MESSAGE": "Tài khoản đã tồn tại",
-      "ERROR_MESSAGE": "Không thể kết nối với Máy chủ Woot, Vui lòng thử lại sau"
+      "ERROR_MESSAGE": "Không thể kết nối với Máy chủ, Vui lòng thử lại sau"
     },
     "FORM": {
       "NAME": {

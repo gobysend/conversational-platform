@@ -6,6 +6,11 @@
     :class="computedClass"
   >
     <a
+      v-tooltip="{
+        content: currentRoute == 'home' ? '' : $t(`SIDEBAR.${menuItem.label}`),
+        placement: 'right',
+        classes: ['custom-left'],
+      }"
       class="sub-menu-title"
       :class="getMenuItemClass"
       data-tooltip
@@ -14,43 +19,177 @@
     >
       <div class="wrap">
         <i :class="menuItem.icon" />
-        {{ $t(`SIDEBAR.${menuItem.label}`) }}
+
+        <span class="nav-text">{{ $t(`SIDEBAR.${menuItem.label}`) }}</span>
       </div>
+
       <span
         v-if="showItem(menuItem)"
         class="child-icon ion-android-add-circle"
-        @click.prevent="newLinkClick(menuItem)"
+        @click.prevent="$emit('add-label')"
       />
     </a>
+
     <ul v-if="menuItem.hasSubMenu" class="nested vertical menu">
+      <div class="header-title">
+        {{ $t(`SIDEBAR.${menuItem.label}`) }}
+      </div>
+
       <router-link
         v-for="child in menuItem.children"
-        :key="child.id"
-        active-class="active flex-container"
+        :key="child.toState"
+        active-class="active"
         tag="li"
         :to="child.toState"
       >
         <a href="#" :class="computedChildClass(child)">
-          <div class="wrap">
-            <i
-              v-if="computedInboxClass(child)"
-              class="inbox-icon"
-              :class="computedInboxClass(child)"
+          <i
+            v-if="computedInboxClass(child)"
+            class="inbox-icon"
+            :class="computedInboxClass(child)"
+          />
+          <span
+            v-if="child.color"
+            class="label-color--display"
+            :style="{ backgroundColor: child.color }"
+          />
+
+          {{ $t(`SIDEBAR.${child.label}`) }}
+        </a>
+      </router-link>
+
+      <template v-if="menuItem.toStateName == 'contacts_dashboard'">
+        <li>
+          <div class="sub-title">
+            <div>
+              <i class="ion-pound"></i>
+              {{ $t('SIDEBAR.TAGGED_WITH') }}
+            </div>
+
+            <span
+              v-if="showItem(contactLabelSection)"
+              class="child-icon ion-android-add-circle"
+              @click.prevent="newLinkClick(contactLabelSection)"
             />
+          </div>
+        </li>
+
+        <router-link
+          v-for="child in contactLabelSection.children"
+          :key="child.toState"
+          active-class="active flex-container"
+          tag="li"
+          :to="child.toState"
+        >
+          <a href="#" :class="computedChildClass(child)">
             <span
               v-if="child.color"
               class="label-color--display"
               :style="{ backgroundColor: child.color }"
             />
-            <div
-              :title="computedChildTitle(child)"
-              :class="computedChildClass(child)"
-            >
-              {{ child.label }}
+
+            {{ child.label }}
+          </a>
+        </router-link>
+      </template>
+
+      <template v-if="menuItem.toStateName == 'conversations'">
+        <!-- team section -->
+        <template v-if="teams.length">
+          <li>
+            <div class="sub-title">
+              <div>
+                <i class="ion-ios-people"></i>
+                {{ $t('SIDEBAR.TEAMS') }}
+              </div>
+
+              <span
+                v-if="showItem(teamSection)"
+                class="child-icon ion-android-add-circle"
+                @click.prevent="newLinkClick(teamSection)"
+              />
             </div>
-          </div>
-        </a>
-      </router-link>
+          </li>
+
+          <router-link
+            v-for="child in teamSection.children"
+            :key="child.toState"
+            active-class="active flex-container"
+            tag="li"
+            :to="child.toState"
+          >
+            <a href="#" :class="computedChildClass(child)">
+              {{ child.label }}
+            </a>
+          </router-link>
+        </template>
+
+        <!-- inbox section -->
+        <template>
+          <li>
+            <div class="sub-title">
+              <div>
+                <i class="ion-folder"></i>
+                {{ $t('SIDEBAR.INBOXES') }}
+              </div>
+
+              <span
+                v-if="showItem(inboxSection)"
+                class="child-icon ion-android-add-circle"
+                @click.prevent="newLinkClick(inboxSection)"
+              />
+            </div>
+          </li>
+
+          <router-link
+            v-for="child in inboxSection.children"
+            :key="child.toState"
+            active-class="active flex-container"
+            tag="li"
+            :to="child.toState"
+          >
+            <a href="#" :class="computedChildClass(child)">
+              {{ child.label }}
+            </a>
+          </router-link>
+        </template>
+
+        <!-- label section -->
+        <template>
+          <li>
+            <div class="sub-title">
+              <div>
+                <i class="ion-pound"></i>
+                {{ $t('SIDEBAR.LABELS') }}
+              </div>
+
+              <span
+                v-if="showItem(labelSection)"
+                class="child-icon ion-android-add-circle"
+                @click.prevent="newLinkClick(labelSection)"
+              />
+            </div>
+          </li>
+
+          <router-link
+            v-for="child in labelSection.children"
+            :key="child.toState"
+            active-class="active flex-container"
+            tag="li"
+            :to="child.toState"
+          >
+            <a href="#" :class="computedChildClass(child)">
+              <span
+                v-if="child.color"
+                class="label-color--display"
+                :style="{ backgroundColor: child.color }"
+              />
+
+              {{ child.label }}
+            </a>
+          </router-link>
+        </template>
+      </template>
     </ul>
   </router-link>
 </template>
@@ -68,6 +207,8 @@ import {
 import adminMixin from '../../mixins/isAdmin';
 import eventListenerMixins from 'shared/mixins/eventListenerMixins';
 import { getInboxClassByType } from 'dashboard/helper/inbox';
+import { frontendURL } from '../../helper/URLHelper';
+import { getSidebarItems } from '../../i18n/default-sidebar';
 export default {
   mixins: [adminMixin, eventListenerMixins],
   props: {
@@ -80,25 +221,133 @@ export default {
   },
   computed: {
     ...mapGetters({
+      inboxes: 'inboxes/getInboxes',
       activeInbox: 'getSelectedInbox',
+      accountId: 'getCurrentAccountId',
+      accountLabels: 'labels/getLabelsOnSidebar',
+      teams: 'teams/getMyTeams',
     }),
     getMenuItemClass() {
       return this.menuItem.cssClass
         ? `side-menu ${this.menuItem.cssClass}`
         : 'side-menu';
     },
+    currentRoute() {
+      return this.$store.state.route.name;
+    },
+    sidemenuItems() {
+      return getSidebarItems(this.accountId);
+    },
     computedClass() {
-      // If active Inbox is present
-      // donot highlight conversations
-      if (this.activeInbox) return ' ';
+      // // If active Inbox is present
+      // // donot highlight conversations
+      // if (this.activeInbox) return ' ';
+
+      // if (
+      //   this.$store.state.route.name === 'inbox_conversation' &&
+      //   this.menuItem.toStateName === 'home'
+      // ) {
+      //   return 'active';
+      // }
+      // return ' ';
+
+      let currentMenu = this.menuItem.label.toLowerCase();
 
       if (
-        this.$store.state.route.name === 'inbox_conversation' &&
-        this.menuItem.toStateName === 'home'
+        this.sidemenuItems[currentMenu] &&
+        this.sidemenuItems[currentMenu].routes.includes(this.currentRoute)
       ) {
         return 'active';
       }
-      return ' ';
+      return '';
+    },
+
+    teamSection() {
+      return {
+        icon: 'ion-ios-people',
+        label: 'TEAMS',
+        hasSubMenu: true,
+        newLink: true,
+        key: 'team',
+        cssClass: ' teams-sidebar-menu',
+        toState: frontendURL(`accounts/${this.accountId}/settings/teams`),
+        toStateName: 'teams_list',
+        newLinkRouteName: 'settings_teams_new',
+        children: this.teams.map(team => ({
+          id: team.id,
+          label: team.name,
+          truncateLabel: true,
+          toState: frontendURL(`accounts/${this.accountId}/team/${team.id}`),
+        })),
+      };
+    },
+
+    inboxSection() {
+      return {
+        icon: 'ion-folder',
+        label: 'INBOXES',
+        hasSubMenu: true,
+        newLink: true,
+        key: 'inbox',
+        cssClass: '',
+        toState: frontendURL(`accounts/${this.accountId}/settings/inboxes`),
+        toStateName: 'settings_inbox_list',
+        newLinkRouteName: 'settings_inbox_new',
+        children: this.inboxes.map(inbox => ({
+          id: inbox.id,
+          label: inbox.name,
+          toState: frontendURL(`accounts/${this.accountId}/inbox/${inbox.id}`),
+          type: inbox.channel_type,
+          phoneNumber: inbox.phone_number,
+        })),
+      };
+    },
+
+    labelSection() {
+      return {
+        icon: 'ion-pound',
+        label: 'LABELS',
+        hasSubMenu: true,
+        newLink: true,
+        key: 'label',
+        cssClass: '',
+        toState: frontendURL(`accounts/${this.accountId}/settings/labels`),
+        toStateName: 'labels_list',
+        showModalForNewItem: true,
+        modalName: 'AddLabel',
+        children: this.accountLabels.map(label => ({
+          id: label.id,
+          label: label.title,
+          color: label.color,
+          truncateLabel: true,
+          toState: frontendURL(
+            `accounts/${this.accountId}/label/${label.title}`
+          ),
+        })),
+      };
+    },
+
+    contactLabelSection() {
+      return {
+        icon: 'ion-pound',
+        label: 'TAGGED_WITH',
+        hasSubMenu: true,
+        key: 'label',
+        newLink: false,
+        toState: frontendURL(`accounts/${this.accountId}/settings/labels`),
+        toStateName: 'labels_list',
+        showModalForNewItem: true,
+        modalName: 'AddLabel',
+        children: this.accountLabels.map(label => ({
+          id: label.id,
+          label: label.title,
+          color: label.color,
+          truncateLabel: true,
+          toState: frontendURL(
+            `accounts/${this.accountId}/labels/${label.title}/contacts`
+          ),
+        })),
+      };
     },
   },
   methods: {
