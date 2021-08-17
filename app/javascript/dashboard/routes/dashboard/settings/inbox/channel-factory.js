@@ -1,4 +1,5 @@
 import Facebook from './channels/Facebook';
+import Zalo from './channels/Zalo';
 import Website from './channels/Website';
 import Twitter from './channels/Twitter';
 import Api from './channels/Api';
@@ -14,6 +15,7 @@ const channelViewList = {
   email: Email,
   sms: Sms,
   whatsapp: Whatsapp,
+  zalo: Zalo,
 };
 
 export default {

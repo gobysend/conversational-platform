@@ -36,6 +36,11 @@
         "LABEL": "Tên trang web",
         "PLACEHOLDER": "Nhập tên trang web của bạn (ví dụ: Acme Inc)"
       },
+      "ZALO": {
+        "TITLE": "Zalo",
+        "DESC": "Tạo kênh và chăm sóc khách hàng qua kênh chat zalo",
+        "CONNECT": "Tích hợp Zalo OA"
+      },
       "FB": {
         "HELP": "Tái bút: Bằng cách đăng nhập, chúng tôi chỉ có quyền truy cập vào các tin nhắn trên Trang của bạn. Chatwoot không bao giờ có thể truy cập tin nhắn riêng tư của bạn.",
         "CHOOSE_PAGE": "Chọn trang",

@@ -5,6 +5,7 @@ import login from './login/login.routes';
 import dashboard from './dashboard/dashboard.routes';
 import authRoute from './auth/auth.routes';
 import { frontendURL } from '../helper/URLHelper';
+import OauthRedirect from './OauthRedirect.vue';
 
 const routes = [
   ...login.routes,
@@ -13,6 +14,12 @@ const routes = [
   {
     path: '/',
     redirect: '/app',
+  },
+  {
+    path: frontendURL('oauth-redirect'),
+    name: 'oauth_redirect',
+    roles: ['administrator', 'agent'],
+    component: OauthRedirect,
   },
 ];
 
@@ -47,6 +54,7 @@ const authIgnoreRoutes = [
   'auth_confirmation',
   'pushBack',
   'auth_password_edit',
+  'oauth_redirect',
 ];
 
 function routeIsAccessibleFor(route, role) {
