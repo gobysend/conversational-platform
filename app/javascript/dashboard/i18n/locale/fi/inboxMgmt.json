@@ -1,7 +1,7 @@
 {
   "INBOX_MGMT": {
     "HEADER": "Saapuneet-kansiot",
-    "SIDEBAR_TXT": "<p><b>Postilaatikko</b></p> <p> Kun yhdistät sivuston tai Facebook-sivun Chatwotiin, sitä kutsutaan <b>postilaatikoksi</b>. Sinulla voi olla rajoittamaton määrä postilaatikoita Chatwoot tililläsi. </p><p> Klikkaa <b>Lisää postilaatikko</b> yhdistääksesi verkkosivuston tai Facebook-sivun. </p><p> Kojelaudalla näet kaikki keskustelut kaikista saapuneet-kansiostasi yhdessä paikassa ja vastaat niihin `Keskustelut`-välilehdessä. </p><p> Voit myös nähdä postilaatikkoon liittyviä keskusteluja klikkaamalla postilaatikon nimeä kojelaudan vasemmassa paneelissa. </p>",
+    "SIDEBAR_TXT": "<p><b>Postilaatikko</b></p> <p> Kun yhdistät sivuston tai Facebook-sivun Chatwotiin, sitä kutsutaan <b>postilaatikoksi</b>. Sinulla voi olla rajoittamaton määrä postilaatikoita Gobysend tililläsi. </p><p> Klikkaa <b>Lisää postilaatikko</b> yhdistääksesi verkkosivuston tai Facebook-sivun. </p><p> Kojelaudalla näet kaikki keskustelut kaikista saapuneet-kansiostasi yhdessä paikassa ja vastaat niihin `Keskustelut`-välilehdessä. </p><p> Voit myös nähdä postilaatikkoon liittyviä keskusteluja klikkaamalla postilaatikon nimeä kojelaudan vasemmassa paneelissa. </p>",
     "LIST": {
       "404": "Tähän tiliin ei ole liitetty saapuneet-kansiota."
     },
@@ -37,7 +37,7 @@
         "PLACEHOLDER": "Anna sivuston nimi (esim. Acme Oy)"
       },
       "FB": {
-        "HELP": "PS: Kirjautumalla sisään saamme vain pääsyn sivusi viesteihin. Chatwoot ei koskaan näe yksityisviestejäsi.",
+        "HELP": "PS: Kirjautumalla sisään saamme vain pääsyn sivusi viesteihin. Gobysend ei koskaan näe yksityisviestejäsi.",
         "CHOOSE_PAGE": "Valitse sivu",
         "CHOOSE_PLACEHOLDER": "Valitse sivu listasta",
         "INBOX_NAME": "Kansion nimi",
@@ -174,7 +174,7 @@
       },
       "AUTH": {
         "TITLE": "Valitse kanava",
-        "DESC": "Chatwoot tukee live-chat widgettiä, Facebook-sivua, Twitter-profiilia, Whatsappia, Sähköpostia jne., as channels. Voit luoda oman kanavan API-rajapinnalla."
+        "DESC": "Gobysend tukee live-chat widgettiä, Facebook-sivua, Twitter-profiilia, Whatsappia, Sähköpostia jne., as channels. Voit luoda oman kanavan API-rajapinnalla."
       },
       "AGENTS": {
         "TITLE": "Edustajat",
