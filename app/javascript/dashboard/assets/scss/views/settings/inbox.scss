@@ -9,8 +9,8 @@
   @include flex;
   @include flex-align($x: justify, $y: middle);
   @include border-normal-bottom;
-  height: $header-height;
-  min-height: $header-height;
+  //height: $header-height;
+  min-height: 60px;
 
   // Resolve Button
   .button {

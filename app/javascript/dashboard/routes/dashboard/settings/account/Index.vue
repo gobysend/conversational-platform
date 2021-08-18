@@ -1,7 +1,7 @@
 <template>
   <div class="columns profile--settings">
     <form v-if="!uiFlags.isFetchingItem" @submit.prevent="updateAccount">
-      <div class="small-12 row profile--settings--row">
+      <div class="small-12 row profile--settings--row card-goby">
         <div class="columns small-3">
           <h4 class="block-title">
             {{ $t('GENERAL_SETTINGS.FORM.GENERAL_SECTION.TITLE') }}

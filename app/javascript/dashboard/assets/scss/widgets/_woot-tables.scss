@@ -1,6 +1,7 @@
 table {
   border-spacing: 0;
   font-size: $font-size-small;
+  margin-bottom: 0;
 
   thead {
     th {
@@ -47,7 +48,7 @@ table {
   }
 
   .button-wrapper {
-    @include flex-align(left, null);
+    @include flex-align(right, null);
     @include flex;
     flex-direction: row;
     min-width: 20rem;

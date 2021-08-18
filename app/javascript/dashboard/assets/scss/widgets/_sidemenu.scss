@@ -253,6 +253,10 @@
   }
 }
 
+.sidebar.off-canvas.position-left {
+  transform: translateX(-100%);
+}
+
 // bottom-nav
 .bottom-nav {
   @include flex;

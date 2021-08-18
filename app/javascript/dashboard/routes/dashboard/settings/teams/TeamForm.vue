@@ -21,7 +21,12 @@
         />
 
         <div class="medium-12">
-          <input v-model="allowAutoAssign" type="checkbox" :value="true" />
+          <input
+            id="conversation_creation"
+            v-model="allowAutoAssign"
+            type="checkbox"
+            :value="true"
+          />
           <label for="conversation_creation">
             {{ $t('TEAMS_SETTINGS.FORM.AUTO_ASSIGN.LABEL') }}
           </label>

@@ -2,55 +2,61 @@
   <div class="column content-box">
     <div class="row">
       <div class="small-8 columns with-right-space ">
-        <p v-if="!teamsList.length" class="no-items-error-message">
-          {{ $t('TEAMS_SETTINGS.LIST.404') }}
-          <router-link
-            v-if="isAdmin"
-            :to="addAccountScoping('settings/teams/new')"
-          >
-            {{ $t('TEAMS_SETTINGS.NEW_TEAM') }}
-          </router-link>
-        </p>
+        <div class="card-goby">
+          <p v-if="!teamsList.length" class="no-items-error-message">
+            {{ $t('TEAMS_SETTINGS.LIST.404') }}
+            <router-link
+              v-if="isAdmin"
+              :to="addAccountScoping('settings/teams/new')"
+            >
+              {{ $t('TEAMS_SETTINGS.NEW_TEAM') }}
+            </router-link>
+          </p>
 
-        <table v-if="teamsList.length" class="woot-table">
-          <tbody>
-            <tr v-for="item in teamsList" :key="item.id">
-              <td>
-                <span class="agent-name">{{ item.name }}</span>
-                <p>{{ item.description }}</p>
-              </td>
+          <div v-else style="overflow:auto">
+            <table class="woot-table">
+              <tbody>
+                <tr v-for="item in teamsList" :key="item.id">
+                  <td>
+                    <span class="agent-name">{{ item.name }}</span>
+                    <p>{{ item.description }}</p>
+                  </td>
 
-              <td>
-                <div class="button-wrapper">
-                  <router-link
-                    :to="addAccountScoping(`settings/teams/${item.id}/edit`)"
-                  >
-                    <woot-button
-                      v-if="isAdmin"
-                      variant="link"
-                      color-scheme="secondary"
-                      class-names="grey-btn"
-                      icon="ion-gear-b"
-                    >
-                      {{ $t('TEAMS_SETTINGS.LIST.EDIT_TEAM') }}
-                    </woot-button>
-                  </router-link>
-                  <woot-button
-                    v-if="isAdmin"
-                    variant="link"
-                    color-scheme="secondary"
-                    icon="ion-close-circled"
-                    class-names="grey-btn"
-                    :is-loading="loading[item.id]"
-                    @click="openDelete(item)"
-                  >
-                    {{ $t('TEAMS_SETTINGS.DELETE.BUTTON_TEXT') }}
-                  </woot-button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                  <td>
+                    <div class="button-wrapper">
+                      <router-link
+                        :to="
+                          addAccountScoping(`settings/teams/${item.id}/edit`)
+                        "
+                      >
+                        <woot-button
+                          v-if="isAdmin"
+                          variant="link"
+                          color-scheme="primary"
+                          class-names="grey-btn"
+                          icon="ion-gear-b"
+                        >
+                          {{ $t('TEAMS_SETTINGS.LIST.EDIT_TEAM') }}
+                        </woot-button>
+                      </router-link>
+                      <woot-button
+                        v-if="isAdmin"
+                        variant="link"
+                        color-scheme="alert"
+                        icon="ion-close-circled"
+                        class-names="grey-btn"
+                        :is-loading="loading[item.id]"
+                        @click="openDelete(item)"
+                      >
+                        {{ $t('TEAMS_SETTINGS.DELETE.BUTTON_TEXT') }}
+                      </woot-button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
       <div class="small-4 columns">
@@ -147,6 +153,5 @@ export default {
 .button-wrapper {
   min-width: unset;
   justify-content: flex-end;
-  padding-right: var(--space-large);
 }
 </style>

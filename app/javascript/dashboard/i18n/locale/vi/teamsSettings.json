@@ -4,24 +4,24 @@
     "HEADER": "Nhóm",
     "SIDEBAR_TXT": "<p><b>Teams</b></p> <p>Teams let you organize your agents into groups based on their responsibilities. <br /> A user can be part of multiple teams. You can assign conversations to a team when you are working collaboratively. </p>",
     "LIST": {
-      "404": "There are no teams created on this account.",
-      "EDIT_TEAM": "Edit team"
+      "404": "Không có nhóm nào được tạo",
+      "EDIT_TEAM": "Chỉnh sửa"
     },
     "CREATE_FLOW": {
       "CREATE": {
-        "TITLE": "Create a new team",
-        "DESC": "Add a title and description to your new team."
+        "TITLE": "Tạo nhóm mới",
+        "DESC": "Thêm tiêu đề và mô tả cho nhóm của bạn."
       },
       "AGENTS": {
-        "BUTTON_TEXT": "Add agents to team",
-        "TITLE": "Add agents to team - %{teamName}",
+        "BUTTON_TEXT": "Thêm đại lý vào nhóm",
+        "TITLE": "Thêm đại lý vào nhóm - %{teamName}",
         "DESC": "Add Agents to your newly created team. This lets you collaborate as a team on conversations, get notified on new events in the same conversation."
       },
       "WIZARD": [
         {
           "title": "Tạo",
           "route": "settings_teams_new",
-          "body": "Create a new team of agents."
+          "body": "Tạo nhóm đại lý mới."
         },
         {
           "title": "Thêm đại lý",
@@ -106,20 +106,20 @@
     },
     "SETTINGS": "Cài đặt",
     "FORM": {
-      "UPDATE": "Update team",
-      "CREATE": "Create team",
+      "UPDATE": "Cập nhật",
+      "CREATE": "Tạo nhóm",
       "NAME": {
-        "LABEL": "Team name",
-        "PLACEHOLDER": "Example: Sales, Customer Support"
+        "LABEL": "Tên nhóm",
+        "PLACEHOLDER": "Ví dụ: Sales, Customer Support"
       },
       "DESCRIPTION": {
-        "LABEL": "Team Description",
-        "PLACEHOLDER": "Short description about this team."
+        "LABEL": "Mô tả nhóm",
+        "PLACEHOLDER": "Mô tả ngắn về nhóm này"
       },
       "AUTO_ASSIGN": {
         "LABEL": "Allow auto assign for this team."
       },
-      "SUBMIT_CREATE": "Create team"
+      "SUBMIT_CREATE": "Tạo nhóm"
     }
   }
 }

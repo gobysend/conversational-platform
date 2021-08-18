@@ -6,10 +6,11 @@
       <i :class="iconClass"></i>
       <span>{{ headerTitle }}</span>
     </h1>
+
     <router-link
       v-if="showNewButton && isAdmin"
       :to="buttonRoute"
-      class="button success button--fixed-right-top"
+      class="button primary"
     >
       <i class="icon ion-android-add-circle"></i>
       <span class="button__content">
