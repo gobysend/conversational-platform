@@ -1,10 +1,10 @@
 .integrations-wrap {
   .integration {
     background: $color-white;
-    border: 1px solid $color-border;
     border-radius: $space-smaller;
     margin-bottom: $space-normal;
     padding: $space-normal;
+    box-shadow: 1px 1px 6px 0 rgba(69, 65, 78, 0.1);
 
     .integration--image {
       display: flex;

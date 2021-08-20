@@ -45,6 +45,7 @@
         zalo_app_id: '<%= ENV.fetch('ZALO_APP_ID', '') %>'
       }
       window.globalConfig = <%= raw @global_config.to_json %>
+      window.globalConfig.installationName = 'Gobysend'
       window.browserConfig = {
         browser_name: '<%= browser.name %>',
         is_safari: '<%= browser.safari? %>'

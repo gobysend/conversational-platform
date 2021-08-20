@@ -1,14 +1,14 @@
 {
   "INTEGRATION_APPS": {
     "FETCHING": "Fetching Integrations",
-    "NO_HOOK_CONFIGURED": "There are no %{integrationId} integrations configured in this account.",
+    "NO_HOOK_CONFIGURED": "Không có tích hợp %{integrationId} nào trong tài khoản này.",
     "HEADER": "Applications",
     "STATUS": {
       "ENABLED": "Bật",
       "DISABLED": "Không bật"
     },
     "CONFIGURE": "Cấu hình",
-    "ADD_BUTTON": "Add a new hook",
+    "ADD_BUTTON": "Thêm mới",
     "DELETE": {
       "TITLE": {
         "INBOX": "Confirm deletion",
@@ -38,8 +38,8 @@
     "ADD": {
       "FORM": {
         "INBOX": {
-          "LABEL": "Select Inbox",
-          "PLACEHOLDER": "Select Inbox"
+          "LABEL": "Hộp thư đến",
+          "PLACEHOLDER": "Chọn hộp thư đến"
         },
         "SUBMIT": "Tạo",
         "CANCEL": "Huỷ"
