@@ -77,6 +77,8 @@ class Api::V1::Accounts::InboxesController < Api::V1::Accounts::BaseController
       Current.account.api_channels.create!(permitted_params[:channel].except(:type))
     when 'email'
       Current.account.email_channels.create!(permitted_params[:channel].except(:type))
+    when 'zalo'
+      Current.account.zalo_channels.create!(permitted_params[:channel].except(:type))
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_23_095657) do
+ActiveRecord::Schema.define(version: 2021_08_21_094805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -223,6 +223,21 @@ ActiveRecord::Schema.define(version: 2021_07_23_095657) do
     t.boolean "hmac_mandatory", default: false
     t.index ["hmac_token"], name: "index_channel_web_widgets_on_hmac_token", unique: true
     t.index ["website_token"], name: "index_channel_web_widgets_on_website_token", unique: true
+  end
+
+  create_table "channel_zalo", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.string "oa_id", null: false
+    t.string "oa_name", null: false
+    t.string "oa_description"
+    t.string "oa_avatar"
+    t.string "oa_cover"
+    t.string "access_token", null: false
+    t.datetime "expires_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["oa_id", "account_id"], name: "index_channel_zalo_on_oa_id_and_account_id", unique: true
+    t.index ["oa_id"], name: "index_channel_zalo_on_oa_id"
   end
 
   create_table "contact_inboxes", force: :cascade do |t|
@@ -687,6 +702,11 @@ ActiveRecord::Schema.define(version: 2021_07_23_095657) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_working_hours_on_account_id"
     t.index ["inbox_id"], name: "index_working_hours_on_inbox_id"
+  end
+
+  create_table "zalos", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "account_users", "accounts"

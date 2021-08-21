@@ -1,7 +1,7 @@
 <template>
   <div class="wizard-body small-9 columns">
     <div class="login-init">
-      <woot-button @click="openSignInWindow()">
+      <woot-button @click="getZaloOA()">
         {{ $t('INBOX_MGMT.ADD.ZALO.CONNECT') }}
       </woot-button>
 
@@ -11,6 +11,9 @@
 </template>
 
 <script>
+
+/* global axios */
+import ApiClient from '../../../../../api/ApiClient';
 import { mapGetters } from 'vuex';
 import router from '../../../../index';
 
@@ -58,6 +61,17 @@ export default {
           inbox_id: website.id,
         },
       });
+    },
+
+    getZaloOA() {
+      axios.post(
+        'http://localhost:5000/api/v1/accounts/1/zalo_callbacks/register_zalo_oa',
+        {
+          inbox_name: 'Zalo Inbox',
+          access_token:
+            'WbM7F3dpD5w9NuSzD_8mKenTXJGtxJ0Eqnd23pFkDcZMG_f-29mK4DLDqtDekJ5mX4dVG4Ez7Y7cOCCV0P8YBF0zyIbEoHegb16h72pXGmxjJBy6BfbvO-1sY44wiNWcYn_9Baci5IgNOQX9AfrA9_rFc1S7j2Xqpdp9H1EbBc7rLVfJ9BWPLPf3pqnyxI13kIdLH0Bs4Y7F2wuF7w1T3QPzlI1Vr4yQdWQwFtxzIGUu5u0HTkjBBP4VZHnEwMSyZH6u05BhP1so1ui6JCatDhrwWZXTb6WMSME8deLNEUKnKm',
+        }
+      );
     },
 
     openSignInWindow() {
