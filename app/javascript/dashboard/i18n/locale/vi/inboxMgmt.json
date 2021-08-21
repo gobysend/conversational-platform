@@ -30,11 +30,11 @@
     "ADD": {
       "CHANNEL_NAME": {
         "LABEL": "Tên hộp thư đến",
-        "PLACEHOLDER": "Enter your inbox name (eg: Acme Inc)"
+        "PLACEHOLDER": "Nhập tên hộp thư đến"
       },
       "WEBSITE_NAME": {
         "LABEL": "Tên trang web",
-        "PLACEHOLDER": "Nhập tên trang web của bạn (ví dụ: Acme Inc)"
+        "PLACEHOLDER": "Nhập tên trang web của bạn"
       },
       "ZALO": {
         "TITLE": "Zalo",
@@ -71,7 +71,7 @@
         },
         "CHANNEL_WELCOME_TAGLINE": {
           "LABEL": "Dòng giới thiệu chào mừng",
-          "PLACEHOLDER": "Chúng tôi làm cho việc kết nối với chúng tôi trở nên đơn giản. Hỏi chúng tôi bất cứ điều gì hoặc chia sẻ phản hồi của bạn."
+          "PLACEHOLDER": "Hỏi chúng tôi bất cứ điều gì hoặc chia sẻ phản hồi của bạn."
         },
         "CHANNEL_GREETING_MESSAGE": {
           "LABEL": "Tin nhắn chúc mừng kênh",
@@ -84,11 +84,11 @@
           "DISABLED": "Không bật"
         },
         "REPLY_TIME": {
-          "TITLE": "Set Reply time",
-          "IN_A_FEW_MINUTES": "In a few minutes",
-          "IN_A_FEW_HOURS": "In a few hours",
-          "IN_A_DAY": "In a day",
-          "HELP_TEXT": "This reply time will be displayed on the live chat widget"
+          "TITLE": "Đặt thời gian trả lời",
+          "IN_A_FEW_MINUTES": "Trong vài phút",
+          "IN_A_FEW_HOURS": "Trong vài giờ",
+          "IN_A_DAY": "Trong ngày",
+          "HELP_TEXT": "Thời gian trả lời này sẽ được hiển thị trên tiện ích trò chuyện trực tiếp"
         },
         "WIDGET_COLOR": {
           "LABEL": "Màu tiện ích",

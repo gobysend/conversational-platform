@@ -6,7 +6,7 @@
           <div
             v-for="item in integrationsList"
             :key="item.id"
-            class="small-12 columns integration"
+            class="small-12 columns integration card-goby"
           >
             <integration
               :integration-id="item.id"

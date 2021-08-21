@@ -1,7 +1,7 @@
 <template>
   <div class="row content-box full-height">
     <woot-button
-      color-scheme="success"
+      color-scheme="primary"
       class-names="button--fixed-right-top"
       icon="ion-android-add-circle"
       @click="openAddPopup()"
@@ -11,57 +11,66 @@
 
     <div class="row">
       <div class="small-8 columns with-right-space ">
-        <p
-          v-if="!uiFlags.fetchingList && !records.length"
-          class="no-items-error-message"
-        >
-          {{ $t('INTEGRATION_SETTINGS.WEBHOOK.LIST.404') }}
-        </p>
-        <woot-loading-state
-          v-if="uiFlags.fetchingList"
-          :message="$t('INTEGRATION_SETTINGS.WEBHOOK.LOADING')"
-        />
+        <div class="card-goby">
+          <p
+            v-if="!uiFlags.fetchingList && !records.length"
+            class="no-items-error-message"
+          >
+            {{ $t('INTEGRATION_SETTINGS.WEBHOOK.LIST.404') }}
+          </p>
+          <woot-loading-state
+            v-if="uiFlags.fetchingList"
+            :message="$t('INTEGRATION_SETTINGS.WEBHOOK.LOADING')"
+          />
 
-        <table
-          v-if="!uiFlags.fetchingList && records.length"
-          class="woot-table"
-        >
-          <thead>
-            <th
-              v-for="thHeader in $t(
-                'INTEGRATION_SETTINGS.WEBHOOK.LIST.TABLE_HEADER'
-              )"
-              :key="thHeader"
-            >
-              {{ thHeader }}
-            </th>
-          </thead>
-          <tbody>
-            <tr v-for="(webHookItem, index) in records" :key="webHookItem.id">
-              <td class="webhook-link">
-                {{ webHookItem.url }}
-              </td>
-              <td class="button-wrapper">
-                <woot-button
-                  variant="link"
-                  color-scheme="secondary"
-                  icon="ion-edit"
-                  @click="openEditPopup(webHookItem)"
+          <div
+            v-if="!uiFlags.fetchingList && records.length"
+            style="overflow:auto"
+          >
+            <table class="woot-table">
+              <thead>
+                <th
+                  v-for="thHeader in $t(
+                    'INTEGRATION_SETTINGS.WEBHOOK.LIST.TABLE_HEADER'
+                  )"
+                  :key="thHeader"
                 >
-                  {{ $t('INTEGRATION_SETTINGS.WEBHOOK.EDIT.BUTTON_TEXT') }}
-                </woot-button>
-                <woot-button
-                  variant="link"
-                  icon="ion-close-circled"
-                  color-scheme="secondary"
-                  @click="openDeletePopup(webHookItem, index)"
+                  {{ thHeader }}
+                </th>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="(webHookItem, index) in records"
+                  :key="webHookItem.id"
                 >
-                  {{ $t('INTEGRATION_SETTINGS.WEBHOOK.DELETE.BUTTON_TEXT') }}
-                </woot-button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                  <td class="webhook-link">
+                    {{ webHookItem.url }}
+                  </td>
+                  <td class="button-wrapper">
+                    <woot-button
+                      variant="link"
+                      color-scheme="primary"
+                      icon="ion-edit"
+                      @click="openEditPopup(webHookItem)"
+                    >
+                      {{ $t('INTEGRATION_SETTINGS.WEBHOOK.EDIT.BUTTON_TEXT') }}
+                    </woot-button>
+                    <woot-button
+                      variant="link"
+                      icon="ion-close-circled"
+                      color-scheme="alert"
+                      @click="openDeletePopup(webHookItem, index)"
+                    >
+                      {{
+                        $t('INTEGRATION_SETTINGS.WEBHOOK.DELETE.BUTTON_TEXT')
+                      }}
+                    </woot-button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
       <div class="small-4 columns">

@@ -2,7 +2,7 @@
   "TEAMS_SETTINGS": {
     "NEW_TEAM": "Tạo nhóm mới",
     "HEADER": "Nhóm",
-    "SIDEBAR_TXT": "<p><b>Teams</b></p> <p>Teams let you organize your agents into groups based on their responsibilities. <br /> A user can be part of multiple teams. You can assign conversations to a team when you are working collaboratively. </p>",
+    "SIDEBAR_TXT": "<p><b>Nhóm</b></p> <p>Nhóm cho phép bạn tổ chức các đại lý của mình thành các nhóm dựa trên trách nhiệm của họ. <br />  Một người dùng có thể tham gia nhiều nhóm. Bạn có thể chỉ định các cuộc trò chuyện cho nhóm. </p>",
     "LIST": {
       "404": "Không có nhóm nào được tạo",
       "EDIT_TEAM": "Chỉnh sửa"

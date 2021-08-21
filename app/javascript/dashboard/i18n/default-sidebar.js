@@ -91,28 +91,28 @@ export const getSidebarItems = accountId => ({
             icon: 'ion-person-stalker',
             label: 'AGENTS',
             hasSubMenu: false,
-            toState: frontendURL(`accounts/${accountId}/settings/agents/list`),
+            toState: frontendURL(`accounts/${accountId}/settings/agents`),
             toStateName: 'agent_list',
           },
           {
             icon: 'ion-ios-people',
             label: 'TEAMS',
             hasSubMenu: false,
-            toState: frontendURL(`accounts/${accountId}/settings/teams/list`),
+            toState: frontendURL(`accounts/${accountId}/settings/teams`),
             toStateName: 'settings_teams_list',
           },
           {
             icon: 'ion-archive',
             label: 'INBOXES',
             hasSubMenu: false,
-            toState: frontendURL(`accounts/${accountId}/settings/inboxes/list`),
+            toState: frontendURL(`accounts/${accountId}/settings/inboxes`),
             toStateName: 'settings_inbox_list',
           },
           {
             icon: 'ion-pricetags',
             label: 'LABELS',
             hasSubMenu: false,
-            toState: frontendURL(`accounts/${accountId}/settings/labels/list`),
+            toState: frontendURL(`accounts/${accountId}/settings/labels`),
             toStateName: 'labels_list',
           },
           {
@@ -120,7 +120,7 @@ export const getSidebarItems = accountId => ({
             label: 'CANNED_RESPONSES',
             hasSubMenu: false,
             toState: frontendURL(
-              `accounts/${accountId}/settings/canned-response/list`
+              `accounts/${accountId}/settings/canned-response`
             ),
             toStateName: 'canned_list',
           },
