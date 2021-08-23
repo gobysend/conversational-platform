@@ -249,6 +249,8 @@ Rails.application.routes.draw do
   get 'webhooks/twitter', to: 'api/v1/webhooks#twitter_crc'
   post 'webhooks/twitter', to: 'api/v1/webhooks#twitter_events'
 
+  post 'webhooks/zalo', to: 'zalo/callback#create'
+
   namespace :twitter do
     resource :callback, only: [:show]
   end

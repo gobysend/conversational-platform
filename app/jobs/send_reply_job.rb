@@ -11,6 +11,8 @@ class SendReplyJob < ApplicationJob
       ::Twitter::SendOnTwitterService.new(message: message).perform
     when 'Channel::TwilioSms'
       ::Twilio::SendOnTwilioService.new(message: message).perform
+    when 'Channel:Zalo'
+      ::Zalo::SendOnZaloService.new(message: message).perform
     end
   end
 end
