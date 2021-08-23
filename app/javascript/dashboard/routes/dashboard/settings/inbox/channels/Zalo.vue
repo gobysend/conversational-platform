@@ -6,6 +6,8 @@
       </woot-button>
 
       <p>{{ $t('INBOX_MGMT.ADD.ZALO.DESC') }}</p>
+
+      <button type="button" @click="getZaloOaDetail">Fetch</button>
     </div>
   </div>
 </template>
@@ -58,6 +60,14 @@ export default {
           inbox_id: website.id,
         },
       });
+    },
+
+    getZaloOaDetail() {
+      console.log('fetch');
+
+      return window.axios.get(
+        'https://openapi.zalo.me/v2.0/oa/getoa?access_token=kioBKY92iX2nnejJB4Es7BJ4YLeiNBDZzzdRVpqsXaBdpCz0BqEdHUMNdtuTRSWmmeAH3n1YfnRydl4B8MASJDcJq0bVHwmGmwFWAnfXfoJUc9j-DblMUgIKZbrYJAnplwpsIdjDccMMkQLUTalyNekwedn9LfXJqzdoTJmmYrZRmhnY6pVVPuF6v5iOID9dnAwQUbWje4M-x_rHJGlBOehRzLHKGBTqZiVDPbmQe7oUnkquQZ6zBhcqW6nuEyj4e_ZyPZqaicF_n-LcDHADTClipqPGRvC0Kwks3tSYLBST'
+      );
     },
 
     openSignInWindow() {
@@ -117,7 +127,8 @@ export default {
     getZaloOauthUrl() {
       let param_obj = {
         app_id: window.chatwootConfig.zalo_app_id,
-        redirect_uri: window.chatwootConfig.hostURL + '/app/oauth-redirect',
+        //redirect_uri: window.chatwootConfig.hostURL + '/app/oauth-redirect',
+        redirect_uri: 'https://chat.dev.gobysend.com',
         state: btoa(
           JSON.stringify({
             service: 'zalo',
@@ -145,6 +156,8 @@ export default {
 
       if (data.type === 'integration' && data.service === 'zalo') {
         // handle connect
+
+        alert(JSON.stringify(event.data));
 
         window.removeEventListener('message', this.receiveMessage);
       }

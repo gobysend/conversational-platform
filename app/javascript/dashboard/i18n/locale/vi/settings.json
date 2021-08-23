@@ -142,7 +142,10 @@
     "ALL_CONTACTS": "Tất cả liên hệ",
     "TAGGED_WITH": "Được gắn thẻ",
     "REPORTS_OVERVIEW": "Tổng quan",
-    "CSAT": "CSAT"
+    "CSAT": "CSAT",
+    "CAMPAIGNS": "Chiến dịch",
+    "ONGOING": "Ongoing",
+    "ONE_OFF": "One off"
   },
   "CREATE_ACCOUNT": {
     "NEW_ACCOUNT": "Tạo mới tài khoản",
