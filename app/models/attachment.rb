@@ -9,6 +9,7 @@
 #  external_url     :string
 #  fallback_title   :string
 #  file_type        :integer          default("image")
+#  size             :integer          default(0.0)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  account_id       :integer          not null
@@ -30,6 +31,7 @@ class Attachment < ApplicationRecord
     base_data.merge(file_metadata)
   end
 
+
   def file_url
     file.attached? ? url_for(file) : ''
   end
@@ -42,13 +44,32 @@ class Attachment < ApplicationRecord
     end
   end
 
+  def medium_size_url
+    if file.attached? && file.representable?
+      url_for(file.representation(resize: '800x800'))
+    else
+      ''
+    end
+  end
+
+  def file_size
+    file.byte_size
+  end
+
+  def content_type
+    file.content_type
+  end
+
   private
 
   def file_metadata
     {
       extension: extension,
       data_url: file_url,
-      thumb_url: thumb_url
+      thumb_url: thumb_url,
+      medium_size_url: medium_size_url,
+      size: file_size,
+      content_type: content_type
     }
   end
 

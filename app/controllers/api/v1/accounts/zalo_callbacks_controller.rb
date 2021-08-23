@@ -77,10 +77,6 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
 
   private
 
-  def inbox
-    @inbox = Current.account.inboxes.find_by(id: params[:inbox_id])
-  end
-
   def set_avatar(zalo_inbox)
     avatar_file = Down.download(@oa[:avatar])
     zalo_inbox.avatar.attach(io: avatar_file, filename: avatar_file.original_filename, content_type: avatar_file.content_type)

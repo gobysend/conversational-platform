@@ -146,6 +146,7 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
+    date (3.1.0)
     datetime_picker_rails (0.0.7)
       momentjs-rails (>= 2.8.1)
     ddtrace (0.51.1)
@@ -251,7 +252,6 @@ GEM
       google-cloud-core (~> 1.6)
       googleauth (>= 0.16.2, < 2.a)
       mini_mime (~> 1.0)
-    google-protobuf (3.17.3-universal-darwin)
     google-protobuf (3.17.3-x86_64-linux)
     googleapis-common-protos (1.3.11)
       google-protobuf (~> 3.14)
@@ -268,9 +268,6 @@ GEM
       signet (~> 0.14)
     groupdate (5.2.2)
       activesupport (>= 5)
-    grpc (1.38.0-universal-darwin)
-      google-protobuf (~> 3.15)
-      googleapis-common-protos-types (~> 1.0)
     grpc (1.38.0-x86_64-linux)
       google-protobuf (~> 3.15)
       googleapis-common-protos-types (~> 1.0)
@@ -363,13 +360,13 @@ GEM
       connection_pool (~> 2.2)
     netrc (0.11.0)
     nio4r (2.5.7)
-    nokogiri (1.11.7-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.11.7-x86_64-darwin)
-      racc (~> 1.4)
     nokogiri (1.11.7-x86_64-linux)
       racc (~> 1.4)
     oauth (0.5.6)
+    open-uri (0.1.0)
+      stringio
+      time
+      uri
     orm_adapter (0.5.0)
     os (1.1.1)
     parallel (1.20.1)
@@ -563,6 +560,7 @@ GEM
       sprockets (>= 3.0.0)
     squasher (0.6.2)
     statsd-ruby (1.5.0)
+    stringio (3.0.0)
     telegram-bot-ruby (0.16.0)
       dry-inflector
       faraday
@@ -571,6 +569,8 @@ GEM
     thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    time (0.1.0)
+      date
     time_diff (0.3.0)
       activesupport
       i18n
@@ -593,6 +593,7 @@ GEM
     unf_ext (0.0.7.7)
     unicode-display_width (2.0.0)
     uniform_notifier (1.14.2)
+    uri (0.10.1)
     uri_template (0.7.0)
     valid_email2 (4.0.0)
       activemodel (>= 3.2)
@@ -682,6 +683,7 @@ DEPENDENCIES
   listen
   maxminddb
   mock_redis
+  open-uri
   pg
   procore-sift
   pry-rails
