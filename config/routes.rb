@@ -54,6 +54,13 @@ Rails.application.routes.draw do
           resources :canned_responses, except: [:show, :edit, :new]
           resources :campaigns, only: [:index, :create, :show, :update, :destroy]
 
+          resources :zalo_callbacks, only: [] do
+            collection do
+              post :register_zalo_oa
+              post :oa_detail
+            end
+          end
+
           namespace :channels do
             resource :twilio_channel, only: [:create]
           end
