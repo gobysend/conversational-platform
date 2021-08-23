@@ -1,5 +1,7 @@
 ### Export environment variables to remove SSL downloading issue
 ```bash
+# Should add following to ~/.profile
+
 #CentOS/RHEL:
 export SSL_CERT_DIR=/etc/pki/tls/certs
 export SSL_CERT_FILE=/etc/pki/tls/cert.pem

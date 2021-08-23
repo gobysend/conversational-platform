@@ -22,11 +22,12 @@ class Attachment < ApplicationRecord
   belongs_to :message
   has_one_attached :file
 
-  enum file_type: [:image, :audio, :video, :file, :location, :fallback]
+  enum file_type: [:image, :audio, :video, :file, :location, :fallback, :link]
 
   def push_event_data
     return base_data.merge(location_metadata) if file_type.to_sym == :location
     return base_data.merge(fallback_data) if file_type.to_sym == :fallback
+    return base_data.merge(link_data) if file_type.to_sym == :link
 
     base_data.merge(file_metadata)
   end
@@ -95,6 +96,13 @@ class Attachment < ApplicationRecord
       message_id: message_id,
       file_type: file_type,
       account_id: account_id
+    }
+  end
+
+  def link_data
+    {
+      external_url: external_url,
+      fallback_title: fallback_title
     }
   end
 end

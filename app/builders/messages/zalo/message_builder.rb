@@ -58,8 +58,9 @@ class Messages::Zalo::MessageBuilder
 
   def attach_file(attachment, file_url)
     attachment_file = Down.download(
-      file_url
+      file_url.sub!('https://', 'http://')
     )
+
     attachment.file.attach(
       io: attachment_file,
       filename: attachment_file.original_filename,
@@ -111,21 +112,22 @@ class Messages::Zalo::MessageBuilder
   end
 
   def location_params(attachment)
-    lat = attachment[:payload][:coordinates][:lat]
-    long = attachment[:payload][:coordinates][:long]
+    lat = attachment[:payload][:coordinates][:latitude]
+    long = attachment[:payload][:coordinates][:longitude]
     {
-      external_url: attachment[:url],
+      external_url: "https://www.google.com/maps/place/#{lat},#{long}",
       coordinates_lat: lat,
       coordinates_long: long,
-      fallback_title: attachment[:title]
+      fallback_title: @response.content || "#{@contact.name}'s location"
     }
   end
 
   def link_params(attachment)
+    fallback_title = JSON.parse(attachment[:payload][:description])
+    fallback_title['name'] = @response.content
     {
-      external_url: attachment[:payload][:url],
-      thumbnail: attachment[:payload][:thumbnail],
-      description: attachment[:payload][:description]
+      external_url: attachment[:payload][:thumbnail],
+      fallback_title: fallback_title.to_json
     }
   end
 
