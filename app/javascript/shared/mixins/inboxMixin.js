@@ -5,6 +5,7 @@ export const INBOX_TYPES = {
   TWILIO: 'Channel::TwilioSms',
   API: 'Channel::Api',
   EMAIL: 'Channel::Email',
+  ZALO: 'Channel::Zalo',
 };
 
 export default {
@@ -37,6 +38,9 @@ export default {
     isATwilioWhatsappChannel() {
       const { phone_number: phoneNumber = '' } = this.inbox;
       return this.isATwilioChannel && phoneNumber.startsWith('whatsapp');
+    },
+    isAZaloChannel() {
+      return this.channelType === INBOX_TYPES.ZALO;
     },
   },
 };

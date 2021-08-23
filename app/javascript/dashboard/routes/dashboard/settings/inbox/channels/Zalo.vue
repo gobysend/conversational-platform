@@ -1,17 +1,56 @@
 <template>
   <div class="wizard-body small-9 columns">
-    <div class="login-init">
-      <woot-button @click="getZaloOA()">
+    <div v-if="!accessToken" class="login-init">
+      <woot-button @click="openSignInWindow()">
         {{ $t('INBOX_MGMT.ADD.ZALO.CONNECT') }}
       </woot-button>
 
       <p>{{ $t('INBOX_MGMT.ADD.ZALO.DESC') }}</p>
     </div>
+
+    <div v-else>
+      <woot-loading-state
+        v-if="uiFlags.isCreating"
+        :message="$t('INBOX_MGMT.ADD.WEBSITE_CHANNEL.LOADING_MESSAGE')"
+      />
+      <form
+        v-if="!uiFlags.isCreating"
+        class="row"
+        @submit.prevent="createChannel"
+      >
+        <div v-if="avatar" class="medium-12 columns">
+          <img
+            src="https://s160-ava-talk.zadn.vn/b/b/4/d/5/160/02ba538f685872e4bceb7bbc96346926.jpg"
+            style="width: 65px; margin-bottom: 15px;"
+          />
+        </div>
+
+        <div class="medium-12 columns">
+          <label>
+            {{ $t('INBOX_MGMT.ADD.WEBSITE_NAME.LABEL') }}
+            <input
+              v-model.trim="inboxName"
+              type="text"
+              :placeholder="$t('INBOX_MGMT.ADD.WEBSITE_NAME.PLACEHOLDER')"
+            />
+          </label>
+        </div>
+
+        <div class="modal-footer">
+          <div class="medium-12 columns">
+            <woot-submit-button
+              :loading="uiFlags.isCreating"
+              :disabled="!inboxName"
+              :button-text="$t('INBOX_MGMT.ADD.WEBSITE_CHANNEL.SUBMIT_BUTTON')"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
-
 /* global axios */
 import ApiClient from '../../../../../api/ApiClient';
 import { mapGetters } from 'vuex';
@@ -21,12 +60,8 @@ export default {
   data() {
     return {
       inboxName: '',
-      channelWebsiteUrl: '',
-      channelWidgetColor: '#009CE0',
-      channelWelcomeTitle: '',
-      channelWelcomeTagline: '',
-      greetingEnabled: false,
-      greetingMessage: '',
+      accessToken: '',
+      avatar: '',
 
       windowObjectReference: null,
       previousUrl: null,
@@ -39,21 +74,11 @@ export default {
   },
   methods: {
     async createChannel() {
-      const website = await this.$store.dispatch(
-        'inboxes/createWebsiteChannel',
-        {
-          name: this.inboxName,
-          greeting_enabled: this.greetingEnabled,
-          greeting_message: this.greetingMessage,
-          channel: {
-            type: 'web_widget',
-            website_url: this.channelWebsiteUrl,
-            widget_color: this.channelWidgetColor,
-            welcome_title: this.channelWelcomeTitle,
-            welcome_tagline: this.channelWelcomeTagline,
-          },
-        }
-      );
+      const website = await this.$store.dispatch('inboxes/createZaloChannel', {
+        inbox_name: this.inboxName,
+        access_token: this.accessToken,
+      });
+
       router.replace({
         name: 'settings_inboxes_add_agents',
         params: {
@@ -63,16 +88,16 @@ export default {
       });
     },
 
-    getZaloOA() {
-      axios.post(
-        'http://localhost:5000/api/v1/accounts/1/zalo_callbacks/register_zalo_oa',
-        {
-          inbox_name: 'Zalo Inbox',
-          access_token:
-            'WbM7F3dpD5w9NuSzD_8mKenTXJGtxJ0Eqnd23pFkDcZMG_f-29mK4DLDqtDekJ5mX4dVG4Ez7Y7cOCCV0P8YBF0zyIbEoHegb16h72pXGmxjJBy6BfbvO-1sY44wiNWcYn_9Baci5IgNOQX9AfrA9_rFc1S7j2Xqpdp9H1EbBc7rLVfJ9BWPLPf3pqnyxI13kIdLH0Bs4Y7F2wuF7w1T3QPzlI1Vr4yQdWQwFtxzIGUu5u0HTkjBBP4VZHnEwMSyZH6u05BhP1so1ui6JCatDhrwWZXTb6WMSME8deLNEUKnKm',
-        }
-      );
-    },
+    // getZaloOA() {
+    //   axios.post(
+    //     'http://localhost:5000/api/v1/accounts/1/zalo_callbacks/register_zalo_oa',
+    //     {
+    //       inbox_name: 'Zalo Inbox',
+    //       access_token:
+    //         'WbM7F3dpD5w9NuSzD_8mKenTXJGtxJ0Eqnd23pFkDcZMG_f-29mK4DLDqtDekJ5mX4dVG4Ez7Y7cOCCV0P8YBF0zyIbEoHegb16h72pXGmxjJBy6BfbvO-1sY44wiNWcYn_9Baci5IgNOQX9AfrA9_rFc1S7j2Xqpdp9H1EbBc7rLVfJ9BWPLPf3pqnyxI13kIdLH0Bs4Y7F2wuF7w1T3QPzlI1Vr4yQdWQwFtxzIGUu5u0HTkjBBP4VZHnEwMSyZH6u05BhP1so1ui6JCatDhrwWZXTb6WMSME8deLNEUKnKm',
+    //     }
+    //   );
+    // },
 
     openSignInWindow() {
       const url = this.getZaloOauthUrl();
@@ -131,7 +156,8 @@ export default {
     getZaloOauthUrl() {
       let param_obj = {
         app_id: window.chatwootConfig.zalo_app_id,
-        redirect_uri: window.chatwootConfig.hostURL + '/app/oauth-redirect',
+        //redirect_uri: window.chatwootConfig.hostURL + '/app/oauth-redirect',
+        redirect_uri: 'https://chat.dev.gobysend.com',
         state: btoa(
           JSON.stringify({
             service: 'zalo',
@@ -159,6 +185,16 @@ export default {
 
       if (data.type === 'integration' && data.service === 'zalo') {
         // handle connect
+        this.accessToken = event.data.access_token;
+
+        window.axios
+          .get(
+            'https://openapi.zalo.me/v2.0/oa/getoa?access_token=kioBKY92iX2nnejJB4Es7BJ4YLeiNBDZzzdRVpqsXaBdpCz0BqEdHUMNdtuTRSWmmeAH3n1YfnRydl4B8MASJDcJq0bVHwmGmwFWAnfXfoJUc9j-DblMUgIKZbrYJAnplwpsIdjDccMMkQLUTalyNekwedn9LfXJqzdoTJmmYrZRmhnY6pVVPuF6v5iOID9dnAwQUbWje4M-x_rHJGlBOehRzLHKGBTqZiVDPbmQe7oUnkquQZ6zBhcqW6nuEyj4e_ZyPZqaicF_n-LcDHADTClipqPGRvC0Kwks3tSYLBST'
+          )
+          .then(response => {
+            this.inboxName = response.data.data.name;
+            this.avatar = response.data.data.avatar;
+          });
 
         window.removeEventListener('message', this.receiveMessage);
       }

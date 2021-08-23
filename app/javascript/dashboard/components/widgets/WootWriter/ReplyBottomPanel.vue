@@ -86,7 +86,7 @@ import eventListenerMixins from 'shared/mixins/eventListenerMixins';
 
 import { REPLY_EDITOR_MODES } from './constants';
 export default {
-  name: 'ReplyTopPanel',
+  name: 'ReplyBottomPanel',
   components: { FileUpload },
   mixins: [eventListenerMixins],
   props: {

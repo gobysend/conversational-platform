@@ -1,7 +1,7 @@
 <template>
   <div class="column content-box">
     <woot-button
-      color-scheme="success"
+      color-scheme="primary"
       class-names="button--fixed-right-top"
       icon="ion-android-add-circle"
       @click="openAddPopup"

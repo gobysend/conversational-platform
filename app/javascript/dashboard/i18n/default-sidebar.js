@@ -76,9 +76,25 @@ export const getSidebarItems = accountId => ({
       campaigns: {
         icon: 'ion-speakerphone',
         label: 'CAMPAIGNS',
-        hasSubMenu: false,
+        hasSubMenu: true,
         toState: frontendURL(`accounts/${accountId}/campaigns`),
         toStateName: 'settings_account_campaigns',
+        children: [
+          {
+            icon: 'ion-arrow-swap',
+            label: 'ONGOING',
+            hasSubMenu: false,
+            toState: frontendURL(`accounts/${accountId}/campaigns/ongoing`),
+            toStateName: 'settings_account_campaigns',
+          },
+          {
+            icon: 'ion-radio-waves',
+            label: 'ONE_OFF',
+            hasSubMenu: false,
+            toState: frontendURL(`accounts/${accountId}/campaigns/one_off`),
+            toStateName: 'one_off',
+          },
+        ],
       },
       settings: {
         icon: 'ion-settings',
