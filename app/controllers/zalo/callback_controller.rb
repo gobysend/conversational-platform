@@ -8,7 +8,7 @@ class Zalo::CallbackController < ApplicationController
                         oa_send_list oa_send_file]
 
     # Accept only event in the allowed_events list
-    head :ok unless allowed_events.include?(params[:event_name])
+    (head :ok and return) unless allowed_events.include?(params[:event_name])
 
     # Build message
     message = JSON.parse(request.raw_post, {symbolize_names: true})
@@ -23,7 +23,7 @@ class Zalo::CallbackController < ApplicationController
       if cache_value.present?
         puts "Message #{response.message_id} was sent from our app. Ignore it."
         $alfred.expire(cache_key, 0)
-        head :ok
+        head :ok and return
       end
     end
 
@@ -36,7 +36,7 @@ class Zalo::CallbackController < ApplicationController
 
   def check_signature
     zalo_signature = request.headers['X-ZEvent-Signature']
-    head :ok if zalo_signature.nil?
+    (head :ok and return) if zalo_signature.nil?
 
     signature = "mac=#{Digest::SHA2.new(256).hexdigest((params[:app_id] + request.raw_post + params[:timestamp] + ENV['ZALO_OA_SECRET_KEY']).to_s)}"
     head :ok if signature != zalo_signature
