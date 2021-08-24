@@ -43,6 +43,7 @@
         enabledLanguages: <%= available_locales_with_name.to_json.html_safe %>,
         selectedLocale: '<%= I18n.locale %>',
         zalo_app_id: '<%= ENV.fetch('ZALO_APP_ID', '') %>'
+        zalo_oa_api_base_url: '<%= ENV.fetch('ZALO_OA_API_BASE_URL', '') %>'
       }
       window.globalConfig = <%= raw @global_config.to_json %>
       window.globalConfig.INSTALLATION_NAME = 'Gobysend'
