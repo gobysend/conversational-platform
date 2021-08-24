@@ -10,17 +10,17 @@ end
 
 ## Seeds for Local Development
 unless Rails.env.production?
-  SuperAdmin.create!(email: 'john@acme.inc', password: 'Password1!')
+  SuperAdmin.create!(email: 'dat@gobysend.com', password: 'Password1!')
 
   account = Account.create!(
-    name: 'Acme Inc'
+    name: 'Gobysend'
   )
 
   secondary_account = Account.create!(
-    name: 'Acme Org'
+    name: 'Gobysend'
   )
 
-  user = User.new(name: 'John', email: 'john@acme.inc', password: 'Password1!')
+  user = User.new(name: 'Dat', email: 'dat@gobysend.com', password: 'Password1!')
   user.skip_confirmation!
   user.save!
 
@@ -42,12 +42,12 @@ unless Rails.env.production?
   installation_config.save!
   GlobalConfig.clear_cache
 
-  web_widget = Channel::WebWidget.create!(account: account, website_url: 'https://acme.inc')
+  web_widget = Channel::WebWidget.create!(account: account, website_url: 'https://goby.vn')
 
-  inbox = Inbox.create!(channel: web_widget, account: account, name: 'Acme Support')
+  inbox = Inbox.create!(channel: web_widget, account: account, name: 'Gobysend Support')
   InboxMember.create!(user: user, inbox: inbox)
 
-  contact = Contact.create!(name: 'jane', email: 'jane@example.com', phone_number: '+2320000', account: account)
+  contact = Contact.create!(name: 'Support', email: 'support@gobysend.com', phone_number: '+84918612568', account: account)
   contact_inbox = ContactInbox.create!(inbox: inbox, contact: contact, source_id: user.id, hmac_verified: true)
   conversation = Conversation.create!(
     account: account,
@@ -62,7 +62,7 @@ unless Rails.env.production?
   # sample email collect
   WootMessageSeeder.create_sample_email_collect_message conversation
 
-  Message.create!(content: 'Hello', account: account, inbox: inbox, conversation: conversation, message_type: :incoming)
+  Message.create!(content: 'Hi', account: account, inbox: inbox, conversation: conversation, message_type: :incoming)
 
   # sample card
   WootMessageSeeder.create_sample_cards_message conversation
@@ -75,5 +75,5 @@ unless Rails.env.production?
   # csat
   WootMessageSeeder.create_sample_csat_collect_message conversation
 
-  CannedResponse.create!(account: account, short_code: 'start', content: 'Hello welcome to chatwoot.')
+  CannedResponse.create!(account: account, short_code: 'start', content: 'Welcome to Goby Messaging.')
 end
