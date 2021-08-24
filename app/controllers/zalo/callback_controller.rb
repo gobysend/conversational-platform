@@ -15,6 +15,18 @@ class Zalo::CallbackController < ApplicationController
 
     Rails.logger.info "MESSAGE_RECEIVED #{message}"
     response = ::Integrations::Zalo::MessageParser.new(message)
+
+    # If this message was sent from our application, ignore it to prevent duplication of messages
+    if response.message_id.present?
+      cache_key = "#{Zalo::SendOnZaloService::KEY_PREFIX}_#{response.message_id}"
+      cache_value = $alfred.get(cache_key)
+      if cache_value.present?
+        puts "Message #{response.message_id} was sent from our app. Ignore it."
+        $alfred.expire(cache_key, 0)
+        head :ok
+      end
+    end
+
     ::Integrations::Zalo::MessageCreator.new(response).perform
 
     head :no_content

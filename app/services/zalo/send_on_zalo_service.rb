@@ -1,4 +1,6 @@
 class Zalo::SendOnZaloService < Base::SendOnChannelService
+  KEY_PREFIX = 'ZALO_SENT'.freeze
+
   private
 
   def channel_class
@@ -15,7 +17,15 @@ class Zalo::SendOnZaloService < Base::SendOnChannelService
     return if delivery_params.blank?
 
     url = "#{ENV['ZALO_OA_API_BASE_URL']}/message"
-    RestClient.post(url, delivery_params.to_json, { content_type: 'application/json', access_token: channel.access_token })
+    response = RestClient.post(url, delivery_params.to_json, { content_type: 'application/json', access_token: channel.access_token })
+    response = JSON.parse(response, { symbolize_names: true })
+    message_id = response[:data][:message_id] || nil
+
+    # Cache message_id
+    if message_id.present?
+      cache_key = "#{KEY_PREFIX}_#{message_id}"
+      $alfred.set(cache_key, 1, { ex: 1.minute })
+    end
   rescue StandardError => e
     Rails.logger.error e
   end
@@ -121,6 +131,9 @@ class Zalo::SendOnZaloService < Base::SendOnChannelService
     )
     response = request.execute
     response = JSON.parse(response, { symbolize_names: true })
+
+    # Delete temp file
+    File.delete(tmp_file) if File.exist?(tmp_file)
 
     return nil if response.nil? || response[:data].nil? || response[:message] != 'Success'
     return response[:data][:token] if response[:data][:token].present?
