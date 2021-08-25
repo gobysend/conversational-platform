@@ -24,6 +24,18 @@ Rails.application.reloader.to_prepare do
     config.provider = ChatwootFbProvider.new
   end
 
+  Facebook::Messenger::Bot.on :feed do |message|
+    Rails.logger.info "FEED_RECEIVED #{message}"
+  end
+
+  Facebook::Messenger::Bot.on :mention do |message|
+    Rails.logger.info "MENTION #{message}"
+  end
+
+  Facebook::Messenger::Bot.on :name do |message|
+    Rails.logger.info "PAGE NAME CHANGED #{message}"
+  end
+
   Facebook::Messenger::Bot.on :message do |message|
     Rails.logger.info "MESSAGE_RECIEVED #{message}"
     response = ::Integrations::Facebook::MessageParser.new(message)
