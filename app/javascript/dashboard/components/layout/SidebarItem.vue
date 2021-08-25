@@ -149,6 +149,12 @@
             :to="child.toState"
           >
             <a href="#" :class="computedChildClass(child)">
+              <i
+                v-if="computedInboxClass(child)"
+                class="inbox-icon"
+                :class="computedInboxClass(child)"
+              />
+
               {{ child.label }}
             </a>
           </router-link>
@@ -414,11 +420,11 @@ export default {
   width: $space-normal;
 }
 
-.inbox-icon {
-  position: relative;
-  top: -1px;
-  &.ion-ios-email {
-    font-size: var(--font-size-medium);
-  }
-}
+// .inbox-icon {
+//   position: relative;
+//   top: -1px;
+//   &.ion-ios-email {
+//     font-size: var(--font-size-medium);
+//   }
+// }
 </style>
