@@ -43,7 +43,7 @@ class Channel::FacebookPage < ApplicationRecord
     response = Facebook::Messenger::Subscriptions.subscribe(
       access_token: page_access_token,
       subscribed_fields: %w[
-        messages message_deliveries message_echoes message_reads
+         messages message_deliveries message_echoes message_reads feed mention name
       ]
     )
   rescue => e
