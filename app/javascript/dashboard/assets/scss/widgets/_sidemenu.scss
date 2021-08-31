@@ -133,6 +133,10 @@
           background: #007dfa;
           color: #fff;
         }
+
+        .inbox-icon.zalo-icon::before {
+          content: url(~dashboard/assets/images/channels/zalo-white.svg);
+        }
       }
 
       a {
@@ -147,6 +151,10 @@
         &:hover {
           background: #419cf8;
           color: #fff;
+
+          .inbox-icon.zalo-icon::before {
+            content: url(~dashboard/assets/images/channels/zalo-white.svg);
+          }
         }
 
         .inbox-icon {
