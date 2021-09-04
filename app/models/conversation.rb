@@ -44,6 +44,10 @@ class Conversation < ApplicationRecord
   include AssignmentHandler
   include RoundRobinHandler
 
+  attr_accessor :skip_notify_creation
+
+  after_initialize :set_skip_notify_creation
+
   validates :account_id, presence: true
   validates :inbox_id, presence: true
   before_validation :validate_additional_attributes
@@ -158,10 +162,11 @@ class Conversation < ApplicationRecord
   end
 
   def notify_conversation_creation
-    dispatcher_dispatch(CONVERSATION_CREATED)
+    dispatcher_dispatch(CONVERSATION_CREATED) unless @skip_notify_creation
   end
 
   def queue_conversation_auto_resolution_job
+    return if @skip_notify_creation
     return unless auto_resolve_duration
 
     AutoResolveConversationsJob.set(wait_until: (last_activity_at || created_at) + auto_resolve_duration.days).perform_later(id)
@@ -274,6 +279,10 @@ class Conversation < ApplicationRecord
 
   def mute_period
     6.hours
+  end
+
+  def set_skip_notify_creation
+    @skip_notify_creation || false
   end
 
   # creating db triggers

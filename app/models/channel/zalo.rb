@@ -5,6 +5,7 @@
 #  id             :bigint           not null, primary key
 #  access_token   :string           not null
 #  expires_at     :datetime         not null
+#  is_synced      :boolean          default(FALSE), not null
 #  oa_avatar      :string
 #  oa_cover       :string
 #  oa_description :string
@@ -28,7 +29,15 @@ class Channel::Zalo < ApplicationRecord
 
   has_one :inbox, as: :channel, dependent: :destroy
 
+  after_create_commit :sync_conversation_history
+
   def has_24_hour_messaging_window?
     false
+  end
+
+  private
+
+  def sync_conversation_history
+    SyncConversationHistoryJob.perform_later(id, self.class.name) unless is_synced == false
   end
 end

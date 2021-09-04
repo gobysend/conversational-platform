@@ -38,7 +38,7 @@ class Messages::Zalo::MessageBuilder
     return if contact.present?
 
     @contact = Contact.create!(contact_params.except(:remote_avatar_url))
-    @contact_inbox = ContactInbox.create(contact: contact, inbox: @inbox, source_id: @sender_id)
+    @contact_inbox = ContactInbox.create(contact: @contact, inbox: @inbox, source_id: @sender_id)
   end
 
   def build_message
@@ -62,6 +62,7 @@ class Messages::Zalo::MessageBuilder
     )
 
     attachment.file.attach(
+      key: "pages/attachments/account_#{@contact.account_id}/inbox_#{@inbox.id}/#{Time.now.to_i}_#{attachment_file.original_filename}",
       io: attachment_file,
       filename: attachment_file.original_filename,
       content_type: attachment_file.content_type
@@ -93,7 +94,7 @@ class Messages::Zalo::MessageBuilder
     if [:image, :file, :audio, :video].include? file_type
       params.merge!(file_type_params(attachment))
     elsif [:gif, :sticker].include? file_type
-      params[:file_type] = 'image'
+      params[:file_type] = :image
       params.merge!(file_type_params(attachment))
     elsif file_type == :location
       params.merge!(location_params(attachment))
@@ -173,9 +174,15 @@ class Messages::Zalo::MessageBuilder
     end
 
     {
-      name: result[:display_name] || 'Goby Bot',
+      name: result[:display_name] || 'Unknown',
       account_id: @inbox.account_id,
-      remote_avatar_url: result[:avatars]['240']
+      remote_avatar_url: result[:avatars][:'240'],
+      identifier: result[:user_id],
+      custom_attributes: {
+        gender: result[:user_gender],
+        birth_date: result[:birth_date],
+        tags_and_notes_info: result[:tags_and_notes_info]
+      }
     }
   end
 end

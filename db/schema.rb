@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_21_094805) do
+ActiveRecord::Schema.define(version: 2021_08_25_090730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -236,6 +236,7 @@ ActiveRecord::Schema.define(version: 2021_08_21_094805) do
     t.datetime "expires_at", precision: 6, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_synced", default: false, null: false
     t.index ["oa_id", "account_id"], name: "index_channel_zalo_on_oa_id_and_account_id", unique: true
     t.index ["oa_id"], name: "index_channel_zalo_on_oa_id"
   end

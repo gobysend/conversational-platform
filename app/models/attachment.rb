@@ -9,7 +9,6 @@
 #  external_url     :string
 #  fallback_title   :string
 #  file_type        :integer          default("image")
-#  size             :integer          default(0.0)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  account_id       :integer          not null

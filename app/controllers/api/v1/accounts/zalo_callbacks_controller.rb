@@ -56,7 +56,8 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
           oa_avatar: @oa[:avatar],
           oa_cover: @oa[:cover],
           access_token: @oa_access_token,
-          expires_at: (DateTime.now + 1.year)
+          expires_at: (DateTime.now + 1.year),
+          is_synced: false
         )
       end
 
@@ -68,6 +69,10 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
         @zalo_inbox = Current.account.inboxes.create!(name: inbox_name, channel: zalo_channel)
       end
       set_avatar(@zalo_inbox)
+
+      # Download conversation history
+
+
     rescue StandardError => e
       Rails.logger.info e
     end

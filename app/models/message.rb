@@ -81,8 +81,11 @@ class Message < ApplicationRecord
   has_many :attachments, dependent: :destroy, autosave: true, before_add: :validate_attachments_limit
   has_one :csat_survey_response, dependent: :destroy
 
-  after_create :reopen_conversation,
-               :notify_via_mail
+  attr_accessor :skip_after_create_callback
+
+  after_initialize :set_skip_after_create_callback
+
+  after_create :execute_after_create_callbacks
 
   after_create_commit :execute_after_create_commit_callbacks
 
@@ -132,13 +135,22 @@ class Message < ApplicationRecord
 
   private
 
+  def execute_after_create_callbacks
+    unless @skip_after_create_callback
+      reopen_conversation
+      notify_via_mail
+    end
+  end
+
   def execute_after_create_commit_callbacks
     # rails issue with order of active record callbacks being executed https://github.com/rails/rails/issues/20911
-    set_conversation_activity
-    dispatch_create_events
-    send_reply
-    execute_message_template_hooks
-    update_contact_activity
+    unless @skip_after_create_callback
+      set_conversation_activity
+      dispatch_create_events
+      send_reply
+      execute_message_template_hooks
+      update_contact_activity
+    end
   end
 
   def update_contact_activity
@@ -160,7 +172,7 @@ class Message < ApplicationRecord
   def send_reply
     # FIXME: Giving it few seconds for the attachment to be uploaded to the service
     # active storage attaches the file only after commit
-    attachments.blank? ? ::SendReplyJob.perform_later(id) : ::SendReplyJob.set(wait: 2.seconds).perform_later(id)
+    attachments.blank? ? ::SendReplyJob.perform_later(id) : ::SendReplyJob.set(wait: 3.seconds).perform_later(id)
   end
 
   def reopen_conversation
@@ -220,5 +232,9 @@ class Message < ApplicationRecord
     # rubocop:disable Rails/SkipsModelValidations
     conversation.update_columns(last_activity_at: created_at)
     # rubocop:enable Rails/SkipsModelValidations
+  end
+
+  def set_skip_after_create_callback
+    @skip_after_create_callback || false
   end
 end
