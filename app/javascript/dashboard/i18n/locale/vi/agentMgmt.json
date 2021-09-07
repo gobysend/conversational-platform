@@ -91,6 +91,23 @@
     },
     "SEARCH": {
       "NO_RESULTS": "No results found."
+    },
+    "MULTI_SELECTOR": {
+      "PLACEHOLDER": "Không lựa chọn",
+      "TITLE": {
+        "AGENT": "Chọn đại lý",
+        "TEAM": "Chọn nhóm"
+      },
+      "SEARCH": {
+        "NO_RESULTS": {
+          "AGENT": "Không tìm thấy đại lý",
+          "TEAM": "Không tìm thấy nhóm"
+        },
+        "PLACEHOLDER": {
+          "AGENT": "Tìm đại lý",
+          "TEAM": "Tìm nhóm"
+        }
+      }
     }
   }
 }

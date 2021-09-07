@@ -205,7 +205,7 @@ export default {
     readableTime() {
       return this.messageStamp(
         this.contentAttributes.external_created_at || this.data.created_at,
-        'LLL d, h:mm a'
+        'd LLL, HH:mm'
       );
     },
     isBubble() {

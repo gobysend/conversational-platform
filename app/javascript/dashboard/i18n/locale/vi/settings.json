@@ -26,19 +26,19 @@
         "NOTE": "Có thể sử dụng Token này nếu bạn đang xây dựng tích hợp dựa trên API"
       },
       "AUDIO_NOTIFICATIONS_SECTION": {
-        "TITLE": "Audio Notifications",
-        "NOTE": "Enable audio notifications in dashboard for new messages and conversations.",
-        "NONE": "None",
-        "ASSIGNED": "Assigned Conversations",
-        "ALL_CONVERSATIONS": "All Conversations"
+        "TITLE": "Thông báo âm thanh",
+        "NOTE": "Bật thông báo âm thanh cho các tin nhắn và cuộc trò chuyện mới.",
+        "NONE": "Tắt",
+        "ASSIGNED": "Chỉ các cuộc trò chuyện được phân công",
+        "ALL_CONVERSATIONS": "Tất cả cuộc trò chuyện"
       },
       "EMAIL_NOTIFICATIONS_SECTION": {
         "TITLE": "Thông Báo Email",
         "NOTE": "Cập nhật tùy chọn thông báo qua email của bạn tại đây",
         "CONVERSATION_ASSIGNMENT": "Gửi thông báo qua email khi cuộc trò chuyện được chỉ định cho tôi",
         "CONVERSATION_CREATION": "Gửi thông báo qua email khi cuộc trò chuyện mới được tạo",
-        "CONVERSATION_MENTION": "Send email notifications when you are mentioned in a conversation",
-        "ASSIGNED_CONVERSATION_NEW_MESSAGE": "Send email notifications when a new message is created in an assigned conversation"
+        "CONVERSATION_MENTION": "Gửi thông báo qua email khi bạn được nhắc đến trong một cuộc trò chuyện",
+        "ASSIGNED_CONVERSATION_NEW_MESSAGE": "Gửi thông báo qua email khi có một tin nhắn mới trong một cuộc trò chuyện được phân công"
       },
       "API": {
         "UPDATE_SUCCESS": "Tùy chọn thông báo của bạn đã được cập nhật thành công",
@@ -144,8 +144,8 @@
     "REPORTS_OVERVIEW": "Tổng quan",
     "CSAT": "CSAT",
     "CAMPAIGNS": "Chiến dịch",
-    "ONGOING": "Ongoing",
-    "ONE_OFF": "One off"
+    "ONGOING": "Lặp lại",
+    "ONE_OFF": "Gửi một lần"
   },
   "CREATE_ACCOUNT": {
     "NEW_ACCOUNT": "Tạo mới tài khoản",

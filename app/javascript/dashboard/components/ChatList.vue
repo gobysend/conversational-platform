@@ -2,9 +2,10 @@
   <div class="conversations-list-wrap">
     <slot></slot>
     <div class="chat-list__top">
-      <h1 class="page-title text-truncate" :title="pageTitle">
+      <h4 class="page-title text-truncate" :title="pageTitle">
         {{ pageTitle }}
-      </h1>
+      </h4>
+
       <chat-filter @statusFilterChange="updateStatusType" />
     </div>
 
@@ -260,18 +261,19 @@ export default {
 .conversations-list-wrap {
   flex-shrink: 0;
   width: 34rem;
+  background: #fff;
 
   @include breakpoint(large up) {
-    width: 36rem;
-  }
-  @include breakpoint(xlarge up) {
-    width: 35rem;
-  }
-  @include breakpoint(xxlarge up) {
     width: 38rem;
   }
-  @include breakpoint(xxxlarge up) {
-    flex-basis: 46rem;
-  }
+  // @include breakpoint(xlarge up) {
+  //   width: 37rem;
+  // }
+  // @include breakpoint(xxlarge up) {
+  //   width: 38rem;
+  // }
+  // @include breakpoint(xxxlarge up) {
+  //   flex-basis: 40rem;
+  // }
 }
 </style>

@@ -4,6 +4,7 @@
     :class="{
       'minimal-sidebar': currentRoute != 'home',
       'has-submenu': has_submenu,
+      'minimal-submenu': isMinimalSubmenu,
     }"
   >
     <div class="logo">
@@ -94,6 +95,18 @@
     <woot-modal :show.sync="showAddLabelModal" :on-close="hideAddLabelPopup">
       <add-label-modal @close="hideAddLabelPopup" />
     </woot-modal>
+
+    <button
+      type="button"
+      class="button-toggle-submenu"
+      @click="isMinimalSubmenu = !isMinimalSubmenu"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" role="presentation">
+        <path
+          d="M13.706 9.698a.988.988 0 000-1.407 1.01 1.01 0 00-1.419 0l-2.965 2.94a1.09 1.09 0 000 1.548l2.955 2.93a1.01 1.01 0 001.42 0 .988.988 0 000-1.407l-2.318-2.297 2.327-2.307z"
+        ></path>
+      </svg>
+    </button>
   </aside>
 </template>
 
@@ -136,6 +149,8 @@ export default {
       showCreateAccountModal: false,
       showAddLabelModal: false,
       showShortcutModal: false,
+
+      isMinimalSubmenu: false,
     };
   },
 

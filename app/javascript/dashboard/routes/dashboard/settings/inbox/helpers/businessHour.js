@@ -110,8 +110,8 @@ export const timeSlotTransform = timeSlots => {
     let closeMinutes = '';
 
     if (!closed) {
-      fromDate = parse(slot.from, 'hh:mm a', new Date());
-      toDate = parse(slot.to, 'hh:mm a', new Date());
+      fromDate = parse(slot.from, 'HH:mm', new Date());
+      toDate = parse(slot.to, 'HH:mm', new Date());
       openHour = getHours(fromDate);
       openMinutes = getMinutes(fromDate);
       closeHour = getHours(toDate);

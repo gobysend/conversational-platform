@@ -107,7 +107,7 @@
       <contact-details-item
         v-if="initiatedAt"
         :title="$t('CONTACT_PANEL.INITIATED_AT')"
-        :value="initiatedAt.timestamp"
+        :value="initiatedAt"
         icon="ion-clock"
         emoji="🕰"
       />
@@ -128,6 +128,7 @@
 import { mapGetters } from 'vuex';
 import alertMixin from 'shared/mixins/alertMixin';
 import agentMixin from '../../../mixins/agentMixin';
+import timeMixin from '../../../mixins/time';
 
 import ContactConversations from './ContactConversations.vue';
 import ContactDetailsItem from './ContactDetailsItem.vue';
@@ -147,7 +148,7 @@ export default {
     ConversationLabels,
     MultiselectDropdown,
   },
-  mixins: [alertMixin, agentMixin],
+  mixins: [alertMixin, agentMixin, timeMixin],
   props: {
     conversationId: {
       type: [Number, String],
@@ -188,7 +189,18 @@ export default {
       return this.additionalAttributes.referer;
     },
     initiatedAt() {
-      return this.additionalAttributes.initiated_at;
+      if (
+        this.additionalAttributes.initiated_at &&
+        this.additionalAttributes.initiated_at.timestamp
+      ) {
+        const time =
+          new Date(this.additionalAttributes.initiated_at.timestamp).getTime() /
+          1000;
+
+        return this.messageStamp(time, 'd LLL, HH:mm');
+      }
+
+      return null;
     },
     browserName() {
       return `${this.browser.browser_name || ''} ${this.browser

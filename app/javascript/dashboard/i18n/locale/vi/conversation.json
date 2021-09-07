@@ -1,20 +1,21 @@
 {
   "CONVERSATION": {
-    "404": "Vui lòng chọn một cuộc trò chuyện từ ngăn bên trái",
+    "404": "Vui lòng chọn một cuộc trò chuyện từ danh sách bên trái",
     "NO_MESSAGE_1": "Uh oh! Có vẻ như không có tin nhắn nào từ khách hàng trong hộp thư đến của bạn.",
     "NO_MESSAGE_2": " gửi tin nhắn đến trang của bạn!",
     "NO_INBOX_1": "Hola! Có vẻ như bạn chưa thêm bất kỳ hộp thư đến nào.",
     "NO_INBOX_2": " để bắt đầu",
     "NO_INBOX_AGENT": "Uh Oh! Có vẻ như bạn không thuộc bất kỳ hộp thư đến nào. Vui lòng liên hệ với quản trị viên của bạn",
-    "SEARCH_MESSAGES": "Search for messages in conversations",
+    "SEARCH_MESSAGES": "Tìm kiếm tin nhắn trong các cuộc trò chuyện",
     "SEARCH": {
-      "TITLE": "Search messages",
-      "LOADING_MESSAGE": "Crunching data...",
-      "PLACEHOLDER": "Type any text to search messages",
-      "NO_MATCHING_RESULTS": "No results found."
+      "TITLE": "Tìm kiếm tin nhắn",
+      "RESULT_TITLE": "Kết quả tìm kiếm",
+      "LOADING_MESSAGE": "Đang tìm kiếm...",
+      "PLACEHOLDER": "Nhập để tìm kiếm tin nhắn",
+      "NO_MATCHING_RESULTS": "Không tìm thấy tin nhắn nào"
     },
-    "UNREAD_MESSAGES": "Unread Messages",
-    "UNREAD_MESSAGE": "Unread Message",
+    "UNREAD_MESSAGES": "Tin nhắn chưa đọc",
+    "UNREAD_MESSAGE": "Tin nhắn chưa đọc",
     "CLICK_HERE": "Click vào đây",
     "LOADING_INBOXES": "Đang tải hộp thư đến",
     "LOADING_CONVERSATIONS": "Đang tải cuộc trò chuyện",
@@ -26,22 +27,29 @@
     "REPLYING_TO": "Bạn đang trả lời:",
     "REMOVE_SELECTION": "Xóa lựa chọn",
     "DOWNLOAD": "Tải xuống",
-    "UPLOADING_ATTACHMENTS": "Uploading attachments...",
-    "SUCCESS_DELETE_MESSAGE": "Message deleted successfully",
-    "FAIL_DELETE_MESSSAGE": "Couldn't delete message! Try again",
-    "NO_RESPONSE": "No response",
+    "UPLOADING_ATTACHMENTS": "Đang tải lên các tệp đính kèm...",
+    "SUCCESS_DELETE_MESSAGE": "Xóa tin nhắn thành công",
+    "FAIL_DELETE_MESSSAGE": "Không thể xóa tin nhắn! Thử lại",
+    "NO_RESPONSE": "Không phản hồi",
     "RATING_TITLE": "Rating",
     "FEEDBACK_TITLE": "Feedback",
     "HEADER": {
       "RESOLVE_ACTION": "Giải quyết",
       "REOPEN_ACTION": "Mở lại",
       "OPEN_ACTION": "Mở",
-      "OPEN": "Nhiều",
+      "OPEN": "Xem",
       "CLOSE": "Đóng",
       "DETAILS": "chi tiết"
     },
     "RESOLVE_DROPDOWN": {
-      "OPEN_BOT": "Open with bot"
+      "OPEN_BOT": "Mở bằng bot",
+      "MARK_PENDING": "Đánh dấu đang xử lý",
+      "SNOOZE": {
+        "TITLE": "Nhắc lại vào",
+        "NEXT_REPLY": "Lần phản hồi tiếp theo",
+        "TOMORROW": "Ngày mai",
+        "NEXT_WEEK": "Tuần sau"
+      }
     },
     "FOOTER": {
       "MSG_INPUT": "Shift + enter cho dòng mới. Bắt đầu với '/' để chọn Câu trả lời soạn trước.",
@@ -53,18 +61,18 @@
       "SEND": "Gửi",
       "CREATE": "Thêm ghi chú",
       "TWEET": "Tweet",
-      "TIP_FORMAT_ICON": "Show rich text editor",
-      "TIP_EMOJI_ICON": "Show emoji selector",
-      "TIP_ATTACH_ICON": "Attach files",
-      "ENTER_TO_SEND": "Enter to send",
-      "DRAG_DROP": "Drag and drop here to attach"
+      "TIP_FORMAT_ICON": "Hiển thị trình chỉnh sửa văn bản",
+      "TIP_EMOJI_ICON": "Hiển thị bộ chọn biểu tượng cảm xúc",
+      "TIP_ATTACH_ICON": "Đính kèm tệp",
+      "ENTER_TO_SEND": "Enter để gửi",
+      "DRAG_DROP": "Kéo và thả vào đây để đính kèm"
     },
     "VISIBLE_TO_AGENTS": "Lưu ý riêng: Chỉ hiển thị với bạn và nhóm của bạn",
     "CHANGE_STATUS": "Trạng thái cuộc trò chuyện đã thay đổi",
     "CHANGE_AGENT": "Người Được Chỉ Định Cuộc Hội Thoại đã thay đổi",
-    "CHANGE_TEAM": "Conversation team changed",
-    "FILE_SIZE_LIMIT": "File exceeds the {MAXIMUM_FILE_UPLOAD_SIZE} attachment limit",
-    "SENT_BY": "Sent by:",
+    "CHANGE_TEAM": "Nhóm trò chuyện đã thay đổi",
+    "FILE_SIZE_LIMIT": "Dung lượng tệp vượt quá giới hạn {MAXIMUM_FILE_UPLOAD_SIZE}",
+    "SENT_BY": "Được gửi bởi:",
     "ASSIGNMENT": {
       "SELECT_AGENT": "Select Agent",
       "REMOVE": "Xoá",
@@ -84,7 +92,7 @@
     "SEND_EMAIL_ERROR": "Có lỗi, xin vui lòng thử lại",
     "FORM": {
       "SEND_TO_CONTACT": "Gửi bảng điểm cho khách hàng",
-      "SEND_TO_AGENT": "Send the transcript to the assigned agent",
+      "SEND_TO_AGENT": "Gửi bản ghi cho đại lý được phân công",
       "SEND_TO_OTHER_EMAIL_ADDRESS": "Gửi bản ghi tới một địa chỉ email khác",
       "EMAIL": {
         "PLACEHOLDER": "Nhập địa chỉ emai",
@@ -97,31 +105,31 @@
     "DESCRIPTION": "Thanks for signing up. We want you to get the most out of %{installationName}. Here are a few things you can do in %{installationName} to make the experience delightful.",
     "READ_LATEST_UPDATES": "Read our latest updates",
     "ALL_CONVERSATION": {
-      "TITLE": "All your conversations in one place",
+      "TITLE": "Tất cả các cuộc trò chuyện của bạn ở một nơi",
       "DESCRIPTION": "View all the conversations from your customers in one single dashboard. You can filter the conversations by the incoming channel, label and status."
     },
     "TEAM_MEMBERS": {
-      "TITLE": "Invite your team members",
+      "TITLE": "Mời các thành viên trong nhóm của bạn",
       "DESCRIPTION": "Since you are getting ready to talk to your customer, bring in your teammates to assist you. You can invite your teammates by adding their email address to the agent list.",
-      "NEW_LINK": "Click here to invite a team member"
+      "NEW_LINK": "Bấm vào đây để mời một thành viên trong nhóm"
     },
     "INBOXES": {
-      "TITLE": "Connect Inboxes",
+      "TITLE": "Kết nối hộp thư đến",
       "DESCRIPTION": "Connect various channels through which your customers would be talking to you. It can be a website live-chat, your Facebook or Twitter page or even your WhatsApp number.",
-      "NEW_LINK": "Click here to create an inbox"
+      "NEW_LINK": "Nhấp vào đây để tạo hộp thư đến"
     },
     "LABELS": {
-      "TITLE": "Organize conversations with labels",
+      "TITLE": "Tổ chức các cuộc trò chuyện bằng việc gán nhãn",
       "DESCRIPTION": "Labels provide an easier way to categorize your conversation. Create some labels like #support-enquiry, #billing-question etc., so that you can use them in a conversation later.",
-      "NEW_LINK": "Click here to create tags"
+      "NEW_LINK": "Bấm vào đây để tạo nhãn"
     }
   },
   "CONVERSATION_SIDEBAR": {
-    "ASSIGNEE_LABEL": "Assigned Agent",
-    "SELF_ASSIGN": "Assign to me",
-    "TEAM_LABEL": "Assigned Team",
+    "ASSIGNEE_LABEL": "Đại lý được phân công",
+    "SELF_ASSIGN": "Phân công cho tôi",
+    "TEAM_LABEL": "Nhóm được phân công",
     "SELECT": {
-      "PLACEHOLDER": "None"
+      "PLACEHOLDER": "Không phân công"
     }
   }
 }

@@ -27,7 +27,7 @@
         "COUNT_KEY": "mineCount"
       },
       {
-        "NAME": "Chưa được phân công",
+        "NAME": "Chưa phân công",
         "KEY": "unassigned",
         "COUNT_KEY": "unAssignedCount"
       },

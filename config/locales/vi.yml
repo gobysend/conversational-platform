@@ -36,37 +36,39 @@ vi:
       avg_resolution_time: Avg resolution time (Minutes)
   notifications:
     notification_title:
-      conversation_creation: '[New conversation] - #%{display_id} has been created in %{inbox_name}'
-      conversation_assignment: '[Assigned to you] - #%{display_id} has been assigned to you'
-      assigned_conversation_new_message: '[New message] - #%{display_id} %{content}'
-      conversation_mention: 'You have been mentioned in conversation [ID - %{display_id}] by %{name}'
+      conversation_creation: '[Cuộc trò chuyện mới] - #%{display_id} đã được tạo trong %{inbox_name}'
+      conversation_assignment: '[Phân công cho tôi] - #%{display_id} đã được giao cho bạn'
+      assigned_conversation_new_message: '[Tin nhắn mới] - #%{display_id} %{content}'
+      conversation_mention: '%{name} đã nhắc đến bạn trong cuộc hội thoại [ID - %{display_id}]'
   conversations:
     messages:
-      deleted: This message was deleted
+      deleted: Tin nhắn này đã bị xóa
     activity:
       status:
         resolved: 'Cuộc trò chuyện được đánh dấu là đã giải quyết bởi %{user_name}'
         open: 'Cuộc trò chuyện đã được mở lại bởi %{user_name}'
-        bot: 'Conversation was transferred to bot by %{user_name}'
-        auto_resolved: 'Conversation was marked resolved by system due to %{duration} days of inactivity'
+        bot: 'Cuộc trò chuyện đã được chuyển sang bot bởi %{user_name}'
+        auto_resolved: 'Cuộc trò chuyện đã được hệ thống đánh dấu là đã giải quyết do %{duration} ngày không hoạt động'
+        pending: 'Cuộc trò chuyện đã được đánh dấu là đang chờ xử lý bởi %{user_name}'
+        snoozed: 'Cuộc trò chuyện đã được báo lại bởi %{user_name}'
       assignee:
-        self_assigned: '%{user_name} self-assigned this conversation'
-        assigned: 'Chỉ định %{assignee_name} bởi %{user_name}'
-        removed: 'Cuộc hội thoại chưa được chỉ định bởi %{user_name}'
+        self_assigned: '%{user_name} tự phân công cuộc trò chuyện này'
+        assigned: 'Phân công %{assignee_name} bởi %{user_name}'
+        removed: 'Cuộc hội thoại chưa được phân công bởi %{user_name}'
       team:
-        assigned: 'Chỉ định %{team_name} bởi %{user_name}'
-        assigned_with_assignee: 'Assigned to %{assignee_name} via %{team_name} by %{user_name}'
-        removed: 'Unassigned from %{team_name} by %{user_name}'
+        assigned: 'Phân công cho nhóm %{team_name} bởi %{user_name}'
+        assigned_with_assignee: 'Phân công cho %{assignee_name} qua nhóm %{team_name} bởi %{user_name}'
+        removed: 'Bỏ phân công cho nhóm %{team_name} bởi %{user_name}'
       labels:
-        added: '%{user_name} added %{labels}'
-        removed: '%{user_name} removed %{labels}'
-      muted: '%{user_name} has muted the conversation'
-      unmuted: '%{user_name} has unmuted the conversation'
+        added: '%{user_name} đã thêm nhãn %{labels}'
+        removed: '%{user_name} đã xóa nhãn %{labels}'
+      muted: '%{user_name} đã tắt tiếng cuộc trò chuyện'
+      unmuted: '%{user_name} đã bật tiếng cuộc trò chuyện'
     templates:
       greeting_message_body: '%{account_name} thường trả lời trong vài giờ.'
       ways_to_reach_you_message_body: 'Cung cấp cho nhóm một cách để tiếp cận bạn.'
       email_input_box_message_body: 'Nhận thông báo qua email'
-      csat_input_message_body: 'Please rate the conversation'
+      csat_input_message_body: 'Vui lòng đánh giá cuộc trò chuyện'
     reply:
       email_subject: 'Tin nhắn mới về cuộc trò chuyện này'
       transcript_subject: 'Bản ghi cuộc hội thoại'

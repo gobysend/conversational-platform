@@ -70,8 +70,8 @@ $space-normal: 16px;
 $space-two: 20px;
 $space-medium: 24px;
 
-$font-size-small: 14px;
-$font-size-default: 16px;
+$font-size-small: 13px;
+$font-size-default: 14px;
 $font-size-medium: 18px;
 
 .emoji-dialog {

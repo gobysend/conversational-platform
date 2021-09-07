@@ -43,7 +43,7 @@
         "CUSTOM_EMAIL_DOMAIN_ENABLED": "Bạn có thể nhận email trong miền tùy chỉnh của mình ngay bây giờ."
       }
     },
-    "UPDATE_CHATWOOT": "An update %{latestChatwootVersion} for Gobysend is available. Please update your instance."
+    "UPDATE_CHATWOOT": "Đã có bản cập nhật %{latestChatwootVersion} cho Gobysend. Vui lòng cập nhật phiên bản của bạn."
   },
   "FORMS": {
     "MULTISELECT": {
@@ -56,7 +56,7 @@
     "HEADER": "Thông báo",
     "MARK_ALL_DONE": "Đánh dấu tất cả",
     "LIST": {
-      "LOADING_MESSAGE": "Loading notifications...",
+      "LOADING_MESSAGE": "Đang tải thông báo...",
       "404": "Không có thông báo",
       "TABLE_HEADER": [
         "Tên",
@@ -66,10 +66,10 @@
       ]
     },
     "TYPE_LABEL": {
-      "conversation_creation": "New conversation",
-      "conversation_assignment": "Conversation Assigned",
-      "assigned_conversation_new_message": "New Message",
-      "conversation_mention": "Mention"
+      "conversation_creation": "Cuộc trò chuyện mới",
+      "conversation_assignment": "Phân công trò chuyện",
+      "assigned_conversation_new_message": "Tin nhắn mới",
+      "conversation_mention": "Được nhắc đến"
     }
   }
 }

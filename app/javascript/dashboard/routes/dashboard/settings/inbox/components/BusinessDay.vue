@@ -108,7 +108,7 @@ export default {
         return this.timeSlot.from;
       },
       set(value) {
-        const fromDate = parse(value, 'hh:mm a', new Date());
+        const fromDate = parse(value, 'HH:mm', new Date());
         const valid = differenceInMinutes(this.toDate, fromDate) / 60 > 0;
         this.$emit('update', {
           ...this.timeSlot,
@@ -122,7 +122,7 @@ export default {
         return this.timeSlot.to;
       },
       set(value) {
-        const toDate = parse(value, 'hh:mm a', new Date());
+        const toDate = parse(value, 'HH:mm', new Date());
         if (value === '12:00 AM') {
           this.$emit('update', {
             ...this.timeSlot,
@@ -140,10 +140,10 @@ export default {
       },
     },
     fromDate() {
-      return parse(this.fromTime, 'hh:mm a', new Date());
+      return parse(this.fromTime, 'HH:mm', new Date());
     },
     toDate() {
-      return parse(this.toTime, 'hh:mm a', new Date());
+      return parse(this.toTime, 'HH:mm', new Date());
     },
     totalHours() {
       const totalHours = differenceInMinutes(this.toDate, this.fromDate) / 60;
