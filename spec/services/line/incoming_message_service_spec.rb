@@ -134,10 +134,10 @@ describe Line::IncomingMessageService do
         allow(line_bot).to receive(:get_profile).and_return(line_user_profile)
         file = fixture_file_upload(Rails.root.join('spec/assets/avatar.png'), 'image/png')
         allow(line_bot).to receive(:get_message_content).and_return(
-          OpenStruct.new({
-                           body: Base64.encode64(file.read),
-                           content_type: 'image/png'
-                         })
+          Struct.new({
+                       body: Base64.encode64(file.read),
+                       content_type: 'image/png'
+                     })
         )
         allow(line_user_profile).to receive(:body).and_return(
           {
@@ -163,10 +163,10 @@ describe Line::IncomingMessageService do
         allow(line_bot).to receive(:get_profile).and_return(line_user_profile)
         file = fixture_file_upload(Rails.root.join('spec/assets/sample.mp4'), 'video/mp4')
         allow(line_bot).to receive(:get_message_content).and_return(
-          OpenStruct.new({
-                           body: Base64.encode64(file.read),
-                           content_type: 'video/mp4'
-                         })
+          Struct.new({
+                       body: Base64.encode64(file.read),
+                       content_type: 'video/mp4'
+                     })
         )
         allow(line_user_profile).to receive(:body).and_return(
           {

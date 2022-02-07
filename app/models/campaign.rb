@@ -35,8 +35,6 @@
 #
 require 'uri'
 class Campaign < ApplicationRecord
-  validates :account_id, presence: true
-  validates :inbox_id, presence: true
   validates :title, presence: true
   validates :message, presence: true
   validate :validate_campaign_inbox

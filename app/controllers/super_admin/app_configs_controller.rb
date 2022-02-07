@@ -5,8 +5,7 @@ class SuperAdmin::AppConfigsController < SuperAdmin::ApplicationController
     # rubocop:disable Style/HashTransformValues
     @fb_config = InstallationConfig.where(name: @allowed_configs)
                                    .pluck(:name, :serialized_value)
-                                   .map { |name, serialized_value| [name, serialized_value['value']] }
-                                   .to_h
+                                   .to_h { |name, serialized_value| [name, serialized_value['value']] }
     # rubocop:enable Style/HashTransformValues
   end
 

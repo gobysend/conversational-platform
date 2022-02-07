@@ -5,10 +5,8 @@ import { default as _cannedMgmt } from './cannedMgmt.json';
 import { default as _chatlist } from './chatlist.json';
 import { default as _contact } from './contact.json';
 import { default as _conversation } from './conversation.json';
-import { default as _csatMgmtMgmt } from './csatMgmt.json';
 import { default as _generalSettings } from './generalSettings.json';
 import { default as _inboxMgmt } from './inboxMgmt.json';
-import { default as _integrationApps } from './integrationApps.json';
 import { default as _integrations } from './integrations.json';
 import { default as _labelsMgmt } from './labelsMgmt.json';
 import { default as _login } from './login.json';
@@ -42,6 +40,4 @@ export default {
   ..._settings,
   ..._signup,
   ..._teamsSettings,
-  ..._integrationApps,
-  ..._csatMgmtMgmt,
 };

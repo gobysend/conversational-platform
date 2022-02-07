@@ -22,63 +22,67 @@
                     <p>{{ item.description }}</p>
                   </td>
 
-              <td>
-                <div class="button-wrapper">
-                  <router-link
-                    :to="addAccountScoping(`settings/teams/${item.id}/edit`)"
-                  >
-                    <woot-button
-                      v-if="isAdmin"
-                      v-tooltip.top="$t('TEAMS_SETTINGS.LIST.EDIT_TEAM')"
-                      variant="smooth"
-                      size="tiny"
-                      color-scheme="secondary"
-                      class-names="grey-btn"
-                      icon="settings"
-                    >
-                    </woot-button>
-                  </router-link>
-                  <woot-button
-                    v-if="isAdmin"
-                    v-tooltip.top="$t('TEAMS_SETTINGS.DELETE.BUTTON_TEXT')"
-                    variant="smooth"
-                    color-scheme="alert"
-                    size="tiny"
-                    icon="dismiss-circle"
-                    class-names="grey-btn"
-                    :is-loading="loading[item.id]"
-                    @click="openDelete(item)"
-                  >
-                  </woot-button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                  <td>
+                    <div class="button-wrapper">
+                      <router-link
+                        :to="
+                          addAccountScoping(`settings/teams/${item.id}/edit`)
+                        "
+                      >
+                        <woot-button
+                          v-if="isAdmin"
+                          v-tooltip.top="$t('TEAMS_SETTINGS.LIST.EDIT_TEAM')"
+                          variant="smooth"
+                          size="tiny"
+                          color-scheme="secondary"
+                          class-names="grey-btn"
+                          icon="settings"
+                        >
+                        </woot-button>
+                      </router-link>
+                      <woot-button
+                        v-if="isAdmin"
+                        v-tooltip.top="$t('TEAMS_SETTINGS.DELETE.BUTTON_TEXT')"
+                        variant="smooth"
+                        color-scheme="alert"
+                        size="tiny"
+                        icon="dismiss-circle"
+                        class-names="grey-btn"
+                        :is-loading="loading[item.id]"
+                        @click="openDelete(item)"
+                      >
+                      </woot-button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-      <div class="small-4 columns">
-        <span
-          v-html="
-            $t('TEAMS_SETTINGS.SIDEBAR_TXT', {
-              installationName: globalConfig.installationName,
-            })
-          "
+          <div class="small-4 columns">
+            <span
+              v-html="
+                $t('TEAMS_SETTINGS.SIDEBAR_TXT', {
+                  installationName: globalConfig.installationName,
+                })
+              "
+            />
+          </div>
+        </div>
+        <woot-confirm-delete-modal
+          v-if="showDeletePopup"
+          :show.sync="showDeletePopup"
+          :title="confirmDeleteTitle"
+          :message="$t('TEAMS_SETTINGS.DELETE.CONFIRM.MESSAGE')"
+          :confirm-text="deleteConfirmText"
+          :reject-text="deleteRejectText"
+          :confirm-value="selectedTeam.name"
+          :confirm-place-holder-text="confirmPlaceHolderText"
+          @on-confirm="confirmDeletion"
+          @on-close="closeDelete"
         />
       </div>
     </div>
-    <woot-confirm-delete-modal
-      v-if="showDeletePopup"
-      :show.sync="showDeletePopup"
-      :title="confirmDeleteTitle"
-      :message="$t('TEAMS_SETTINGS.DELETE.CONFIRM.MESSAGE')"
-      :confirm-text="deleteConfirmText"
-      :reject-text="deleteRejectText"
-      :confirm-value="selectedTeam.name"
-      :confirm-place-holder-text="confirmPlaceHolderText"
-      @on-confirm="confirmDeletion"
-      @on-close="closeDelete"
-    />
   </div>
 </template>
 <script>

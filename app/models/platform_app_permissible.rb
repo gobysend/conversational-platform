@@ -16,7 +16,6 @@
 #  unique_permissibles_index                           (platform_app_id,permissible_id,permissible_type) UNIQUE
 #
 class PlatformAppPermissible < ApplicationRecord
-  validates :platform_app, presence: true
   validates :platform_app_id, uniqueness: { scope: [:permissible_id, :permissible_type] }
 
   belongs_to :platform_app

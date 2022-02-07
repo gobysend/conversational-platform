@@ -22,7 +22,6 @@
 #
 
 class Event < ApplicationRecord
-  validates :account_id, presence: true
   validates :name, presence: true
   validates :value, presence: true
 

@@ -34,9 +34,6 @@ class Message < ApplicationRecord
 
   before_validation :ensure_content_type
 
-  validates :account_id, presence: true
-  validates :inbox_id, presence: true
-  validates :conversation_id, presence: true
   validates_with ContentAttributeValidator
   validates :content_type, presence: true
   validates :content, length: { maximum: 150_000 }
@@ -138,29 +135,19 @@ class Message < ApplicationRecord
 
   private
 
-<<<<<<< HEAD
   def execute_after_create_callbacks
     unless @skip_after_create_callback
       reopen_conversation
       notify_via_mail
     end
-=======
+  end
+
   def ensure_content_type
     self.content_type ||= Message.content_types[:text]
->>>>>>> a737f89c473e64f9abdf8ff13a3e64edefa28877
   end
 
   def execute_after_create_commit_callbacks
     # rails issue with order of active record callbacks being executed https://github.com/rails/rails/issues/20911
-<<<<<<< HEAD
-    unless @skip_after_create_callback
-      set_conversation_activity
-      dispatch_create_events
-      send_reply
-      execute_message_template_hooks
-      update_contact_activity
-    end
-=======
     reopen_conversation
     notify_via_mail
     set_conversation_activity
@@ -168,7 +155,6 @@ class Message < ApplicationRecord
     send_reply
     execute_message_template_hooks
     update_contact_activity
->>>>>>> a737f89c473e64f9abdf8ff13a3e64edefa28877
   end
 
   def update_contact_activity

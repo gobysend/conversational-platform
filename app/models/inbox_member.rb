@@ -15,8 +15,6 @@
 #
 
 class InboxMember < ApplicationRecord
-  validates :inbox_id, presence: true
-  validates :user_id, presence: true
   validates :user_id, uniqueness: { scope: :inbox_id }
 
   belongs_to :user

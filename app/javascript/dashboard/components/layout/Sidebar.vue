@@ -57,13 +57,6 @@ import { mapGetters } from 'vuex';
 import adminMixin from '../../mixins/isAdmin';
 import { getSidebarItems } from './config/default-sidebar';
 import alertMixin from 'shared/mixins/alertMixin';
-<<<<<<< HEAD
-// import NotificationBell from './sidebarComponents/NotificationBell';
-import AgentDetails from './sidebarComponents/AgentDetails.vue';
-import OptionsMenu from './sidebarComponents/OptionsMenu.vue';
-=======
-
->>>>>>> a737f89c473e64f9abdf8ff13a3e64edefa28877
 import AccountSelector from './sidebarComponents/AccountSelector.vue';
 import AddAccountModal from './sidebarComponents/AddAccountModal.vue';
 import AddLabelModal from '../../routes/dashboard/settings/labels/AddLabel';
@@ -83,14 +76,6 @@ import router from '../../routes';
 
 export default {
   components: {
-<<<<<<< HEAD
-    AgentDetails,
-    SidebarItem,
-    AvailabilityStatus,
-    // NotificationBell,
-    OptionsMenu,
-=======
->>>>>>> a737f89c473e64f9abdf8ff13a3e64edefa28877
     AccountSelector,
     AddAccountModal,
     AddLabelModal,
@@ -121,53 +106,6 @@ export default {
       labels: 'labels/getLabelsOnSidebar',
       teams: 'teams/getMyTeams',
     }),
-<<<<<<< HEAD
-
-    sidemenuItems() {
-      return getSidebarItems(this.accountId);
-    },
-    has_submenu() {
-      if (this.currentRoute === 'home') return false;
-
-      // get all keys in menuGroup
-      const groupKey = Object.keys(this.sidemenuItems);
-
-      for (let i = 1; i < groupKey.length; i += 1) {
-        const groupItem = this.sidemenuItems[groupKey[i]];
-        // Check if current route is included
-        const isRouteIncluded = groupItem.routes.includes(this.currentRoute);
-        if (isRouteIncluded) return true;
-      }
-
-      return false;
-    },
-    accessibleMenuItems() {
-      // // get all keys in menuGroup
-      // const groupKey = Object.keys(this.sidemenuItems);
-
-      // let menuItems = [];
-      // // Iterate over menuGroup to find the correct group
-      // for (let i = 0; i < groupKey.length; i += 1) {
-      //   const groupItem = this.sidemenuItems[groupKey[i]];
-      //   // Check if current route is included
-      //   const isRouteIncluded = groupItem.routes.includes(this.currentRoute);
-      //   if (isRouteIncluded) {
-      //     menuItems = Object.values(groupItem.menuItems);
-      //   }
-      // }
-
-      let menuItems = Object.values(this.sidemenuItems.common.menuItems);
-      return this.filterMenuItemsByRole(menuItems);
-    },
-    currentRoute() {
-      return this.$store.state.route.name;
-    },
-    shouldShowSidebarItem() {
-      return this.sidemenuItems.common.routes.includes(this.currentRoute);
-    },
-    showShowContactSideMenu() {
-      return this.sidemenuItems.contacts.routes.includes(this.currentRoute);
-=======
     activeCustomView() {
       if (this.activePrimaryMenu.key === 'contacts') {
         return 'contact';
@@ -176,99 +114,12 @@ export default {
         return 'conversation';
       }
       return '';
->>>>>>> a737f89c473e64f9abdf8ff13a3e64edefa28877
     },
     customViews() {
       return this.$store.getters['customViews/getCustomViewsByFilterType'](
         this.activeCustomView
       );
     },
-<<<<<<< HEAD
-    inboxSection() {
-      return {
-        icon: 'ion-folder',
-        label: 'INBOXES',
-        hasSubMenu: true,
-        newLink: true,
-        key: 'inbox',
-        cssClass: '',
-        toState: frontendURL(`accounts/${this.accountId}/settings/inboxes`),
-        toStateName: 'settings_inbox_list',
-        newLinkRouteName: 'settings_inbox_new',
-        children: this.inboxes.map(inbox => ({
-          id: inbox.id,
-          label: inbox.name,
-          toState: frontendURL(`accounts/${this.accountId}/inbox/${inbox.id}`),
-          type: inbox.channel_type,
-          phoneNumber: inbox.phone_number,
-        })),
-      };
-    },
-    labelSection() {
-      return {
-        icon: 'ion-pound',
-        label: 'LABELS',
-        hasSubMenu: true,
-        newLink: true,
-        key: 'label',
-        cssClass: '',
-        toState: frontendURL(`accounts/${this.accountId}/settings/labels`),
-        toStateName: 'labels_list',
-        showModalForNewItem: true,
-        modalName: 'AddLabel',
-        children: this.accountLabels.map(label => ({
-          id: label.id,
-          label: label.title,
-          color: label.color,
-          truncateLabel: true,
-          toState: frontendURL(
-            `accounts/${this.accountId}/label/${label.title}`
-          ),
-        })),
-      };
-    },
-    contactLabelSection() {
-      return {
-        icon: 'ion-pound',
-        label: 'TAGGED_WITH',
-        hasSubMenu: true,
-        key: 'label',
-        newLink: false,
-        cssClass: '',
-        toState: frontendURL(`accounts/${this.accountId}/settings/labels`),
-        toStateName: 'labels_list',
-        showModalForNewItem: true,
-        modalName: 'AddLabel',
-        children: this.accountLabels.map(label => ({
-          id: label.id,
-          label: label.title,
-          color: label.color,
-          truncateLabel: true,
-          toState: frontendURL(
-            `accounts/${this.accountId}/labels/${label.title}/contacts`
-          ),
-        })),
-      };
-    },
-    teamSection() {
-      return {
-        icon: 'ion-ios-people',
-        label: 'TEAMS',
-        hasSubMenu: true,
-        newLink: true,
-        key: 'team',
-        cssClass: ' teams-sidebar-menu',
-        toState: frontendURL(`accounts/${this.accountId}/settings/teams`),
-        toStateName: 'teams_list',
-        newLinkRouteName: 'settings_teams_new',
-        children: this.teams.map(team => ({
-          id: team.id,
-          label: team.name,
-          truncateLabel: true,
-          toState: frontendURL(`accounts/${this.accountId}/team/${team.id}`),
-        })),
-      };
-=======
     isConversationOrContactActive() {
       return (
         this.activePrimaryMenu.key === 'contacts' ||
@@ -293,7 +144,6 @@ export default {
           menuItem.routes.includes(currentRoute)
         ) || {};
       return activeSecondaryMenu;
->>>>>>> a737f89c473e64f9abdf8ff13a3e64edefa28877
     },
     activePrimaryMenu() {
       const activePrimaryMenu =

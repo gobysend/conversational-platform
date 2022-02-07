@@ -24,88 +24,89 @@
             :message="$t('CANNED_MGMT.LOADING')"
           />
 
-        <table
-          v-if="!uiFlags.fetchingList && records.length"
-          class="woot-table"
-        >
-          <thead>
-            <!-- Header -->
-            <th
-              v-for="thHeader in $t('CANNED_MGMT.LIST.TABLE_HEADER')"
-              :key="thHeader"
-            >
-              {{ thHeader }}
-            </th>
-          </thead>
-          <tbody>
-            <tr
-              v-for="(cannedItem, index) in records"
-              :key="cannedItem.short_code"
-            >
-              <!-- Short Code  -->
-              <td class="short-code">
-                {{ cannedItem.short_code }}
-              </td>
-              <!-- Content -->
-              <td>{{ cannedItem.content }}</td>
-              <!-- Action Buttons -->
-              <td class="button-wrapper">
-                <woot-button
-                  v-tooltip.top="$t('CANNED_MGMT.EDIT.BUTTON_TEXT')"
-                  variant="smooth"
-                  size="tiny"
-                  color-scheme="secondary"
-                  icon="edit"
-                  @click="openEditPopup(cannedItem)"
-                >
-                </woot-button>
-                <woot-button
-                  v-tooltip.top="$t('CANNED_MGMT.DELETE.BUTTON_TEXT')"
-                  variant="smooth"
-                  color-scheme="alert"
-                  size="tiny"
-                  icon="dismiss-circle"
-                  class-names="grey-btn"
-                  :is-loading="loading[cannedItem.id]"
-                  @click="openDeletePopup(cannedItem, index)"
-                >
-                </woot-button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+          <table
+            v-if="!uiFlags.fetchingList && records.length"
+            class="woot-table"
+          >
+            <thead>
+              <!-- Header -->
+              <th
+                v-for="thHeader in $t('CANNED_MGMT.LIST.TABLE_HEADER')"
+                :key="thHeader"
+              >
+                {{ thHeader }}
+              </th>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(cannedItem, index) in records"
+                :key="cannedItem.short_code"
+              >
+                <!-- Short Code  -->
+                <td class="short-code">
+                  {{ cannedItem.short_code }}
+                </td>
+                <!-- Content -->
+                <td>{{ cannedItem.content }}</td>
+                <!-- Action Buttons -->
+                <td class="button-wrapper">
+                  <woot-button
+                    v-tooltip.top="$t('CANNED_MGMT.EDIT.BUTTON_TEXT')"
+                    variant="smooth"
+                    size="tiny"
+                    color-scheme="secondary"
+                    icon="edit"
+                    @click="openEditPopup(cannedItem)"
+                  >
+                  </woot-button>
+                  <woot-button
+                    v-tooltip.top="$t('CANNED_MGMT.DELETE.BUTTON_TEXT')"
+                    variant="smooth"
+                    color-scheme="alert"
+                    size="tiny"
+                    icon="dismiss-circle"
+                    class-names="grey-btn"
+                    :is-loading="loading[cannedItem.id]"
+                    @click="openDeletePopup(cannedItem, index)"
+                  >
+                  </woot-button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-      <div class="small-4 columns">
-        <span v-html="$t('CANNED_MGMT.SIDEBAR_TXT')"></span>
+        <div class="small-4 columns">
+          <span v-html="$t('CANNED_MGMT.SIDEBAR_TXT')"></span>
+        </div>
       </div>
-    </div>
-    <!-- Add Agent -->
-    <woot-modal :show.sync="showAddPopup" :on-close="hideAddPopup">
-      <add-canned :on-close="hideAddPopup" />
-    </woot-modal>
+      <!-- Add Agent -->
+      <woot-modal :show.sync="showAddPopup" :on-close="hideAddPopup">
+        <add-canned :on-close="hideAddPopup" />
+      </woot-modal>
 
-    <!-- Edit Canned Response -->
-    <woot-modal :show.sync="showEditPopup" :on-close="hideEditPopup">
-      <edit-canned
-        v-if="showEditPopup"
-        :id="selectedResponse.id"
-        :edshort-code="selectedResponse.short_code"
-        :edcontent="selectedResponse.content"
-        :on-close="hideEditPopup"
+      <!-- Edit Canned Response -->
+      <woot-modal :show.sync="showEditPopup" :on-close="hideEditPopup">
+        <edit-canned
+          v-if="showEditPopup"
+          :id="selectedResponse.id"
+          :edshort-code="selectedResponse.short_code"
+          :edcontent="selectedResponse.content"
+          :on-close="hideEditPopup"
+        />
+      </woot-modal>
+
+      <!-- Delete Canned Response -->
+      <woot-delete-modal
+        :show.sync="showDeleteConfirmationPopup"
+        :on-close="closeDeletePopup"
+        :on-confirm="confirmDeletion"
+        :title="$t('CANNED_MGMT.DELETE.CONFIRM.TITLE')"
+        :message="deleteMessage"
+        :confirm-text="deleteConfirmText"
+        :reject-text="deleteRejectText"
       />
-    </woot-modal>
-
-    <!-- Delete Canned Response -->
-    <woot-delete-modal
-      :show.sync="showDeleteConfirmationPopup"
-      :on-close="closeDeletePopup"
-      :on-confirm="confirmDeletion"
-      :title="$t('CANNED_MGMT.DELETE.CONFIRM.TITLE')"
-      :message="deleteMessage"
-      :confirm-text="deleteConfirmText"
-      :reject-text="deleteRejectText"
-    />
+    </div>
   </div>
 </template>
 <script>

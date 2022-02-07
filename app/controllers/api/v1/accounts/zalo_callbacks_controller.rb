@@ -17,12 +17,12 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
     url = "#{ENV['ZALO_OA_API_BASE_URL']}/getoa"
 
     begin
-      response = RestClient.get(url, { :content_type => 'application/json', :access_token => @oa_access_token })
+      response = RestClient.get(url, { content_type: 'application/json', access_token: @oa_access_token })
     rescue RestClient::ExceptionWithResponse
       response = nil
     end
 
-    response = JSON.parse(response.body, {:symbolize_names => true})
+    response = JSON.parse(response.body, { symbolize_names: true })
     @oa = response[:data]
   end
 
@@ -68,10 +68,9 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
         # Create a new inbox
         @zalo_inbox = Current.account.inboxes.create!(name: inbox_name, channel: zalo_channel)
       end
-      set_avatar(@zalo_inbox)
+      update_avatar(@zalo_inbox)
 
       # Download conversation history
-
 
     rescue StandardError => e
       Rails.logger.info e
@@ -82,7 +81,7 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
 
   private
 
-  def set_avatar(zalo_inbox)
+  def update_avatar(zalo_inbox)
     avatar_file = Down.download(@oa[:avatar])
     zalo_inbox.avatar.attach(io: avatar_file, filename: avatar_file.original_filename, content_type: avatar_file.content_type)
   end

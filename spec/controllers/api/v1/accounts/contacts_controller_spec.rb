@@ -100,7 +100,7 @@ RSpec.describe 'Contacts API', type: :request do
       end
 
       it 'filters resolved contacts based on label filter' do
-        contact_with_label1, contact_with_label2 = FactoryBot.create_list(:contact, 2, :with_email, account: account)
+        contact_with_label1, contact_with_label2 = create_list(:contact, 2, :with_email, account: account)
         contact_with_label1.update_labels(['label1'])
         contact_with_label2.update_labels(['label2'])
 

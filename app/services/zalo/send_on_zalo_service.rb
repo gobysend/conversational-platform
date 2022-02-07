@@ -65,35 +65,43 @@ class Zalo::SendOnZaloService < Base::SendOnChannelService
     return text_message_params if upload_token.nil?
 
     if attachment.content_type == 'image/jpeg' || attachment.content_type == 'image/png' || attachment.content_type == 'image/gif'
-      {
-        recipient: { user_id: contact.get_source_id(inbox.id) },
-        message: {
-          text: message.content || '',
-          attachment: {
-            type: 'template',
-            payload: {
-              template_type: 'media',
-              elements: [
-                { media_type: 'image', attachment_id: upload_token }
-              ]
-            }
-          }
-        }
-      }
-    else
-      {
-        recipient: { user_id: contact.get_source_id(inbox.id) },
-        message: {
-          text: message.content || '',
-          attachment: {
-            type: 'file',
-            payload: {
-              token: upload_token
-            }
-          }
-        }
-      }
+      image_attachment_params(upload_token)
     end
+
+    file_attachment_params(upload_token)
+  end
+
+  def image_attachment_params(upload_token)
+    {
+      recipient: { user_id: contact.get_source_id(inbox.id) },
+      message: {
+        text: message.content || '',
+        attachment: {
+          type: 'template',
+          payload: {
+            template_type: 'media',
+            elements: [
+              { media_type: 'image', attachment_id: upload_token }
+            ]
+          }
+        }
+      }
+    }
+  end
+
+  def file_attachment_params(upload_token)
+    {
+      recipient: { user_id: contact.get_source_id(inbox.id) },
+      message: {
+        text: message.content || '',
+        attachment: {
+          type: 'file',
+          payload: {
+            token: upload_token
+          }
+        }
+      }
+    }
   end
 
   def upload_attachment(attachment)
@@ -107,23 +115,29 @@ class Zalo::SendOnZaloService < Base::SendOnChannelService
     # If file is an image but larger than 1MB, we will send medium size image
     if attachment_type(attachment) == 'image'
       file_url = attachment.medium_size_url if attachment.file_size > 1_000_000
-      upload_url = "#{ENV['ZALO_OA_API_BASE_URL']}/upload/image" if attachment.content_type == 'image/jpeg' || attachment.content_type == 'image/png'
-      upload_url = "#{ENV['ZALO_OA_API_BASE_URL']}/upload/gif" if attachment.content_type == 'image/gif'
+
+      upload_url = if attachment.content_type == 'image/jpeg' || attachment.content_type == 'image/png'
+                     "#{ENV['ZALO_OA_API_BASE_URL']}/upload/image"
+                   else
+                     "#{ENV['ZALO_OA_API_BASE_URL']}/upload/gif"
+                   end
     end
 
     # Download file to local
     tmp_file = "#{Dir.tmpdir}/attachment_#{message.id}_#{Time.now.to_i}#{File.extname(URI.parse(file_url).path)}"
-    File.open(tmp_file, 'wb') do |file|
-      file.write(attachment.file.download)
-    end
+    File.binwrite(tmp_file, attachment.file.download)
 
+    upload_attachment_to_zalo(tmp_file, upload_url)
+  end
+
+  def upload_attachment_to_zalo(file, upload_url)
     # Upload file content to Zalo
     request = RestClient::Request.new(
       method: :post,
       url: upload_url,
       payload: {
         multipart: true,
-        file: File.new(tmp_file, 'rb')
+        file: File.new(file, 'rb')
       },
       headers: {
         access_token: channel.access_token
@@ -133,7 +147,7 @@ class Zalo::SendOnZaloService < Base::SendOnChannelService
     response = JSON.parse(response, { symbolize_names: true })
 
     # Delete temp file
-    File.delete(tmp_file) if File.exist?(tmp_file)
+    File.delete(file) if File.exist?(file)
 
     return nil if response.nil? || response[:data].nil? || response[:message] != 'Success'
     return response[:data][:token] if response[:data][:token].present?
@@ -146,5 +160,4 @@ class Zalo::SendOnZaloService < Base::SendOnChannelService
 
     'file'
   end
-
 end

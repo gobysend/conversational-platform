@@ -18,7 +18,6 @@ class Kbase::Category < ApplicationRecord
   has_many :articles, dependent: :nullify
 
   before_validation :ensure_account_id
-  validates :account_id, presence: true
   validates :name, presence: true
 
   private

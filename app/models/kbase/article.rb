@@ -24,9 +24,6 @@ class Kbase::Article < ApplicationRecord
   belongs_to :author, class_name: 'User'
 
   before_validation :ensure_account_id
-  validates :account_id, presence: true
-  validates :category_id, presence: true
-  validates :author_id, presence: true
   validates :title, presence: true
   validates :content, presence: true
 

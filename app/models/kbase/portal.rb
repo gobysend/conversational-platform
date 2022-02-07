@@ -24,7 +24,6 @@ class Kbase::Portal < ApplicationRecord
   has_many :folders,  through: :categories
   has_many :articles, dependent: :destroy_async
 
-  validates :account_id, presence: true
   validates :name, presence: true
   validates :slug, presence: true
 end

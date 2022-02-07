@@ -11,7 +11,7 @@ class Zalo::CallbackController < ApplicationController
     (head :ok and return) unless allowed_events.include?(params[:event_name])
 
     # Build message
-    message = JSON.parse(request.raw_post, {symbolize_names: true})
+    message = JSON.parse(request.raw_post, { symbolize_names: true })
 
     Rails.logger.info "MESSAGE_RECEIVED #{message}"
     response = ::Integrations::Zalo::MessageParser.new(message)
@@ -21,7 +21,7 @@ class Zalo::CallbackController < ApplicationController
       cache_key = "#{Zalo::SendOnZaloService::KEY_PREFIX}_#{response.message_id}"
       cache_value = $alfred.get(cache_key)
       if cache_value.present?
-        puts "Message #{response.message_id} was sent from our app. Ignore it."
+        Rails.logger.debug { "Message #{response.message_id} was sent from our app. Ignore it." }
         $alfred.expire(cache_key, 0)
         head :ok and return
       end

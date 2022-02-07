@@ -19,7 +19,6 @@ class Integrations::Hook < ApplicationRecord
 
   attr_readonly :app_id, :account_id, :inbox_id, :hook_type
   before_validation :ensure_hook_type
-  validates :account_id, presence: true
   validates :app_id, presence: true
   validates :inbox_id, presence: true, if: -> { hook_type == 'inbox' }
   validate :validate_settings_json_schema

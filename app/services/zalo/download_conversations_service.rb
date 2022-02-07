@@ -43,25 +43,27 @@ class Zalo::DownloadConversationsService
   private
 
   def download_conversation_messages(thread)
-    offset = 0
-    count = 10
-    max_messages = 200
+    offset = 0, count = 10, max_messages = 200
 
     ActiveRecord::Base.transaction do
-      build_contact(thread)
+      contact_inbox(thread)
       conversation(thread)
     end
 
     ensure_contact_avatar(thread)
-
     messages = []
 
     loop do
-      Rails.logger.info "Fetching messages for conversation with #{thread[:src].zero? ? thread[:to_display_name] : thread[:from_display_name]} from #{offset} to #{offset + count}"
+      if thread[:src].zero?
+        Rails.logger.info "Fetching messages for conversation with #{thread[:to_display_name]}"
+      else
+        Rails.logger.info "Fetching messages for conversation with #{thread[:from_display_name]} from #{offset} to #{offset + count}"
+      end
+
       url = "#{ENV['ZALO_OA_API_BASE_URL']}/conversation?data=#{{ user_id: @sender_id.to_i, offset: offset, count: count }.to_json}"
       response = RestClient.get(url, { content_type: 'application/json', access_token: channel.access_token })
       if response.code == -32
-        Rails.logger.info "API request for OA #{channel.oa_name} is exceeded the rate limit. Sleeping 1 minute before retrying again...zzzzz"
+        Rails.logger.info "API request for OA #{channel.oa_name} is exceeded the rate limit. Sleeping 1 minute before retrying again..."
         sleep(1.minute)
       elsif response.code.negative?
         Rails.logger.info "Get error response for OA #{channel.oa_name}. Exiting conversation history download."
@@ -89,7 +91,7 @@ class Zalo::DownloadConversationsService
     return unless messages.any?
 
     # Set last activity for conversation
-    last_activity_at = Time.at(messages.last[:time]).to_datetime
+    last_activity_at = Time.zone.at(messages.last[:time]).to_datetime
     @conversation.update(last_activity_at: last_activity_at)
     @contact.update(last_activity_at: last_activity_at)
   end
@@ -98,7 +100,7 @@ class Zalo::DownloadConversationsService
     @inbox = channel.inbox
   end
 
-  def build_contact(thread)
+  def contact_inbox(thread)
     @sender_id = thread[:src] == 1 ? thread[:from_id] : thread[:to_id]
     @contact = Contact.find_by(identifier: @sender_id)
     @contact ||= Contact.create!(contact_params(thread).except(:remote_avatar_url))
@@ -154,8 +156,8 @@ class Zalo::DownloadConversationsService
       account_id: @inbox.account_id,
       inbox_id: @inbox.id,
       contact_id: @contact.id,
-      contact_last_seen_at: Time.at(thread[:time]).to_datetime,
-      agent_last_seen_at: Time.at(thread[:time]).to_datetime
+      contact_last_seen_at: Time.zone.at(thread[:time]).to_datetime,
+      agent_last_seen_at: Time.zone.at(thread[:time]).to_datetime
     }
   end
 end

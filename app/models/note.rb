@@ -25,9 +25,6 @@
 class Note < ApplicationRecord
   before_validation :ensure_account_id
   validates :content, presence: true
-  validates :account_id, presence: true
-  validates :contact_id, presence: true
-  validates :user_id, presence: true
 
   belongs_to :account
   belongs_to :contact

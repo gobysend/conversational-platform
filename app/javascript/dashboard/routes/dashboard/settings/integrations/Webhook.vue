@@ -23,88 +23,89 @@
             :message="$t('INTEGRATION_SETTINGS.WEBHOOK.LOADING')"
           />
 
-        <table
-          v-if="!uiFlags.fetchingList && records.length"
-          class="woot-table"
-        >
-          <thead>
-            <th
-              v-for="thHeader in $t(
-                'INTEGRATION_SETTINGS.WEBHOOK.LIST.TABLE_HEADER'
-              )"
-              :key="thHeader"
-            >
-              {{ thHeader }}
-            </th>
-          </thead>
-          <tbody>
-            <tr v-for="(webHookItem, index) in records" :key="webHookItem.id">
-              <td class="webhook-link">
-                {{ webHookItem.url }}
-              </td>
-              <td class="button-wrapper">
-                <woot-button
-                  v-tooltip.top="
-                    $t('INTEGRATION_SETTINGS.WEBHOOK.EDIT.BUTTON_TEXT')
-                  "
-                  variant="smooth"
-                  size="tiny"
-                  color-scheme="secondary"
-                  icon="edit"
-                  @click="openEditPopup(webHookItem)"
-                >
-                </woot-button>
-                <woot-button
-                  v-tooltip.top="
-                    $t('INTEGRATION_SETTINGS.WEBHOOK.DELETE.BUTTON_TEXT')
-                  "
-                  variant="smooth"
-                  color-scheme="alert"
-                  size="tiny"
-                  icon="dismiss-circle"
-                  @click="openDeletePopup(webHookItem, index)"
-                >
-                </woot-button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          <table
+            v-if="!uiFlags.fetchingList && records.length"
+            class="woot-table"
+          >
+            <thead>
+              <th
+                v-for="thHeader in $t(
+                  'INTEGRATION_SETTINGS.WEBHOOK.LIST.TABLE_HEADER'
+                )"
+                :key="thHeader"
+              >
+                {{ thHeader }}
+              </th>
+            </thead>
+            <tbody>
+              <tr v-for="(webHookItem, index) in records" :key="webHookItem.id">
+                <td class="webhook-link">
+                  {{ webHookItem.url }}
+                </td>
+                <td class="button-wrapper">
+                  <woot-button
+                    v-tooltip.top="
+                      $t('INTEGRATION_SETTINGS.WEBHOOK.EDIT.BUTTON_TEXT')
+                    "
+                    variant="smooth"
+                    size="tiny"
+                    color-scheme="secondary"
+                    icon="edit"
+                    @click="openEditPopup(webHookItem)"
+                  >
+                  </woot-button>
+                  <woot-button
+                    v-tooltip.top="
+                      $t('INTEGRATION_SETTINGS.WEBHOOK.DELETE.BUTTON_TEXT')
+                    "
+                    variant="smooth"
+                    color-scheme="alert"
+                    size="tiny"
+                    icon="dismiss-circle"
+                    @click="openDeletePopup(webHookItem, index)"
+                  >
+                  </woot-button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="small-4 columns">
+          <span
+            v-html="
+              useInstallationName(
+                $t('INTEGRATION_SETTINGS.WEBHOOK.SIDEBAR_TXT'),
+                globalConfig.installationName
+              )
+            "
+          />
+        </div>
       </div>
 
-      <div class="small-4 columns">
-        <span
-          v-html="
-            useInstallationName(
-              $t('INTEGRATION_SETTINGS.WEBHOOK.SIDEBAR_TXT'),
-              globalConfig.installationName
-            )
-          "
+      <woot-modal :show.sync="showAddPopup" :on-close="hideAddPopup">
+        <new-webhook :on-close="hideAddPopup" />
+      </woot-modal>
+
+      <woot-modal :show.sync="showEditPopup" :on-close="hideEditPopup">
+        <edit-webhook
+          v-if="showEditPopup"
+          :id="selectedWebHook.id"
+          :url="selectedWebHook.url"
+          :on-close="hideEditPopup"
         />
-      </div>
-    </div>
+      </woot-modal>
 
-    <woot-modal :show.sync="showAddPopup" :on-close="hideAddPopup">
-      <new-webhook :on-close="hideAddPopup" />
-    </woot-modal>
-
-    <woot-modal :show.sync="showEditPopup" :on-close="hideEditPopup">
-      <edit-webhook
-        v-if="showEditPopup"
-        :id="selectedWebHook.id"
-        :url="selectedWebHook.url"
-        :on-close="hideEditPopup"
+      <woot-delete-modal
+        :show.sync="showDeleteConfirmationPopup"
+        :on-close="closeDeletePopup"
+        :on-confirm="confirmDeletion"
+        :title="$t('INTEGRATION_SETTINGS.WEBHOOK.DELETE.CONFIRM.TITLE')"
+        :message="$t('INTEGRATION_SETTINGS.WEBHOOK.DELETE.CONFIRM.MESSAGE')"
+        :confirm-text="$t('INTEGRATION_SETTINGS.WEBHOOK.DELETE.CONFIRM.YES')"
+        :reject-text="$t('INTEGRATION_SETTINGS.WEBHOOK.DELETE.CONFIRM.NO')"
       />
-    </woot-modal>
-
-    <woot-delete-modal
-      :show.sync="showDeleteConfirmationPopup"
-      :on-close="closeDeletePopup"
-      :on-confirm="confirmDeletion"
-      :title="$t('INTEGRATION_SETTINGS.WEBHOOK.DELETE.CONFIRM.TITLE')"
-      :message="$t('INTEGRATION_SETTINGS.WEBHOOK.DELETE.CONFIRM.MESSAGE')"
-      :confirm-text="$t('INTEGRATION_SETTINGS.WEBHOOK.DELETE.CONFIRM.YES')"
-      :reject-text="$t('INTEGRATION_SETTINGS.WEBHOOK.DELETE.CONFIRM.NO')"
-    />
+    </div>
   </div>
 </template>
 <script>

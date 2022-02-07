@@ -51,8 +51,6 @@
 </template>
 
 <script>
-/* global axios */
-import ApiClient from '../../../../../api/ApiClient';
 import { mapGetters } from 'vuex';
 import router from '../../../../index';
 
@@ -146,7 +144,7 @@ export default {
       let param_obj = {
         app_id: window.chatwootConfig.zalo_app_id,
         redirect_uri: window.chatwootConfig.hostURL + '/app/oauth-redirect',
-        //redirect_uri: 'https://chat.dev.gobysend.com',
+        // redirect_uri: 'https://chat.dev.gobysend.com',
         state: btoa(
           JSON.stringify({
             service: 'zalo',

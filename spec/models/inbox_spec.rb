@@ -39,8 +39,8 @@ RSpec.describe Inbox do
   end
 
   describe '#add_member' do
-    let(:inbox) { FactoryBot.create(:inbox) }
-    let(:user) { FactoryBot.create(:user) }
+    let(:inbox) { create(:inbox) }
+    let(:user) { create(:user) }
 
     it do
       expect(inbox.inbox_members.size).to eq(0)
@@ -51,8 +51,8 @@ RSpec.describe Inbox do
   end
 
   describe '#remove_member' do
-    let(:inbox) { FactoryBot.create(:inbox) }
-    let(:user) { FactoryBot.create(:user) }
+    let(:inbox) { create(:inbox) }
+    let(:user) { create(:user) }
 
     before { inbox.add_member(user.id) }
 
@@ -66,7 +66,7 @@ RSpec.describe Inbox do
 
   describe '#facebook?' do
     let(:inbox) do
-      FactoryBot.build(:inbox, channel: channel_val)
+      build(:inbox, channel: channel_val)
     end
 
     context 'when the channel type is Channel::FacebookPage' do
@@ -90,7 +90,7 @@ RSpec.describe Inbox do
 
   describe '#web_widget?' do
     let(:inbox) do
-      FactoryBot.build(:inbox, channel: channel_val)
+      build(:inbox, channel: channel_val)
     end
 
     context 'when the channel type is Channel::WebWidget' do
@@ -114,7 +114,7 @@ RSpec.describe Inbox do
 
   describe '#api?' do
     let(:inbox) do
-      FactoryBot.build(:inbox, channel: channel_val)
+      build(:inbox, channel: channel_val)
     end
 
     context 'when the channel type is Channel::Api' do

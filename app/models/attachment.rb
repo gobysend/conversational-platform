@@ -45,7 +45,6 @@ class Attachment < ApplicationRecord
     base_data.merge(file_metadata)
   end
 
-
   def file_url
     file.attached? ? url_for(file) : ''
   end
@@ -70,9 +69,7 @@ class Attachment < ApplicationRecord
     file.byte_size
   end
 
-  def content_type
-    file.content_type
-  end
+  delegate :content_type, to: :file
 
   private
 
@@ -117,6 +114,7 @@ class Attachment < ApplicationRecord
       external_url: external_url,
       fallback_title: fallback_title
     }
+  end
 
   def should_validate_file?
     return unless file.attached?

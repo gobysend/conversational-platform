@@ -27,8 +27,6 @@
 
 class ContactInbox < ApplicationRecord
   include Pubsubable
-  validates :inbox_id, presence: true
-  validates :contact_id, presence: true
   validates :source_id, presence: true
   validate :valid_source_id_format?
 

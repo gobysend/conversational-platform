@@ -47,7 +47,7 @@ gem 'image_processing'
 ##-- gems for database --#
 gem 'groupdate'
 gem 'pg'
-gem 'redis'
+gem 'redis', '~> 4.5.1'
 gem 'redis-namespace'
 # super fast record imports in bulk
 gem 'activerecord-import'
@@ -77,8 +77,8 @@ gem 'wisper', '2.0.0'
 ##--- gems for channels ---##
 # TODO: bump up gem to 2.0
 gem 'facebook-messenger', git: 'https://github.com/gobysend/facebook-messenger'
-gem 'telegram-bot-ruby'
 gem 'line-bot-api'
+gem 'telegram-bot-ruby'
 gem 'twilio-ruby', '~> 5.32.0'
 # twitty will handle subscription of twitter account events
 # gem 'twitty', git: 'https://github.com/chatwoot/twitty'

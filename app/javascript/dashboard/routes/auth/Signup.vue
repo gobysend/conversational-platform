@@ -159,10 +159,7 @@ export default {
     termsLink() {
       return this.$t('REGISTER.TERMS_ACCEPT')
         .replace('https://goby.vn/dieu-khoan', this.globalConfig.termsURL)
-        .replace(
-          'https://goby.vn/chinh-sach',
-          this.globalConfig.privacyURL
-        );
+        .replace('https://goby.vn/chinh-sach', this.globalConfig.privacyURL);
     },
   },
   methods: {

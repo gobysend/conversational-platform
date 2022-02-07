@@ -152,26 +152,7 @@ class Messages::Zalo::MessageBuilder
   end
 
   def contact_params
-    result = {}
-    begin
-      if @inbox.zalo?
-        response = RestClient::Request.execute(
-          method: :get,
-          url: "#{ENV['ZALO_OA_API_BASE_URL']}/getprofile?data={\"user_id\":\"#{@sender_id}\"}",
-          headers: {
-            content_type: 'application/json',
-            access_token: @inbox.channel.access_token
-          }
-        )
-
-        response = JSON.parse(response.body, { symbolize_names: true })
-
-        result = response[:data] || {}
-      end
-    rescue RestClient::ExceptionWithResponse => e
-      result = {}
-      Sentry.capture_exception(e)
-    end
+    result = zalo_profile
 
     {
       name: result[:display_name] || 'Unknown',
@@ -184,5 +165,27 @@ class Messages::Zalo::MessageBuilder
         tags_and_notes_info: result[:tags_and_notes_info]
       }
     }
+  end
+
+  def zalo_profile
+    result = {}
+    begin
+      if @inbox.zalo?
+        response = RestClient::Request.execute(
+          method: :get,
+          url: "#{ENV['ZALO_OA_API_BASE_URL']}/getprofile?data={\"user_id\":\"#{@sender_id}\"}",
+          headers: { content_type: 'application/json', access_token: @inbox.channel.access_token }
+        )
+
+        response = JSON.parse(response.body, { symbolize_names: true })
+
+        result = response[:data] || {}
+      end
+    rescue RestClient::ExceptionWithResponse => e
+      result = {}
+      Sentry.capture_exception(e)
+    end
+
+    result
   end
 end

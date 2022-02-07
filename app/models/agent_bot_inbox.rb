@@ -12,8 +12,6 @@
 #
 
 class AgentBotInbox < ApplicationRecord
-  validates :inbox_id, presence: true
-  validates :agent_bot_id, presence: true
   before_validation :ensure_account_id
 
   belongs_to :inbox

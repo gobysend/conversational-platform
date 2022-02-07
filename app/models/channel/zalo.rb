@@ -23,7 +23,6 @@
 class Channel::Zalo < ApplicationRecord
   self.table_name = 'channel_zalo'
 
-  validates :account_id, presence: true
   validates :oa_id, uniqueness: { scope: :account_id }
   belongs_to :account
 

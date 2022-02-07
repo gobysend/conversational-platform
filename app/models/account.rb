@@ -98,7 +98,7 @@ class Account < ApplicationRecord
 
   has_flags ACCOUNT_SETTINGS_FLAGS.merge(column: 'settings_flags').merge(DEFAULT_QUERY_SETTING)
 
-  enum locale: LANGUAGES_CONFIG.map { |key, val| [val[:iso_639_1_code], key] }.to_h
+  enum locale: LANGUAGES_CONFIG.to_h { |key, val| [val[:iso_639_1_code], key] }
 
   after_create_commit :notify_creation
 

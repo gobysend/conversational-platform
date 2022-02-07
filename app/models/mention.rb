@@ -25,9 +25,6 @@
 class Mention < ApplicationRecord
   before_validation :ensure_account_id
   validates :mentioned_at, presence: true
-  validates :account_id, presence: true
-  validates :conversation_id, presence: true
-  validates :user_id, presence: true
   validates :user, uniqueness: { scope: :conversation }
 
   belongs_to :account

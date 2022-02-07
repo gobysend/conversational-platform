@@ -10,8 +10,6 @@ end
 
 ## Seeds for Local Development
 unless Rails.env.production?
-  SuperAdmin.create!(email: 'dat@gobysend.com', password: 'Password1!')
-
   account = Account.create!(
     name: 'Gobysend'
   )

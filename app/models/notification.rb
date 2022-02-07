@@ -71,7 +71,6 @@ class Notification < ApplicationRecord
   end
 
   # TODO: move to a data presenter
-  # rubocop:disable Metrics/CyclomaticComplexity
   def push_message_title
     case notification_type
     when 'conversation_creation'
@@ -90,7 +89,6 @@ class Notification < ApplicationRecord
       ''
     end
   end
-  # rubocop:enable Metrics/CyclomaticComplexity
 
   def conversation
     return primary_actor.conversation if %w[assigned_conversation_new_message conversation_mention].include? notification_type

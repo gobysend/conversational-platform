@@ -4,7 +4,7 @@ shared_examples_for 'reauthorizable' do
   let(:model) { described_class } # the class that includes the concern
 
   it 'authorization_error!' do
-    obj = FactoryBot.create(model.to_s.underscore.tr('/', '_').to_sym)
+    obj = create(model.to_s.underscore.tr('/', '_').to_sym)
     expect(obj.authorization_error_count).to eq 0
 
     obj.authorization_error!
@@ -13,7 +13,7 @@ shared_examples_for 'reauthorizable' do
   end
 
   it 'prompt_reauthorization!' do
-    obj = FactoryBot.create(model.to_s.underscore.tr('/', '_').to_sym)
+    obj = create(model.to_s.underscore.tr('/', '_').to_sym)
     expect(obj.reauthorization_required?).to eq false
 
     obj.prompt_reauthorization!
@@ -22,7 +22,7 @@ shared_examples_for 'reauthorizable' do
   end
 
   it 'reauthorized!' do
-    obj = FactoryBot.create(model.to_s.underscore.tr('/', '_').to_sym)
+    obj = create(model.to_s.underscore.tr('/', '_').to_sym)
     # setting up the object with the errors to validate its cleared on action
     obj.authorization_error!
     obj.prompt_reauthorization!

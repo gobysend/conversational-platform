@@ -33,7 +33,6 @@ class Inbox < ApplicationRecord
   include OutOfOffisable
 
   validates :name, presence: true
-  validates :account_id, presence: true
   validates :timezone, inclusion: { in: TZInfo::Timezone.all_identifiers }
 
   belongs_to :account
@@ -79,7 +78,7 @@ class Inbox < ApplicationRecord
   def zalo?
     channel_type == 'Channel::Zalo'
   end
-  
+
   def api?
     channel_type == 'Channel::Api'
   end

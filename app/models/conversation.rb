@@ -51,8 +51,6 @@ class Conversation < ApplicationRecord
 
   after_initialize :set_skip_notify_creation
 
-  validates :account_id, presence: true
-  validates :inbox_id, presence: true
   before_validation :validate_additional_attributes
 
   enum status: { open: 0, resolved: 1, pending: 2, snoozed: 3 }

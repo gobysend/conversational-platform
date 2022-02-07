@@ -7,8 +7,13 @@ inherit_from: .rubocop_todo.yml
 Layout/LineLength:
   Max: 150
 
+GlobalVars:
+  AllowedVariables:
+    - $alfred
+    - $velma
+
 Metrics/ClassLength:
-  Max: 125
+  Max: 250
   Exclude:
     - 'app/models/conversation.rb'
     - 'app/models/contact.rb'
@@ -86,6 +91,7 @@ RSpec/StubbedMock:
 Naming/VariableNumber:
   Enabled: false
 Metrics/MethodLength:
+  Max: 50
   Exclude:
     - 'db/migrate/20161123131628_devise_token_auth_create_users.rb'
     - 'db/migrate/20211219031453_update_foreign_keys_on_delete.rb'
@@ -99,14 +105,17 @@ Style/GuardClause:
     - 'app/models/message.rb'
     - 'db/migrate/20190819005836_add_missing_indexes_on_taggings.acts_as_taggable_on_engine.rb'
 Metrics/AbcSize:
+  Enabled: false
   Exclude:
     - 'app/controllers/concerns/auth_helper.rb'
     - 'db/migrate/20190819005836_add_missing_indexes_on_taggings.acts_as_taggable_on_engine.rb'
     - 'db/migrate/20161123131628_devise_token_auth_create_users.rb'
     - 'app/controllers/api/v1/accounts/inboxes_controller.rb'
     - 'db/migrate/20211219031453_update_foreign_keys_on_delete.rb'
+Metrics/PerceivedComplexity:
+  Max: 20
 Metrics/CyclomaticComplexity:
-  Max: 7
+  Max: 20
   Exclude:
     - 'db/migrate/20190819005836_add_missing_indexes_on_taggings.acts_as_taggable_on_engine.rb'
 Rails/ReversibleMigration:
@@ -170,3 +179,5 @@ AllCops:
     - db/migrate/20200503151130_add_account_feature_flag.rb
     - db/migrate/20200927135222_add_last_activity_at_to_conversation.rb
     - db/migrate/20210306170117_add_last_activity_at_to_contacts.rb
+Rails/FilePath:
+  Enabled: false
