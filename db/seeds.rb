@@ -77,3 +77,6 @@ unless Rails.env.production?
 
   CannedResponse.create!(account: account, short_code: 'start', content: 'Welcome to Goby Messaging.')
 end
+
+Spree::Core::Engine.load_seed if defined?(Spree::Core)
+Spree::Auth::Engine.load_seed if defined?(Spree::Auth)

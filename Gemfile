@@ -160,3 +160,6 @@ group :development, :test do
   gem 'spring-watcher-listen'
   gem 'webmock'
 end
+
+gem "solidus", "~> 3.0"
+gem 'solidus_auth_devise'
