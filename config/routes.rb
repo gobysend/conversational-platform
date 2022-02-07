@@ -40,7 +40,7 @@ Rails.application.routes.draw do
             resource :contact_merge, only: [:create]
           end
 
-          resources :agents, except: [:show, :edit, :new]
+          resources :agents, only: [:index, :create, :update, :destroy]
           resources :agent_bots, only: [:index, :create, :show, :update, :destroy]
 
           resources :callbacks, only: [] do
@@ -52,6 +52,9 @@ Rails.application.routes.draw do
             end
           end
           resources :canned_responses, except: [:show, :edit, :new]
+          resources :automation_rules, except: [:edit] do
+            post :clone
+          end
           resources :campaigns, only: [:index, :create, :show, :update, :destroy]
 
           resources :zalo_callbacks, only: [] do
@@ -65,8 +68,11 @@ Rails.application.routes.draw do
             resource :twilio_channel, only: [:create]
           end
           resources :conversations, only: [:index, :create, :show] do
-            get 'meta', on: :collection
-            get 'search', on: :collection
+            collection do
+              get :meta
+              get :search
+              post :filter
+            end
             scope module: :conversations do
               resources :messages, only: [:index, :create, :destroy]
               resources :assignments, only: [:create]
@@ -79,22 +85,26 @@ Rails.application.routes.draw do
               post :toggle_status
               post :toggle_typing_status
               post :update_last_seen
+              post :custom_attributes
             end
           end
 
-          resources :contacts, only: [:index, :show, :update, :create] do
+          resources :contacts, only: [:index, :show, :update, :create, :destroy] do
             collection do
               get :active
               get :search
+              post :filter
               post :import
             end
             member do
               get :contactable_inboxes
+              post :destroy_custom_attributes
             end
             scope module: :contacts do
               resources :conversations, only: [:index]
               resources :contact_inboxes, only: [:create]
               resources :labels, only: [:create, :index]
+              resources :notes
             end
           end
           resources :csat_survey_responses, only: [:index] do
@@ -104,13 +114,19 @@ Rails.application.routes.draw do
           end
           resources :custom_attribute_definitions, only: [:index, :show, :create, :update, :destroy]
           resources :custom_filters, only: [:index, :show, :create, :update, :destroy]
-          resources :inboxes, only: [:index, :create, :update, :destroy] do
+          resources :inboxes, only: [:index, :show, :create, :update, :destroy] do
             get :assignable_agents, on: :member
             get :campaigns, on: :member
             get :agent_bot, on: :member
             post :set_agent_bot, on: :member
+            delete :avatar, on: :member
           end
-          resources :inbox_members, only: [:create, :show], param: :inbox_id
+          resources :inbox_members, only: [:create, :show], param: :inbox_id do
+            collection do
+              delete :destroy
+              patch :update
+            end
+          end
           resources :labels, only: [:index, :show, :create, :update, :destroy]
 
           resources :notifications, only: [:index, :update] do
@@ -159,8 +175,14 @@ Rails.application.routes.draw do
         resources :webhooks, only: [:create]
       end
 
-      resource :profile, only: [:show, :update]
-      resource :notification_subscriptions, only: [:create]
+      resource :profile, only: [:show, :update] do
+        delete :avatar, on: :collection
+        member do
+          post :availability
+        end
+      end
+
+      resource :notification_subscriptions, only: [:create, :destroy]
 
       namespace :widget do
         resource :config, only: [:create]
@@ -174,7 +196,11 @@ Rails.application.routes.draw do
             post :transcript
           end
         end
-        resource :contact, only: [:show, :update]
+        resource :contact, only: [:show, :update] do
+          collection do
+            post :destroy_custom_attributes
+          end
+        end
         resources :inbox_members, only: [:index]
         resources :labels, only: [:create, :destroy]
       end
@@ -182,12 +208,13 @@ Rails.application.routes.draw do
 
     namespace :v2 do
       resources :accounts, only: [], module: :accounts do
-        resources :reports, only: [] do
+        resources :reports, only: [:index] do
           collection do
-            get :account
-            get :account_summary
+            get :summary
             get :agents
             get :inboxes
+            get :labels
+            get :teams
           end
         end
       end
@@ -248,6 +275,12 @@ Rails.application.routes.draw do
   mount Facebook::Messenger::Server, at: 'bot'
   get 'webhooks/twitter', to: 'api/v1/webhooks#twitter_crc'
   post 'webhooks/twitter', to: 'api/v1/webhooks#twitter_events'
+  post 'webhooks/line/:line_channel_id', to: 'webhooks/line#process_payload'
+  post 'webhooks/telegram/:bot_token', to: 'webhooks/telegram#process_payload'
+  post 'webhooks/whatsapp/:phone_number', to: 'webhooks/whatsapp#process_payload'
+  post 'webhooks/sms/:phone_number', to: 'webhooks/sms#process_payload'
+  get 'webhooks/instagram', to: 'webhooks/instagram#verify'
+  post 'webhooks/instagram', to: 'webhooks/instagram#events'
 
   post 'webhooks/zalo', to: 'zalo/callback#create'
 
@@ -275,17 +308,18 @@ Rails.application.routes.draw do
     namespace :super_admin do
       root to: 'dashboard#index'
 
+      resource :app_config, only: [:show, :create]
+
       # order of resources affect the order of sidebar navigation in super admin
       resources :accounts
       resources :users, only: [:index, :new, :create, :show, :edit, :update]
-      resources :super_admins
       resources :access_tokens, only: [:index, :show]
       resources :installation_configs, only: [:index, :new, :create, :show, :edit, :update]
+      resources :agent_bots, only: [:index, :new, :create, :show, :edit, :update]
+      resources :platform_apps, only: [:index, :new, :create, :show, :edit, :update]
 
       # resources that doesn't appear in primary navigation in super admin
       resources :account_users, only: [:new, :create, :destroy]
-      resources :agent_bots, only: [:index, :new, :create, :show, :edit, :update]
-      resources :platform_apps, only: [:index, :new, :create, :show, :edit, :update]
     end
     authenticated :super_admin do
       mount Sidekiq::Web => '/monitoring/sidekiq'

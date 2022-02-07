@@ -17,7 +17,8 @@
     }
   }
 
-  .image {
+  .image,
+  .video {
     cursor: pointer;
     position: relative;
 
@@ -26,7 +27,13 @@
     }
 
     .modal-image {
-      max-width: 85%;
+      max-height: 90%;
+      max-width: 90%;
+    }
+
+    .modal-video {
+      max-height: 75vh;
+      max-width: 100%;
     }
 
     &::before {
@@ -42,6 +49,16 @@
       opacity: 0.8;
       position: absolute;
       width: 100%;
+    }
+  }
+
+  .video {
+    .modal-container {
+      width: auto;
+
+      .modal--close {
+        z-index: var(--z-index-low);
+      }
     }
   }
 }
@@ -87,7 +104,7 @@
 
     .status--filter {
       @include padding($zero null $zero $space-normal);
-      @include margin($space-smaller $space-slab $zero $zero);
+      @include margin($zero);
       background-color: $color-background-light;
       border: 1px solid $color-border;
       float: right;
@@ -104,7 +121,7 @@
 
 .conversation-panel {
   @include flex;
-  @include flex-weight(1);
+  @include flex-weight(1 1 1px);
   @include margin($zero);
   flex-direction: column;
   height: 100%;
@@ -124,10 +141,18 @@
   }
 
   &:last-child {
-    margin-bottom: $space-small;
+    margin-bottom: 0;
   }
 
   &.unread--toast {
+    +.right {
+      margin-bottom: var(--space-micro);
+    }
+
+    +.left {
+      margin-bottom: 0;
+    }
+
     span {
       @include elegant-card;
       @include round-corner;
@@ -150,6 +175,7 @@
       font-family: inherit;
     }
   }
+
 
   &.left {
     .bubble {
@@ -191,14 +217,34 @@
         border-top-right-radius: $space-one;
       }
     }
+
+    +.unread--toast {
+      +.right {
+        margin-top: $space-one;
+
+        .bubble {
+          border-top-right-radius: $space-one;
+        }
+      }
+
+      +.left {
+        margin-top: 0;
+      }
+    }
   }
 
   &.right {
     @include flex-align(right, null);
 
     .wrap {
+      align-items: flex-end;
+      display: flex;
       margin-right: $space-normal;
       text-align: right;
+
+      .sender--info {
+        padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
+      }
     }
 
     .bubble {
@@ -234,6 +280,21 @@
         border-top-left-radius: $space-one;
       }
     }
+
+    +.unread--toast {
+      +.left {
+        margin-top: $space-one;
+
+        .bubble {
+          border-top-left-radius: $space-one;
+        }
+      }
+
+      +.right {
+        margin-top: 0;
+      }
+    }
+
   }
 
   &.center {
@@ -267,11 +328,11 @@
     display: flex;
     font-size: var(--font-size-small);
     justify-content: center;
-    margin: var(--space-small) var(--space-normal);
-    padding: var(--space-small) var(--space-normal);
+    margin: var(--space-smaller) 0;
+    padding: var(--space-smaller) var(--space-micro) var(--space-smaller) var(--space-one);
 
     .is-text {
-      display: inline-block;
+      display: inline-flex;
       text-align: start;
 
       @include breakpoint(xxxlarge up) {

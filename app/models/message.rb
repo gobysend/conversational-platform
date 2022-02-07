@@ -5,7 +5,7 @@
 #  id                  :integer          not null, primary key
 #  content             :text
 #  content_attributes  :json
-#  content_type        :integer          default("text")
+#  content_type        :integer          default("text"), not null
 #  external_source_ids :jsonb
 #  message_type        :integer          not null
 #  private             :boolean          default(FALSE)
@@ -29,12 +29,17 @@
 #
 
 class Message < ApplicationRecord
+  include MessageFilterHelpers
   NUMBER_OF_PERMITTED_ATTACHMENTS = 15
+
+  before_validation :ensure_content_type
 
   validates :account_id, presence: true
   validates :inbox_id, presence: true
   validates :conversation_id, presence: true
   validates_with ContentAttributeValidator
+  validates :content_type, presence: true
+  validates :content, length: { maximum: 150_000 }
 
   # when you have a temperory id in your frontend and want it echoed back via action cable
   attr_accessor :echo_id
@@ -78,14 +83,8 @@ class Message < ApplicationRecord
   belongs_to :contact, required: false
   belongs_to :sender, polymorphic: true, required: false
 
-  has_many :attachments, dependent: :destroy, autosave: true, before_add: :validate_attachments_limit
-  has_one :csat_survey_response, dependent: :destroy
-
-  attr_accessor :skip_after_create_callback
-
-  after_initialize :set_skip_after_create_callback
-
-  after_create :execute_after_create_callbacks
+  has_many :attachments, dependent: :destroy_async, autosave: true, before_add: :validate_attachments_limit
+  has_one :csat_survey_response, dependent: :destroy_async
 
   after_create_commit :execute_after_create_commit_callbacks
 
@@ -99,7 +98,8 @@ class Message < ApplicationRecord
     data = attributes.merge(
       created_at: created_at.to_i,
       message_type: message_type_before_type_cast,
-      conversation_id: conversation.display_id
+      conversation_id: conversation.display_id,
+      conversation: { assignee_id: conversation.assignee_id }
     )
     data.merge!(echo_id: echo_id) if echo_id.present?
     data.merge!(attachments: attachments.map(&:push_event_data)) if attachments.present?
@@ -110,10 +110,6 @@ class Message < ApplicationRecord
     data.merge!(sender: sender.push_event_data) if sender && !sender.is_a?(AgentBot)
     data.merge!(sender: sender.push_event_data(inbox)) if sender.is_a?(AgentBot)
     data
-  end
-
-  def reportable?
-    incoming? || outgoing?
   end
 
   def webhook_data
@@ -133,17 +129,30 @@ class Message < ApplicationRecord
     }
   end
 
+  def content
+    # move this to a presenter
+    return self[:content] if !input_csat? || inbox.web_widget?
+
+    I18n.t('conversations.survey.response', link: "#{ENV['FRONTEND_URL']}/survey/responses/#{conversation.uuid}")
+  end
+
   private
 
+<<<<<<< HEAD
   def execute_after_create_callbacks
     unless @skip_after_create_callback
       reopen_conversation
       notify_via_mail
     end
+=======
+  def ensure_content_type
+    self.content_type ||= Message.content_types[:text]
+>>>>>>> a737f89c473e64f9abdf8ff13a3e64edefa28877
   end
 
   def execute_after_create_commit_callbacks
     # rails issue with order of active record callbacks being executed https://github.com/rails/rails/issues/20911
+<<<<<<< HEAD
     unless @skip_after_create_callback
       set_conversation_activity
       dispatch_create_events
@@ -151,6 +160,15 @@ class Message < ApplicationRecord
       execute_message_template_hooks
       update_contact_activity
     end
+=======
+    reopen_conversation
+    notify_via_mail
+    set_conversation_activity
+    dispatch_create_events
+    send_reply
+    execute_message_template_hooks
+    update_contact_activity
+>>>>>>> a737f89c473e64f9abdf8ff13a3e64edefa28877
   end
 
   def update_contact_activity
@@ -186,8 +204,16 @@ class Message < ApplicationRecord
     ::MessageTemplates::HookExecutionService.new(message: self).perform
   end
 
+  def email_notifiable_webwidget?
+    inbox.web_widget? && inbox.channel.continuity_via_email
+  end
+
+  def email_notifiable_channel?
+    email_notifiable_webwidget? || %w[Email].include?(inbox.inbox_type)
+  end
+
   def email_notifiable_message?
-    return false unless outgoing?
+    return false unless outgoing? || input_csat?
     return false if private?
 
     true
@@ -195,7 +221,8 @@ class Message < ApplicationRecord
 
   def can_notify_via_mail?
     return unless email_notifiable_message?
-    return false if conversation.contact.email.blank? || !(%w[Website Email].include? inbox.inbox_type)
+    return unless email_notifiable_channel?
+    return if conversation.contact.email.blank?
 
     true
   end
@@ -207,17 +234,15 @@ class Message < ApplicationRecord
   end
 
   def trigger_notify_via_mail
+    return EmailReplyWorker.perform_in(1.second, id) if inbox.inbox_type == 'Email'
+
     # will set a redis key for the conversation so that we don't need to send email for every new message
     # last few messages coupled together is sent every 2 minutes rather than one email for each message
     # if redis key exists there is an unprocessed job that will take care of delivering the email
     return if Redis::Alfred.get(conversation_mail_key).present?
 
-    Redis::Alfred.setex(conversation_mail_key, Time.zone.now)
-    if inbox.inbox_type == 'Email'
-      ConversationReplyEmailWorker.perform_in(2.seconds, conversation.id, Time.zone.now)
-    else
-      ConversationReplyEmailWorker.perform_in(2.minutes, conversation.id, Time.zone.now)
-    end
+    Redis::Alfred.setex(conversation_mail_key, id)
+    ConversationReplyEmailWorker.perform_in(2.minutes, conversation.id, id)
   end
 
   def conversation_mail_key

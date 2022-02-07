@@ -3,7 +3,7 @@
     <woot-button
       color-scheme="primary"
       class-names="button--fixed-right-top"
-      icon="ion-android-add-circle"
+      icon="add-circle"
       @click="openAddPopup()"
     >
       {{ $t('INTEGRATION_SETTINGS.WEBHOOK.HEADER_BTN_TXT') }}
@@ -23,54 +23,52 @@
             :message="$t('INTEGRATION_SETTINGS.WEBHOOK.LOADING')"
           />
 
-          <div
-            v-if="!uiFlags.fetchingList && records.length"
-            style="overflow:auto"
-          >
-            <table class="woot-table">
-              <thead>
-                <th
-                  v-for="thHeader in $t(
-                    'INTEGRATION_SETTINGS.WEBHOOK.LIST.TABLE_HEADER'
-                  )"
-                  :key="thHeader"
+        <table
+          v-if="!uiFlags.fetchingList && records.length"
+          class="woot-table"
+        >
+          <thead>
+            <th
+              v-for="thHeader in $t(
+                'INTEGRATION_SETTINGS.WEBHOOK.LIST.TABLE_HEADER'
+              )"
+              :key="thHeader"
+            >
+              {{ thHeader }}
+            </th>
+          </thead>
+          <tbody>
+            <tr v-for="(webHookItem, index) in records" :key="webHookItem.id">
+              <td class="webhook-link">
+                {{ webHookItem.url }}
+              </td>
+              <td class="button-wrapper">
+                <woot-button
+                  v-tooltip.top="
+                    $t('INTEGRATION_SETTINGS.WEBHOOK.EDIT.BUTTON_TEXT')
+                  "
+                  variant="smooth"
+                  size="tiny"
+                  color-scheme="secondary"
+                  icon="edit"
+                  @click="openEditPopup(webHookItem)"
                 >
-                  {{ thHeader }}
-                </th>
-              </thead>
-              <tbody>
-                <tr
-                  v-for="(webHookItem, index) in records"
-                  :key="webHookItem.id"
+                </woot-button>
+                <woot-button
+                  v-tooltip.top="
+                    $t('INTEGRATION_SETTINGS.WEBHOOK.DELETE.BUTTON_TEXT')
+                  "
+                  variant="smooth"
+                  color-scheme="alert"
+                  size="tiny"
+                  icon="dismiss-circle"
+                  @click="openDeletePopup(webHookItem, index)"
                 >
-                  <td class="webhook-link">
-                    {{ webHookItem.url }}
-                  </td>
-                  <td class="button-wrapper">
-                    <woot-button
-                      variant="link"
-                      color-scheme="primary"
-                      icon="ion-edit"
-                      @click="openEditPopup(webHookItem)"
-                    >
-                      {{ $t('INTEGRATION_SETTINGS.WEBHOOK.EDIT.BUTTON_TEXT') }}
-                    </woot-button>
-                    <woot-button
-                      variant="link"
-                      icon="ion-close-circled"
-                      color-scheme="alert"
-                      @click="openDeletePopup(webHookItem, index)"
-                    >
-                      {{
-                        $t('INTEGRATION_SETTINGS.WEBHOOK.DELETE.BUTTON_TEXT')
-                      }}
-                    </woot-button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+                </woot-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="small-4 columns">

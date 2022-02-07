@@ -3,7 +3,7 @@
     <woot-button
       color-scheme="success"
       class-names="button--fixed-right-top"
-      icon="ion-android-download"
+      icon="arrow-download"
       @click="downloadAgentReports"
     >
       {{ $t('REPORT.DOWNLOAD_AGENT_REPORTS') }}
@@ -116,7 +116,11 @@ export default {
     },
     downloadAgentReports() {
       const { from, to } = this;
-      this.$store.dispatch('downloadAgentReports', { from, to });
+      const fileName = `agent-report-${format(
+        fromUnixTime(to),
+        'dd-MM-yyyy'
+      )}.csv`;
+      this.$store.dispatch('downloadAgentReports', { from, to, fileName });
     },
     changeSelection(index) {
       this.currentSelection = index;

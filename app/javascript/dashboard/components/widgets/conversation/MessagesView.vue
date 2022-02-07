@@ -1,7 +1,7 @@
 <template>
   <div class="view-box fill-height">
     <div
-      v-if="!currentChat.can_reply && !isATwilioWhatsappChannel"
+      v-if="!currentChat.can_reply && !isAWhatsappChannel"
       class="banner messenger-policy--banner"
     >
       <span>
@@ -16,7 +16,7 @@
       </span>
     </div>
     <div
-      v-if="!currentChat.can_reply && isATwilioWhatsappChannel"
+      v-if="!currentChat.can_reply && isAWhatsappChannel"
       class="banner messenger-policy--banner"
     >
       <span>
@@ -44,8 +44,23 @@
         class="banner-close-button"
         @click="removeTweetSelection"
       >
-        <i v-tooltip="$t('CONVERSATION.REMOVE_SELECTION')" class="ion-close" />
+        <fluent-icon
+          v-tooltip="$t('CONVERSATION.REMOVE_SELECTION')"
+          size="16"
+          icon="dismiss"
+        />
       </button>
+    </div>
+    <div class="sidebar-toggle__wrap">
+      <woot-button
+        variant="smooth"
+        size="tiny"
+        color-scheme="secondary"
+        class="sidebar-toggle--button"
+        :icon="isRightOrLeftIcon"
+        @click="onToggleContactPanel"
+      >
+      </woot-button>
     </div>
     <ul class="conversation-panel">
       <transition name="slide-up">
@@ -78,7 +93,10 @@
         :is-a-tweet="isATweet"
       />
     </ul>
-    <div class="conversation-footer">
+    <div
+      class="conversation-footer"
+      :class="{ 'modal-mask': isPopoutReplyBox }"
+    >
       <div v-if="isAnyoneTyping" class="typing-indicator-wrap">
         <div class="typing-indicator">
           {{ typingUserNames }}
@@ -90,9 +108,12 @@
         </div>
       </div>
       <reply-box
+        v-on-clickaway="closePopoutReplyBox"
         :conversation-id="currentChat.id"
         :is-a-tweet="isATweet"
         :selected-tweet="selectedTweet"
+        :popout-reply-box.sync="isPopoutReplyBox"
+        @click="showPopoutReplyBox"
         @scrollToMessage="scrollToBottom"
       />
     </div>
@@ -110,13 +131,16 @@ import { BUS_EVENTS } from 'shared/constants/busEvents';
 import { REPLY_POLICY } from 'shared/constants/links';
 import inboxMixin from 'shared/mixins/inboxMixin';
 import { calculateScrollTop } from './helpers/scrollTopCalculationHelper';
+import { isEscape } from 'shared/helpers/KeyboardHelpers';
+import eventListenerMixins from 'shared/mixins/eventListenerMixins';
+import { mixin as clickaway } from 'vue-clickaway';
 
 export default {
   components: {
     Message,
     ReplyBox,
   },
-  mixins: [conversationMixin, inboxMixin],
+  mixins: [conversationMixin, inboxMixin, eventListenerMixins, clickaway],
   props: {
     isContactPanelOpen: {
       type: Boolean,
@@ -130,6 +154,7 @@ export default {
       heightBeforeLoad: null,
       conversationPanel: null,
       selectedTweetId: null,
+      isPopoutReplyBox: false,
     };
   },
 
@@ -221,6 +246,12 @@ export default {
     twilioWhatsAppReplyPolicy() {
       return REPLY_POLICY.TWILIO_WHATSAPP;
     },
+    isRightOrLeftIcon() {
+      if (this.isContactPanelOpen) {
+        return 'arrow-chevron-right';
+      }
+      return 'arrow-chevron-left';
+    },
   },
 
   watch: {
@@ -233,25 +264,42 @@ export default {
   },
 
   created() {
-    bus.$on('scrollToMessage', () => {
-      this.$nextTick(() => this.scrollToBottom());
-      this.makeMessagesRead();
-    });
-
-    bus.$on(BUS_EVENTS.SET_TWEET_REPLY, selectedTweetId => {
-      this.selectedTweetId = selectedTweetId;
-    });
+    bus.$on(BUS_EVENTS.SCROLL_TO_MESSAGE, this.onScrollToMessage);
+    bus.$on(BUS_EVENTS.SET_TWEET_REPLY, this.setSelectedTweet);
   },
 
   mounted() {
     this.addScrollListener();
   },
 
-  unmounted() {
+  beforeDestroy() {
+    this.removeBusListeners();
     this.removeScrollListener();
   },
 
   methods: {
+    removeBusListeners() {
+      bus.$off(BUS_EVENTS.SCROLL_TO_MESSAGE, this.onScrollToMessage);
+      bus.$off(BUS_EVENTS.SET_TWEET_REPLY, this.setSelectedTweet);
+    },
+    setSelectedTweet(tweetId) {
+      this.selectedTweetId = tweetId;
+    },
+    onScrollToMessage() {
+      this.$nextTick(() => this.scrollToBottom());
+      this.makeMessagesRead();
+    },
+    showPopoutReplyBox() {
+      this.isPopoutReplyBox = !this.isPopoutReplyBox;
+    },
+    closePopoutReplyBox() {
+      this.isPopoutReplyBox = false;
+    },
+    handleKeyEvents(e) {
+      if (isEscape(e)) {
+        this.closePopoutReplyBox();
+      }
+    },
     addScrollListener() {
       this.conversationPanel = this.$el.querySelector('.conversation-panel');
       this.setScrollParams();
@@ -360,5 +408,64 @@ export default {
   height: auto;
   flex-grow: 1;
   min-width: 0;
+}
+
+.modal-mask {
+  &::v-deep {
+    .ProseMirror-woot-style {
+      max-height: 40rem;
+    }
+
+    .reply-box {
+      border: 1px solid var(--color-border);
+      max-width: 120rem;
+      width: 70%;
+    }
+
+    .reply-box .reply-box__top {
+      position: relative;
+      min-height: 44rem;
+    }
+
+    .reply-box__top .input {
+      min-height: 44rem;
+    }
+
+    .emoji-dialog {
+      position: fixed;
+      left: unset;
+      position: absolute;
+    }
+
+    .emoji-dialog::before {
+      transform: rotate(0deg);
+      left: 5px;
+      bottom: var(--space-minus-slab);
+    }
+  }
+}
+.sidebar-toggle__wrap {
+  display: flex;
+  justify-content: flex-end;
+
+  .sidebar-toggle--button {
+    position: fixed;
+
+    top: var(--space-mega);
+    z-index: var(--z-index-low);
+
+    background: var(--white);
+
+    padding: inherit 0;
+    border-top-left-radius: calc(
+      var(--space-medium) + 1px
+    ); /* 100px of height + 10px of border */
+    border-bottom-left-radius: calc(
+      var(--space-medium) + 1px
+    ); /* 100px of height + 10px of border */
+    border: 1px solid var(--color-border-light);
+    border-right: 0;
+    box-sizing: border-box;
+  }
 }
 </style>

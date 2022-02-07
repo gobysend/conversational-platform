@@ -3,7 +3,7 @@
     <woot-button
       color-scheme="primary"
       class-names="button--fixed-right-top"
-      icon="ion-android-add-circle"
+      icon="add-circle"
       @click="openAddPopup()"
     >
       {{ $t('CANNED_MGMT.HEADER_BTN_TXT') }}
@@ -24,58 +24,56 @@
             :message="$t('CANNED_MGMT.LOADING')"
           />
 
-          <div
-            v-if="!uiFlags.fetchingList && records.length"
-            style="overflow:auto"
-          >
-            <table class="woot-table">
-              <thead>
-                <!-- Header -->
-                <th
-                  v-for="thHeader in $t('CANNED_MGMT.LIST.TABLE_HEADER')"
-                  :key="thHeader"
+        <table
+          v-if="!uiFlags.fetchingList && records.length"
+          class="woot-table"
+        >
+          <thead>
+            <!-- Header -->
+            <th
+              v-for="thHeader in $t('CANNED_MGMT.LIST.TABLE_HEADER')"
+              :key="thHeader"
+            >
+              {{ thHeader }}
+            </th>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(cannedItem, index) in records"
+              :key="cannedItem.short_code"
+            >
+              <!-- Short Code  -->
+              <td class="short-code">
+                {{ cannedItem.short_code }}
+              </td>
+              <!-- Content -->
+              <td>{{ cannedItem.content }}</td>
+              <!-- Action Buttons -->
+              <td class="button-wrapper">
+                <woot-button
+                  v-tooltip.top="$t('CANNED_MGMT.EDIT.BUTTON_TEXT')"
+                  variant="smooth"
+                  size="tiny"
+                  color-scheme="secondary"
+                  icon="edit"
+                  @click="openEditPopup(cannedItem)"
                 >
-                  {{ thHeader }}
-                </th>
-              </thead>
-              <tbody>
-                <tr
-                  v-for="(cannedItem, index) in records"
-                  :key="cannedItem.short_code"
+                </woot-button>
+                <woot-button
+                  v-tooltip.top="$t('CANNED_MGMT.DELETE.BUTTON_TEXT')"
+                  variant="smooth"
+                  color-scheme="alert"
+                  size="tiny"
+                  icon="dismiss-circle"
+                  class-names="grey-btn"
+                  :is-loading="loading[cannedItem.id]"
+                  @click="openDeletePopup(cannedItem, index)"
                 >
-                  <!-- Short Code  -->
-                  <td class="short-code">
-                    {{ cannedItem.short_code }}
-                  </td>
-                  <!-- Content -->
-                  <td>{{ cannedItem.content }}</td>
-                  <!-- Action Buttons -->
-                  <td class="button-wrapper">
-                    <woot-button
-                      variant="link"
-                      color-scheme="primary"
-                      icon="ion-edit"
-                      class-names="grey-btn"
-                      @click="openEditPopup(cannedItem)"
-                    >
-                      {{ $t('CANNED_MGMT.EDIT.BUTTON_TEXT') }}
-                    </woot-button>
-                    <woot-button
-                      variant="link"
-                      color-scheme="alert"
-                      icon="ion-close-circled"
-                      class-names="grey-btn"
-                      :is-loading="loading[cannedItem.id]"
-                      @click="openDeletePopup(cannedItem, index)"
-                    >
-                      {{ $t('CANNED_MGMT.DELETE.BUTTON_TEXT') }}
-                    </woot-button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+                </woot-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="small-4 columns">

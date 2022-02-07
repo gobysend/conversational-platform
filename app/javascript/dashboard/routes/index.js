@@ -28,6 +28,11 @@ window.roleWiseRoutes = {
   administrator: [],
 };
 
+const getUserRole = ({ accounts } = {}, accountId) => {
+  const currentAccount = accounts.find(account => account.id === accountId);
+  return currentAccount ? currentAccount.role : null;
+};
+
 // generateRoleWiseRoute - updates window object with agent/admin route
 const generateRoleWiseRoute = route => {
   route.forEach(element => {
@@ -65,7 +70,10 @@ const routeValidators = [
   {
     protected: false,
     loggedIn: true,
-    handler: () => 'dashboard',
+    handler: () => {
+      const user = auth.getCurrentUser();
+      return `accounts/${user.account_id}/dashboard`;
+    },
   },
   {
     protected: true,
@@ -77,8 +85,9 @@ const routeValidators = [
     loggedIn: true,
     handler: to => {
       const user = auth.getCurrentUser();
-      const isAccessible = routeIsAccessibleFor(to, user.role);
-      return isAccessible ? null : 'dashboard';
+      const userRole = getUserRole(user, Number(to.params.accountId));
+      const isAccessible = routeIsAccessibleFor(to.name, userRole);
+      return isAccessible ? null : `accounts/${to.params.accountId}/dashboard`;
     },
   },
   {
@@ -96,7 +105,7 @@ export const validateAuthenticateRoutePermission = (to, from, next) => {
       validator.protected === isProtectedRoute &&
       validator.loggedIn === isLoggedIn
   );
-  const nextRoute = strategy.handler(to.name);
+  const nextRoute = strategy.handler(to);
   return nextRoute ? next(frontendURL(nextRoute)) : next();
 };
 

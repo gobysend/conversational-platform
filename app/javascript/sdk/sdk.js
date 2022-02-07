@@ -18,6 +18,8 @@ export const SDK_CSS = `.woot-widget-holder {
 
 .woot-widget-holder.has-unread-view {
   border-radius: 0 !important;
+  min-height: 80px;
+  height: auto;
   bottom: 94px;
   box-shadow: none !important;
 }
@@ -25,7 +27,9 @@ export const SDK_CSS = `.woot-widget-holder {
 .woot-widget-bubble {
   background: #007dfa;
   border-radius: 100px !important;
+  border-width: 0px;
   bottom: 20px;
+  padding: 0px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, .16) !important;
   cursor: pointer;
   height: 64px !important;
@@ -35,11 +39,25 @@ export const SDK_CSS = `.woot-widget-holder {
   user-select: none;
 }
 
+.woot-widget-bubble.unread-notification::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #ff4040;
+  border-radius: 100%;
+  top: 0px;
+  right: 0px;
+  border: 2px solid #ffffff;
+  transition: background 0.2s ease;
+}
+
 .woot-widget-bubble.woot-widget--expanded {
   bottom: 24px;
   display: flex;
   height: 48px !important;
   width: auto !important;
+  align-items: center;
 }
 
 .woot-widget-bubble.woot-widget--expanded div {
@@ -96,6 +114,7 @@ export const SDK_CSS = `.woot-widget-holder {
 .woot--close::before, .woot--close::after {
   background-color: #fff;
   content: ' ';
+  display: inline;
   height: 24px;
   left: 32px;
   position: absolute;
@@ -112,7 +131,7 @@ export const SDK_CSS = `.woot-widget-holder {
 }
 
 .woot--hide {
-  bottom: -100vh;
+  bottom: -100vh !important;
   transform: translateY(40px);
   top: unset !important;
   opacity: 0;
@@ -146,7 +165,7 @@ export const SDK_CSS = `.woot-widget-holder {
     max-height: 100vh;
     padding: 0 8px;
   }
- 
+
   .woot-widget-holder.has-unread-view iframe {
     min-height: unset !important;
   }
@@ -154,7 +173,7 @@ export const SDK_CSS = `.woot-widget-holder {
  .woot-widget-holder.has-unread-view.woot-elements--left {
     left: 0;
   }
-  
+
   .woot-widget-bubble.woot--close {
     bottom: 60px;
     opacity: 0;

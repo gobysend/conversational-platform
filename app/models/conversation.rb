@@ -5,7 +5,9 @@
 #  id                    :integer          not null, primary key
 #  additional_attributes :jsonb
 #  agent_last_seen_at    :datetime
+#  assignee_last_seen_at :datetime
 #  contact_last_seen_at  :datetime
+#  custom_attributes     :jsonb
 #  identifier            :string
 #  last_activity_at      :datetime         not null
 #  snoozed_until         :datetime
@@ -34,15 +36,16 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (campaign_id => campaigns.id)
-#  fk_rails_...  (contact_inbox_id => contact_inboxes.id)
-#  fk_rails_...  (team_id => teams.id)
+#  fk_rails_...  (campaign_id => campaigns.id) ON DELETE => cascade
+#  fk_rails_...  (contact_inbox_id => contact_inboxes.id) ON DELETE => cascade
+#  fk_rails_...  (team_id => teams.id) ON DELETE => cascade
 #
 
 class Conversation < ApplicationRecord
   include Labelable
   include AssignmentHandler
   include RoundRobinHandler
+  include ActivityMessageHandler
 
   attr_accessor :skip_notify_creation
 
@@ -58,6 +61,11 @@ class Conversation < ApplicationRecord
   scope :unassigned, -> { where(assignee_id: nil) }
   scope :assigned, -> { where.not(assignee_id: nil) }
   scope :assigned_to, ->(agent) { where(assignee_id: agent.id) }
+  scope :resolvable, lambda { |auto_resolve_duration|
+    return [] if auto_resolve_duration.to_i.zero?
+
+    open.where('last_activity_at < ? ', Time.now.utc - auto_resolve_duration.days)
+  }
 
   belongs_to :account
   belongs_to :inbox
@@ -67,17 +75,16 @@ class Conversation < ApplicationRecord
   belongs_to :team, optional: true
   belongs_to :campaign, optional: true
 
-  has_many :messages, dependent: :destroy, autosave: true
-  has_one :csat_survey_response, dependent: :destroy
+  has_many :mentions, dependent: :destroy_async
+  has_many :messages, dependent: :destroy_async, autosave: true
+  has_one :csat_survey_response, dependent: :destroy_async
   has_many :notifications, as: :primary_actor, dependent: :destroy
 
   before_save :ensure_snooze_until_reset
   before_create :mark_conversation_pending_if_bot
 
-  # wanted to change this to after_update commit. But it ended up creating a loop
-  # reinvestigate in future and identity the implications
-  after_update :notify_status_change, :create_activity
-  after_create_commit :notify_conversation_creation, :queue_conversation_auto_resolution_job
+  after_update_commit :execute_after_update_commit_callbacks
+  after_create_commit :notify_conversation_creation
   after_commit :set_display_id, unless: :display_id?
 
   delegate :auto_resolve_duration, to: :account
@@ -139,14 +146,27 @@ class Conversation < ApplicationRecord
   end
 
   def notifiable_assignee_change?
-    return false if self_assign?(assignee_id)
     return false unless saved_change_to_assignee_id?
     return false if assignee_id.blank?
+    return false if self_assign?(assignee_id)
 
     true
   end
 
+  def tweet?
+    inbox.inbox_type == 'Twitter' && additional_attributes['type'] == 'tweet'
+  end
+
+  def recent_messages
+    messages.chat.last(5)
+  end
+
   private
+
+  def execute_after_update_commit_callbacks
+    notify_status_change
+    create_activity
+  end
 
   def ensure_snooze_until_reset
     self.snoozed_until = nil unless snoozed?
@@ -180,21 +200,6 @@ class Conversation < ApplicationRecord
     reload
   end
 
-  def create_activity
-    user_name = Current.user.name if Current.user.present?
-    status_change_activity(user_name) if saved_change_to_status?
-    create_label_change(user_name) if saved_change_to_label_list?
-  end
-
-  def status_change_activity(user_name)
-    create_status_change_message(user_name)
-    queue_conversation_auto_resolution_job if open?
-  end
-
-  def activity_message_params(content)
-    { account_id: account_id, inbox_id: inbox_id, message_type: :activity, content: content }
-  end
-
   def notify_status_change
     {
       CONVERSATION_OPENED => -> { saved_change_to_status? && open? },
@@ -208,23 +213,13 @@ class Conversation < ApplicationRecord
   end
 
   def dispatcher_dispatch(event_name)
-    Rails.configuration.dispatcher.dispatch(event_name, Time.zone.now, conversation: self)
+    Rails.configuration.dispatcher.dispatch(event_name, Time.zone.now, conversation: self, notifiable_assignee_change: notifiable_assignee_change?)
   end
 
   def conversation_status_changed_to_open?
     return false unless open?
     # saved_change_to_status? method only works in case of update
     return true if previous_changes.key?(:id) || saved_change_to_status?
-  end
-
-  def create_status_change_message(user_name)
-    content = if user_name
-                I18n.t("conversations.activity.status.#{status}", user_name: user_name)
-              elsif resolved?
-                I18n.t('conversations.activity.status.auto_resolved', duration: auto_resolve_duration)
-              end
-
-    messages.create(activity_message_params(content)) if content
   end
 
   def create_label_change(user_name)
@@ -235,42 +230,6 @@ class Conversation < ApplicationRecord
 
     create_label_added(user_name, current_labels - previous_labels)
     create_label_removed(user_name, previous_labels - current_labels)
-  end
-
-  def create_label_added(user_name, labels = [])
-    return unless labels.size.positive?
-
-    params = { user_name: user_name, labels: labels.join(', ') }
-    content = I18n.t('conversations.activity.labels.added', **params)
-
-    messages.create(activity_message_params(content))
-  end
-
-  def create_label_removed(user_name, labels = [])
-    return unless labels.size.positive?
-
-    params = { user_name: user_name, labels: labels.join(', ') }
-    content = I18n.t('conversations.activity.labels.removed', **params)
-
-    messages.create(activity_message_params(content))
-  end
-
-  def create_muted_message
-    return unless Current.user
-
-    params = { user_name: Current.user.name }
-    content = I18n.t('conversations.activity.muted', **params)
-
-    messages.create(activity_message_params(content))
-  end
-
-  def create_unmuted_message
-    return unless Current.user
-
-    params = { user_name: Current.user.name }
-    content = I18n.t('conversations.activity.unmuted', **params)
-
-    messages.create(activity_message_params(content))
   end
 
   def mute_key

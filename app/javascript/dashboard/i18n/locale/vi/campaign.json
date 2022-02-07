@@ -1,7 +1,7 @@
 {
   "CAMPAIGN": {
     "HEADER": "Chiến dịch",
-    "SIDEBAR_TXT": "Tin nhắn tự động đến các khách hàng, điều này sẽ tạo ra nhiều cuộc trò chuyện hơn. Click on <b>Add Campaign</b> to create a new campaign. You can also edit or delete an existing campaign by clicking on the Edit or Delete button.",
+    "SIDEBAR_TXT": "Tự động nhắn tin đến khách hàng giúp tạo ra nhiều cuộc trò chuyện hơn. Click nút <b>Tạo chiến dịch</b> để tạo chiến dịch mới. Bạn có thể sửa hoặc xóa chiến dịch bằng cách click lên nút Sửa hoặc Xóa.",
     "HEADER_BTN_TXT": {
       "ONE_OFF": "Tạo chiến dịch gửi một lần",
       "ONGOING": "Tạo chiến dịch lặp lại"
@@ -33,6 +33,11 @@
           "PLACEHOLDER": "Chọn hộp thư đến",
           "ERROR": "Hộp thư đến là bắt buộc"
         },
+        "INBOX": {
+          "LABEL": "Select Inbox",
+          "PLACEHOLDER": "Select Inbox",
+          "ERROR": "Inbox is required"
+        },
         "MESSAGE": {
           "LABEL": "Nội dung",
           "PLACEHOLDER": "Vui lòng nhập thông điệp của chiến dịch",
@@ -54,6 +59,7 @@
           "ERROR": "Khoảng thời gian là bắt buộc"
         },
         "ENABLED": "Kích hoạt chiến dịch",
+        "TRIGGER_ONLY_BUSINESS_HOURS": "Chỉ gửi trong giờ làm việc",
         "SUBMIT": "Tạo chiến dịch"
       },
       "API": {
@@ -88,6 +94,7 @@
       "TABLE_HEADER": {
         "TITLE": "Tiêu đề",
         "MESSAGE": "Nội dung",
+        "INBOX": "Hộp thư",
         "STATUS": "Trạng thái",
         "INBOX": "Hộp thư đến",
         "SENDER": "Người gửi",

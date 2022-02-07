@@ -3,7 +3,7 @@
     <div class="left-wrap">
       <woot-button
         :title="$t('CONVERSATION.REPLYBOX.TIP_EMOJI_ICON')"
-        icon="ion-happy-outline"
+        icon="emoji"
         emoji="😊"
         color-scheme="secondary"
         variant="smooth"
@@ -11,19 +11,25 @@
         @click="toggleEmojiPicker"
       />
 
+      <!-- ensure the same validations for attachment types are implemented in  backend models as well -->
       <file-upload
         ref="upload"
         :size="4096 * 4096"
-        accept="image/*, application/pdf, audio/mpeg, video/mp4, audio/ogg, text/csv"
+        :accept="allowedFileTypes"
+        :multiple="enableMultipleFileUpload"
         :drop="true"
         :drop-directory="false"
-        @input-file="onFileUpload"
+        :data="{
+          direct_upload_url: '/rails/active_storage/direct_uploads',
+          direct_upload: true,
+        }"
+        @input-file="onDirectFileUpload"
       >
         <woot-button
           v-if="showAttachButton"
           class-names="button--upload"
           :title="$t('CONVERSATION.REPLYBOX.TIP_ATTACH_ICON')"
-          icon="ion-android-attach"
+          icon="attach"
           emoji="📎"
           color-scheme="secondary"
           variant="smooth"
@@ -32,7 +38,7 @@
       </file-upload>
       <woot-button
         v-if="enableRichEditor && !isOnPrivateNote"
-        icon="ion-quote"
+        icon="quote"
         emoji="🖊️"
         color-scheme="secondary"
         variant="smooth"
@@ -45,7 +51,7 @@
           v-show="$refs.upload && $refs.upload.dropActive"
           class="modal-mask"
         >
-          <i class="ion-ios-cloud-upload-outline icon"></i>
+          <fluent-icon icon="cloud-backup" />
           <h4 class="page-sub-title">
             {{ $t('CONVERSATION.REPLYBOX.DRAG_DROP') }}
           </h4>
@@ -78,11 +84,13 @@
 
 <script>
 import FileUpload from 'vue-upload-component';
+import * as ActiveStorage from 'activestorage';
 import {
   hasPressedAltAndWKey,
   hasPressedAltAndAKey,
 } from 'shared/helpers/KeyboardHelpers';
 import eventListenerMixins from 'shared/mixins/eventListenerMixins';
+import { ALLOWED_FILE_TYPES } from 'shared/constants/messages';
 
 import { REPLY_EDITOR_MODES } from './constants';
 export default {
@@ -106,7 +114,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    onFileUpload: {
+    onDirectFileUpload: {
       type: Function,
       default: () => {},
     },
@@ -142,6 +150,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    enableMultipleFileUpload: {
+      type: Boolean,
+      default: true,
+    },
   },
   computed: {
     isNote() {
@@ -160,6 +172,12 @@ export default {
     showAttachButton() {
       return this.showFileUpload || this.isNote;
     },
+    allowedFileTypes() {
+      return ALLOWED_FILE_TYPES;
+    },
+  },
+  mounted() {
+    ActiveStorage.start();
   },
   methods: {
     handleKeyEvents(e) {

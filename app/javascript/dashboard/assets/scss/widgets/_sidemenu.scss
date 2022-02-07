@@ -12,10 +12,6 @@
 }
 
 .sidebar {
-  @include full-height;
-  @include margin(0);
-  @include space-between-column;
-  width: 270px;
   z-index: 1024 - 1;
   box-shadow: 4px 4px 10px rgb(69 65 78 / 6%);
   background: #fff;
@@ -292,7 +288,24 @@
       }
     }
   }
+
+  .nested {
+    a {
+      font-size: $font-size-small;
+      margin-bottom: $space-micro;
+      margin-top: $space-micro;
+
+      .inbox-icon {
+        display: inline-block;
+        margin-right: $space-micro;
+        min-width: $space-normal;
+        text-align: center;
+      }
+    }
+  }
 }
+
+
 
 .sidebar.has-submenu .button-toggle-submenu {
   display: flex;

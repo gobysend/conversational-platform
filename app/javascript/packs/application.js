@@ -34,6 +34,12 @@ import {
 import * as Sentry from '@sentry/vue';
 import 'vue-easytable/libs/theme-default/index.css';
 import { Integrations } from '@sentry/tracing';
+import posthog from 'posthog-js';
+import {
+  initializeAnalyticsEvents,
+  initializeChatwootEvents,
+} from '../dashboard/helper/scriptHelpers';
+import FluentIcon from 'shared/components/FluentIcon/DashboardIcon';
 
 Vue.config.env = process.env;
 
@@ -42,6 +48,12 @@ if (window.errorLoggingConfig) {
     Vue,
     dsn: window.errorLoggingConfig,
     integrations: [new Integrations.BrowserTracing()],
+  });
+}
+
+if (window.analyticsConfig) {
+  posthog.init(window.analyticsConfig.token, {
+    api_host: window.analyticsConfig.host,
   });
 }
 
@@ -62,6 +74,7 @@ Vue.use(hljs.vuePlugin);
 Vue.component('multiselect', Multiselect);
 Vue.component('woot-switch', WootSwitch);
 Vue.component('woot-wizard', WootWizard);
+Vue.component('fluent-icon', FluentIcon);
 
 const i18nConfig = new VueI18n({
   locale: 'en',
@@ -75,6 +88,9 @@ commonHelpers();
 window.WootConstants = constants;
 window.axios = createAxios(axios);
 window.bus = new Vue();
+initializeChatwootEvents();
+initializeAnalyticsEvents();
+
 window.onload = () => {
   window.WOOT = new Vue({
     router,
@@ -85,6 +101,7 @@ window.onload = () => {
   }).$mount('#app');
   vueActionCable.init();
 };
+
 window.addEventListener('load', () => {
   verifyServiceWorkerExistence(registration =>
     registration.pushManager.getSubscription().then(subscription => {

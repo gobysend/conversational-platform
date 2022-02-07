@@ -3,7 +3,7 @@
     <woot-button
       color-scheme="primary"
       class-names="button--fixed-right-top"
-      icon="ion-android-add-circle"
+      icon="add-circle"
       @click="openAddPopup()"
     >
       {{ $t('AGENT_MGMT.HEADER_BTN_TXT') }}
@@ -11,84 +11,78 @@
 
     <!-- List Agents -->
     <div class="row">
-      <div class="small-12 large-8 columns with-right-space ">
-        <div class="card-goby">
-          <woot-loading-state
-            v-if="uiFlags.isFetching"
-            :message="$t('AGENT_MGMT.LOADING')"
-          />
-          <div v-else>
-            <p v-if="!agentList.length">
-              {{ $t('AGENT_MGMT.LIST.404') }}
-            </p>
-
-            <div v-else style="overflow:auto">
-              <table class="woot-table">
-                <tbody>
-                  <tr v-for="(agent, index) in agentList" :key="agent.email">
-                    <!-- Gravtar Image -->
-                    <td>
-                      <thumbnail
-                        :src="agent.thumbnail"
-                        class="columns"
-                        :username="agent.name"
-                        size="40px"
-                        :status="agent.availability_status"
-                      />
-                    </td>
-                    <!-- Agent Name + Email -->
-                    <td>
-                      <span class="agent-name">{{ agent.name }}</span>
-                      <span>{{ agent.email }}</span>
-                    </td>
-                    <!-- Agent Role + Verification Status -->
-                    <td>
-                      <span class="agent-name">
-                        {{
-                          $t(
-                            `AGENT_MGMT.AGENT_TYPES.${agent.role.toUpperCase()}`
-                          )
-                        }}
-                      </span>
-                      <span v-if="agent.confirmed">
-                        {{ $t('AGENT_MGMT.LIST.VERIFIED') }}
-                      </span>
-                      <span v-if="!agent.confirmed">
-                        {{ $t('AGENT_MGMT.LIST.VERIFICATION_PENDING') }}
-                      </span>
-                    </td>
-                    <!-- Actions -->
-                    <td>
-                      <div class="button-wrapper">
-                        <woot-button
-                          v-if="showEditAction(agent)"
-                          variant="link"
-                          color-scheme="primary"
-                          icon="ion-edit"
-                          class-names="grey-btn"
-                          @click="openEditPopup(agent)"
-                        >
-                          {{ $t('AGENT_MGMT.EDIT.BUTTON_TEXT') }}
-                        </woot-button>
-
-                        <woot-button
-                          v-if="showDeleteAction(agent)"
-                          variant="link"
-                          color-scheme="alert"
-                          icon="ion-close-circled"
-                          class-names="grey-btn"
-                          :is-loading="loading[agent.id]"
-                          @click="openDeletePopup(agent, index)"
-                        >
-                          {{ $t('AGENT_MGMT.DELETE.BUTTON_TEXT') }}
-                        </woot-button>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+      <div class="small-8 columns with-right-space ">
+        <woot-loading-state
+          v-if="uiFlags.isFetching"
+          :message="$t('AGENT_MGMT.LOADING')"
+        />
+        <div v-else>
+          <p v-if="!agentList.length">
+            {{ $t('AGENT_MGMT.LIST.404') }}
+          </p>
+          <table v-else class="woot-table">
+            <tbody>
+              <tr v-for="(agent, index) in agentList" :key="agent.email">
+                <!-- Gravtar Image -->
+                <td>
+                  <thumbnail
+                    :src="agent.thumbnail"
+                    class="columns"
+                    :username="agent.name"
+                    size="40px"
+                    :status="agent.availability_status"
+                  />
+                </td>
+                <!-- Agent Name + Email -->
+                <td>
+                  <span class="agent-name">{{ agent.name }}</span>
+                  <span>{{ agent.email }}</span>
+                </td>
+                <!-- Agent Role + Verification Status -->
+                <td>
+                  <span class="agent-name">
+                    {{
+                      $t(`AGENT_MGMT.AGENT_TYPES.${agent.role.toUpperCase()}`)
+                    }}
+                  </span>
+                  <span v-if="agent.confirmed">
+                    {{ $t('AGENT_MGMT.LIST.VERIFIED') }}
+                  </span>
+                  <span v-if="!agent.confirmed">
+                    {{ $t('AGENT_MGMT.LIST.VERIFICATION_PENDING') }}
+                  </span>
+                </td>
+                <!-- Actions -->
+                <td>
+                  <div class="button-wrapper">
+                    <woot-button
+                      v-if="showEditAction(agent)"
+                      v-tooltip.top="$t('AGENT_MGMT.EDIT.BUTTON_TEXT')"
+                      variant="smooth"
+                      size="tiny"
+                      color-scheme="secondary"
+                      icon="edit"
+                      class-names="grey-btn"
+                      @click="openEditPopup(agent)"
+                    >
+                    </woot-button>
+                    <woot-button
+                      v-if="showDeleteAction(agent)"
+                      v-tooltip.top="$t('AGENT_MGMT.DELETE.BUTTON_TEXT')"
+                      variant="smooth"
+                      color-scheme="alert"
+                      size="tiny"
+                      icon="dismiss-circle"
+                      class-names="grey-btn"
+                      :is-loading="loading[agent.id]"
+                      @click="openDeletePopup(agent, index)"
+                    >
+                    </woot-button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <div class="small-12 large-4 columns">

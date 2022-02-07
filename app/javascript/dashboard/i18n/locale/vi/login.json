@@ -2,7 +2,7 @@
   "LOGIN": {
     "TITLE": "Đăng nhập",
     "EMAIL": {
-      "LABEL": "Email",
+      "LABEL": "Thư điện tử",
       "PLACEHOLDER": "Email : someone@example.com"
     },
     "PASSWORD": {
