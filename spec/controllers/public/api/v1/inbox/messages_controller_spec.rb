@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Public Inbox Contact Conversation Messages API', type: :request do
   let!(:api_channel) { create(:channel_api) }
-  let!(:contact) { create(:contact) }
+  let!(:contact) { create(:contact, phone_number: '+324234324', email: 'dfsadf@sfsda.com') }
   let!(:contact_inbox) { create(:contact_inbox, contact: contact, inbox: api_channel.inbox) }
   let!(:conversation)  { create(:conversation, contact: contact, contact_inbox: contact_inbox) }
 
@@ -26,6 +26,18 @@ RSpec.describe 'Public Inbox Contact Conversation Messages API', type: :request 
       expect(response).to have_http_status(:success)
       data = JSON.parse(response.body)
       expect(data['content']).to eq('hello')
+    end
+
+    it 'does not create the message' do
+      content = "#{'h' * 150 * 1000}a"
+      post "/public/api/v1/inboxes/#{api_channel.identifier}/contacts/#{contact_inbox.source_id}/conversations/#{conversation.display_id}/messages",
+           params: { content: content }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+
+      json_response = JSON.parse(response.body)
+
+      expect(json_response['message']).to eq('Content is too long (maximum is 150000 characters)')
     end
 
     it 'creates attachment message in conversation' do

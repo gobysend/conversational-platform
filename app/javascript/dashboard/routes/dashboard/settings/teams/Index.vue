@@ -22,41 +22,39 @@
                     <p>{{ item.description }}</p>
                   </td>
 
-                  <td>
-                    <div class="button-wrapper">
-                      <router-link
-                        :to="
-                          addAccountScoping(`settings/teams/${item.id}/edit`)
-                        "
-                      >
-                        <woot-button
-                          v-if="isAdmin"
-                          variant="link"
-                          color-scheme="primary"
-                          class-names="grey-btn"
-                          icon="ion-gear-b"
-                        >
-                          {{ $t('TEAMS_SETTINGS.LIST.EDIT_TEAM') }}
-                        </woot-button>
-                      </router-link>
-                      <woot-button
-                        v-if="isAdmin"
-                        variant="link"
-                        color-scheme="alert"
-                        icon="ion-close-circled"
-                        class-names="grey-btn"
-                        :is-loading="loading[item.id]"
-                        @click="openDelete(item)"
-                      >
-                        {{ $t('TEAMS_SETTINGS.DELETE.BUTTON_TEXT') }}
-                      </woot-button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+              <td>
+                <div class="button-wrapper">
+                  <router-link
+                    :to="addAccountScoping(`settings/teams/${item.id}/edit`)"
+                  >
+                    <woot-button
+                      v-if="isAdmin"
+                      v-tooltip.top="$t('TEAMS_SETTINGS.LIST.EDIT_TEAM')"
+                      variant="smooth"
+                      size="tiny"
+                      color-scheme="secondary"
+                      class-names="grey-btn"
+                      icon="settings"
+                    >
+                    </woot-button>
+                  </router-link>
+                  <woot-button
+                    v-if="isAdmin"
+                    v-tooltip.top="$t('TEAMS_SETTINGS.DELETE.BUTTON_TEXT')"
+                    variant="smooth"
+                    color-scheme="alert"
+                    size="tiny"
+                    icon="dismiss-circle"
+                    class-names="grey-btn"
+                    :is-loading="loading[item.id]"
+                    @click="openDelete(item)"
+                  >
+                  </woot-button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="small-4 columns">

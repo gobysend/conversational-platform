@@ -3,7 +3,7 @@
     <woot-label
       color-scheme="secondary"
       :title="$t('CONTACT_PANEL.LABELS.CONVERSATION.ADD_BUTTON')"
-      icon="ion-plus-round"
+      icon="add-circle"
     />
   </woot-button>
 </template>
@@ -23,7 +23,7 @@ export default {
   &::v-deep .label {
     cursor: pointer;
     background: transparent;
-    border-color: var(--s-700);
+    border-color: var(--s-600);
     margin: 0;
 
     &:hover {

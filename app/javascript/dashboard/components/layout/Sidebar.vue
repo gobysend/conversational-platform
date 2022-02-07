@@ -1,97 +1,38 @@
 <template>
-  <aside
-    class="sidebar animated shrink columns"
-    :class="{
-      'minimal-sidebar': currentRoute != 'home',
-      'has-submenu': has_submenu,
-      'minimal-submenu': isMinimalSubmenu,
-    }"
-  >
-    <div class="logo">
-      <router-link :to="dashboardPath" replace>
-        <img
-          v-show="currentRoute != 'home'"
-          src="https://cdn-dev.gobysend.com/brand/logo/1621997879Gobysend logo_logomark 200x200 white.png"
-          :alt="globalConfig.installationName"
-          width="35"
-        />
-
-        <img
-          v-show="currentRoute == 'home'"
-          src="https://cdn-dev.gobysend.com/brand/logo/1622268746Gobysend logo_logo dài gray 56PX-27.svg"
-          :alt="globalConfig.installationName"
-          width="125"
-        />
-      </router-link>
-    </div>
-
-    <div class="main-nav">
-      <ul class="menu vertical">
-        <sidebar-item
-          v-for="item in accessibleMenuItems"
-          :key="item.toState"
-          :menu-item="item"
-          @add-label="showAddLabelPopup"
-        />
-        <!-- <sidebar-item
-          v-if="shouldShowTeams"
-          :key="teamSection.toState"
-          :menu-item="teamSection"
-        />
-        <sidebar-item
-          v-if="shouldShowSidebarItem"
-          :key="inboxSection.toState"
-          :menu-item="inboxSection"
-        />
-        <sidebar-item
-          v-if="shouldShowSidebarItem"
-          :key="labelSection.toState"
-          :menu-item="labelSection"
-          @add-label="showAddLabelPopup"
-        /> -->
-        <!-- <sidebar-item
-          v-if="showShowContactSideMenu"
-          :key="contactLabelSection.key"
-          :menu-item="contactLabelSection"
-          @add-label="showAddLabelPopup"
-        /> -->
-      </ul>
-    </div>
-
-    <div class="bottom-nav">
-      <availability-status />
-    </div>
-
-    <div class="bottom-nav app-context-menu" @click="toggleOptions">
-      <agent-details @show-options="toggleOptions" />
-      <!-- <notification-bell /> -->
-      <span class="current-user--options icon ion-android-more-vertical" />
-      <options-menu
-        :show="showOptionsMenu"
-        @toggle-accounts="toggleAccountModal"
-        @show-support-chat-window="toggleSupportChatWindow"
-        @key-shortcut-modal="toggleKeyShortcutModal"
-        @close="toggleOptions"
-      />
-    </div>
-
+  <aside class="woot-sidebar">
+    <primary-sidebar
+      :logo-source="globalConfig.logoThumbnail"
+      :installation-name="globalConfig.installationName"
+      :account-id="accountId"
+      :menu-items="primaryMenuItems"
+      :active-menu-item="activePrimaryMenu.key"
+      @toggle-accounts="toggleAccountModal"
+      @key-shortcut-modal="toggleKeyShortcutModal"
+    />
+    <secondary-sidebar
+      :account-id="accountId"
+      :inboxes="inboxes"
+      :labels="labels"
+      :teams="teams"
+      :custom-views="customViews"
+      :menu-config="activeSecondaryMenu"
+      :current-role="currentRole"
+      @add-label="showAddLabelPopup"
+    />
     <woot-key-shortcut-modal
       v-if="showShortcutModal"
       @close="closeKeyShortcutModal"
       @clickaway="closeKeyShortcutModal"
     />
-
     <account-selector
       :show-account-modal="showAccountModal"
       @close-account-modal="toggleAccountModal"
       @show-create-account-modal="openCreateAccountModal"
     />
-
     <add-account-modal
       :show="showCreateAccountModal"
       @close-account-create-modal="closeCreateAccountModal"
     />
-
     <woot-modal :show.sync="showAddLabelModal" :on-close="hideAddLabelPopup">
       <add-label-modal @close="hideAddLabelPopup" />
     </woot-modal>
@@ -114,31 +55,47 @@
 import { mapGetters } from 'vuex';
 
 import adminMixin from '../../mixins/isAdmin';
-import SidebarItem from './SidebarItem';
-import AvailabilityStatus from './AvailabilityStatus';
-import { frontendURL } from '../../helper/URLHelper';
-import { getSidebarItems } from '../../i18n/default-sidebar';
+import { getSidebarItems } from './config/default-sidebar';
 import alertMixin from 'shared/mixins/alertMixin';
+<<<<<<< HEAD
 // import NotificationBell from './sidebarComponents/NotificationBell';
 import AgentDetails from './sidebarComponents/AgentDetails.vue';
 import OptionsMenu from './sidebarComponents/OptionsMenu.vue';
+=======
+
+>>>>>>> a737f89c473e64f9abdf8ff13a3e64edefa28877
 import AccountSelector from './sidebarComponents/AccountSelector.vue';
 import AddAccountModal from './sidebarComponents/AddAccountModal.vue';
 import AddLabelModal from '../../routes/dashboard/settings/labels/AddLabel';
+import PrimarySidebar from './sidebarComponents/Primary';
+import SecondarySidebar from './sidebarComponents/Secondary';
 import WootKeyShortcutModal from 'components/widgets/modal/WootKeyShortcutModal';
-import { hasPressedCommandAndForwardSlash } from 'shared/helpers/KeyboardHelpers';
+import {
+  hasPressedAltAndCKey,
+  hasPressedAltAndRKey,
+  hasPressedAltAndSKey,
+  hasPressedAltAndVKey,
+  hasPressedCommandAndForwardSlash,
+  isEscape,
+} from 'shared/helpers/KeyboardHelpers';
 import eventListenerMixins from 'shared/mixins/eventListenerMixins';
+import router from '../../routes';
 
 export default {
   components: {
+<<<<<<< HEAD
     AgentDetails,
     SidebarItem,
     AvailabilityStatus,
     // NotificationBell,
     OptionsMenu,
+=======
+>>>>>>> a737f89c473e64f9abdf8ff13a3e64edefa28877
     AccountSelector,
     AddAccountModal,
     AddLabelModal,
+    PrimarySidebar,
+    SecondarySidebar,
     WootKeyShortcutModal,
   },
   mixins: [adminMixin, alertMixin, eventListenerMixins],
@@ -161,9 +118,10 @@ export default {
       inboxes: 'inboxes/getInboxes',
       accountId: 'getCurrentAccountId',
       currentRole: 'getCurrentRole',
-      accountLabels: 'labels/getLabelsOnSidebar',
+      labels: 'labels/getLabelsOnSidebar',
       teams: 'teams/getMyTeams',
     }),
+<<<<<<< HEAD
 
     sidemenuItems() {
       return getSidebarItems(this.accountId);
@@ -209,10 +167,23 @@ export default {
     },
     showShowContactSideMenu() {
       return this.sidemenuItems.contacts.routes.includes(this.currentRoute);
+=======
+    activeCustomView() {
+      if (this.activePrimaryMenu.key === 'contacts') {
+        return 'contact';
+      }
+      if (this.activePrimaryMenu.key === 'conversations') {
+        return 'conversation';
+      }
+      return '';
+>>>>>>> a737f89c473e64f9abdf8ff13a3e64edefa28877
     },
-    shouldShowTeams() {
-      return this.shouldShowSidebarItem && this.teams.length;
+    customViews() {
+      return this.$store.getters['customViews/getCustomViewsByFilterType'](
+        this.activeCustomView
+      );
     },
+<<<<<<< HEAD
     inboxSection() {
       return {
         icon: 'ion-folder',
@@ -297,16 +268,45 @@ export default {
           toState: frontendURL(`accounts/${this.accountId}/team/${team.id}`),
         })),
       };
+=======
+    isConversationOrContactActive() {
+      return (
+        this.activePrimaryMenu.key === 'contacts' ||
+        this.activePrimaryMenu.key === 'conversations'
+      );
     },
-    dashboardPath() {
-      return frontendURL(`accounts/${this.accountId}/dashboard`);
+    sideMenuConfig() {
+      return getSidebarItems(this.accountId);
+    },
+    primaryMenuItems() {
+      const menuItems = this.sideMenuConfig.primaryMenu;
+      return menuItems.filter(menuItem =>
+        menuItem.roles.includes(this.currentRole)
+      );
+    },
+    activeSecondaryMenu() {
+      const { secondaryMenu } = this.sideMenuConfig;
+      const { name: currentRoute } = this.$route;
+
+      const activeSecondaryMenu =
+        secondaryMenu.find(menuItem =>
+          menuItem.routes.includes(currentRoute)
+        ) || {};
+      return activeSecondaryMenu;
+>>>>>>> a737f89c473e64f9abdf8ff13a3e64edefa28877
+    },
+    activePrimaryMenu() {
+      const activePrimaryMenu =
+        this.primaryMenuItems.find(
+          menuItem => menuItem.key === this.activeSecondaryMenu.parentNav
+        ) || {};
+      return activePrimaryMenu;
     },
   },
+
   watch: {
-    currentUser(newUserInfo, oldUserInfo) {
-      if (!oldUserInfo.email && newUserInfo.email) {
-        this.setChatwootUser();
-      }
+    activeCustomView() {
+      this.fetchCustomViews();
     },
   },
   mounted() {
@@ -314,10 +314,16 @@ export default {
     this.$store.dispatch('inboxes/get');
     this.$store.dispatch('notifications/unReadCount');
     this.$store.dispatch('teams/get');
-    this.setChatwootUser();
+    this.$store.dispatch('attributes/get');
+    this.fetchCustomViews();
   },
 
   methods: {
+    fetchCustomViews() {
+      if (this.isConversationOrContactActive) {
+        this.$store.dispatch('customViews/get', this.activeCustomView);
+      }
+    },
     toggleKeyShortcutModal() {
       this.showShortcutModal = true;
     },
@@ -328,34 +334,33 @@ export default {
       if (hasPressedCommandAndForwardSlash(e)) {
         this.toggleKeyShortcutModal();
       }
+      if (isEscape(e)) {
+        this.closeKeyShortcutModal();
+      }
+
+      if (hasPressedAltAndCKey(e)) {
+        if (!this.isCurrentRouteSameAsNavigation('home')) {
+          router.push({ name: 'home' });
+        }
+      } else if (hasPressedAltAndVKey(e)) {
+        if (!this.isCurrentRouteSameAsNavigation('contacts_dashboard')) {
+          router.push({ name: 'contacts_dashboard' });
+        }
+      } else if (hasPressedAltAndRKey(e)) {
+        if (!this.isCurrentRouteSameAsNavigation('settings_account_reports')) {
+          router.push({ name: 'settings_account_reports' });
+        }
+      } else if (hasPressedAltAndSKey(e)) {
+        if (!this.isCurrentRouteSameAsNavigation('agent_list')) {
+          router.push({ name: 'agent_list' });
+        }
+      }
+    },
+    isCurrentRouteSameAsNavigation(routeName) {
+      return this.$route.name === routeName;
     },
     toggleSupportChatWindow() {
       window.$chatwoot.toggle();
-    },
-    setChatwootUser() {
-      if (!this.currentUser.email || !this.globalConfig.chatwootInboxToken) {
-        return;
-      }
-      window.$chatwoot.setUser(this.currentUser.email, {
-        name: this.currentUser.name,
-        email: this.currentUser.email,
-        avatar_url: this.currentUser.avatar_url,
-        identifier_hash: this.currentUser.hmac_identifier,
-      });
-    },
-    filterMenuItemsByRole(menuItems) {
-      if (!this.currentRole) {
-        return [];
-      }
-      return menuItems.filter(
-        menuItem =>
-          window.roleWiseRoutes[this.currentRole].indexOf(
-            menuItem.toStateName
-          ) > -1
-      );
-    },
-    toggleOptions() {
-      this.showOptionsMenu = !this.showOptionsMenu;
     },
     toggleAccountModal() {
       this.showAccountModal = !this.showAccountModal;
@@ -377,6 +382,13 @@ export default {
 };
 </script>
 
+<style lang="scss" scoped>
+.woot-sidebar {
+  background: var(--white);
+  display: flex;
+}
+</style>
+
 <style lang="scss">
 @import '~dashboard/assets/scss/variables';
 
@@ -390,11 +402,11 @@ export default {
   cursor: pointer;
   padding: $space-small $space-large;
 
-  .ion-ios-checkmark {
-    font-size: $font-size-big;
+  .selected--account {
+    margin-top: -$space-smaller;
 
     & + .account--details {
-      padding-left: $space-normal;
+      padding-left: $space-normal - $space-micro;
     }
   }
 
@@ -442,7 +454,7 @@ export default {
   color: #fff;
 }
 
-.teams-sidebar-menu + .nested.vertical.menu {
-  padding-left: calc(var(--space-medium) - var(--space-one));
+.secondary-menu .nested.vertical.menu {
+  margin-left: var(--space-small);
 }
 </style>

@@ -3,77 +3,72 @@
     <woot-button
       color-scheme="primary"
       class-names="button--fixed-right-top"
-      icon="ion-android-add-circle"
+      icon="add-circle"
       @click="openAddPopup"
     >
       {{ $t('LABEL_MGMT.HEADER_BTN_TXT') }}
     </woot-button>
     <div class="row">
       <div class="small-8 columns with-right-space ">
-        <div class="card-goby">
-          <p
-            v-if="!uiFlags.isFetching && !records.length"
-            class="no-items-error-message"
-          >
-            {{ $t('LABEL_MGMT.LIST.404') }}
-          </p>
-          <woot-loading-state
-            v-if="uiFlags.isFetching"
-            :message="$t('LABEL_MGMT.LOADING')"
-          />
-          <div
-            v-if="!uiFlags.isFetching && records.length"
-            style="overflow:auto"
-          >
-            <table class="woot-table">
-              <thead>
-                <th
-                  v-for="thHeader in $t('LABEL_MGMT.LIST.TABLE_HEADER')"
-                  :key="thHeader"
+        <p
+          v-if="!uiFlags.isFetching && !records.length"
+          class="no-items-error-message"
+        >
+          {{ $t('LABEL_MGMT.LIST.404') }}
+        </p>
+        <woot-loading-state
+          v-if="uiFlags.isFetching"
+          :message="$t('LABEL_MGMT.LOADING')"
+        />
+        <table v-if="!uiFlags.isFetching && records.length" class="woot-table">
+          <thead>
+            <th
+              v-for="thHeader in $t('LABEL_MGMT.LIST.TABLE_HEADER')"
+              :key="thHeader"
+            >
+              {{ thHeader }}
+            </th>
+          </thead>
+          <tbody>
+            <tr v-for="(label, index) in records" :key="label.title">
+              <td>{{ label.title }}</td>
+              <td>{{ label.description }}</td>
+              <td>
+                <div class="label-color--container">
+                  <span
+                    class="label-color--display"
+                    :style="{ backgroundColor: label.color }"
+                  />
+                  {{ label.color }}
+                </div>
+              </td>
+              <td class="button-wrapper">
+                <woot-button
+                  v-tooltip.top="$t('LABEL_MGMT.FORM.EDIT')"
+                  variant="smooth"
+                  size="tiny"
+                  color-scheme="secondary"
+                  class-names="grey-btn"
+                  :is-loading="loading[label.id]"
+                  icon="edit"
+                  @click="openEditPopup(label)"
                 >
-                  {{ thHeader }}
-                </th>
-              </thead>
-              <tbody>
-                <tr v-for="(label, index) in records" :key="label.title">
-                  <td>{{ label.title }}</td>
-                  <td>{{ label.description }}</td>
-                  <td>
-                    <div class="label-color--container">
-                      <span
-                        class="label-color--display"
-                        :style="{ backgroundColor: label.color }"
-                      />
-                      {{ label.color }}
-                    </div>
-                  </td>
-                  <td class="button-wrapper">
-                    <woot-button
-                      variant="link"
-                      color-scheme="primary"
-                      class-names="grey-btn"
-                      :is-loading="loading[label.id]"
-                      icon="ion-edit"
-                      @click="openEditPopup(label)"
-                    >
-                      {{ $t('LABEL_MGMT.FORM.EDIT') }}
-                    </woot-button>
-                    <woot-button
-                      variant="link"
-                      color-scheme="alert"
-                      icon="ion-close-circled"
-                      class-names="grey-btn"
-                      :is-loading="loading[label.id]"
-                      @click="openDeletePopup(label, index)"
-                    >
-                      {{ $t('LABEL_MGMT.FORM.DELETE') }}
-                    </woot-button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+                </woot-button>
+                <woot-button
+                  v-tooltip.top="$t('LABEL_MGMT.FORM.DELETE')"
+                  variant="smooth"
+                  color-scheme="alert"
+                  size="tiny"
+                  icon="dismiss-circle"
+                  class-names="grey-btn"
+                  :is-loading="loading[label.id]"
+                  @click="openDeletePopup(label, index)"
+                >
+                </woot-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="small-4 columns">

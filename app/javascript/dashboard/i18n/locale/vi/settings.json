@@ -3,6 +3,9 @@
     "LINK": "Cài Đặt Hồ Sơ",
     "TITLE": "Cài Đặt Hồ Sơ",
     "BTN_TEXT": "Cập Nhật Hồ Sơ",
+    "DELETE_AVATAR": "Delete Avatar",
+    "AVATAR_DELETE_SUCCESS": "Avatar has been deleted successfully",
+    "AVATAR_DELETE_FAILED": "There is an error while deleting avatar, please try again",
     "UPDATE_SUCCESS": "Your profile has been updated successfully",
     "PASSWORD_UPDATE_SUCCESS": "Mật khẩu của bạn đã được thay đổi thành công",
     "AFTER_EMAIL_CHANGED": "Hồ sơ của bạn đã được cập nhật thành công, vui lòng đăng nhập lại khi thông tin đăng nhập của bạn được thay đổi",
@@ -96,13 +99,16 @@
   "SIDEBAR_ITEMS": {
     "CHANGE_AVAILABILITY_STATUS": "Đổi",
     "CHANGE_ACCOUNTS": "Chuyển tài khoản",
+    "CONTACT_SUPPORT": "Contact Support",
     "SELECTOR_SUBTITLE": "Chọn một tài khoản từ danh sách sau",
     "PROFILE_SETTINGS": "Cài Đặt Hồ Sơ Cá Nhân",
+    "KEYBOARD_SHORTCUTS": "Keyboard Shortcuts",
     "LOGOUT": "Đăng xuất"
   },
   "APP_GLOBAL": {
     "TRIAL_MESSAGE": "ngày dùng thử còn lại.",
-    "TRAIL_BUTTON": "Mua Ngay"
+    "TRAIL_BUTTON": "Mua Ngay",
+    "DELETED_USER": "Deleted User"
   },
   "COMPONENTS": {
     "CODE": {
@@ -128,6 +134,7 @@
     "ALL_CONVERSATIONS": "Tất cả cuộc trò chuyện",
     "REPORTS": "Báo cáo",
     "CONTACTS": "Liên hệ",
+    "MENTIONED_CONVERSATIONS": "Mentions",
     "SETTINGS": "Cài Đặt",
     "HOME": "Trang Chủ",
     "AGENTS": "Đại lý",
@@ -135,6 +142,7 @@
     "NOTIFICATIONS": "Thông báo",
     "CANNED_RESPONSES": "Thư mẫu phẩn hồi",
     "INTEGRATIONS": "Tích hợp",
+    "PROFILE_SETTINGS": "Cài Đặt Hồ Sơ",
     "ACCOUNT_SETTINGS": "Cài Đặt Tài Khoản",
     "APPLICATIONS": "Các ứng dụng",
     "LABELS": "Nhãn",
@@ -145,9 +153,20 @@
     "CSAT": "CSAT",
     "CAMPAIGNS": "Chiến dịch",
     "ONGOING": "Lặp lại",
-    "ONE_OFF": "Gửi một lần"
+    "ONE_OFF": "Gửi một lần",
+    "CUSTOM_ATTRIBUTES": "Thuộc tính tùy chỉnh",
+    "AUTOMATION": "Automation",
+    "NEW_LABEL": "New label",
+    "NEW_TEAM": "New team",
+    "NEW_INBOX": "New inbox",
+    "REPORTS_AGENT": "Nhà cung cấp",
+    "REPORTS_LABEL": "Nhãn",
+    "REPORTS_INBOX": "Inbox",
+    "REPORTS_TEAM": "Team",
+    "SET_AVAILABILITY_TITLE": "Set yourself as"
   },
   "CREATE_ACCOUNT": {
+    "NO_ACCOUNT_WARNING": "Uh oh! We could not find any Chatwoot accounts. Please create a new account to continue.",
     "NEW_ACCOUNT": "Tạo mới tài khoản",
     "SELECTOR_SUBTITLE": "Tạo mới một tài khoản",
     "API": {
@@ -161,6 +180,31 @@
         "PLACEHOLDER": "Wayne Enterprises"
       },
       "SUBMIT": "Gửi"
+    }
+  },
+  "KEYBOARD_SHORTCUTS": {
+    "TITLE": {
+      "OPEN_CONVERSATION": "Open conversation",
+      "RESOLVE_AND_NEXT": "Resolve and move to next",
+      "NAVIGATE_DROPDOWN": "Navigate dropdown items",
+      "RESOLVE_CONVERSATION": "Resolve Conversation",
+      "GO_TO_CONVERSATION_DASHBOARD": "Go to Conversation Dashboard",
+      "ADD_ATTACHMENT": "Add Attachment",
+      "GO_TO_CONTACTS_DASHBOARD": "Go to Contacts Dashboard",
+      "TOGGLE_SIDEBAR": "Toggle Sidebar",
+      "GO_TO_REPORTS_SIDEBAR": "Go to Reports sidebar",
+      "MOVE_TO_NEXT_TAB": "Move to next tab in conversation list",
+      "GO_TO_SETTINGS": "Go to Settings",
+      "SWITCH_CONVERSATION_STATUS": "Switch to the next conversation status",
+      "SWITCH_TO_PRIVATE_NOTE": "Switch to Private Note",
+      "TOGGLE_RICH_CONTENT_EDITOR": "Toggle Rich Content editor",
+      "SWITCH_TO_REPLY": "Switch to Reply",
+      "TOGGLE_SNOOZE_DROPDOWN": "Toggle snooze dropdown"
+    },
+    "KEYS": {
+      "WINDOWS_KEY_AND_COMMAND_KEY": "Win / ⌘",
+      "ALT_OR_OPTION_KEY": "Alt / ⌥",
+      "FORWARD_SLASH_KEY": "/"
     }
   }
 }

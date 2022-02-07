@@ -64,8 +64,20 @@ export default {
         this.$store.dispatch('inboxAssignableAgents/fetch', { inboxId });
       }
     },
+    'currentChat.id'() {
+      this.fetchLabels();
+    },
+  },
+  mounted() {
+    this.fetchLabels();
   },
   methods: {
+    fetchLabels() {
+      if (!this.currentChat.id) {
+        return;
+      }
+      this.$store.dispatch('conversationLabels/get', this.currentChat.id);
+    },
     onToggleContactPanel() {
       this.$emit('contact-panel-toggle');
     },
@@ -119,7 +131,6 @@ export default {
     width: 100%;
     height: 100%;
     max-width: 100%;
-    padding: var(--space-normal) var(--space-two);
   }
 }
 </style>

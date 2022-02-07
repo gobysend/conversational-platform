@@ -5,7 +5,7 @@
       "UPLOADING": "Hochladen..."
     },
     "FORM_BUBBLE": {
-      "SUBMIT": "Einreichen"
+      "SUBMIT": "Abschicken"
     }
   },
   "TEAM_AVAILABILITY": {
@@ -41,7 +41,7 @@
         "ERROR": "Vollständiger Name ist erforderlich"
       },
       "EMAIL_ADDRESS": {
-        "LABEL": "E-Mail-Addresse",
+        "LABEL": "E-Mail-Adresse",
         "PLACEHOLDER": "Bitte geben Sie ihre E-Mail-Adresse ein",
         "ERROR": "Ungültige E-Mail-Adresse"
       },
@@ -50,7 +50,8 @@
         "PLACEHOLDER": "Bitte geben Sie Ihre Nachricht ein",
         "ERROR": "Nachricht ist zu kurz"
       }
-    }
+    },
+    "CAMPAIGN_HEADER": "Bitte geben Sie Ihren Namen und Ihre E-Mail-Adresse an, bevor Sie das Gespräch beginnen"
   },
   "FILE_SIZE_LIMIT": "Die Datei überschreitet das Limit von {MAXIMUM_FILE_UPLOAD_SIZE} für Anhänge",
   "CHAT_FORM": {
@@ -64,7 +65,7 @@
     "PLACEHOLDER": "Erzähl uns mehr..."
   },
   "EMAIL_TRANSCRIPT": {
-    "BUTTON_TEXT": "Request a conversation transcript",
+    "BUTTON_TEXT": "Chat-Protokoll anfordern",
     "SEND_EMAIL_SUCCESS": "Das Chat-Protokoll wurde erfolgreich gesendet",
     "SEND_EMAIL_ERROR": "Es ist ein Fehler aufgetreten, bitte versuchen Sie es erneut"
   }

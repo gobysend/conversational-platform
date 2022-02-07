@@ -6,7 +6,7 @@
   >
     <img
       v-if="channel.key === 'facebook'"
-      src="~dashboard/assets/images/channels/facebook.png"
+      src="~dashboard/assets/images/channels/messenger.png"
     />
     <img
       v-if="channel.key === 'zalo'"
@@ -80,7 +80,7 @@ export default {
       if (key === 'email') {
         return this.enabledFeatures.channel_email;
       }
-      return ['website', 'twilio', 'api', 'whatsapp', 'sms', 'zalo'].includes(
+      return ['website', 'twilio', 'api', 'whatsapp', 'sms', 'telegram', 'line', 'zalo'].includes(
         key
       );
     },

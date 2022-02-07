@@ -3,7 +3,7 @@
     <woot-button
       color-scheme="primary"
       class-names="button--fixed-right-top"
-      icon="ion-android-add-circle"
+      icon="add-circle"
       @click="openAddPopup"
     >
       {{ buttonText }}
