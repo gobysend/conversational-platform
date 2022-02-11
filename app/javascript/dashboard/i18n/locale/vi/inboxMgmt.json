@@ -254,8 +254,8 @@
         }
       },
       "AUTH": {
-        "TITLE": "Choose a channel",
-        "DESC": "Gobysend supports live-chat widget, Facebook page, Twitter profile, Whatsapp, Email etc., as channels. If you want to build a custom channel, you can create it using the API channel. Select one channel from the options below to proceed."
+        "TITLE": "Chọn một kênh",
+        "DESC": "Gobysend hỗ trợ trò chuyện qua các kênh live-chat, trang fanpage Facebook, Twitter, Whatsapp, Email, Zalo OA, v.v. Chọn một kênh từ các tùy chọn bên dưới để tiếp tục."
       },
       "AGENTS": {
         "TITLE": "Nhà Cung Cấp",

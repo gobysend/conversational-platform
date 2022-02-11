@@ -1,83 +1,83 @@
 {
   "ATTRIBUTES_MGMT": {
     "HEADER": "Thuộc tính tùy chỉnh",
-    "HEADER_BTN_TXT": "Add Custom Attribute",
+    "HEADER_BTN_TXT": "Thêm thuộc tính tùy chọn",
     "LOADING": "Fetching custom attributes",
     "SIDEBAR_TXT": "<p><b>Custom Attributes</b> <p>A custom attribute tracks facts about your contacts/conversation — like the subscription plan, or when they ordered the first item etc. <br /><br />For creating a Custom Attribute, just click on the <b>Add Custom Attribute.</b> You can also edit or delete an existing  Custom Attribute by clicking on the Edit or Delete button.</p>",
     "ADD": {
-      "TITLE": "Add Custom Attribute",
+      "TITLE": "Thêm thuộc tính tùy chọn",
       "SUBMIT": "Tạo",
       "CANCEL_BUTTON_TEXT": "Huỷ",
       "FORM": {
         "NAME": {
-          "LABEL": "Display Name",
-          "PLACEHOLDER": "Enter custom attribute display name",
-          "ERROR": "Name is required"
+          "LABEL": "Tên hiển thị",
+          "PLACEHOLDER": "Nhập tên hiển thị của thuộc tính",
+          "ERROR": "Tên là bắt buộc"
         },
         "DESC": {
           "LABEL": "Mô tả",
-          "PLACEHOLDER": "Enter custom attribute description",
-          "ERROR": "Description is required"
+          "PLACEHOLDER": "Nhập mô tả của thuộc tính",
+          "ERROR": "Mô tả là bắt buộc"
         },
         "MODEL": {
-          "LABEL": "Applies to",
-          "PLACEHOLDER": "Please select one",
-          "ERROR": "Model is required"
+          "LABEL": "Áp dụng với",
+          "PLACEHOLDER": "Vui lòng chọn một tùy chọn",
+          "ERROR": "Tùy chọn là bắt buộc"
         },
         "TYPE": {
-          "LABEL": "Type",
-          "PLACEHOLDER": "Please select a type",
-          "ERROR": "Type is required",
+          "LABEL": "Kiểu dữ liệu",
+          "PLACEHOLDER": "Vui lòng chọn kiểu dữ liệu",
+          "ERROR": "Kiểu dữ liệu là bắt buộc",
           "LIST": {
-            "LABEL": "List Values",
-            "PLACEHOLDER": "Please enter value and press enter key",
-            "ERROR": "Must have at least one value"
+            "LABEL": "Giá trị",
+            "PLACEHOLDER": "Vui lòng nhập giá trị và nhấn Enter",
+            "ERROR": "Phải có ít nhất một giá trị"
           }
         },
         "KEY": {
           "LABEL": "Key",
-          "PLACEHOLDER": "Enter custom attribute key",
-          "ERROR": "Key is required",
-          "IN_VALID": "Invalid key"
+          "PLACEHOLDER": "Nhập key của thuộc tính",
+          "ERROR": "Key là bắt buộc",
+          "IN_VALID": "Key không hợp lệ"
         }
       },
       "API": {
-        "SUCCESS_MESSAGE": "Custom Attribute added successfully",
-        "ERROR_MESSAGE": "Could not able to create a custom attribute, Please try again later"
+        "SUCCESS_MESSAGE": "Thêm thuộc tính thành công.",
+        "ERROR_MESSAGE": "Không thể tạo thuộc tính. Vui lòng thử lại sau."
       }
     },
     "DELETE": {
       "BUTTON_TEXT": "Xoá",
       "API": {
-        "SUCCESS_MESSAGE": "Custom Attribute deleted successfully.",
-        "ERROR_MESSAGE": "Couldn't delete the custom attribute. Try again."
+        "SUCCESS_MESSAGE": "Xóa thuộc tính thành công.",
+        "ERROR_MESSAGE": "Không thể xóa thuộc tính. Vui lòng thử lại sau."
       },
       "CONFIRM": {
-        "TITLE": "Are you sure want to delete - %{attributeName}",
-        "PLACE_HOLDER": "Please type {attributeName} to confirm",
-        "MESSAGE": "Deleting will remove the custom attribute",
+        "TITLE": "Bạn có chắc chắn muốn xóa thuộc tính - %{attributeName}",
+        "PLACE_HOLDER": "Vui lòng nhập {attributeName} để xác nhận",
+        "MESSAGE": "Hành động này sẽ xóa thuộc tính",
         "YES": "Xoá ",
         "NO": "Huỷ"
       }
     },
     "EDIT": {
-      "TITLE": "Edit Custom Attribute",
+      "TITLE": "Cập nhật thuộc tính",
       "UPDATE_BUTTON_TEXT": "Cập nhật",
       "TYPE": {
         "LIST": {
-          "LABEL": "List Values",
-          "PLACEHOLDER": "Please enter values and press enter key"
+          "LABEL": "Giá trị",
+          "PLACEHOLDER": "Nhập giá trị và nhất Enter"
         }
       },
       "API": {
-        "SUCCESS_MESSAGE": "Custom Attribute updated successfully",
-        "ERROR_MESSAGE": "There was an error updating custom attribute, please try again"
+        "SUCCESS_MESSAGE": "Cập nhật thuộc tính thành công",
+        "ERROR_MESSAGE": "Đã xảy ra lỗi khi cập nhật thuộc tính, vui lòng thử lại"
       }
     },
     "TABS": {
       "HEADER": "Thuộc tính tùy chỉnh",
-      "CONVERSATION": "Conversation",
-      "CONTACT": "Contact"
+      "CONVERSATION": "Hội thoại",
+      "CONTACT": "Liên hệ"
     },
     "LIST": {
       "TABLE_HEADER": [
@@ -91,8 +91,8 @@
         "DELETE": "Xoá"
       },
       "EMPTY_RESULT": {
-        "404": "There are no custom attributes created",
-        "NOT_FOUND": "There are no custom attributes configured"
+        "404": "Chưa có thuộc tính tùy chọn nào được tạo",
+        "NOT_FOUND": "Không có thuộc tính tùy chỉnh nào được cấu hình"
       }
     }
   }
