@@ -1,17 +1,46 @@
 <template>
-  <router-link v-slot="{ href, isActive, navigate }" :to="to" custom>
-    <a
-      v-tooltip.right="$t(`SIDEBAR.${name}`)"
-      :href="href"
-      class="button clear button--only-icon menu-item"
-      :class="{ 'is-active': isActive || isChildMenuActive }"
-      @click="navigate"
-    >
-      <fluent-icon :icon="icon" />
-      <span class="show-for-sr">{{ name }}</span>
-      <span v-if="count" class="badge warning">{{ count }}</span>
+  <div class="menu-item" :class="href ? 'external' : ''">
+    <a :href="href" v-if="href">
+      <fluent-icon :icon="icon" :size="18" />
+      <span>{{ name }}</span>
     </a>
-  </router-link>
+
+    <router-link v-slot="{ href, isActive, navigate }" :to="to" custom v-else>
+      <a
+        :href="href"
+        :class="{ 'is-active': isActive || isChildMenuActive }"
+        @click="navigate"
+      >
+        <fluent-icon :icon="icon" :size="18" />
+        <span>{{ name }}</span>
+      </a>
+    </router-link>
+
+    <ul class="sub-menu" v-if="children && children.length">
+      <li class="sub-menu-item" v-for="(child, index) in children" :key="index">
+        <a :href="href" v-if="child.href">
+          <fluent-icon :icon="child.icon" :size="16" />
+          <span>{{ child.label }}</span>
+        </a>
+
+        <router-link
+          v-slot="{ href, isActive, navigate }"
+          :to="child.toState"
+          custom
+          v-else
+        >
+          <a
+            :href="href"
+            :class="{ 'is-active': isActive || isChildMenuActive }"
+            @click="navigate"
+          >
+            <fluent-icon :icon="child.icon" :size="16" />
+            <span>{{ $t(`SIDEBAR.${child.label}`) }}</span>
+          </a>
+        </router-link>
+      </li>
+    </ul>
+  </div>
 </template>
 <script>
 export default {
@@ -19,6 +48,14 @@ export default {
     to: {
       type: String,
       default: '',
+    },
+    href: {
+      type: String,
+      default: '',
+    },
+    children: {
+      type: Array | undefined,
+      default: () => [],
     },
     name: {
       type: String,
@@ -45,24 +82,64 @@ export default {
 }
 
 .menu-item {
-  display: inline-flex;
   position: relative;
-  border-radius: var(--border-radius-large);
-  border: 1px solid transparent;
-  color: var(--s-600);
-
-  &:hover {
-    background: var(--w-25);
-    color: var(--s-600);
-  }
-
-  &:focus {
-    border-color: var(--w-500);
-  }
+  // border-radius: var(--border-radius-large);
+  // border: 1px solid transparent;
 
   &.is-active {
     background: var(--w-50);
     color: var(--w-500);
+  }
+
+  & > a {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    height: 50px;
+    width: 100%;
+    color: #fff;
+
+    svg {
+      margin: 0 15px 0 20px;
+    }
+  }
+
+  .sub-menu {
+    list-style: none;
+    margin: 0;
+    padding: 5px;
+    background: rgb(101, 105, 223);
+
+    &-item {
+      padding: 4px;
+
+      & > a {
+        display: flex;
+        align-items: center;
+        color: #fff;
+        padding: 7px 12px;
+
+        svg {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  &.external {
+    .sub-menu {
+      display: none;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      width: 200px;                                   
+    }
+
+    &:hover {
+      .sub-menu {
+        display: block;
+      }
+    }
   }
 }
 

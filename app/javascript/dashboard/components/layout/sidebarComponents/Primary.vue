@@ -7,13 +7,24 @@
     />
     <nav class="menu vertical">
       <primary-nav-item
+        v-for="menuItem in gobyAdminMenu"
+        :key="menuItem.toState"
+        :icon="menuItem.icon"
+        :name="menuItem.label"
+        :to="menuItem.toState"
+        :is-child-menu-active="menuItem.key === activeMenuItem"
+        :href="menuItem.href"
+        :children="menuItem.children"
+      />
+
+      <!-- <primary-nav-item
         v-for="menuItem in menuItems"
         :key="menuItem.toState"
         :icon="menuItem.icon"
         :name="menuItem.label"
         :to="menuItem.toState"
         :is-child-menu-active="menuItem.key === activeMenuItem"
-      />
+      /> -->
     </nav>
     <div class="menu vertical user-menu">
       <notification-bell />
@@ -72,6 +83,57 @@ export default {
       showOptionsMenu: false,
     };
   },
+  computed: {
+    gobyAdminMenu() {
+      const host_url = window.chatwootConfig.admin_frontend_url;
+
+      return [
+        {
+          icon: 'chat',
+          label: 'Khách hàng',
+          href: 'https://admin.gobysend.com/customers/list',
+          children: [
+            {
+              icon: 'chat',
+              label: 'Danh sách khách hàng',
+              href: `${host_url}/customers/list`,
+            },
+          ],
+        },
+        {
+          icon: 'chat',
+          label: 'Chat đa kênh',
+          toState: frontendURL(`accounts/${this.accountId}/dashboard`),
+          children: this.menuItems,
+        },
+        {
+          icon: 'chat',
+          label: 'Chiến dịch',
+          href: 'https://admin.gobysend.com/customers/list',
+        },
+        {
+          icon: 'chat',
+          label: 'Tự động hóa',
+          href: 'https://admin.gobysend.com/customers/list',
+        },
+        {
+          icon: 'chat',
+          label: 'Lịch sử gửi',
+          href: 'https://admin.gobysend.com/customers/list',
+        },
+        {
+          icon: 'chat',
+          label: 'Đơn hàng & Sản phẩm',
+          href: 'https://admin.gobysend.com/customers/list',
+        },
+        {
+          icon: 'chat',
+          label: 'Tích hợp',
+          href: 'https://admin.gobysend.com/customers/list',
+        },
+      ];
+    },
+  },
   methods: {
     frontendURL,
     toggleOptions() {
@@ -90,7 +152,7 @@ export default {
 .primary--sidebar {
   display: flex;
   flex-direction: column;
-  width: var(--space-jumbo);
+  width: 300px;
   border-right: 1px solid var(--s-50);
   box-sizing: content-box;
   height: 100vh;
@@ -98,8 +160,9 @@ export default {
 }
 
 .menu {
-  align-items: center;
+  //align-items: center;
   margin-top: var(--space-medium);
+  background: #5629b6;
 }
 
 .user-menu {
