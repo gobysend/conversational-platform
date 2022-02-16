@@ -221,12 +221,14 @@ export default {
 <style lang="scss" scoped>
 .secondary-menu {
   background: var(--white);
-  border-right: 1px solid var(--s-50);
+  //border-right: 1px solid var(--s-50);
   height: 100vh;
   width: 22rem;
   flex-shrink: 0;
   overflow: hidden;
   padding: var(--space-small);
+  box-shadow: 4px 4px 10px rgba(69, 65, 78, 0.06);
+  z-index: 10;
 
   &:hover {
     overflow: auto;

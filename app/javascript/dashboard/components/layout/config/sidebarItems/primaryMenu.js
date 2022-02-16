@@ -41,6 +41,14 @@ const primaryMenuItems = accountId => [
     toStateName: 'settings_home',
     roles: ['administrator', 'agent'],
   },
+  {
+    icon: 'alert',
+    key: 'notifications',
+    label: 'NOTIFICATIONS',
+    toState: frontendURL(`accounts/${accountId}/notifications`),
+    toStateName: 'notifications',
+    roles: ['administrator', 'agent'],
+  },
 ];
 
 export default primaryMenuItems;

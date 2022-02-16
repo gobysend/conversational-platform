@@ -1,16 +1,12 @@
 <template>
   <div class="menu-item" :class="href ? 'external' : ''">
     <a :href="href" v-if="href">
-      <fluent-icon :icon="icon" :size="18" />
+      <fluent-icon :icon="icon" :size="18" :viewBox="iconViewBox" />
       <span>{{ name }}</span>
     </a>
 
-    <router-link v-slot="{ href, isActive, navigate }" :to="to" custom v-else>
-      <a
-        :href="href"
-        :class="{ 'is-active': isActive || isChildMenuActive }"
-        @click="navigate"
-      >
+    <router-link v-slot="{ href, navigate }" :to="to" custom v-else>
+      <a :href="href" class="is-active" @click="navigate">
         <fluent-icon :icon="icon" :size="18" />
         <span>{{ name }}</span>
       </a>
@@ -19,7 +15,7 @@
     <ul class="sub-menu" v-if="children && children.length">
       <li class="sub-menu-item" v-for="(child, index) in children" :key="index">
         <a :href="href" v-if="child.href">
-          <fluent-icon :icon="child.icon" :size="16" />
+          <fluent-icon :icon="child.icon" :size="16" v-if="child.icon" />
           <span>{{ child.label }}</span>
         </a>
 
@@ -65,6 +61,10 @@ export default {
       type: String,
       default: '',
     },
+    iconViewBox: {
+      type: String,
+      default: '0 0 24 24',
+    },
     count: {
       type: String,
       default: '',
@@ -95,20 +95,37 @@ export default {
     display: flex;
     align-items: center;
     padding: 0;
-    height: 50px;
+    height: 45px;
     width: 100%;
+
     color: #fff;
+    opacity: 0.8;
+    transition: color 0.3s ease 0s;
+
+    &.is-active {
+      background: rgba(0, 0, 0, 0.13);
+      opacity: 1;
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.06);
+      opacity: 1;
+    }
 
     svg {
       margin: 0 15px 0 20px;
+    }
+    span {
+      line-height: 1.5;
     }
   }
 
   .sub-menu {
     list-style: none;
+    position: relative;
     margin: 0;
     padding: 5px;
-    background: rgb(101, 105, 223);
+    background: #0851bf;
 
     &-item {
       padding: 4px;
@@ -116,28 +133,78 @@ export default {
       & > a {
         display: flex;
         align-items: center;
-        color: #fff;
         padding: 7px 12px;
+        border-radius: 4px;
+
+        opacity: 0.8;
+        color: #fff;
+        transition: color 0.3s ease 0s;
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.06);
+          opacity: 1;
+        }
+
+        &.is-active {
+          background: rgba(0, 0, 0, 0.07);
+          opacity: 1;
+          font-weight: 500;
+        }
 
         svg {
           margin-right: 10px;
         }
+        span {
+          line-height: 1.5;
+        }
       }
+    }
+
+    &:not(.external):after {
+      content: ' ';
+      position: absolute;
+      pointer-events: none;
+      z-index: 10000;
+      left: 50%;
+      bottom: 100%;
+      transform: translateX(-50%);
+      width: 0px;
+      height: 0px;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-bottom: 10px solid #0851bf;
     }
   }
 
   &.external {
     .sub-menu {
-      display: none;
+      visibility: hidden;
       position: absolute;
       left: 100%;
       top: 0;
-      width: 200px;                                   
+      width: 250px;
+      z-index: 9999;
+      border-radius: 0 5px 5px 0;
+      box-shadow: rgb(0 0 0 / 20%) 0px 3px 5px;
+
+      &::after {
+        content: ' ';
+        position: absolute;
+        pointer-events: none;
+        z-index: 10000;
+        top: 15px;
+        width: 0px;
+        left: -11px;
+        height: 0px;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-right: 10px solid #0851bf;
+      }
     }
 
     &:hover {
       .sub-menu {
-        display: block;
+        visibility: visible;
       }
     }
   }

@@ -1,10 +1,5 @@
 <template>
-  <woot-button
-    v-tooltip.right="$t(`SIDEBAR.PROFILE_SETTINGS`)"
-    variant="link"
-    class="current-user"
-    @click="handleClick"
-  >
+  <woot-button variant="link" class="current-user" @click="handleClick">
     <thumbnail
       :src="currentUser.avatar_url"
       :username="currentUser.name"
@@ -12,6 +7,8 @@
       should-show-status-always
       size="32px"
     />
+
+    <span class="user-name"> {{ currentUser.available_name }} </span>
   </woot-button>
 </template>
 <script>
@@ -41,8 +38,15 @@ export default {
 
 <style scoped lang="scss">
 .current-user {
-  align-items: center;
-  display: flex;
+  ::v-deep.button__content {
+    display: flex;
+    align-items: center;
+
+    .user-name {
+      color: #fff;
+      margin-left: 16px;
+    }
+  }
 }
 
 .current-user--data {

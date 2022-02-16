@@ -31,14 +31,14 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-$logo-size: 32px;
+$logo-size: 125px;
 
 .logo {
   padding: var(--space-normal);
 
   img {
     width: $logo-size;
-    height: $logo-size;
+    //height: $logo-size;
     object-fit: cover;
     object-position: left center;
   }
