@@ -92,7 +92,7 @@ class Zalo::DownloadConversationsService
 
     # Set last activity for conversation
     last_activity_at = Time.zone.at(messages.last[:time]).to_datetime
-    @conversation.update(last_activity_at: last_activity_at, status: 'open')
+    @conversation.update(last_activity_at: last_activity_at)
     @contact.update(last_activity_at: last_activity_at)
   end
 
@@ -142,8 +142,7 @@ class Zalo::DownloadConversationsService
       {
         account_id: @inbox.account_id,
         inbox_id: @inbox.id,
-        contact_id: @contact.id,
-        status: 'pending'
+        contact_id: @contact.id
       }
     ) || build_conversation(thread)
   end

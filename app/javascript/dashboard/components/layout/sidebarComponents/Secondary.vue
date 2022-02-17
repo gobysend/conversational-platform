@@ -223,7 +223,7 @@ export default {
   background: var(--white);
   border-right: 1px solid var(--s-50);
   height: 100vh;
-  width: 19rem;
+  width: 22rem;
   flex-shrink: 0;
   overflow: hidden;
   padding: var(--space-small);

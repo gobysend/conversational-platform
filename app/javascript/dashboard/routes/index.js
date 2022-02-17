@@ -129,7 +129,6 @@ const validateRouteAccess = (to, from, next) => {
 router.beforeEach((to, from, next) => {
   if (!to.name) {
     const user = auth.getCurrentUser();
-    console.log(user);
     if (user) {
       return next(frontendURL(`accounts/${user.account_id}/dashboard`));
     }
