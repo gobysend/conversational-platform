@@ -1,7 +1,7 @@
 <template>
   <div class="column content-box">
     <woot-button
-      color-scheme="primary"
+      color-scheme="success"
       class-names="button--fixed-right-top"
       icon="add-circle"
       @click="openAddPopup()"

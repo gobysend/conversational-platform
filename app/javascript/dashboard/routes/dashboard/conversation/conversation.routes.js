@@ -4,15 +4,15 @@ import { frontendURL } from '../../../helper/URLHelper';
 
 export default {
   routes: [
-    {
-      path: frontendURL('accounts/:accountId/dashboard'),
-      name: 'home',
-      roles: ['administrator', 'agent'],
-      component: ConversationView,
-      props: () => {
-        return { inboxId: 0 };
-      },
-    },
+    // {
+    //   path: frontendURL('accounts/:accountId/dashboard'),
+    //   name: 'home',
+    //   roles: ['administrator', 'agent'],
+    //   component: ConversationView,
+    //   props: () => {
+    //     return { inboxId: 0 };
+    //   },
+    // },
     {
       path: frontendURL('accounts/:accountId/conversations'),
       name: 'conversations',

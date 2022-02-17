@@ -1,46 +1,34 @@
 {
     "CONTACTS_FILTER": {
-        "TITLE": "Lọc danh sách liên hệ",
-        "SUBTITLE": "Thêm các điều kiện để lọc danh sách liên hệ của bạn",
-        "ADD_NEW_FILTER": "Thêm điều kiện",
-        "CLEAR_ALL_FILTERS": "Xóa tất cả điều kiện",
-        "FILTER_DELETE_ERROR": "Cần có ít nhất một điều kiện",
+        "TITLE": "Filter Contacts",
+        "SUBTITLE": "Add filters below and hit 'Submit' to filter contacts.",
+        "ADD_NEW_FILTER": "Add Filter",
+        "CLEAR_ALL_FILTERS": "Clear All Filters",
+        "FILTER_DELETE_ERROR": "You should have atleast one filter to save",
         "SUBMIT_BUTTON_LABEL": "Gửi",
         "CANCEL_BUTTON_LABEL": "Huỷ",
-        "CLEAR_BUTTON_LABEL": "Xóa điều kiện",
-        "EMPTY_VALUE_ERROR": "Giá trị là bắt buộc",
-        "TOOLTIP_LABEL": "Lọc danh sách liên hệ",
+        "CLEAR_BUTTON_LABEL": "Clear Filters",
+        "EMPTY_VALUE_ERROR": "Value is required",
+        "TOOLTIP_LABEL": "Filter contacts",
         "QUERY_DROPDOWN_LABELS": {
-            "AND": "Và",
-            "OR": "Hoặc"
+            "AND": "AND",
+            "OR": "OR"
         },
         "OPERATOR_LABELS": {
-            "equal_to": "Bằng với",
-            "not_equal_to": "Khác với",
-            "contains": "Có chứa",
-            "does_not_contain": "Không chứa",
+            "equal_to": "Equal to",
+            "not_equal_to": "Not equal to",
+            "contains": "Contains",
+            "does_not_contain": "Does not contain",
             "is_present": "Is present",
-            "is_not_present": "Is not present",
-            "is_greater_than": "Lớn hơn",
-            "is_lesser_than": "Bé hơn"
+            "is_not_present": "Is not present"
         },
         "ATTRIBUTES": {
             "NAME": "Tên",
-            "EMAIL": "Email",
-            "PHONE_NUMBER": "Số điện thoại",
-            "IDENTIFIER": "Định danh",
-            "CITY": "Thành phố",
-            "COUNTRY": "Quốc gia",
-            "CUSTOM_ATTRIBUTE_LIST": "List",
-            "CUSTOM_ATTRIBUTE_TEXT": "Text",
-            "CUSTOM_ATTRIBUTE_NUMBER": "Number",
-            "CUSTOM_ATTRIBUTE_LINK": "Link",
-            "CUSTOM_ATTRIBUTE_CHECKBOX": "Checkbox"
-        },
-        "GROUPS": {
-            "STANDARD_FILTERS": "Bộ lọc tiêu chuẩn",
-            "ADDITIONAL_FILTERS": "Bộ lọc bổ sung",
-            "CUSTOM_ATTRIBUTES": "Các thuộc tính tùy chọn"
+            "EMAIL": "Thư điện tử",
+            "PHONE_NUMBER": "Số Điện Thoại",
+            "IDENTIFIER": "Identifier",
+            "CITY": "City",
+            "COUNTRY": "Country"
         }
     }
 }

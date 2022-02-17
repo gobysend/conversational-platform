@@ -67,23 +67,23 @@
       "SUBMIT": "Import",
       "CANCEL": "Huỷ"
     },
-    "SUCCESS_MESSAGE": "Lưu liên hệ thành công",
+    "SUCCESS_MESSAGE": "Contacts saved successfully",
     "ERROR_MESSAGE": "Đã có lỗi, vui lòng thử lại"
   },
   "DELETE_CONTACT": {
-    "BUTTON_LABEL": "Xóa liên hệ",
-    "TITLE": "Xóa liên hệ",
-    "DESC": "Xóa chi tiết liên hệ",
+    "BUTTON_LABEL": "Delete Contact",
+    "TITLE": "Delete contact",
+    "DESC": "Delete contact details",
     "CONFIRM": {
       "TITLE": "Xác nhận xoá",
       "MESSAGE": "Bạn có muốn xoá? ",
-      "PLACE_HOLDER": "Nhập {contactName} để xác nhận",
+      "PLACE_HOLDER": "Please type {contactName} to confirm",
       "YES": "Có, xoá ",
       "NO": "Không, giữ "
     },
     "API": {
-      "SUCCESS_MESSAGE": "Xóa liên hệ thành công",
-      "ERROR_MESSAGE": "Không thể xóa liên hệ. Hãy thử lại sau"
+      "SUCCESS_MESSAGE": "Contact deleted successfully",
+      "ERROR_MESSAGE": "Could not delete contact. Please try again later."
     }
   },
   "CONTACT_FORM": {
@@ -109,7 +109,7 @@
       "PHONE_NUMBER": {
         "PLACEHOLDER": "Nhập số điện thoại của liên hệ",
         "LABEL": "Số điện thoại",
-        "HELP": "Số điện thoại phải là định dạng E.164 ví dụ: +8415555555 [+][mã quốc gia][mã khu vực][số điện thoại địa phương]",
+        "HELP": "Số điện thoại phải là định dạng E.164 ví dụ: +1415555555 [+][mã quốc gia][mã khu vực][số điện thoại địa phương]",
         "ERROR": "Số điện thoại phải trống hoặc có định dạng E.164",
         "DUPLICATE": "Số điện thoại này đã được sử dụng bởi một liên hệ khác."
       },
@@ -199,7 +199,7 @@
   },
   "CONTACT_PROFILE": {
     "BACK_BUTTON": "Contacts",
-    "LOADING": "Đang tải thông tin liên hệ..."
+    "LOADING": "Loading contact profile..."
   },
   "REMINDER": {
     "ADD_BUTTON": {
@@ -212,13 +212,13 @@
     }
   },
   "NOTES": {
-    "FETCHING_NOTES": "Tải ghi chú...",
-    "NOT_AVAILABLE": "Hiện chưa có ghi chú nào cho liên hệ này",
+    "FETCHING_NOTES": "Fetching notes...",
+    "NOT_AVAILABLE": "There are no notes created for this contact",
     "HEADER": {
       "TITLE": "Ghi chú"
     },
     "LIST": {
-      "LABEL": "thêm ghi chú"
+      "LABEL": "added a note"
     },
     "ADD": {
       "BUTTON": "Thêm",
@@ -243,90 +243,90 @@
     }
   },
   "CUSTOM_ATTRIBUTES": {
-    "ADD_BUTTON_TEXT": "Thêm thuộc tính",
-    "BUTTON": "Thêm thuộc tính tùy chọn",
-    "NOT_AVAILABLE": "Liên hệ này chưa có thuộc tính tùy chọn nào.",
+    "ADD_BUTTON_TEXT": "Add attributes",
+    "BUTTON": "Add custom attribute",
+    "NOT_AVAILABLE": "There are no custom attributes available for this contact.",
     "COPY_SUCCESSFUL": "Đã sao chép mã thành công",
     "ACTIONS": {
-      "COPY": "Sao chép thuộc tính",
-      "DELETE": "Xóa thuộc tính",
-      "EDIT": "Cập nhật thuộc tính"
+      "COPY": "Copy attribute",
+      "DELETE": "Delete attribute",
+      "EDIT": "Edit attribute"
     },
     "ADD": {
-      "TITLE": "Tạo thuộc tính tùy chọn mới",
-      "DESC": "Thêm thuộc tính tùy chọn cho liên hệ này"
+      "TITLE": "Create custom attribute",
+      "DESC": "Add custom information to this contact."
     },
     "FORM": {
-      "CREATE": "Thêm thuộc tính",
+      "CREATE": "Add attribute",
       "CANCEL": "Huỷ",
       "NAME": {
-        "LABEL": "Tên thuộc tính",
+        "LABEL": "Custom attribute name",
         "PLACEHOLDER": "Eg: shopify id",
-        "ERROR": "Tên thuộc tính không hợp lệ"
+        "ERROR": "Invalid custom attribute name"
       },
       "VALUE": {
-        "LABEL": "Giá trị thuộc tính",
+        "LABEL": "Attribute value",
         "PLACEHOLDER": "Eg: 11901 "
       },
       "ADD": {
-        "TITLE": "Tạo thuộc tính mới",
-        "SUCCESS": "Tạo thuộc tính thành công",
-        "ERROR": "Không thể tạo thuộc tính. Vui lòng thử lại sau"
+        "TITLE": "Create new attribute ",
+        "SUCCESS": "Attribute added successfully",
+        "ERROR": "Unable to add attribute. Please try again later"
       },
       "UPDATE": {
-        "SUCCESS": "Cập nhật thuộc tính thành công",
-        "ERROR": "Không thể cập nhật thuộc tính. Vui lòng thử lại sau"
+        "SUCCESS": "Attribute updated successfully",
+        "ERROR": "Unable to update attribute. Please try again later"
       },
       "DELETE": {
-        "SUCCESS": "Xóa thuộc tính thành công",
-        "ERROR": "Không thể xóa thuộc tính. Vui lòng thử lại sau"
+        "SUCCESS": "Attribute deleted successfully",
+        "ERROR": "Unable to delete attribute. Please try again later"
       },
       "ATTRIBUTE_SELECT": {
-        "TITLE": "Thêm thuộc tính",
-        "PLACEHOLDER": "Tìm kiếm thuộc tính",
-        "NO_RESULT": "Không tìm thấy thuộc tính"
+        "TITLE": "Add attributes",
+        "PLACEHOLDER": "Search attributes",
+        "NO_RESULT": "No attributes found"
       },
       "ATTRIBUTE_TYPE": {
         "LIST": {
-          "PLACEHOLDER": "Chọn một giá trị",
-          "SEARCH_INPUT_PLACEHOLDER": "Tìm kiếm",
-          "NO_RESULT": "Không tìm thấy kết quả nào"
+          "PLACEHOLDER": "Select value",
+          "SEARCH_INPUT_PLACEHOLDER": "Search value",
+          "NO_RESULT": "No result found"
         }
       }
     },
     "VALIDATIONS": {
-      "REQUIRED": "Giá trị hợp lệ là bắt buộc",
-      "INVALID_URL": "Đường dẫn url không hợp lệ"
+      "REQUIRED": "Valid value is required",
+      "INVALID_URL": "Invalid URL"
     }
   },
   "MERGE_CONTACTS": {
-    "TITLE": "Hợp nhất liên hệ",
-    "DESCRIPTION": "Hợp nhất các liên hệ để gộp hai liên hệ thành một, bao gồm tất cả các thuộc tính và cuộc hội thoại. Trong trường hợp xung đột, các thuộc tính của liên hệ Chính sẽ được ưu tiên.",
+    "TITLE": "Merge contacts",
+    "DESCRIPTION": "Merge contacts to combine two profiles into one, including all attributes and conversations. In case of conflict, the Primary contact’ s attributes will take precedence.",
     "PRIMARY": {
-      "TITLE": "Liên hệ chính",
-      "HELP_LABEL": "Được giữ lại"
+      "TITLE": "Primary contact",
+      "HELP_LABEL": "To be kept"
     },
     "CHILD": {
-      "TITLE": "Liên hệ để hợp nhất",
-      "PLACEHOLDER": "Tìm kiếm liên hệ",
-      "HELP_LABEL": "Sẽ bị xóa"
+      "TITLE": "Contact to merge",
+      "PLACEHOLDER": "Search for a contact",
+      "HELP_LABEL": "To be deleted"
     },
     "SUMMARY": {
-      "TITLE": "Sơ lược",
-      "DELETE_WARNING": "Liên hệ <strong>%{childContactName}</strong> sẽ bị xóa.",
-      "ATTRIBUTE_WARNING": "Chi tiết liên hệ <strong>%{childContactName}</strong> sẽ được gộp với <strong>%{primaryContactName}</strong>."
+      "TITLE": "Summary",
+      "DELETE_WARNING": "Contact of <strong>%{childContactName}</strong> will be deleted.",
+      "ATTRIBUTE_WARNING": "Contact details of <strong>%{childContactName}</strong> will be copied to <strong>%{primaryContactName}</strong>."
     },
     "SEARCH": {
       "ERROR": "ERROR_MESSAGE"
     },
     "FORM": {
-      "SUBMIT": " Hợp nhất liên hệ",
+      "SUBMIT": " Merge contacts",
       "CANCEL": "Huỷ",
       "CHILD_CONTACT": {
-        "ERROR": "Chọn một liên hệ để hợp nhất"
+        "ERROR": "Select a child contact to merge"
       },
-      "SUCCESS_MESSAGE": "Hợp nhất liên hệ thành công",
-      "ERROR_MESSAGE": "Không thể hợp nhất liên hệ. Hãy thử lại sau."
+      "SUCCESS_MESSAGE": "Contact merged successfully",
+      "ERROR_MESSAGE": "Could not merge contacts, try again!"
     }
   }
 }

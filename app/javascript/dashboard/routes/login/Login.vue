@@ -1,26 +1,20 @@
 <template>
   <div class="medium-12 column login">
+    <div class="text-center medium-12 login__hero align-self-top">
+      <img
+        :src="globalConfig.logo"
+        :alt="globalConfig.installationName"
+        class="hero__logo"
+      />
+      <h2 class="hero__title">
+        {{
+          useInstallationName($t('LOGIN.TITLE'), globalConfig.installationName)
+        }}
+      </h2>
+    </div>
     <div class="row align-center">
-      <div v-if="!email" class="small-12 medium-6 large-3 column">
+      <div v-if="!email" class="small-12 medium-4 column">
         <form class="login-box column align-self-top" @submit.prevent="login()">
-          <div class="text-center medium-12 login__hero align-self-top">
-            <img
-              src="https://cdn-dev.gobysend.com/brand/logo/1622268746Gobysend logo_logo dài 56PX (1).svg"
-              :alt="globalConfig.installationName"
-              class="hero__logo"
-              width="210"
-            />
-
-            <h5 class="hero__title">
-              {{
-                useInstallationName(
-                  $t('LOGIN.TITLE'),
-                  globalConfig.installationName
-                )
-              }}
-            </h5>
-          </div>
-
           <div class="column log-in-form">
             <label :class="{ error: $v.credentials.email.$error }">
               {{ $t('LOGIN.EMAIL.LABEL') }}
@@ -50,7 +44,7 @@
               "
               :button-text="$t('LOGIN.SUBMIT')"
               :loading="loginApi.showLoading"
-              button-class="expanded"
+              button-class="large expanded"
             >
             </woot-submit-button>
           </div>
@@ -78,7 +72,6 @@ import { required, email } from 'vuelidate/lib/validators';
 import globalConfigMixin from 'shared/mixins/globalConfigMixin';
 import WootSubmitButton from '../../components/buttons/FormSubmitButton';
 import { mapGetters } from 'vuex';
-
 export default {
   components: {
     WootSubmitButton,
@@ -153,7 +146,6 @@ export default {
           if (this.email) {
             window.location = '/app/login';
           }
-
           if (response && response.status === 401) {
             const { errors } = response.data;
             const hasAuthErrorMsg =
