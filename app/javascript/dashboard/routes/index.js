@@ -78,7 +78,10 @@ const routeValidators = [
   {
     protected: true,
     loggedIn: false,
-    handler: () => 'login',
+    // handler: () => 'login',
+    handler: () => {
+      window.location.href = window.ssoUrl;
+    },
   },
   {
     protected: true,
@@ -132,7 +135,8 @@ router.beforeEach((to, from, next) => {
     if (user) {
       return next(frontendURL(`accounts/${user.account_id}/dashboard`));
     }
-    return next('/app/login');
+    // return next(window.ssoUrl);
+    window.location.href = window.ssoUrl;
   }
 
   return validateRouteAccess(to, from, next);
