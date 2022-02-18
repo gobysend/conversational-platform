@@ -2,12 +2,6 @@
 <html>
   <head>
     <title>
-      <%
-=begin%>
- <%= @global_config['INSTALLATION_NAME'] %>
-<%
-=end%>
-
       Gobysend Conversational Platform
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -53,6 +47,8 @@
         is_safari: '<%= browser.safari? %>'
       }
       window.errorLoggingConfig = '<%= ENV.fetch('SENTRY_DSN', '')%>'
+
+      window.ssoUrl = '<%= ENV.fetch('SSO_URL', 'https://admin.gobysend.com/sso/conversation') %>';
     </script>
     <% if @global_config['ANALYTICS_TOKEN'].present? && @global_config['ANALYTICS_HOST'].present? %>
     <script>

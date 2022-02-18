@@ -13,7 +13,10 @@ class Platform::Api::V1::UsersController < PlatformController
   end
 
   def login
-    render json: { url: "#{ENV['FRONTEND_URL']}/app/login?email=#{@resource.email}&sso_auth_token=#{@resource.generate_sso_auth_token}" }
+    url = "#{ENV['FRONTEND_URL']}/app/login?email=#{@resource.email}&sso_auth_token=#{@resource.generate_sso_auth_token}"
+    url += "&account_id=#{params[:account_id]}" if params[:account_id].present?
+
+    render json: { url: url }
   end
 
   def show; end
@@ -46,6 +49,6 @@ class Platform::Api::V1::UsersController < PlatformController
   end
 
   def user_params
-    params.permit(:name, :email, :password, custom_attributes: {})
+    params.permit(:name, :email, :password, :allowed_log_in, custom_attributes: {})
   end
 end

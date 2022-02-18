@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                        :integer          not null, primary key
+#  allowed_log_in            :boolean          default(TRUE), not null
 #  availability              :integer          default("online")
 #  confirmation_sent_at      :datetime
 #  confirmation_token        :string

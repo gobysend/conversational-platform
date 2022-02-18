@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_31_081750) do
+ActiveRecord::Schema.define(version: 2022_02_17_123143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -289,6 +289,18 @@ ActiveRecord::Schema.define(version: 2022_01_31_081750) do
     t.index ["website_token"], name: "index_channel_web_widgets_on_website_token", unique: true
   end
 
+  create_table "channel_whatsapp", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.string "phone_number", null: false
+    t.string "provider", default: "default"
+    t.jsonb "provider_config", default: {}
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "message_templates", default: {}
+    t.datetime "message_templates_last_updated"
+    t.index ["phone_number"], name: "index_channel_whatsapp_on_phone_number", unique: true
+  end
+
   create_table "channel_zalo", force: :cascade do |t|
     t.integer "account_id", null: false
     t.string "oa_id", null: false
@@ -303,18 +315,6 @@ ActiveRecord::Schema.define(version: 2022_01_31_081750) do
     t.boolean "is_synced", default: false, null: false
     t.index ["oa_id", "account_id"], name: "index_channel_zalo_on_oa_id_and_account_id", unique: true
     t.index ["oa_id"], name: "index_channel_zalo_on_oa_id"
-  end
-
-  create_table "channel_whatsapp", force: :cascade do |t|
-    t.integer "account_id", null: false
-    t.string "phone_number", null: false
-    t.string "provider", default: "default"
-    t.jsonb "provider_config", default: {}
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.jsonb "message_templates", default: {}
-    t.datetime "message_templates_last_updated"
-    t.index ["phone_number"], name: "index_channel_whatsapp_on_phone_number", unique: true
   end
 
   create_table "contact_inboxes", force: :cascade do |t|
@@ -364,7 +364,7 @@ ActiveRecord::Schema.define(version: 2022_01_31_081750) do
     t.datetime "agent_last_seen_at"
     t.jsonb "additional_attributes", default: {}
     t.bigint "contact_inbox_id"
-    t.uuid "uuid", default: -> { "public.gen_random_uuid()" }, null: false
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.string "identifier"
     t.datetime "last_activity_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.bigint "team_id"
@@ -775,6 +775,7 @@ ActiveRecord::Schema.define(version: 2022_01_31_081750) do
     t.string "type"
     t.boolean "message_signature_enabled", default: false, null: false
     t.text "message_signature"
+    t.boolean "allowed_log_in", default: true, null: false
     t.index ["email"], name: "index_users_on_email"
     t.index ["pubsub_token"], name: "index_users_on_pubsub_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

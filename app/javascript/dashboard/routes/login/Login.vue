@@ -89,6 +89,7 @@ export default {
     redirectUrl: { type: String, default: '' },
     config: { type: String, default: '' },
     email: { type: String, default: '' },
+    accountId: { type: String, default: '' },
   },
   data() {
     return {
@@ -142,6 +143,7 @@ export default {
         email: this.email ? this.email : this.credentials.email,
         password: this.credentials.password,
         sso_auth_token: this.ssoAuthToken,
+        account_id: this.accountId,
       };
       this.$store
         .dispatch('login', credentials)
@@ -151,7 +153,7 @@ export default {
         .catch(response => {
           // Reset URL Params if the authentication is invalid
           if (this.email) {
-            window.location = '/app/login';
+            window.location = window.ssoUrl;
           }
 
           if (response && response.status === 401) {

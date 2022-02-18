@@ -11,6 +11,7 @@ export default {
         config: route.query.config,
         email: route.query.email,
         ssoAuthToken: route.query.sso_auth_token,
+        accountId: route.query.account_id,
         redirectUrl: route.query.route_url,
       }),
     },

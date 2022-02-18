@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                        :integer          not null, primary key
+#  allowed_log_in            :boolean          default(TRUE), not null
 #  availability              :integer          default("online")
 #  confirmation_sent_at      :datetime
 #  confirmation_token        :string
@@ -94,6 +95,8 @@ class User < ApplicationRecord
 
   before_validation :set_password_and_uid, on: :create
 
+  attr_accessor :active_account_id
+
   scope :order_by_full_name, -> { order('lower(name) ASC') }
 
   def send_devise_notification(notification, *args)
@@ -105,6 +108,8 @@ class User < ApplicationRecord
   end
 
   def active_account_user
+    return account_users.find_by(account_id: active_account_id) unless active_account_id.nil?
+
     account_users.order(active_at: :desc)&.first
   end
 
@@ -185,5 +190,13 @@ class User < ApplicationRecord
   # Since this method is overriden in devise_token_auth it breaks the email reconfirmation flow.
   def will_save_change_to_email?
     mutations_from_database.changed?('email')
+  end
+
+  def active_for_authentication?
+    super and self.allowed_log_in?
+  end
+
+  def inactive_message
+    'You are not allowed to log in.'
   end
 end
