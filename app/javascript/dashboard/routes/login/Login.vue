@@ -150,7 +150,7 @@ export default {
         .then(() => {
           this.showAlert(this.$t('LOGIN.API.SUCCESS_MESSAGE'));
 
-          this.$router.push(this.redirectUrl);
+          if (this.redirectUrl) this.$router.push(this.redirectUrl);
         })
         .catch(response => {
           // Reset URL Params if the authentication is invalid
