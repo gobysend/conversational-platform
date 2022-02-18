@@ -140,7 +140,10 @@ export default {
     login() {
       this.loginApi.showLoading = true;
       const credentials = {
-        email: this.email ? this.email : this.credentials.email,
+        email: (this.email ? this.email : this.credentials.email).replace(
+          /\s/g,
+          '+'
+        ),
         password: this.credentials.password,
         sso_auth_token: this.ssoAuthToken,
         account_id: this.accountId,
@@ -155,7 +158,8 @@ export default {
         .catch(response => {
           // Reset URL Params if the authentication is invalid
           if (this.email) {
-            window.location = window.ssoUrl;
+            window.location = window.ssoUrl + '?status=401';
+            return;
           }
 
           if (response && response.status === 401) {
