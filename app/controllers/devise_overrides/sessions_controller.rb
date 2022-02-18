@@ -37,6 +37,6 @@ class DeviseOverrides::SessionsController < ::DeviseTokenAuth::SessionsControlle
     @resource = user if user&.valid_sso_auth_token?(params[:sso_auth_token])
 
     # Set active_account_id
-    @resource.active_account_id = params[:account_id] if params[:account_id].present?
+    @resource.active_account_id = params[:account_id] if @resource.present? && params[:account_id].present?
   end
 end
