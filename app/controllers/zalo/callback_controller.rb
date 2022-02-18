@@ -13,7 +13,7 @@ class Zalo::CallbackController < ApplicationController
     # Build message
     message = JSON.parse(request.raw_post, { symbolize_names: true })
 
-    Rails.logger.info "MESSAGE_RECEIVED #{message}"
+    puts "MESSAGE_RECEIVED #{message}"
     response = ::Integrations::Zalo::MessageParser.new(message)
 
     # If this message was sent from our application, ignore it to prevent duplication of messages
