@@ -4,11 +4,11 @@ class Zalo::CallbackController < ApplicationController
   def create
     allowed_events = %w[user_send_text user_send_image user_send_link user_send_audio user_send_video user_send_sticker
                         user_send_location user_send_business_card user_send_file user_submit_info user_received_message
-                        user_seen_message follow unfollow user_asking_product oa_send_text oa_send_image oa_send_gif
+                        user_seen_message user_asking_product oa_send_text oa_send_image oa_send_gif
                         oa_send_list oa_send_file]
 
     # Accept only event in the allowed_events list
-    (head :ok and return) unless allowed_events.include?(params[:event_name])
+    (head :ok and return) unless allowed_events.include?(params[:event_name].to_s)
 
     # Build message
     message = JSON.parse(request.raw_post, { symbolize_names: true })

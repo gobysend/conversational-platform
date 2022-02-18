@@ -30,6 +30,10 @@ class Channel::Zalo < ApplicationRecord
 
   after_create_commit :sync_conversation_history
 
+  def name
+    'Zalo OA'
+  end
+
   def has_24_hour_messaging_window?
     false
   end
