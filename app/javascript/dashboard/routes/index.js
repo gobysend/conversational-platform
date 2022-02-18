@@ -80,7 +80,7 @@ const routeValidators = [
     loggedIn: false,
     // handler: () => 'login',
     handler: () => {
-      window.location.href = window.ssoUrl;
+      window.location.href = window.ssoUrl + '?referer=' + window.location.href;
     },
   },
   {
