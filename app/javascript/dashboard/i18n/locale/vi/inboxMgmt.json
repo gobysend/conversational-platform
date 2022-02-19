@@ -1,9 +1,9 @@
 {
   "INBOX_MGMT": {
-    "HEADER": "Hộp thư đến",
-    "SIDEBAR_TXT": "<p><b>Hộp thư đến</b></p> <p> Khi bạn kết nối một trang web hoặc một Trang facebook với Gobysend, nó được gọi là <b>Hộp thư đến</b>. Bạn có thể có hộp thư đến không giới hạn trong tài khoản Gobysend của mình. </p><p> Click vào <b>Thêm hộp thư đến</b> để kết nối một trang web hoặc một Trang Facebook. </p><p> Trong Trang tổng quan, bạn có thể xem tất cả các cuộc hội thoại từ tất cả các hộp thư đến của mình ở một nơi duy nhất và trả lời chúng trong tab `Cuộc trò chuyện`. </p><p> Bạn cũng có thể xem các cuộc hội thoại dành riêng cho một hộp thư đến bằng cách nhấp vào tên hộp thư đến trên ngăn bên trái của trang tổng quan. </p>",
+    "HEADER": "kênh hội thoại",
+    "SIDEBAR_TXT": "<p><b>kênh hội thoại</b></p> <p> Khi bạn kết nối một trang web hoặc một trang Facebook với Gobysend, nó được gọi là <b>kênh hội thoại</b>. Bạn có thể có số lượng kênh hội thoại không giới hạn trong tài khoản Gobysend của mình. </p><p> Click vào <b>Thêm kênh hội thoại</b> để kết nối một trang web hoặc một Trang Facebook. </p><p> Trong Trang tổng quan, bạn có thể xem tất cả các cuộc hội thoại từ tất cả các kênh của mình ở một nơi duy nhất và trả lời chúng trong tab `Cuộc trò chuyện`. </p><p> Bạn cũng có thể xem các cuộc hội thoại dành riêng cho một kênh bằng cách nhấp vào tên của kênh hội thoại đó trên ngăn bên trái của trang tổng quan. </p>",
     "LIST": {
-      "404": "Không có hộp thư đến nào được đính kèm với tài khoản này."
+      "404": "Không có kênh hội thoại nào được đính kèm với tài khoản này."
     },
     "CREATE_FLOW": [
       {
@@ -12,14 +12,14 @@
         "body": "Chọn nhà cung cấp bạn muốn tích hợp với Gobysend."
       },
       {
-        "title": "Tạo Hộp thư đến",
+        "title": "Tạo kênh hội thoại",
         "route": "settings_inboxes_page_channel",
-        "body": "Xác thực tài khoản của bạn và tạo hộp thư đến."
+        "body": "Xác thực tài khoản của bạn và tạo kênh hội thoại."
       },
       {
-        "title": "Thêm đại lý",
+        "title": "Thêm nhân viên",
         "route": "settings_inboxes_add_agents",
-        "body": "Thêm đại lý vào hộp thư đến đã tạo."
+        "body": "Thêm nhân viên vào kênh hội thoại đến đã tạo."
       },
       {
         "title": "Voila!",
@@ -29,8 +29,8 @@
     ],
     "ADD": {
       "CHANNEL_NAME": {
-        "LABEL": "Tên hộp thư đến",
-        "PLACEHOLDER": "Nhập tên hộp thư đến"
+        "LABEL": "Tên kênh hội thoại",
+        "PLACEHOLDER": "Nhập tên kênh hội thoại"
       },
       "WEBSITE_NAME": {
         "LABEL": "Tên trang web",
@@ -38,16 +38,16 @@
       },
       "ZALO": {
         "TITLE": "Zalo",
-        "DESC": "Tạo kênh và chăm sóc khách hàng qua kênh chat zalo",
+        "DESC": "Tạo kênh và chăm sóc khách hàng qua kênh chat Zalo",
         "CONNECT": "Tích hợp Zalo OA"
       },
       "FB": {
-        "HELP": "Tái bút: Bằng cách đăng nhập, chúng tôi chỉ có quyền truy cập vào các tin nhắn trên Trang của bạn. Gobysend không bao giờ có thể truy cập tin nhắn riêng tư của bạn.",
+        "HELP": "Tái bút: Bằng cách đăng nhập, chúng tôi chỉ có quyền truy cập vào các tin nhắn trên Trang Facebook của bạn. Gobysend không bao giờ có thể truy cập tin nhắn riêng tư của bạn.",
         "CHOOSE_PAGE": "Chọn trang",
         "CHOOSE_PLACEHOLDER": "Chọn một trang từ danh sách",
-        "INBOX_NAME": "Tên hộp thư đến",
-        "ADD_NAME": "Thêm tên cho hộp thư đến của bạn",
-        "PICK_NAME": "Chọn tên Hộp thư đến của bạn",
+        "INBOX_NAME": "Đặt tên kênh hội thoại",
+        "ADD_NAME": "Thêm tên cho kênh hội thoại của bạn",
+        "PICK_NAME": "Chọn tên kênh hội thoại của bạn",
         "PICK_A_VALUE": "Chọn một giá trị"
       },
       "TWITTER": {
@@ -285,18 +285,18 @@
     },
     "FINISH": {
       "TITLE": "Hộp thư đến của bạn đã sẵn sàng!",
-      "MESSAGE": "Giờ đây, bạn có thể tương tác với khách hàng thông qua Kênh mới của mình. Chúc vui vẻ ủng hộ ",
-      "BUTTON_TEXT": "Đưa cho tôi",
-      "MORE_SETTINGS": "More settings",
-      "WEBSITE_SUCCESS": "Bạn đã hoàn thành việc tạo kênh trang web thành công. Sao chép mã được hiển thị bên dưới và dán vào trang web của bạn. Lần tới khi khách hàng sử dụng cuộc trò chuyện trực tiếp, cuộc trò chuyện sẽ tự động xuất hiện trong hộp thư đến của bạn."
+      "MESSAGE": "Giờ đây, bạn có thể tương tác với khách hàng thông qua Kênh mới của mình.",
+      "BUTTON_TEXT": "Bắt đầu ngay",
+      "MORE_SETTINGS": "Cấu hình nâng cao",
+      "WEBSITE_SUCCESS": "Bạn đã hoàn thành việc tạo kênh trang web thành công. Sao chép mã được hiển thị bên dưới và dán vào trang web của bạn. Lần tới khi khách hàng bắt đầu cuộc trò chuyện trực tiếp, cuộc trò chuyện sẽ tự động xuất hiện trong hộp thư đến của bạn."
     },
     "REAUTH": "Ủy quyền lại",
     "VIEW": "Xem",
     "EDIT": {
       "API": {
-        "SUCCESS_MESSAGE": "Đã cập nhật cài đặt hộp thư đến thành công",
-        "AUTO_ASSIGNMENT_SUCCESS_MESSAGE": "Đã cập nhật thành công bài tập tự động",
-        "ERROR_MESSAGE": "Không thể cập nhật màu tiện ích. Vui lòng thử lại sau."
+        "SUCCESS_MESSAGE": "Đã thiết lập cài đặt hộp thư đến thành công",
+        "AUTO_ASSIGNMENT_SUCCESS_MESSAGE": "Đã cập nhật thành công.",
+        "ERROR_MESSAGE": "Không thể cập nhật màu cho khung chat. Vui lòng thử lại sau."
       },
       "AUTO_ASSIGNMENT": {
         "ENABLED": "Bật",
@@ -316,28 +316,28 @@
     },
     "DELETE": {
       "BUTTON_TEXT": "Xoá",
-      "AVATAR_DELETE_BUTTON_TEXT": "Delete Avatar",
+      "AVATAR_DELETE_BUTTON_TEXT": "Xóa ảnh đại diện",
       "CONFIRM": {
         "TITLE": "Xác nhận xoá",
-        "MESSAGE": "Bạn có muốn xoá? ",
-        "PLACE_HOLDER": "Please type {inboxName} to confirm",
-        "YES": "Có, Xoá ",
-        "NO": "Không, Giữ "
+        "MESSAGE": "Bạn có muốn xoá?",
+        "PLACE_HOLDER": "Vui lòng nhập {inboxName} để xác nhận.",
+        "YES": "Có, xóa ngay",
+        "NO": "Không, giữ lại"
       },
       "API": {
         "SUCCESS_MESSAGE": "Hộp thư đến đã được xóa thành công",
         "ERROR_MESSAGE": "Không thể xóa hộp thư đến. Vui lòng thử lại sau.",
-        "AVATAR_SUCCESS_MESSAGE": "Inbox avatar deleted successfully",
-        "AVATAR_ERROR_MESSAGE": "Could not delete the inbox avatar. Please try again later."
+        "AVATAR_SUCCESS_MESSAGE": "Ảnh đại diện của hộp thư đã được xóa thành công.",
+        "AVATAR_ERROR_MESSAGE": "Không thể xóa ảnh đại diện của hộp thư. Vui lòng thử lại sau."
       }
     },
     "TABS": {
       "SETTINGS": "Cài đặt",
       "COLLABORATORS": "Cộng tác viên",
       "CONFIGURATION": "Cấu hình",
-      "CAMPAIGN": "Campaigns",
+      "CAMPAIGN": "Chiến dịch",
       "PRE_CHAT_FORM": "Pre Chat Form",
-      "BUSINESS_HOURS": "Business Hours"
+      "BUSINESS_HOURS": "Giờ làm việc"
     },
     "SETTINGS": "Cài đặt",
     "FEATURES": {

@@ -55,7 +55,7 @@ class Zalo::DownloadConversationsService
 
     loop do
       if thread[:src].zero?
-        Rails.logger.info "Fetching messages for conversation with #{thread[:to_display_name]}"
+        Rails.logger.info "Fetching messages for conversation with #{thread[:to_display_name]} from #{offset} to #{offset + count}"
       else
         Rails.logger.info "Fetching messages for conversation with #{thread[:from_display_name]} from #{offset} to #{offset + count}"
       end

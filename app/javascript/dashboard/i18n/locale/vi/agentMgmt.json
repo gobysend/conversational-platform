@@ -1,55 +1,55 @@
 {
   "AGENT_MGMT": {
-    "HEADER": "Nhà cung cấp",
-    "HEADER_BTN_TXT": "Thêm nhà cung cấp / đại lý",
-    "LOADING": "Tải danh sách nhà cung cấp",
-    "SIDEBAR_TXT": "<p><b>Nhà cung cấp</b></p> <p> Một <b>nhà cung cấp</b> là thành viên của nhóm Hỗ trợ khách hàng của bạn. </p><p> Nhà cung cấp sẽ có thể xem và trả lời tin nhắn từ người dùng của bạn. Danh sách hiển thị tất cả các đại lý hiện có trong tài khoản của bạn. </p><p> Click vào <b>Thêm nhà cung cấp</b> để thêm mới nhà cung cấp. Nhà cung cấp mà bạn thêm sẽ nhận được email với liên kết xác nhận để kích hoạt tài khoản của họ, sau đó họ có thể truy cập Gobysend và trả lời tin nhắn. </p><p> Quyền truy cập vào các tính năng của Gobysend dựa trên các vai trò sau. </p><p> <b>Nhà cung cấp</b> - Nhà cung cấp có vai trò này chỉ có thể truy cập hộp thư đến, báo cáo và cuộc hội thoại. Họ có thể chỉ định các cuộc trò chuyện cho các đại lý khác hoặc chính họ và giải quyết các cuộc trò chuyện.</p><p> <b>Administrator</b> - Quản trị viên sẽ có quyền truy cập vào tất cả các tính năng Gobysend được kích hoạt cho tài khoản của bạn, bao gồm cài đặt, cùng với tất cả các đặc quyền của một đại lý bình thường.</p>",
+    "HEADER": "Nhân viên",
+    "HEADER_BTN_TXT": "Thêm nhân viên",
+    "LOADING": "Tải danh sách nhân viên",
+    "SIDEBAR_TXT": "<p><b>Nhân viên</b></p> <p> Một <b>nhân viên</b> là thành viên của nhóm Hỗ trợ khách hàng của bạn. </p><p> Nhân viên sẽ có thể xem và trả lời tin nhắn từ người dùng của bạn. Danh sách hiển thị tất cả các nhân viên hiện có trong tài khoản của bạn. </p><p> Click vào <b>Thêm nhân viên</b> để thêm một nhân viên mới. Nhân viên mà bạn thêm sẽ nhận được email với liên kết xác nhận để kích hoạt tài khoản của họ, sau đó họ có thể truy cập Gobysend và trả lời tin nhắn. </p><p> Quyền truy cập vào các tính năng của Gobysend dựa trên các vai trò sau. </p><p> <b>Nhân viên</b> - Người có vai trò này chỉ có thể truy cập hộp thư đến, báo cáo và cuộc hội thoại. Họ có thể gán các cuộc hội thoại cho các nhân viên khác hoặc chính họ.</p><p> <b>Quản trị viên</b> - Quản trị viên sẽ có quyền truy cập vào tất cả các tính năng được kích hoạt trong tài khoản, bao gồm cài đặt, cùng với tất cả các đặc quyền của một nhân viên bình thường.</p>",
     "AGENT_TYPES": {
       "ADMINISTRATOR": "Quản trị viên",
-      "AGENT": "Nhà cung cấp"
+      "AGENT": "Nhân viên"
     },
     "LIST": {
       "404": "Không có tác nhân nào được liên kết với tài khoản này",
-      "TITLE": "Quản lý các đại lý trong nhóm của bạn",
-      "DESC": "Bạn có thể thêm / bớt đại lý vào / trong nhóm của mình.",
+      "TITLE": "Quản lý các thành viên trong nhóm của bạn",
+      "DESC": "Bạn có thể thêm / bớt thành viên trong nhóm của mình.",
       "NAME": "Tên",
-      "EMAIL": "EMAIL",
+      "EMAIL": "Email",
       "STATUS": "Trạng thái",
       "ACTIONS": "Hành động",
       "VERIFIED": "Đã xác minh",
       "VERIFICATION_PENDING": "Đang chờ xác minh"
     },
     "ADD": {
-      "TITLE": "Thêm đại lý vào nhóm của bạn",
-      "DESC": "Bạn có thể thêm những người có thể xử lý hỗ trợ cho hộp thư đến của bạn.",
+      "TITLE": "Thêm nhân viên vào nhóm của bạn",
+      "DESC": "Bạn có thể thêm những người có thể xử lý hỗ trợ cho kênh hội thoại của bạn.",
       "CANCEL_BUTTON_TEXT": "Huỷ",
       "FORM": {
         "NAME": {
-          "LABEL": "Tên nhà cung cấp",
-          "PLACEHOLDER": "Vui lòng nhập tên nhà cung cấp"
+          "LABEL": "Tên nhân viên",
+          "PLACEHOLDER": "Vui lòng nhập tên nhân viên"
         },
         "AGENT_TYPE": {
-          "LABEL": "Loại nhà cung cấp",
+          "LABEL": "Loại nhân viên",
           "PLACEHOLDER": "Vui lòng chọn loại",
-          "ERROR": "Loại nhà cung cấp là bắt buộc"
+          "ERROR": "Loại nhân viên là bắt buộc"
         },
         "EMAIL": {
           "LABEL": "Email",
           "PLACEHOLDER": "Vui lòng nhập email"
         },
-        "SUBMIT": "Thêm nhà cung cấp"
+        "SUBMIT": "Lưu lại"
       },
       "API": {
-        "SUCCESS_MESSAGE": "Nhà cung cấp được thêm thành công",
+        "SUCCESS_MESSAGE": "Nhân viên được thêm thành công",
         "EXIST_MESSAGE": "Email đã được sử dung, vui lòng chọn email khác.",
-        "ERROR_MESSAGE": "Không thể kết nối với Máy chủ Woot, Vui lòng thử lại sau"
+        "ERROR_MESSAGE": "Có lỗi xảy ra. Vui lòng thử lại sau"
       }
     },
     "DELETE": {
       "BUTTON_TEXT": "Xoá",
       "API": {
         "SUCCESS_MESSAGE": "Nhà cung cấp được xoá thành công",
-        "ERROR_MESSAGE": "Không thể kết nối với Máy chủ Woot, Vui lòng thử lại sau"
+        "ERROR_MESSAGE": "Có lỗi xảy ra. Vui lòng thử lại sau"
       },
       "CONFIRM": {
         "TITLE": "Xác nhận xoá",
@@ -59,34 +59,34 @@
       }
     },
     "EDIT": {
-      "TITLE": "Chỉnh sửa nhà cung cấp",
+      "TITLE": "Chỉnh sửa thông tin",
       "FORM": {
         "NAME": {
-          "LABEL": "Tên nhà cung cấp",
-          "PLACEHOLDER": "Vui lòng nhập tên nhà cung cấp"
+          "LABEL": "Tên nhân viên",
+          "PLACEHOLDER": "Vui lòng nhập tên nhân viên"
         },
         "AGENT_TYPE": {
-          "LABEL": "Loại nhà cung cấp",
+          "LABEL": "Loại nhân viên",
           "PLACEHOLDER": "Vui lòng chọn loại",
-          "ERROR": "Loại nhà cung cấp là bắt buộc"
+          "ERROR": "Loại nhân viên là bắt buộc"
         },
         "EMAIL": {
           "LABEL": "Emails",
           "PLACEHOLDER": "Vui lòng nhập email"
         },
-        "SUBMIT": "Chỉnh sửa nhà cung cấp"
+        "SUBMIT": "Chỉnh sửa"
       },
       "BUTTON_TEXT": "Chỉnh sửa",
       "CANCEL_BUTTON_TEXT": "Huỷ",
       "API": {
-        "SUCCESS_MESSAGE": "Nhà cung cấp được cập nhật thành công",
-        "ERROR_MESSAGE": "Không thể kết nối với Máy chủ Woot, Vui lòng thử lại sau"
+        "SUCCESS_MESSAGE": "Thông tin nhân viên được cập nhật thành công",
+        "ERROR_MESSAGE": "Có lỗi xảy ra. Vui lòng thử lại sau."
       },
       "PASSWORD_RESET": {
         "ADMIN_RESET_BUTTON": "Đặt lại mật khẩu",
-        "ADMIN_SUCCESS_MESSAGE": "Một email với hướng dẫn đặt lại mật khẩu đã được gửi đến đại lý",
-        "SUCCESS_MESSAGE": "Đặt lại mật khẩu đại lý thành công",
-        "ERROR_MESSAGE": "Không thể kết nối với Máy chủ Woot, Vui lòng thử lại sau"
+        "ADMIN_SUCCESS_MESSAGE": "Một email với hướng dẫn đặt lại mật khẩu đã được gửi đến nhân viên.",
+        "SUCCESS_MESSAGE": "Đặt lại mật khẩu thành công",
+        "ERROR_MESSAGE": "Có lỗi xảy ra. Vui lòng thử lại sau."
       }
     },
     "SEARCH": {
