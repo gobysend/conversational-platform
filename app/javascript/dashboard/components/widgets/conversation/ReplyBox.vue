@@ -324,6 +324,8 @@ export default {
     // working even if input/textarea is focussed.
     document.addEventListener('keydown', this.handleKeyEvents);
     document.addEventListener('paste', this.onPaste);
+
+    this.$nextTick(() => this.$refs.messageInput.focus());
   },
   destroyed() {
     document.removeEventListener('keydown', this.handleKeyEvents);
