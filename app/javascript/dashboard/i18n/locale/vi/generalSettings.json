@@ -15,7 +15,7 @@
       },
       "ACCOUNT_ID": {
         "TITLE": "Account ID",
-        "NOTE": "This ID is required if you are building an API based integration"
+        "NOTE": "Sử dụng ID này khi banj kết nối tới hệ thống qua API."
       },
       "NAME": {
         "LABEL": "Tên tài khoản",
