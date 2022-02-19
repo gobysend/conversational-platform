@@ -77,7 +77,7 @@ export const actions = {
           commit(types.default.SET_CURRENT_USER);
           window.axios = createAxios(axios);
           actionCable.init(Vue);
-          window.location = DEFAULT_REDIRECT_URL;
+          //window.location = DEFAULT_REDIRECT_URL;
           resolve();
         })
         .catch(error => {
