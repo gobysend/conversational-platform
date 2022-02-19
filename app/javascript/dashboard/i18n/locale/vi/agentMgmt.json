@@ -48,7 +48,7 @@
     "DELETE": {
       "BUTTON_TEXT": "Xoá",
       "API": {
-        "SUCCESS_MESSAGE": "Nhà cung cấp được xoá thành công",
+        "SUCCESS_MESSAGE": "Nhân viên được xoá thành công",
         "ERROR_MESSAGE": "Có lỗi xảy ra. Vui lòng thử lại sau"
       },
       "CONFIRM": {

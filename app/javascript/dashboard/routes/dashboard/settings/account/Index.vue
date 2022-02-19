@@ -92,7 +92,7 @@
           <woot-code :script="getAccountId"></woot-code>
         </div>
       </div>
-      <div class="current-version">
+<!--      <div class="current-version">
         <div>{{ `v${globalConfig.appVersion}` }}</div>
         <div v-if="hasAnUpdateAvailable && globalConfig.displayManifest">
           {{
@@ -101,7 +101,7 @@
             })
           }}
         </div>
-      </div>
+      </div>-->
 
       <woot-submit-button
         class="button nice primary button--fixed-right-top"

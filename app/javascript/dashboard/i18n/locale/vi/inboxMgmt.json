@@ -348,10 +348,10 @@
     "SETTINGS_POPUP": {
       "MESSENGER_HEADING": "Tập lệnh Messenger",
       "MESSENGER_SUB_HEAD": "Đặt nút này bên trong thẻ body của bạn",
-      "INBOX_AGENTS": "Nhà cung cấp",
-      "INBOX_AGENTS_SUB_TEXT": "Thêm hoặc xóa tác nhân khỏi hộp thư đến này",
+      "INBOX_AGENTS": "Nhân viên hỗ trợ",
+      "INBOX_AGENTS_SUB_TEXT": "Thêm hoặc xóa nhân viên hỗ trợ khỏi hộp thư đến này",
       "UPDATE": "Cập nhật",
-      "ENABLE_EMAIL_COLLECT_BOX": "Enable email collect box",
+      "ENABLE_EMAIL_COLLECT_BOX": "Hiển thị ô thu thập địa chỉ email của khách hàng",
       "ENABLE_EMAIL_COLLECT_BOX_SUB_TEXT": "Enable or disable email collect box on new conversation",
       "AUTO_ASSIGNMENT": "Bật tự động chuyển nhượng",
       "ENABLE_CSAT": "Enable CSAT",

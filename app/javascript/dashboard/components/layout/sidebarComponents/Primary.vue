@@ -139,7 +139,7 @@ export default {
         },
         {
           icon: 'chat',
-          label: 'Chat đa kênh',
+          label: 'Team Box',
           toState: frontendURL(`accounts/${this.accountId}/dashboard`),
           children: this.menuItems,
         },
