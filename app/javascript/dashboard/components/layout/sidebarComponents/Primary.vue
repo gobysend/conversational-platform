@@ -92,69 +92,69 @@ export default {
         {
           icon: 'customers',
           iconViewBox: '0 -3 511.99981 511',
-          label: 'Khách hàng',
+          label: 'CUSTOMERS',
           href: `${host_url}/customers/list`,
           children: [
             {
-              label: 'Danh sách khách hàng',
+              label: 'ALL_CUSTOMERS',
               href: `${host_url}/customers/list`,
             },
             {
-              label: 'Phản hồi',
+              label: 'FEEDBACKS',
               href: `${host_url}/customers/feedbacks`,
             },
             {
-              label: 'Phân khúc',
+              label: 'SEGMENTS',
               href: `${host_url}/customers/segments`,
             },
             {
-              label: 'Thẻ',
+              label: 'TAGS',
               href: `${host_url}/customers/tags`,
             },
             {
-              label: 'Mẫu đăng ký',
+              label: 'SIGNUP_FORMS',
               href: `${host_url}/customers/signup-forms`,
             },
             {
-              label: 'Điểm tiềm năng',
+              label: 'LEAD_SCORING',
               href: `${host_url}/customers/lead-scoring`,
             },
             {
-              label: 'Trường dữ liệu',
+              label: 'FIELDS',
               href: `${host_url}/customers/fields`,
             },
             {
-              label: 'Cài đặt',
+              label: 'SETTINGS',
               href: `${host_url}/customers/settings`,
             },
             {
-              label: 'Lưu trữ',
+              label: 'ARCHIVES',
               href: `${host_url}/customers/archives`,
             },
             {
-              label: 'Xuất dữ liệu',
+              label: 'EXPORTS',
               href: `${host_url}/customers/exports`,
             },
           ],
         },
         {
           icon: 'chat',
-          label: 'Chat đa kênh',
+          label: 'CHAT',
           toState: frontendURL(`accounts/${this.accountId}/dashboard`),
           children: this.menuItems,
         },
         {
           icon: 'campaign',
           iconViewBox: '0 0 512 512',
-          label: 'Chiến dịch',
+          label: 'CAMPAIGNS',
           href: `${host_url}/campaigns`,
           children: [
             {
-              label: 'Danh sách chiến dịch',
+              label: 'CAMPAIGN_LIST',
               href: `${host_url}/campaigns`,
             },
             {
-              label: 'Mẫu email',
+              label: 'EMAIL_TEMPLATES',
               href: `${host_url}/template/email`,
             },
           ],
@@ -162,26 +162,26 @@ export default {
         {
           icon: 'automations',
           iconViewBox: '0 0 512 512',
-          label: 'Tự động hóa',
+          label: 'AUTOMATIONS',
           href: `${host_url}/automations`,
         },
         {
           icon: 'delivery',
-          label: 'Lịch sử gửi',
+          label: 'DELIVERY',
           href: `${host_url}/deliveries`,
         },
         {
           icon: 'order',
           iconViewBox: '0 0 511.997 511.997',
-          label: 'Đơn hàng & Sản phẩm',
+          label: 'CART',
           href: `${host_url}/orders`,
           children: [
             {
-              label: 'Danh sách đơn hàng',
+              label: 'ORDERS',
               href: `${host_url}/orders`,
             },
             {
-              label: 'Danh sách sản phẩm',
+              label: 'PRODUCTS',
               href: `${host_url}/products`,
             },
           ],
@@ -189,7 +189,7 @@ export default {
         {
           icon: 'integrations',
           iconViewBox: '0 0 30 30',
-          label: 'Tích hợp',
+          label: 'INTEGRATIONS',
           href: `${host_url}/integrations`,
         },
       ];

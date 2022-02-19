@@ -163,7 +163,27 @@
     "REPORTS_LABEL": "Nhãn",
     "REPORTS_INBOX": "Inbox",
     "REPORTS_TEAM": "Team",
-    "SET_AVAILABILITY_TITLE": "Set yourself as"
+    "SET_AVAILABILITY_TITLE": "Set yourself as",
+
+    "CUSTOMERS": "Khách hàng",
+    "ALL_CUSTOMERS": "Danh sách khách hàng",
+    "FEEDBACKS": "Phản hồi",
+    "SEGMENTS": "Phân khúc",
+    "TAGS": "Thẻ",
+    "SIGNUP_FORMS": "Mẫu đăng ký",
+    "LEAD_SCORING": "Điểm tiềm năng",
+    "FIELDS": "Trường dữ liệu",
+    "ARCHIVES": "Lưu trữ",
+    "EXPORTS": "Xuất dữ liệu",
+
+    "CHAT": "Chát đa kênh",
+    "CAMPAIGN_LIST": "Danh sách chiến địch",
+    "EMAIL_TEMPLATES": "Mẫu email",
+    "AUTOMATIONS": "Tự động hóa",
+    "DELIVERY": "Thư đã gửi",
+    "CART": "Đơn hàng & Sản phẩm",
+    "ORDERS": "Danh sách đơn hàng",
+    "PRODUCTS": "Danh sách sản phẩm"
   },
   "CREATE_ACCOUNT": {
     "NO_ACCOUNT_WARNING": "Uh oh! We could not find any Chatwoot accounts. Please create a new account to continue.",

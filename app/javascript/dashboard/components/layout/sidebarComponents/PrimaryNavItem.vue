@@ -2,13 +2,13 @@
   <div class="menu-item" :class="href ? 'external' : ''">
     <a :href="href" v-if="href">
       <fluent-icon :icon="icon" :size="18" :viewBox="iconViewBox" />
-      <span>{{ name }}</span>
+      <span>{{ $t(`SIDEBAR.${name}`) }}</span>
     </a>
 
     <router-link v-slot="{ href, navigate }" :to="to" custom v-else>
       <a :href="href" class="is-active" @click="navigate">
         <fluent-icon :icon="icon" :size="18" />
-        <span>{{ name }}</span>
+        <span>{{ $t(`SIDEBAR.${name}`) }}</span>
       </a>
     </router-link>
 
@@ -16,7 +16,7 @@
       <li class="sub-menu-item" v-for="(child, index) in children" :key="index">
         <a :href="href" v-if="child.href">
           <fluent-icon :icon="child.icon" :size="16" v-if="child.icon" />
-          <span>{{ child.label }}</span>
+          <span>{{ $t(`SIDEBAR.${child.label}`) }}</span>
         </a>
 
         <router-link
@@ -182,10 +182,10 @@ export default {
       position: absolute;
       left: 100%;
       top: 0;
-      width: 250px;
       z-index: 9999;
       border-radius: 0 5px 5px 0;
       box-shadow: rgb(0 0 0 / 20%) 0px 3px 5px;
+      white-space: nowrap;
 
       &::after {
         content: ' ';

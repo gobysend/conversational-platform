@@ -165,7 +165,27 @@
     "REPORTS_LABEL": "Labels",
     "REPORTS_INBOX": "Inbox",
     "REPORTS_TEAM": "Team",
-    "SET_AVAILABILITY_TITLE": "Set yourself as"
+    "SET_AVAILABILITY_TITLE": "Set yourself as",
+
+    "CUSTOMERS": "Customers",
+    "ALL_CUSTOMERS": "All customers",
+    "FEEDBACKS": "Feedbacks",
+    "SEGMENTS": "Segments",
+    "TAGS": "Tags",
+    "SIGNUP_FORMS": "Signup forms",
+    "LEAD_SCORING": "Lead scoring",
+    "FIELDS": "Fields",
+    "ARCHIVES": "Archived customers",
+    "EXPORTS": "Customer exports",
+
+    "CHAT": "Conversations",
+    "CAMPAIGN_LIST": "All campaigns",
+    "EMAIL_TEMPLATES": "Email templates",
+    "AUTOMATIONS": "Automations",
+    "DELIVERY": "Deliveries",
+    "CART": "Orders & Products",
+    "ORDERS": "Orders",
+    "PRODUCTS": "Products"
   },
   "CREATE_ACCOUNT": {
     "NO_ACCOUNT_WARNING": "Uh oh! We could not find any Gobysend accounts. Please create a new account to continue.",
