@@ -3,7 +3,7 @@
     :width="size"
     :height="size"
     fill="none"
-    viewBox="0 0 24 24"
+    :viewBox="viewBox"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
@@ -33,6 +33,10 @@ export default {
       type: String,
       default: 'outline',
     },
+    viewBox:{
+      type: String,
+      default: '0 0 24 24'
+    }
   },
 
   computed: {

@@ -1,5 +1,5 @@
 <template>
-  <base-icon :size="size" :icon="icon" :type="type" :icons="icons" />
+  <base-icon :size="size" :icon="icon" :type="type" :icons="icons" :viewBox="viewBox" />
 </template>
 <script>
 import BaseIcon from './Icon';
@@ -23,6 +23,10 @@ export default {
       type: String,
       default: 'outline',
     },
+    viewBox: {
+      type: String,
+      default: '0 0 24 24'
+    }
   },
   data() {
     return { icons };
