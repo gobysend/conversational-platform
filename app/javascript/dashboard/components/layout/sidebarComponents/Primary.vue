@@ -93,7 +93,7 @@ export default {
           icon: 'customers',
           iconViewBox: '0 -3 511.99981 511',
           label: 'Khách hàng',
-          href: 'https://admin.gobysend.com/customers/list',
+          href: `${host_url}/customers/list`,
           children: [
             {
               label: 'Danh sách khách hàng',
@@ -147,7 +147,7 @@ export default {
           icon: 'campaign',
           iconViewBox: '0 0 512 512',
           label: 'Chiến dịch',
-          href: 'https://admin.gobysend.com/customers/list',
+          href: `${host_url}/campaigns`,
           children: [
             {
               label: 'Danh sách chiến dịch',
@@ -163,26 +163,26 @@ export default {
           icon: 'automations',
           iconViewBox: '0 0 512 512',
           label: 'Tự động hóa',
-          href: 'https://admin.gobysend.com/customers/list',
+          href: `${host_url}/automations`,
         },
         {
           icon: 'delivery',
           label: 'Lịch sử gửi',
-          href: 'https://admin.gobysend.com/customers/list',
+          href: `${host_url}/deliveries`,
         },
         {
           icon: 'order',
           iconViewBox: '0 0 511.997 511.997',
           label: 'Đơn hàng & Sản phẩm',
-          href: 'https://admin.gobysend.com/customers/list',
+          href: `${host_url}/orders`,
           children: [
             {
               label: 'Danh sách đơn hàng',
-              href: `${host_url}/customers/orders`,
+              href: `${host_url}/orders`,
             },
             {
               label: 'Danh sách sản phẩm',
-              href: `${host_url}/customers/products`,
+              href: `${host_url}/products`,
             },
           ],
         },
@@ -190,7 +190,7 @@ export default {
           icon: 'integrations',
           iconViewBox: '0 0 30 30',
           label: 'Tích hợp',
-          href: 'https://admin.gobysend.com/customers/list',
+          href: `${host_url}/integrations`,
         },
       ];
     },
