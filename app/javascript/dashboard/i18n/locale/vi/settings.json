@@ -126,7 +126,7 @@
   "CONFIRM_EMAIL": "Đang xác thực...",
   "SETTINGS": {
     "INBOXES": {
-      "NEW_INBOX": "Thêm Hộp thư đến"
+      "NEW_INBOX": "Thêm Kênh chat"
     }
   },
   "SIDEBAR": {
@@ -138,7 +138,7 @@
     "SETTINGS": "Cài Đặt",
     "HOME": "Trang Chủ",
     "AGENTS": "Nhân viên",
-    "INBOXES": "Kênh hội thoại",
+    "INBOXES": "Kênh chat",
     "NOTIFICATIONS": "Thông báo",
     "CANNED_RESPONSES": "Mẫu phản hồi",
     "INTEGRATIONS": "Tích hợp",

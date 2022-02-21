@@ -1,9 +1,9 @@
 {
   "INBOX_MGMT": {
-    "HEADER": "kênh hội thoại",
-    "SIDEBAR_TXT": "<p><b>kênh hội thoại</b></p> <p> Khi bạn kết nối một trang web hoặc một trang Facebook với Gobysend, nó được gọi là <b>kênh hội thoại</b>. Bạn có thể có số lượng kênh hội thoại không giới hạn trong tài khoản Gobysend của mình. </p><p> Click vào <b>Thêm kênh hội thoại</b> để kết nối một trang web hoặc một Trang Facebook. </p><p> Trong Trang tổng quan, bạn có thể xem tất cả các cuộc hội thoại từ tất cả các kênh của mình ở một nơi duy nhất và trả lời chúng trong tab `Cuộc trò chuyện`. </p><p> Bạn cũng có thể xem các cuộc hội thoại dành riêng cho một kênh bằng cách nhấp vào tên của kênh hội thoại đó trên ngăn bên trái của trang tổng quan. </p>",
+    "HEADER": "Kênh chat",
+    "SIDEBAR_TXT": "<p><b>Kênh chat</b></p> <p> Khi bạn kết nối một trang web hoặc một trang Facebook với Gobysend, nó được gọi là <b>kênh chat</b>. </p><p> Click vào <b>Thêm kênh chat</b> để kết nối một trang web hoặc một Trang Facebook. </p><p> Trong Trang tổng quan, bạn có thể xem tất cả các cuộc hội thoại từ tất cả các kênh của mình ở một nơi duy nhất và trả lời chúng trong tab `Cuộc trò chuyện`. </p><p> Bạn cũng có thể xem các cuộc hội thoại dành riêng cho một kênh bằng cách nhấp vào tên của kênh chat đó trên ngăn bên trái của trang tổng quan. </p>",
     "LIST": {
-      "404": "Không có kênh hội thoại nào được đính kèm với tài khoản này."
+      "404": "Không có kênh chat nào được đính kèm với tài khoản này."
     },
     "CREATE_FLOW": [
       {
@@ -12,14 +12,14 @@
         "body": "Chọn nhà cung cấp bạn muốn tích hợp với Gobysend."
       },
       {
-        "title": "Tạo kênh hội thoại",
+        "title": "Tạo kênh chat",
         "route": "settings_inboxes_page_channel",
-        "body": "Xác thực tài khoản của bạn và tạo kênh hội thoại."
+        "body": "Xác thực tài khoản của bạn và tạo kênh chat."
       },
       {
         "title": "Thêm nhân viên",
         "route": "settings_inboxes_add_agents",
-        "body": "Thêm nhân viên vào kênh hội thoại đến đã tạo."
+        "body": "Thêm nhân viên vào kênh chat đến đã tạo."
       },
       {
         "title": "Voila!",
@@ -29,8 +29,8 @@
     ],
     "ADD": {
       "CHANNEL_NAME": {
-        "LABEL": "Tên kênh hội thoại",
-        "PLACEHOLDER": "Nhập tên kênh hội thoại"
+        "LABEL": "Tên kênh chat",
+        "PLACEHOLDER": "Nhập tên kênh chat"
       },
       "WEBSITE_NAME": {
         "LABEL": "Tên trang web",
@@ -45,9 +45,9 @@
         "HELP": "Tái bút: Bằng cách đăng nhập, chúng tôi chỉ có quyền truy cập vào các tin nhắn trên Trang Facebook của bạn. Gobysend không bao giờ có thể truy cập tin nhắn riêng tư của bạn.",
         "CHOOSE_PAGE": "Chọn trang",
         "CHOOSE_PLACEHOLDER": "Chọn một trang từ danh sách",
-        "INBOX_NAME": "Đặt tên kênh hội thoại",
-        "ADD_NAME": "Thêm tên cho kênh hội thoại của bạn",
-        "PICK_NAME": "Chọn tên kênh hội thoại của bạn",
+        "INBOX_NAME": "Đặt tên kênh chat",
+        "ADD_NAME": "Thêm tên cho kênh chat của bạn",
+        "PICK_NAME": "Chọn tên kênh chat của bạn",
         "PICK_A_VALUE": "Chọn một giá trị"
       },
       "TWITTER": {
@@ -102,7 +102,7 @@
           "LABEL": "Màu tiện ích",
           "PLACEHOLDER": "Cập nhật màu tiện ích con được sử dụng trong tiện ích con"
         },
-        "SUBMIT_BUTTON": "Tạo hộp thư đến"
+        "SUBMIT_BUTTON": "Tạo kênh chat"
       },
       "TWILIO": {
         "TITLE": "Twilio SMS/WhatsApp Channel",
@@ -122,7 +122,7 @@
           "ERROR": "Trường này là bắt buộc"
         },
         "CHANNEL_NAME": {
-          "LABEL": "Tên hộp thư đến",
+          "LABEL": "Tên kênh chat",
           "PLACEHOLDER": "Please enter a inbox name",
           "ERROR": "Trường này là bắt buộc"
         },
@@ -153,7 +153,7 @@
           "360_DIALOG": "360Dialog"
         },
         "INBOX_NAME": {
-          "LABEL": "Tên hộp thư đến",
+          "LABEL": "Tên kênh chat",
           "PLACEHOLDER": "Please enter an inbox name",
           "ERROR": "Trường này là bắt buộc"
         },
@@ -194,7 +194,7 @@
       },
       "EMAIL_CHANNEL": {
         "TITLE": "Kênh Email",
-        "DESC": "Tích hợp hộp thư đến email của bạn.",
+        "DESC": "Tích hợp kênh chat email của bạn.",
         "CHANNEL_NAME": {
           "LABEL": "Tên kênh",
           "PLACEHOLDER": "Vui lòng nhập tên kênh",
@@ -259,42 +259,42 @@
       },
       "AGENTS": {
         "TITLE": "Nhà Cung Cấp",
-        "DESC": "Tại đây bạn có thể thêm các tác nhân để quản lý hộp thư đến mới tạo của mình. Chỉ những đại lý được chọn này mới có quyền truy cập vào hộp thư đến của bạn. Các nhân viên không thuộc hộp thư đến này sẽ không thể xem hoặc trả lời thư trong hộp thư đến này khi họ đăng nhập. <br> <b>PS:</b> Với tư cách là quản trị viên, nếu bạn cần quyền truy cập vào tất cả các hộp thư đến, bạn nên thêm mình làm đại lý cho tất cả các hộp thư đến mà bạn tạo.",
+        "DESC": "Tại đây bạn có thể thêm các tác nhân để quản lý kênh chat mới tạo của mình. Chỉ những đại lý được chọn này mới có quyền truy cập vào kênh chat của bạn. Các nhân viên không thuộc kênh chat này sẽ không thể xem hoặc trả lời thư trong kênh chat này khi họ đăng nhập. <br> <b>PS:</b> Với tư cách là quản trị viên, nếu bạn cần quyền truy cập vào tất cả các kênh chat, bạn nên thêm mình làm đại lý cho tất cả các kênh chat mà bạn tạo.",
         "VALIDATION_ERROR": "Add atleast one agent to your new Inbox",
         "PICK_AGENTS": "Pick agents for the inbox"
       },
       "DETAILS": {
-        "TITLE": "Chi tiết Hộp thư đến",
-        "DESC": "Từ menu thả xuống bên dưới, chọn Trang Facebook bạn muốn kết nối với Gobysend. Bạn cũng có thể đặt tên tùy chỉnh cho hộp thư đến của mình để nhận dạng tốt hơn."
+        "TITLE": "Chi tiết Kênh chat",
+        "DESC": "Từ menu thả xuống bên dưới, chọn Trang Facebook bạn muốn kết nối với Gobysend. Bạn cũng có thể đặt tên tùy chỉnh cho kênh chat của mình để nhận dạng tốt hơn."
       },
       "FINISH": {
         "TITLE": "Nailed It!",
-        "DESC": "Bạn đã tích hợp thành công Trang Facebook của mình với Gobysend. Lần tới khi khách hàng nhắn tin cho Trang của bạn, cuộc trò chuyện sẽ tự động xuất hiện trong hộp thư đến của bạn.<br>Chúng tôi cũng đang cung cấp cho bạn tập lệnh widget mà bạn có thể dễ dàng thêm vào trang web của mình. Khi điều này xuất hiện trên trang web của bạn, khách hàng có thể nhắn tin cho bạn ngay từ trang web của bạn mà không cần sự trợ giúp của bất kỳ công cụ bên ngoài nào và cuộc trò chuyện sẽ xuất hiện ngay tại đây, trên Gobysend.<br>Cool, huh? Well :)"
+        "DESC": "Bạn đã tích hợp thành công Trang Facebook của mình với Gobysend. Lần tới khi khách hàng nhắn tin cho Trang của bạn, cuộc trò chuyện sẽ tự động xuất hiện trong kênh chat của bạn.<br>Chúng tôi cũng đang cung cấp cho bạn tập lệnh widget mà bạn có thể dễ dàng thêm vào trang web của mình. Khi điều này xuất hiện trên trang web của bạn, khách hàng có thể nhắn tin cho bạn ngay từ trang web của bạn mà không cần sự trợ giúp của bất kỳ công cụ bên ngoài nào và cuộc trò chuyện sẽ xuất hiện ngay tại đây, trên Gobysend.<br>Cool, huh? Well :)"
       }
     },
     "DETAILS": {
       "LOADING_FB": "Xác thực bạn bằng Facebook...",
       "ERROR_FB_AUTH": "Đã xảy ra sự cố, Vui lòng làm mới trang...",
-      "CREATING_CHANNEL": "Tạo Hộp thư đến của bạn...",
-      "TITLE": "Cấu hình chi tiết hộp thư đến",
+      "CREATING_CHANNEL": "Tạo Kênh chat của bạn...",
+      "TITLE": "Cấu hình chi tiết kênh chat",
       "DESC": ""
     },
     "AGENTS": {
       "BUTTON_TEXT": "Thêm các nhà cung cấp",
-      "ADD_AGENTS": "Thêm các nhà cung cấp vào hộp thư đến của bạn..."
+      "ADD_AGENTS": "Thêm các nhà cung cấp vào kênh chat của bạn..."
     },
     "FINISH": {
-      "TITLE": "Hộp thư đến của bạn đã sẵn sàng!",
+      "TITLE": "Kênh chat của bạn đã sẵn sàng!",
       "MESSAGE": "Giờ đây, bạn có thể tương tác với khách hàng thông qua Kênh mới của mình.",
       "BUTTON_TEXT": "Bắt đầu ngay",
       "MORE_SETTINGS": "Cấu hình nâng cao",
-      "WEBSITE_SUCCESS": "Bạn đã hoàn thành việc tạo kênh trang web thành công. Sao chép mã được hiển thị bên dưới và dán vào trang web của bạn. Lần tới khi khách hàng bắt đầu cuộc trò chuyện trực tiếp, cuộc trò chuyện sẽ tự động xuất hiện trong hộp thư đến của bạn."
+      "WEBSITE_SUCCESS": "Bạn đã hoàn thành việc tạo kênh trang web thành công. Sao chép mã được hiển thị bên dưới và dán vào trang web của bạn. Lần tới khi khách hàng bắt đầu cuộc trò chuyện trực tiếp, cuộc trò chuyện sẽ tự động xuất hiện trong kênh chat của bạn."
     },
     "REAUTH": "Ủy quyền lại",
     "VIEW": "Xem",
     "EDIT": {
       "API": {
-        "SUCCESS_MESSAGE": "Đã thiết lập cài đặt hộp thư đến thành công",
+        "SUCCESS_MESSAGE": "Đã thiết lập cài đặt kênh chat thành công",
         "AUTO_ASSIGNMENT_SUCCESS_MESSAGE": "Đã cập nhật thành công.",
         "ERROR_MESSAGE": "Không thể cập nhật màu cho khung chat. Vui lòng thử lại sau."
       },
@@ -325,8 +325,8 @@
         "NO": "Không, giữ lại"
       },
       "API": {
-        "SUCCESS_MESSAGE": "Hộp thư đến đã được xóa thành công",
-        "ERROR_MESSAGE": "Không thể xóa hộp thư đến. Vui lòng thử lại sau.",
+        "SUCCESS_MESSAGE": "Kênh chat đã được xóa thành công",
+        "ERROR_MESSAGE": "Không thể xóa kênh chat. Vui lòng thử lại sau.",
         "AVATAR_SUCCESS_MESSAGE": "Ảnh đại diện của hộp thư đã được xóa thành công.",
         "AVATAR_ERROR_MESSAGE": "Không thể xóa ảnh đại diện của hộp thư. Vui lòng thử lại sau."
       }
@@ -349,16 +349,16 @@
       "MESSENGER_HEADING": "Tập lệnh Messenger",
       "MESSENGER_SUB_HEAD": "Đặt nút này bên trong thẻ body của bạn",
       "INBOX_AGENTS": "Nhân viên hỗ trợ",
-      "INBOX_AGENTS_SUB_TEXT": "Thêm hoặc xóa nhân viên hỗ trợ khỏi hộp thư đến này",
+      "INBOX_AGENTS_SUB_TEXT": "Thêm hoặc xóa nhân viên hỗ trợ khỏi kênh chat này",
       "UPDATE": "Cập nhật",
       "ENABLE_EMAIL_COLLECT_BOX": "Hiển thị ô thu thập địa chỉ email của khách hàng",
       "ENABLE_EMAIL_COLLECT_BOX_SUB_TEXT": "Enable or disable email collect box on new conversation",
       "AUTO_ASSIGNMENT": "Bật tự động chuyển nhượng",
       "ENABLE_CSAT": "Enable CSAT",
       "ENABLE_CSAT_SUB_TEXT": "Enable/Disable CSAT(Customer satisfaction) survey after resolving a conversation",
-      "INBOX_UPDATE_TITLE": "Cài đặt Hộp thư đến",
-      "INBOX_UPDATE_SUB_TEXT": "Cập nhật cài đặt hộp thư đến của bạn",
-      "AUTO_ASSIGNMENT_SUB_TEXT": "Bật hoặc tắt tính năng tự động gán các cuộc hội thoại mới cho các tác nhân được thêm vào hộp thư đến này.",
+      "INBOX_UPDATE_TITLE": "Cài đặt Kênh chat",
+      "INBOX_UPDATE_SUB_TEXT": "Cập nhật cài đặt kênh chat của bạn",
+      "AUTO_ASSIGNMENT_SUB_TEXT": "Bật hoặc tắt tính năng tự động gán các cuộc hội thoại mới cho các tác nhân được thêm vào kênh chat này.",
       "HMAC_VERIFICATION": "User Identity Validation",
       "HMAC_DESCRIPTION": "Inorder to validate the user's identity, the SDK allows you to pass an `identifier_hash` for each user. You can generate HMAC using 'sha256' with the key shown here.",
       "HMAC_MANDATORY_VERIFICATION": "Enforce User Identity Validation",

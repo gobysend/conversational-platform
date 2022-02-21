@@ -115,12 +115,12 @@
     "ONE_OFF": {
       "HEADER": "Tin nhắn tự động gửi một lần",
       "404": "Không có tin nhắn tự động nào được tạo",
-      "INBOXES_NOT_FOUND": "Vui lòng tạo một hộp thư đến sms và bắt đầu thêm các tin nhắn tự động"
+      "INBOXES_NOT_FOUND": "Vui lòng tạo một kênh chat sms và bắt đầu thêm các tin nhắn tự động"
     },
     "ONGOING": {
       "HEADER": "Tin nhắn tự động",
       "404": "Không có tin nhắn tự động nào được tạo",
-      "INBOXES_NOT_FOUND": "Vui lòng tạo một hộp thư đến cho trang web và bắt đầu thêm các tin nhắn tự động"
+      "INBOXES_NOT_FOUND": "Vui lòng tạo một kênh chat cho trang web và bắt đầu thêm các tin nhắn tự động"
     }
   }
 }
