@@ -1,20 +1,20 @@
 {
   "CAMPAIGN": {
-    "HEADER": "Chiến dịch",
-    "SIDEBAR_TXT": "Tự động nhắn tin đến khách hàng giúp tạo ra nhiều cuộc trò chuyện hơn. Click nút <b>Tạo chiến dịch</b> để tạo chiến dịch mới. Bạn có thể sửa hoặc xóa chiến dịch bằng cách click lên nút Sửa hoặc Xóa.",
+    "HEADER": "Tin nhắn tự động",
+    "SIDEBAR_TXT": "Tự động nhắn tin đến khách hàng giúp tạo ra nhiều cuộc trò chuyện hơn. Click nút <b>Tạo tin nhắn tự động</b> để tạo tin nhắn tự động mới. Bạn có thể sửa hoặc xóa tin nhắn tự động bằng cách click lên nút Sửa hoặc Xóa.",
     "HEADER_BTN_TXT": {
-      "ONE_OFF": "Tạo chiến dịch gửi một lần",
-      "ONGOING": "Tạo chiến dịch lặp lại"
+      "ONE_OFF": "Tạo tin nhắn tự động gửi một lần",
+      "ONGOING": "Tạo tin nhắn tự động"
     },
     "ADD": {
-      "TITLE": "Tạo chiến dịch",
+      "TITLE": "Tạo tin nhắn tự động",
       "DESC": "Tin nhắn tự động đến khách hàng, điều này sẽ tạo ra nhiều cuộc trò chuyện hơn",
       "CANCEL_BUTTON_TEXT": "Huỷ",
       "CREATE_BUTTON_TEXT": "Tạo",
       "FORM": {
         "TITLE": {
           "LABEL": "Tiêu đề",
-          "PLACEHOLDER": "Vui lòng nhập tiêu đề của chiến dịch",
+          "PLACEHOLDER": "Vui lòng nhập tiêu đề của tin nhắn tự động",
           "ERROR": "Tiêu đề là bắt buộc"
         },
         "SCHEDULED_AT": {
@@ -29,18 +29,13 @@
           "ERROR": "Người nhận là bắt buộc"
         },
         "INBOX": {
-          "LABEL": "Hộp thư đến",
-          "PLACEHOLDER": "Chọn hộp thư đến",
-          "ERROR": "Hộp thư đến là bắt buộc"
-        },
-        "INBOX": {
-          "LABEL": "Select Inbox",
-          "PLACEHOLDER": "Select Inbox",
-          "ERROR": "Inbox is required"
+          "LABEL": "Kênh chat",
+          "PLACEHOLDER": "Chọn kênh chat",
+          "ERROR": "Kênh chat là bắt buộc"
         },
         "MESSAGE": {
           "LABEL": "Nội dung",
-          "PLACEHOLDER": "Vui lòng nhập thông điệp của chiến dịch",
+          "PLACEHOLDER": "Vui lòng nhập thông điệp của tin nhắn tự động",
           "ERROR": "Nội dung là bắt buộc"
         },
         "SENT_BY": {
@@ -58,12 +53,12 @@
           "PLACEHOLDER": "Vui lòng nhập khoảng thời gian",
           "ERROR": "Khoảng thời gian là bắt buộc"
         },
-        "ENABLED": "Kích hoạt chiến dịch",
+        "ENABLED": "Kích hoạt tin nhắn tự động",
         "TRIGGER_ONLY_BUSINESS_HOURS": "Chỉ gửi trong giờ làm việc",
-        "SUBMIT": "Tạo chiến dịch"
+        "SUBMIT": "Tạo tin nhắn tự động"
       },
       "API": {
-        "SUCCESS_MESSAGE": "Tạo chiến dịch thành công",
+        "SUCCESS_MESSAGE": "Tạo tin nhắn tự động thành công",
         "ERROR_MESSAGE": "Có lỗi xảy ra. Vui lòng thử lại."
       }
     },
@@ -76,27 +71,26 @@
         "NO": "Không, giữ "
       },
       "API": {
-        "SUCCESS_MESSAGE": "Xóa chiến dịch thành công",
-        "ERROR_MESSAGE": "Không thể xóa chiến dịch. Vui lòng thử lại sau."
+        "SUCCESS_MESSAGE": "Xóa tin nhắn tự động thành công",
+        "ERROR_MESSAGE": "Không thể xóa tin nhắn tự động. Vui lòng thử lại sau."
       }
     },
     "EDIT": {
-      "TITLE": "Chỉnh sửa chiến dịch",
+      "TITLE": "Chỉnh sửa tin nhắn tự động",
       "UPDATE_BUTTON_TEXT": "Cập nhật",
       "API": {
-        "SUCCESS_MESSAGE": "Cập nhật chiến dịch thành công",
+        "SUCCESS_MESSAGE": "Cập nhật tin nhắn tự động thành công",
         "ERROR_MESSAGE": "Đã có lỗi, vui lòng thử lại"
       }
     },
     "LIST": {
-      "LOADING_MESSAGE": "Đang tải chiến dịch...",
-      "404": "Không có chiến dịch nào được tạo cho hộp thư đến này.",
+      "LOADING_MESSAGE": "Đang tải tin nhắn tự động...",
+      "404": "Không có tin nhắn tự động nào được tạo cho kênh chat này.",
       "TABLE_HEADER": {
         "TITLE": "Tiêu đề",
         "MESSAGE": "Nội dung",
-        "INBOX": "Hộp thư",
+        "INBOX": "Kênh chat",
         "STATUS": "Trạng thái",
-        "INBOX": "Hộp thư đến",
         "SENDER": "Người gửi",
         "URL": "URL",
         "SCHEDULED_AT": "Thời gian gửi",
@@ -119,14 +113,14 @@
       }
     },
     "ONE_OFF": {
-      "HEADER": "Chiến dịch gửi một lần",
-      "404": "Không có chiến dịch nào được tạo",
-      "INBOXES_NOT_FOUND": "Vui lòng tạo một hộp thư đến sms và bắt đầu thêm các chiến dịch"
+      "HEADER": "Tin nhắn tự động gửi một lần",
+      "404": "Không có tin nhắn tự động nào được tạo",
+      "INBOXES_NOT_FOUND": "Vui lòng tạo một hộp thư đến sms và bắt đầu thêm các tin nhắn tự động"
     },
     "ONGOING": {
-      "HEADER": "Chiến dịch lặp lại",
-      "404": "Không có chiến dịch nào được tạo",
-      "INBOXES_NOT_FOUND": "Vui lòng tạo một hộp thư đến cho trang web và bắt đầu thêm các chiến dịch"
+      "HEADER": "Tin nhắn tự động",
+      "404": "Không có tin nhắn tự động nào được tạo",
+      "INBOXES_NOT_FOUND": "Vui lòng tạo một hộp thư đến cho trang web và bắt đầu thêm các tin nhắn tự động"
     }
   }
 }
