@@ -149,9 +149,9 @@
           background: #419cf8;
           color: #fff;
 
-          .inbox-icon.zalo-icon::before {
-            content: url(~dashboard/assets/images/channels/zalo-white.svg);
-          }
+          // .inbox-icon.zalo-icon::before {
+          //   content: url(~dashboard/assets/images/channels/zalo-white.svg);
+          // }
         }
 
         .inbox-icon {
@@ -161,9 +161,9 @@
           text-align: center;
           line-height: 1;
 
-          &.zalo-icon::before {
-            content: url(~dashboard/assets/images/channels/zalo.svg);
-          }
+          // &.zalo-icon::before {
+          //   content: url(~dashboard/assets/images/channels/zalo.svg);
+          // }
         }
       }
     }
