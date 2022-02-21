@@ -76,8 +76,8 @@ export default {
 
       if (accountId) {
         await this.$store.dispatch('accounts/get');
-        // const { locale } = this.getAccount(accountId);
-        // this.setLocale(locale);
+        const { locale } = this.getAccount(accountId);
+        this.setLocale(locale);
       }
     },
   },
