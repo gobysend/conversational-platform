@@ -17,7 +17,10 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
       response = nil
     end
 
-    @oa_access_token = response[:access_token] unless response.nil? || response[:access_token].blank?
+    return if response.nil?
+
+    response = JSON.parse(response.body, { symbolize_names: true })
+    @oa_access_token = response[:access_token] if response[:access_token].present?
   end
 
   ##
