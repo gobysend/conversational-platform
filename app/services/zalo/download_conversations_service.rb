@@ -1,5 +1,5 @@
 class Zalo::DownloadConversationsService
-  attr_accessor [:channel!]
+  attr_accessor [:channel]
 
   def initialize(params)
     params.each do |key, value|
