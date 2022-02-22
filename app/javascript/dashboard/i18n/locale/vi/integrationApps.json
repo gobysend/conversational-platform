@@ -38,8 +38,8 @@
     "ADD": {
       "FORM": {
         "INBOX": {
-          "LABEL": "Hộp thư đến",
-          "PLACEHOLDER": "Chọn hộp thư đến"
+          "LABEL": "Kênh chat",
+          "PLACEHOLDER": "Chọn kênh chat"
         },
         "SUBMIT": "Tạo",
         "CANCEL": "Huỷ"

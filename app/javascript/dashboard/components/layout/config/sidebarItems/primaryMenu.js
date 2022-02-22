@@ -9,14 +9,14 @@ const primaryMenuItems = accountId => [
     toStateName: 'home',
     roles: ['administrator', 'agent'],
   },
-  {
-    icon: 'book-contacts',
-    key: 'contacts',
-    label: 'CONTACTS',
-    toState: frontendURL(`accounts/${accountId}/contacts`),
-    toStateName: 'contacts_dashboard',
-    roles: ['administrator', 'agent'],
-  },
+  // {
+  //   icon: 'book-contacts',
+  //   key: 'contacts',
+  //   label: 'CONTACTS',
+  //   toState: frontendURL(`accounts/${accountId}/contacts`),
+  //   toStateName: 'contacts_dashboard',
+  //   roles: ['administrator', 'agent'],
+  // },
   {
     icon: 'arrow-trending-lines',
     key: 'reports',
@@ -28,7 +28,7 @@ const primaryMenuItems = accountId => [
   {
     icon: 'megaphone',
     key: 'campaigns',
-    label: 'CAMPAIGNS',
+    label: 'AUTOMATED',
     toState: frontendURL(`accounts/${accountId}/campaigns`),
     toStateName: 'settings_account_campaigns',
     roles: ['administrator'],

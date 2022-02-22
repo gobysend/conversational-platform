@@ -51,15 +51,15 @@ export default {
         { key: 'zalo', name: 'Zalo' },
         { key: 'email', name: 'Email' },
         // { key: 'twitter', name: 'Twitter' },
-        { key: 'whatsapp', name: 'WhatsApp' },
+        //{ key: 'whatsapp', name: 'WhatsApp' },
         // { key: 'sms', name: 'SMS' },
         // {
         //   key: 'api',
         //   name: apiChannelName || 'API',
         //   thumbnail: apiChannelThumbnail,
         // },
-        { key: 'telegram', name: 'Telegram' },
-        { key: 'line', name: 'Line' },
+        //{ key: 'telegram', name: 'Telegram' },
+        //{ key: 'line', name: 'Line' },
       ];
     },
     ...mapGetters({

@@ -23,10 +23,10 @@ export const getInboxClassByType = (type, phoneNumber) => {
       return 'cloud';
 
     case INBOX_TYPES.EMAIL:
-      return 'ion-ios-email';
+      return 'brand-email';
 
     case INBOX_TYPES.ZALO:
-      return 'zalo-icon';
+      return 'brand-zalo';
 
     case INBOX_TYPES.TELEGRAM:
       return 'brand-telegram';

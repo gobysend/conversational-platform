@@ -4,10 +4,10 @@
     "SIDEBAR_TXT": "Proactive messages allow the customer to send outbound messages to their contacts which would trigger more conversations. Click on <b>Add Campaign</b> to create a new campaign. You can also edit or delete an existing campaign by clicking on the Edit or Delete button.",
     "HEADER_BTN_TXT": {
       "ONE_OFF": "Create a one off campaign",
-      "ONGOING": "Create a ongoing campaign"
+      "ONGOING": "Create a automated message"
     },
     "ADD": {
-      "TITLE": "Create a campaign",
+      "TITLE": "Create a automated message",
       "DESC": "Proactive messages allow the customer to send outbound messages to their contacts which would trigger more conversations.",
       "CANCEL_BUTTON_TEXT": "Cancel",
       "CREATE_BUTTON_TEXT": "Create",
@@ -118,9 +118,9 @@
       "INBOXES_NOT_FOUND": "Please create an sms inbox and start adding campaigns"
     },
     "ONGOING": {
-      "HEADER": "Ongoing campaigns",
-      "404": "There are no ongoing campaigns created",
-      "INBOXES_NOT_FOUND": "Please create an website inbox and start adding campaigns"
+      "HEADER": "Automated messages",
+      "404": "There are no automated messages created",
+      "INBOXES_NOT_FOUND": "Please create an website inbox and start adding automated messages"
     }
   }
 }

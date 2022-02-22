@@ -126,7 +126,7 @@
   "CONFIRM_EMAIL": "Đang xác thực...",
   "SETTINGS": {
     "INBOXES": {
-      "NEW_INBOX": "Thêm Hộp thư đến"
+      "NEW_INBOX": "Thêm Kênh chat"
     }
   },
   "SIDEBAR": {
@@ -138,7 +138,7 @@
     "SETTINGS": "Cài Đặt",
     "HOME": "Trang Chủ",
     "AGENTS": "Nhân viên",
-    "INBOXES": "Kênh hội thoại",
+    "INBOXES": "Kênh chat",
     "NOTIFICATIONS": "Thông báo",
     "CANNED_RESPONSES": "Mẫu phản hồi",
     "INTEGRATIONS": "Tích hợp",
@@ -151,6 +151,7 @@
     "TAGGED_WITH": "Được gắn thẻ",
     "REPORTS_OVERVIEW": "Tổng quan",
     "CSAT": "CSAT",
+    "AUTOMATED": "Tin nhắn tự động",
     "CAMPAIGNS": "Chiến dịch",
     "ONGOING": "Lặp lại",
     "ONE_OFF": "Gửi một lần",
@@ -176,7 +177,7 @@
     "ARCHIVES": "Lưu trữ",
     "EXPORTS": "Xuất dữ liệu",
 
-    "CHAT": "Chát đa kênh",
+    "CHAT": "Team Box",
     "CAMPAIGN_LIST": "Danh sách chiến địch",
     "EMAIL_TEMPLATES": "Mẫu email",
     "AUTOMATIONS": "Tự động hóa",

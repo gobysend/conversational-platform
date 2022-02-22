@@ -24,7 +24,7 @@
     "ATTRIBUTES": {
       "STATUS": "Trạng thái",
       "ASSIGNEE_NAME": "Tên người phụ trách",
-      "INBOX_NAME": "Tên hộp thư đến",
+      "INBOX_NAME": "Tên kênh chat",
       "TEAM_NAME": "Tên nhóm",
       "CONVERSATION_IDENTIFIER": "Mã định danh cuộc hội thoại",
       "CAMPAIGN_NAME": "Tên chiến dịch",

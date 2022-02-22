@@ -84,8 +84,6 @@ vi:
         header:
           from_with_name: '%{assignee_name} from %{inbox_name} <%{from_email}>'
           reply_with_name: '%{assignee_name} from %{inbox_name} <reply+%{reply_email}>'
-      email_subject: "Tin nhắn mới về cuộc trò chuyện này"
-      transcript_subject: "Bản ghi cuộc hội thoại"
     survey:
       response: "Please rate this conversation, %{link}"
   contacts:

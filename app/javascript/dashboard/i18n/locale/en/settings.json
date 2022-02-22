@@ -158,6 +158,7 @@
     "NEW_INBOX": "New inbox",
     "REPORTS_OVERVIEW": "Overview",
     "CSAT": "CSAT",
+    "AUTOMATED": "Automated messages",
     "CAMPAIGNS": "Campaigns",
     "ONGOING": "Ongoing",
     "ONE_OFF": "One off",
@@ -178,7 +179,7 @@
     "ARCHIVES": "Archived customers",
     "EXPORTS": "Customer exports",
 
-    "CHAT": "Conversations",
+    "CHAT": "Team Box",
     "CAMPAIGN_LIST": "All campaigns",
     "EMAIL_TEMPLATES": "Email templates",
     "AUTOMATIONS": "Automations",

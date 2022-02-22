@@ -148,14 +148,14 @@
     "BUTTON_LABEL": "Bắt đầu cuộc trò chuyện",
     "TITLE": "Cuộc trò chuyện mới",
     "DESC": "Bắt đầu một cuộc trò chuyện mới bằng cách gửi một tin nhắn mới.",
-    "NO_INBOX": "Không thể tìm thấy hộp thư đến để bắt đầu cuộc trò chuyện mới với liên hệ này.",
+    "NO_INBOX": "Không thể tìm thấy kênh chat để bắt đầu cuộc trò chuyện mới với liên hệ này.",
     "FORM": {
       "TO": {
         "LABEL": "Tới"
       },
       "INBOX": {
-        "LABEL": "Hộp thư đến",
-        "ERROR": "Chọn hộp thư đến"
+        "LABEL": "Kênh chat",
+        "ERROR": "Chọn kênh chat"
       },
       "SUBJECT": {
         "LABEL": "Subject",

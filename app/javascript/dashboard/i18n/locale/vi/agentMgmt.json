@@ -3,7 +3,7 @@
     "HEADER": "Nhân viên",
     "HEADER_BTN_TXT": "Thêm nhân viên",
     "LOADING": "Tải danh sách nhân viên",
-    "SIDEBAR_TXT": "<p><b>Nhân viên</b></p> <p> Một <b>nhân viên</b> là thành viên của nhóm Hỗ trợ khách hàng của bạn. </p><p> Nhân viên sẽ có thể xem và trả lời tin nhắn từ người dùng của bạn. Danh sách hiển thị tất cả các nhân viên hiện có trong tài khoản của bạn. </p><p> Click vào <b>Thêm nhân viên</b> để thêm một nhân viên mới. Nhân viên mà bạn thêm sẽ nhận được email với liên kết xác nhận để kích hoạt tài khoản của họ, sau đó họ có thể truy cập Gobysend và trả lời tin nhắn. </p><p> Quyền truy cập vào các tính năng của Gobysend dựa trên các vai trò sau. </p><p> <b>Nhân viên</b> - Người có vai trò này chỉ có thể truy cập hộp thư đến, báo cáo và cuộc hội thoại. Họ có thể gán các cuộc hội thoại cho các nhân viên khác hoặc chính họ.</p><p> <b>Quản trị viên</b> - Quản trị viên sẽ có quyền truy cập vào tất cả các tính năng được kích hoạt trong tài khoản, bao gồm cài đặt, cùng với tất cả các đặc quyền của một nhân viên bình thường.</p>",
+    "SIDEBAR_TXT": "<p><b>Nhân viên</b></p> <p> Một <b>nhân viên</b> là thành viên của nhóm Hỗ trợ khách hàng của bạn. </p><p> Nhân viên sẽ có thể xem và trả lời tin nhắn từ người dùng của bạn. Danh sách hiển thị tất cả các nhân viên hiện có trong tài khoản của bạn. </p><p> Click vào <b>Thêm nhân viên</b> để thêm một nhân viên mới. Nhân viên mà bạn thêm sẽ nhận được email với liên kết xác nhận để kích hoạt tài khoản của họ, sau đó họ có thể truy cập Gobysend và trả lời tin nhắn. </p><p> Quyền truy cập vào các tính năng của Gobysend dựa trên các vai trò sau. </p><p> <b>Nhân viên</b> - Người có vai trò này chỉ có thể truy cập kênh chat, báo cáo và cuộc hội thoại. Họ có thể gán các cuộc hội thoại cho các nhân viên khác hoặc chính họ.</p><p> <b>Quản trị viên</b> - Quản trị viên sẽ có quyền truy cập vào tất cả các tính năng được kích hoạt trong tài khoản, bao gồm cài đặt, cùng với tất cả các đặc quyền của một nhân viên bình thường.</p>",
     "AGENT_TYPES": {
       "ADMINISTRATOR": "Quản trị viên",
       "AGENT": "Nhân viên"
@@ -21,7 +21,7 @@
     },
     "ADD": {
       "TITLE": "Thêm nhân viên vào nhóm của bạn",
-      "DESC": "Bạn có thể thêm những người có thể xử lý hỗ trợ cho kênh hội thoại của bạn.",
+      "DESC": "Bạn có thể thêm những người có thể xử lý hỗ trợ cho kênh chat của bạn.",
       "CANCEL_BUTTON_TEXT": "Huỷ",
       "FORM": {
         "NAME": {
