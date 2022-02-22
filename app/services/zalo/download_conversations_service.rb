@@ -49,7 +49,9 @@ class Zalo::DownloadConversationsService
   private
 
   def download_conversation_messages(thread)
-    offset = 0, count = 10, max_messages = 200
+    offset = 0
+    count = 10
+    max_messages = 200
 
     ActiveRecord::Base.transaction do
       contact_inbox(thread)
