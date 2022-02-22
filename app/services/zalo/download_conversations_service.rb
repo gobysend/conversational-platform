@@ -60,10 +60,12 @@ class Zalo::DownloadConversationsService
     messages = []
 
     loop do
+      to_offset = offset + count
+
       if thread[:src].zero?
-        Rails.logger.info "Fetching messages for conversation with #{thread[:to_display_name]} from #{offset} to #{offset + count}"
+        Rails.logger.info "Fetching messages for conversation with #{thread[:to_display_name]} from #{offset} to #{to_offset}"
       else
-        Rails.logger.info "Fetching messages for conversation with #{thread[:from_display_name]} from #{offset} to #{offset + count}"
+        Rails.logger.info "Fetching messages for conversation with #{thread[:from_display_name]} from #{offset} to #{to_offset}"
       end
 
       url = "#{ENV['ZALO_OA_API_BASE_URL']}/conversation?data=#{{ user_id: @sender_id.to_i, offset: offset, count: count }.to_json}"
