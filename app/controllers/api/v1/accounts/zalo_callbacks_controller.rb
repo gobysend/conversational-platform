@@ -18,11 +18,12 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
         headers: {
           'secret_key' => ENV['ZALO_APP_SECRET']
         }
-      ).parsed_response
+      )
     rescue RestClient::ExceptionWithResponse
       return
     end
 
+    response = JSON.parse(response.body, { symbolize_names: true })
     @oa_access_token = response[:access_token] if response[:access_token].present?
   end
 
@@ -32,7 +33,7 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
   def oa_detail
     @oa = nil
 
-    return unless @oa_access_token
+    return if @oa_access_token.nil?
 
     url = "#{ENV['ZALO_OA_API_BASE_URL']}/getoa"
 
@@ -50,7 +51,7 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
   # Register a new inbox with a Zalo OA account
   #
   def register_zalo_oa
-    head :unprocessable_entity if @oa.nil?
+    return if @oa.nil?
 
     # Check if Zalo OA has been authorized
     zalo_channel = Current.account.zalo_channels.find_by(oa_id: @oa[:oa_id])
