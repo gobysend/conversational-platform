@@ -57,7 +57,7 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
     zalo_channel = Current.account.zalo_channels.find_by(oa_id: @oa[:oa_id])
     @zalo_inbox = Current.account.inboxes.find_by(channel_type: 'Channel::Zalo', channel_id: zalo_channel.id) if zalo_channel
 
-    inbox_name = params[:inbox_name]
+    inbox_name = params[:inbox_name] || @oa[:name]
     ActiveRecord::Base.transaction do
       if zalo_channel
         # Update Zalo OA information if it is already existing
@@ -80,7 +80,7 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
           oa_cover: @oa[:cover],
           access_token: @oa_access_token,
           expires_at: (DateTime.now + 1.year),
-          is_synced: false
+          is_synced: true
         )
       end
 
