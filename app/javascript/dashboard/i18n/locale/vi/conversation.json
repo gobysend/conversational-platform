@@ -57,7 +57,7 @@
     },
     "FOOTER": {
       "MSG_INPUT": "Shift + enter cho dòng mới. Bắt đầu với '/' để chọn Câu trả lời soạn trước.",
-      "PRIVATE_MSG_INPUT": "Shift + enter cho dòng mới. Điều này sẽ chỉ hiển thị cho Đại lý"
+      "PRIVATE_MSG_INPUT": "Shift + enter cho dòng mới. Tin nhắn này chỉ nhân viên nội bộ mới đọc được."
     },
     "REPLYBOX": {
       "REPLY": "Trả lời",
@@ -92,7 +92,7 @@
     "SENT_BY": "Được gửi bởi:",
     "MESSAGE_ERROR": "Không thể gửi tin nhắn này, vui lòng thử lại sau",
     "ASSIGNMENT": {
-      "SELECT_AGENT": "Chọn đại lý",
+      "SELECT_AGENT": "Chọn nhân viên",
       "REMOVE": "Xoá",
       "ASSIGN": "Assign"
     },
@@ -110,7 +110,7 @@
     "SEND_EMAIL_ERROR": "Có lỗi, xin vui lòng thử lại",
     "FORM": {
       "SEND_TO_CONTACT": "Gửi bảng điểm cho khách hàng",
-      "SEND_TO_AGENT": "Gửi bản ghi cho đại lý được phân công",
+      "SEND_TO_AGENT": "Gửi tin nhắn riêng cho nhân viên được phân công",
       "SEND_TO_OTHER_EMAIL_ADDRESS": "Gửi bản ghi tới một địa chỉ email khác",
       "EMAIL": {
         "PLACEHOLDER": "Nhập địa chỉ emai",
@@ -128,7 +128,7 @@
     },
     "TEAM_MEMBERS": {
       "TITLE": "Mời các thành viên trong nhóm của bạn",
-      "DESCRIPTION": "Vì bạn đã sẵn sàng để nói chuyện với khách hàng của mình, hãy mang theo đồng đội của bạn để hỗ trợ bạn. Bạn có thể mời đồng đội của mình bằng cách thêm địa chỉ email của họ vào danh sách đại lý.",
+      "DESCRIPTION": "Vì bạn đã sẵn sàng để nói chuyện với khách hàng của mình, hãy mang theo đồng đội của bạn để hỗ trợ bạn.",
       "NEW_LINK": "Bấm vào đây để mời một thành viên trong nhóm"
     },
     "INBOXES": {
@@ -143,7 +143,7 @@
     }
   },
   "CONVERSATION_SIDEBAR": {
-    "ASSIGNEE_LABEL": "Đại lý được phân công",
+    "ASSIGNEE_LABEL": "Nhân viên được phân công",
     "SELF_ASSIGN": "Phân công cho tôi",
     "TEAM_LABEL": "Nhóm được phân công",
     "SELECT": {

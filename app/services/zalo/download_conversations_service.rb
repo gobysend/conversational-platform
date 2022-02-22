@@ -1,5 +1,11 @@
 class Zalo::DownloadConversationsService
-  pattr_initialize [:channel!]
+  attr_accessor [:channel!]
+
+  def initialize(params)
+    params.each do |key, value|
+      instance_variable_set("@#{key}", value)
+    end
+  end
 
   def perform
     @offset = 0
@@ -92,7 +98,7 @@ class Zalo::DownloadConversationsService
 
     # Set last activity for conversation
     last_activity_at = Time.zone.at(messages.last[:time]).to_datetime
-    @conversation.update(last_activity_at: last_activity_at)
+    @conversation.update(last_activity_at: last_activity_at, status: 0)
     @contact.update(last_activity_at: last_activity_at)
   end
 
@@ -148,7 +154,7 @@ class Zalo::DownloadConversationsService
   end
 
   def build_conversation(thread)
-    Conversation.create!(conversation_params(thread).merge(contact_inbox_id: @contact_inbox.id, skip_notify_creation: true))
+    Conversation.create!(conversation_params(thread).merge(contact_inbox_id: @contact_inbox.id, skip_notify_creation: true, status: 2))
   end
 
   def conversation_params(thread)

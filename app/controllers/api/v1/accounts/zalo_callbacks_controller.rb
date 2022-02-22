@@ -3,7 +3,21 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
   before_action :oa_detail, only: [:register_zalo_oa]
 
   def oa_access_token
-    @oa_access_token = params[:access_token]
+    auth_code = params[:code]
+    payload = {
+      code: auth_code,
+      app_id: ENV['ZALO_APP_ID'],
+      grant_type: 'authorization_code',
+      code_verifier: ENV['ZALO_CODE_VERIFIER']
+    }
+
+    begin
+      response = RestClient.post('https://oauth.zaloapp.com/v4/oa/access_token', payload, { secret_key: ENV['ZALO_OA_SECRET_KEY'] })
+    rescue RestClient::ExceptionWithResponse
+      response = nil
+    end
+
+    @oa_access_token = response[:access_token] unless response.nil? || response[:access_token].blank?
   end
 
   ##

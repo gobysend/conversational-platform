@@ -19,3 +19,6 @@ trigger_imap_email_inboxes_job:
   cron: '*/5 * * * *'
   class: 'Inboxes::FetchImapEmailInboxesJob'
   queue: scheduled_jobs
+
+# executed At every 10th minute to renew Zalo access token
+

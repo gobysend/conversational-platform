@@ -3,7 +3,7 @@
     "HEADER": "Tổng quan",
     "LOADING_CHART": "Đang tải các biểu đồ dữ liệu...",
     "NO_ENOUGH_DATA": "Chúng tôi không nhận được đủ điểm dữ liệu để tạo báo cáo, Vui lòng thử lại sau.",
-    "DOWNLOAD_AGENT_REPORTS": "Tải xuống báo cáo của đại lý",
+    "DOWNLOAD_AGENT_REPORTS": "Tải xuống báo cáo của nhân viên",
     "METRICS": {
       "CONVERSATIONS": {
         "NAME": "Các cuộc trò chuyện",
@@ -319,7 +319,7 @@
     "TABLE": {
       "HEADER": {
         "CONTACT_NAME": "Liên hệ",
-        "AGENT_NAME": "Đại lý được phân công",
+        "AGENT_NAME": "Nhân viên được phân công",
         "RATING": "Xếp hạng",
         "FEEDBACK_TEXT": "Phản hồi"
       }

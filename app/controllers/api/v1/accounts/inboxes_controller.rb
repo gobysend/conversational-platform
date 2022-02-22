@@ -6,7 +6,6 @@ class Api::V1::Accounts::InboxesController < Api::V1::Accounts::BaseController
   before_action :check_authorization, except: [:show]
 
   def index
-    ::SyncConversationHistoryJob.perform_later(1, 'Channel::Zalo')
     @inboxes = policy_scope(Current.account.inboxes.order_by_name.includes(:channel, { avatar_attachment: [:blob] }))
   end
 
