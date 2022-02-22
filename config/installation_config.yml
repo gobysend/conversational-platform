@@ -9,7 +9,7 @@
 - name: BRAND_URL
   value: 'https://chat.gobysend.com'
 - name: WIDGET_BRAND_URL
-  value: 'https://chat.gobysend.com'
+  value: 'https://chat.dev1.gobysend.com'
 - name: BRAND_NAME
   value: 'Goby Messaging'
 - name: TERMS_URL
