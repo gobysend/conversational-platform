@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>
-      Gobysend Conversational Platform
+      Gobysend Team Box
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <% if @global_config['DISPLAY_MANIFEST'] %>
@@ -38,7 +38,8 @@
         selectedLocale: '<%= I18n.locale %>',
         zalo_app_id: '<%= ENV.fetch('ZALO_APP_ID', '') %>',
         admin_frontend_url: '<%= ENV.fetch('ADMIN_FRONTEND_URL','') %>',
-        zalo_oa_api_base_url: '<%= ENV.fetch('ZALO_OA_API_BASE_URL', '') %>'
+        zalo_oa_api_base_url: '<%= ENV.fetch('ZALO_OA_API_BASE_URL', '') %>',
+        zalo_code_challenge: '<%= ENV.fetch('ZALO_CODE_CHALLENGE', '') %>'
       }
       window.globalConfig = <%= raw @global_config.to_json %>
       window.globalConfig.INSTALLATION_NAME = 'Gobysend'

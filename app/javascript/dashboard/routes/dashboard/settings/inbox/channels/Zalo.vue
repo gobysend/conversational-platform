@@ -1,6 +1,6 @@
 <template>
   <div class="wizard-body small-9 columns">
-    <div v-if="!accessToken" class="login-init">
+    <div v-if="!inbox" class="login-init">
       <woot-button @click="openSignInWindow()">
         {{ $t('INBOX_MGMT.ADD.ZALO.CONNECT') }}
       </woot-button>
@@ -16,7 +16,7 @@
       <form
         v-if="!uiFlags.isCreating"
         class="row"
-        @submit.prevent="createChannel"
+        @submit.prevent="updateInbox"
       >
         <div v-if="avatar" class="medium-12 columns">
           <img
@@ -57,8 +57,8 @@ import router from '../../../../index';
 export default {
   data() {
     return {
+      inbox: undefined,
       inboxName: '',
-      accessToken: '',
       avatar: '',
 
       windowObjectReference: null,
@@ -71,11 +71,9 @@ export default {
     }),
   },
   methods: {
-    async createChannel() {
-      const website = await this.$store.dispatch('inboxes/createZaloChannel', {
-        inbox_name: this.inboxName,
-        access_token: this.accessToken,
-      });
+    async updateInbox() {
+      this.inbox.name = this.inboxName;
+      await this.$store.dispatch('inboxes/updateInbox', this.inbox);
 
       router.replace({
         name: 'settings_inboxes_add_agents',
@@ -143,13 +141,9 @@ export default {
     getZaloOauthUrl() {
       let param_obj = {
         app_id: window.chatwootConfig.zalo_app_id,
-        redirect_uri: window.chatwootConfig.hostURL + '/app/oauth-redirect',
-        // redirect_uri: 'https://chat.dev.gobysend.com',
-        state: btoa(
-          JSON.stringify({
-            service: 'zalo',
-          })
-        ),
+        code_challenge: window.chatwootConfig.zalo_code_challenge,
+        redirect_uri: `${window.chatwootConfig.hostURL}/app/oauth-redirect?goby_integration=zalo`,
+        //redirect_uri: 'https://chat.dev1.gobysend.com/app/oauth-redirect?goby_integration=zalo',
       };
 
       let param_str = '';
@@ -162,28 +156,24 @@ export default {
         param_str += key + '=' + param_obj[key];
       }
 
-      return 'https://oauth.zaloapp.com/v3/oa/permission?' + param_str;
+      return 'https://oauth.zaloapp.com/v4/oa/permission?' + param_str;
     },
 
-    receiveMessage(event) {
+    async receiveMessage(event) {
       if (!event.data) return;
 
       const data = event.data;
 
-      if (data.type === 'integration' && data.service === 'zalo') {
-        // handle connect
-        this.accessToken = event.data.access_token;
-
-        window.axios
-          .get(
-            `${window.chatwootConfig.zalo_oa_api_base_url}/getoa?access_token=${this.accessToken}`
-          )
-          .then(response => {
-            this.inboxName = response.data.data.name;
-            this.avatar = response.data.data.avatar;
+      if (data.type === 'integration' && data.goby_integration === 'zalo') {
+        try {
+          this.inbox = await this.$store.dispatch('inboxes/createZaloChannel', {
+            code: data.code,
           });
 
-        window.removeEventListener('message', this.receiveMessage);
+          window.removeEventListener('message', this.receiveMessage);
+        } catch (error) {
+          this.showAlert(this.$t('INBOX_MGMT.ADD.API.ERROR_MESSAGE'));
+        }
       }
     },
   },

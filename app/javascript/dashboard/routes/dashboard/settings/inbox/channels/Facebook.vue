@@ -67,7 +67,11 @@
             </label>
           </div>
           <div class="medium-12 columns text-right">
-            <input type="submit" value="Create Inbox" class="button" />
+            <input
+              type="submit"
+              :value="$t('INBOX_MGMT.ADD.WEBSITE_CHANNEL.SUBMIT_BUTTON')"
+              class="button"
+            />
           </div>
         </div>
       </form>

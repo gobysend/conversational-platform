@@ -39,7 +39,10 @@
       "ZALO": {
         "TITLE": "Zalo",
         "DESC": "Tạo kênh và chăm sóc khách hàng qua kênh chat Zalo",
-        "CONNECT": "Tích hợp Zalo OA"
+        "CONNECT": "Tích hợp Zalo OA",
+        "API": {
+          "ERROR_MESSAGE": "Không thể xác thực thông tin đăng nhập Zalo, vui lòng thử lại"
+        }
       },
       "FB": {
         "HELP": "Tái bút: Bằng cách đăng nhập, chúng tôi chỉ có quyền truy cập vào các tin nhắn trên Trang Facebook của bạn. Gobysend không bao giờ có thể truy cập tin nhắn riêng tư của bạn.",
