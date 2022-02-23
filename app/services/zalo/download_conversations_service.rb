@@ -15,7 +15,7 @@ class Zalo::DownloadConversationsService
     inbox
 
     # Load only 100 recent conversations
-    max_count = 1000
+    max_count = 1
 
     loop do
       Rails.logger.info "Fetching conversations for OA #{channel.oa_name} from #{@offset} to #{@offset + @count}..."

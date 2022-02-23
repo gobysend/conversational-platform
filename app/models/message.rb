@@ -41,6 +41,9 @@ class Message < ApplicationRecord
   # when you have a temperory id in your frontend and want it echoed back via action cable
   attr_accessor :echo_id
 
+  # Temporary disable create commit callback
+  attr_accessor :skip_create_callbacks
+
   enum message_type: { incoming: 0, outgoing: 1, activity: 2, template: 3 }
   enum content_type: {
     text: 0,
@@ -83,9 +86,7 @@ class Message < ApplicationRecord
   has_many :attachments, dependent: :destroy_async, autosave: true, before_add: :validate_attachments_limit
   has_one :csat_survey_response, dependent: :destroy_async
 
-  attr_accessor :skip_create_callbacks
-
-  after_create_commit :execute_after_create_commit_callbacks, unless: skip_create_callbacks
+  after_create_commit :execute_after_create_commit_callbacks
   after_update_commit :dispatch_update_event
 
   def channel_token
@@ -147,6 +148,8 @@ class Message < ApplicationRecord
 
   def execute_after_create_commit_callbacks
     return if skip_create_callbacks
+
+    puts "========================skip_create_callbacks is #{skip_create_callbacks}"
 
     # rails issue with order of active record callbacks being executed https://github.com/rails/rails/issues/20911
     reopen_conversation
