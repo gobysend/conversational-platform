@@ -48,8 +48,7 @@ class Zalo::HistoryMessageBuilder
       sender: message[:src].zero? ? Current.user : @contact,
       content_type: nil,
       in_reply_to: nil,
-      echo_id: nil,
-      skip_after_create_callback: true
+      echo_id: nil
     }
 
     if message[:type] == 'nosupport'

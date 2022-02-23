@@ -136,10 +136,8 @@ class Message < ApplicationRecord
   private
 
   def execute_after_create_callbacks
-    unless @skip_after_create_callback
-      reopen_conversation
-      notify_via_mail
-    end
+    reopen_conversation
+    notify_via_mail
   end
 
   def ensure_content_type
@@ -243,9 +241,5 @@ class Message < ApplicationRecord
     # rubocop:disable Rails/SkipsModelValidations
     conversation.update_columns(last_activity_at: created_at)
     # rubocop:enable Rails/SkipsModelValidations
-  end
-
-  def set_skip_after_create_callback
-    @skip_after_create_callback || false
   end
 end
