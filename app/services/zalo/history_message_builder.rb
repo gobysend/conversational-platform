@@ -35,6 +35,9 @@ class Zalo::HistoryMessageBuilder
       attach_file(attachment, params[:remote_file_url])
     end
 
+    # Skip callback
+    @message.skip_create_callbacks = true
+
     @message.save
   end
 

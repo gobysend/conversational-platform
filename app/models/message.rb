@@ -83,8 +83,9 @@ class Message < ApplicationRecord
   has_many :attachments, dependent: :destroy_async, autosave: true, before_add: :validate_attachments_limit
   has_one :csat_survey_response, dependent: :destroy_async
 
-  after_create_commit :execute_after_create_commit_callbacks
+  attr_accessor :skip_create_callbacks
 
+  after_create_commit :execute_after_create_commit_callbacks, unless: :skip_create_callbacks?
   after_update_commit :dispatch_update_event
 
   def channel_token

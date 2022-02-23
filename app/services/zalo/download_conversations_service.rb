@@ -102,7 +102,7 @@ class Zalo::DownloadConversationsService
 
     # Set last activity for conversation
     last_activity_at = Time.zone.at(messages.last[:time]).to_datetime
-    @conversation.update(last_activity_at: last_activity_at, status: 0)
+    @conversation.update(last_activity_at: last_activity_at, status: 1)
     @contact.update(last_activity_at: last_activity_at)
   end
 
