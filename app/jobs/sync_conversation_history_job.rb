@@ -5,7 +5,10 @@ class SyncConversationHistoryJob < ApplicationJob
     case channel_class
     when 'Channel::Zalo'
       channel = Channel::Zalo.find(channel_id)
-      Zalo::DownloadConversationsService.new(channel: channel).perform
+
+      service = Zalo::DownloadConversationsService.new
+      service.channel = channel
+      service.perform
     end
   end
 end
