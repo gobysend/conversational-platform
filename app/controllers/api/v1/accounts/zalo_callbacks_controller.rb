@@ -12,12 +12,19 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
     }
 
     begin
-      response = RestClient.post('https://oauth.zaloapp.com/v4/oa/access_token', payload, { secret_key: ENV['ZALO_OA_SECRET_KEY'] })
+      response = HTTParty.post(
+        'https://oauth.zaloapp.com/v4/oa/access_token',
+        query: payload,
+        headers: {
+          'secret_key' => ENV['ZALO_APP_SECRET']
+        }
+      )
     rescue RestClient::ExceptionWithResponse
-      response = nil
+      return
     end
 
-    @oa_access_token = response[:access_token] unless response.nil? || response[:access_token].blank?
+    response = JSON.parse(response.body, { symbolize_names: true })
+    @oa_access_token = response[:access_token] if response[:access_token].present?
   end
 
   ##
@@ -26,7 +33,7 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
   def oa_detail
     @oa = nil
 
-    return unless @oa_access_token
+    return if @oa_access_token.nil?
 
     url = "#{ENV['ZALO_OA_API_BASE_URL']}/getoa"
 
@@ -44,11 +51,13 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
   # Register a new inbox with a Zalo OA account
   #
   def register_zalo_oa
+    return if @oa.nil?
+
     # Check if Zalo OA has been authorized
     zalo_channel = Current.account.zalo_channels.find_by(oa_id: @oa[:oa_id])
     @zalo_inbox = Current.account.inboxes.find_by(channel_type: 'Channel::Zalo', channel_id: zalo_channel.id) if zalo_channel
 
-    inbox_name = params[:inbox_name]
+    inbox_name = params[:inbox_name] || @oa[:name]
     ActiveRecord::Base.transaction do
       if zalo_channel
         # Update Zalo OA information if it is already existing
@@ -71,7 +80,7 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
           oa_cover: @oa[:cover],
           access_token: @oa_access_token,
           expires_at: (DateTime.now + 1.year),
-          is_synced: false
+          is_synced: true
         )
       end
 

@@ -35,6 +35,9 @@ class Zalo::HistoryMessageBuilder
       attach_file(attachment, params[:remote_file_url])
     end
 
+    # Skip callback
+    @message.skip_create_callbacks = true
+
     @message.save
   end
 
@@ -48,8 +51,7 @@ class Zalo::HistoryMessageBuilder
       sender: message[:src].zero? ? Current.user : @contact,
       content_type: nil,
       in_reply_to: nil,
-      echo_id: nil,
-      skip_after_create_callback: true
+      echo_id: nil
     }
 
     if message[:type] == 'nosupport'

@@ -1,7 +1,7 @@
 class Zalo::DownloadConversationsService
   attr_accessor :channel
 
-  def initialize(params)
+  def initialize(params = {})
     params.each do |key, value|
       instance_variable_set("@#{key}", value)
     end
@@ -15,7 +15,7 @@ class Zalo::DownloadConversationsService
     inbox
 
     # Load only 100 recent conversations
-    max_count = 1000
+    max_count = 1
 
     loop do
       Rails.logger.info "Fetching conversations for OA #{channel.oa_name} from #{@offset} to #{@offset + @count}..."
@@ -49,7 +49,9 @@ class Zalo::DownloadConversationsService
   private
 
   def download_conversation_messages(thread)
-    offset = 0, count = 10, max_messages = 200
+    offset = 0
+    count = 10
+    max_messages = 200
 
     ActiveRecord::Base.transaction do
       contact_inbox(thread)
@@ -60,10 +62,12 @@ class Zalo::DownloadConversationsService
     messages = []
 
     loop do
+      to_offset = offset + count
+
       if thread[:src].zero?
-        Rails.logger.info "Fetching messages for conversation with #{thread[:to_display_name]} from #{offset} to #{offset + count}"
+        Rails.logger.info "Fetching messages for conversation with #{thread[:to_display_name]} from #{offset} to #{to_offset}"
       else
-        Rails.logger.info "Fetching messages for conversation with #{thread[:from_display_name]} from #{offset} to #{offset + count}"
+        Rails.logger.info "Fetching messages for conversation with #{thread[:from_display_name]} from #{offset} to #{to_offset}"
       end
 
       url = "#{ENV['ZALO_OA_API_BASE_URL']}/conversation?data=#{{ user_id: @sender_id.to_i, offset: offset, count: count }.to_json}"
@@ -98,7 +102,7 @@ class Zalo::DownloadConversationsService
 
     # Set last activity for conversation
     last_activity_at = Time.zone.at(messages.last[:time]).to_datetime
-    @conversation.update(last_activity_at: last_activity_at, status: 0)
+    @conversation.update(last_activity_at: last_activity_at, status: 1)
     @contact.update(last_activity_at: last_activity_at)
   end
 
