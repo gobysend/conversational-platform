@@ -85,7 +85,7 @@ class Message < ApplicationRecord
 
   attr_accessor :skip_create_callbacks
 
-  after_create_commit :execute_after_create_commit_callbacks, unless: :skip_create_callbacks?
+  after_create_commit :execute_after_create_commit_callbacks, unless: skip_create_callbacks
   after_update_commit :dispatch_update_event
 
   def channel_token
@@ -146,6 +146,8 @@ class Message < ApplicationRecord
   end
 
   def execute_after_create_commit_callbacks
+    return if skip_create_callbacks
+
     # rails issue with order of active record callbacks being executed https://github.com/rails/rails/issues/20911
     reopen_conversation
     notify_via_mail
