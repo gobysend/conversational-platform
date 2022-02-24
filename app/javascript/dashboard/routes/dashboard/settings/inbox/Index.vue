@@ -128,7 +128,7 @@
       :message="confirmDeleteMessage"
       :confirm-text="deleteConfirmText"
       :reject-text="deleteRejectText"
-      :confirm-value="selectedInbox.name"
+      :confirm-value="'Delete'"
       :confirm-place-holder-text="confirmPlaceHolderText"
       @on-confirm="confirmDeletion"
       @on-close="closeDelete"
@@ -178,7 +178,7 @@ export default {
     },
     confirmPlaceHolderText() {
       return `${this.$t('INBOX_MGMT.DELETE.CONFIRM.PLACE_HOLDER', {
-        inboxName: this.selectedInbox.name,
+        inboxName: 'Delete',
       })}`;
     },
   },
