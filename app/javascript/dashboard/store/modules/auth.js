@@ -73,12 +73,12 @@ export const actions = {
     return new Promise((resolve, reject) => {
       authAPI
         .login(credentials)
-        .then(() => {
+        .then((response) => {
           commit(types.default.SET_CURRENT_USER);
           window.axios = createAxios(axios);
           actionCable.init(Vue);
           //window.location = DEFAULT_REDIRECT_URL;
-          resolve();
+          resolve(response);
         })
         .catch(error => {
           reject(error);

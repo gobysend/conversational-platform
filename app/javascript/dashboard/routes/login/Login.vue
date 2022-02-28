@@ -150,10 +150,23 @@ export default {
       };
       this.$store
         .dispatch('login', credentials)
-        .then(() => {
+        .then(response => {
           this.showAlert(this.$t('LOGIN.API.SUCCESS_MESSAGE'));
 
-          window.location = this.redirectUrl || '/app/';
+          let account_ids = response.accounts.map(({ id }) => id);
+
+          console.log(this.getRedirectAccountId());
+          debugger;
+
+          if (
+            this.redirectUrl &&
+            this.redirectUrl.startsWith(window.location.origin) &&
+            account_ids.includes(this.getRedirectAccountId())
+          ) {
+            window.location.href = this.redirectUrl;
+          } else {
+            window.location = '/app/';
+          }
         })
         .catch(response => {
           // Reset URL Params if the authentication is invalid
@@ -178,6 +191,13 @@ export default {
           }
           this.showAlert(this.$t('LOGIN.API.ERROR_MESSAGE'));
         });
+    },
+    getRedirectAccountId() {
+      if (this.redirectUrl && this.redirectUrl.match(/app\/accounts\/\d+\//)) {
+        return parseInt(
+          this.redirectUrl.match(/app\/accounts\/\d+\/*/)[0].split('/')[2]
+        );
+      }
     },
   },
 };
