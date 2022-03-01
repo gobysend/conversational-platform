@@ -79,7 +79,7 @@ export default {
         name: 'settings_inboxes_add_agents',
         params: {
           page: 'new',
-          inbox_id: website.id,
+          inbox_id: this.inbox.id,
         },
       });
     },
@@ -169,6 +169,8 @@ export default {
           this.inbox = await this.$store.dispatch('inboxes/createZaloChannel', {
             code: data.code,
           });
+
+          this.inboxName = this.inbox.name;
 
           window.removeEventListener('message', this.receiveMessage);
         } catch (error) {

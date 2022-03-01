@@ -32,13 +32,13 @@ const settings = accountId => ({
     'automation_list',
   ],
   menuItems: [
-    {
-      icon: 'people',
-      label: 'AGENTS',
-      hasSubMenu: false,
-      toState: frontendURL(`accounts/${accountId}/settings/agents/list`),
-      toStateName: 'agent_list',
-    },
+    // {
+    //   icon: 'people',
+    //   label: 'AGENTS',
+    //   hasSubMenu: false,
+    //   toState: frontendURL(`accounts/${accountId}/settings/agents/list`),
+    //   toStateName: 'agent_list',
+    // },
     {
       icon: 'people-team',
       label: 'TEAMS',
@@ -53,13 +53,13 @@ const settings = accountId => ({
       toState: frontendURL(`accounts/${accountId}/settings/inboxes/list`),
       toStateName: 'settings_inbox_list',
     },
-    {
-      icon: 'tag',
-      label: 'LABELS',
-      hasSubMenu: false,
-      toState: frontendURL(`accounts/${accountId}/settings/labels/list`),
-      toStateName: 'labels_list',
-    },
+    // {
+    //   icon: 'tag',
+    //   label: 'LABELS',
+    //   hasSubMenu: false,
+    //   toState: frontendURL(`accounts/${accountId}/settings/labels/list`),
+    //   toStateName: 'labels_list',
+    // },
     {
       icon: 'code',
       label: 'CUSTOM_ATTRIBUTES',
@@ -85,20 +85,20 @@ const settings = accountId => ({
       ),
       toStateName: 'canned_list',
     },
-    {
-      icon: 'flash-on',
-      label: 'INTEGRATIONS',
-      hasSubMenu: false,
-      toState: frontendURL(`accounts/${accountId}/settings/integrations`),
-      toStateName: 'settings_integrations',
-    },
-    {
-      icon: 'star-emphasis',
-      label: 'APPLICATIONS',
-      hasSubMenu: false,
-      toState: frontendURL(`accounts/${accountId}/settings/applications`),
-      toStateName: 'settings_applications',
-    },
+    // {
+    //   icon: 'flash-on',
+    //   label: 'INTEGRATIONS',
+    //   hasSubMenu: false,
+    //   toState: frontendURL(`accounts/${accountId}/settings/integrations`),
+    //   toStateName: 'settings_integrations',
+    // },
+    // {
+    //   icon: 'star-emphasis',
+    //   label: 'APPLICATIONS',
+    //   hasSubMenu: false,
+    //   toState: frontendURL(`accounts/${accountId}/settings/applications`),
+    //   toStateName: 'settings_applications',
+    // },
     {
       icon: 'settings',
       label: 'ACCOUNT_SETTINGS',
