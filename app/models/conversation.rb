@@ -180,7 +180,11 @@ class Conversation < ApplicationRecord
   end
 
   def notify_conversation_creation
-    dispatcher_dispatch(CONVERSATION_CREATED) unless @skip_notify_creation
+    return if @skip_notify_creation
+
+    dispatcher_dispatch(CONVERSATION_CREATED)
+
+    Publishers::RabbitPublisher.publish_control_message(queue_name: ENV.fetch('RABBITMQ_MESSAGE_CONTROL_QUEUE'), event_type: 'conversation_created', payload: self)
   end
 
   def queue_conversation_auto_resolution_job
