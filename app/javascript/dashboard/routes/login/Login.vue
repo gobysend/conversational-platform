@@ -155,9 +155,6 @@ export default {
 
           let account_ids = response.accounts.map(({ id }) => id);
 
-          console.log(this.getRedirectAccountId());
-          debugger;
-
           if (
             this.redirectUrl &&
             this.redirectUrl.startsWith(window.location.origin) &&

@@ -1,7 +1,15 @@
 /* eslint no-console: 0 */
 import Auth from '../api/auth';
+import { clearCookiesOnLogout } from '/app/javascript/dashboard/store/utils/api.js';
 
-const parseErrorCode = error => Promise.reject(error);
+const parseErrorCode = error => {
+  if (error?.response?.status === 401) {
+    clearCookiesOnLogout();
+    return;
+  }
+
+  return Promise.reject(error);
+};
 
 export default axios => {
   const { apiHost = '' } = window.chatwootConfig || {};

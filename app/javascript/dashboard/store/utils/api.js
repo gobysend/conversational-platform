@@ -35,7 +35,18 @@ export const setAuthCredentials = response => {
   Cookies.set('auth_data', response.headers, {
     expires: differenceInDays(expiryDate, new Date()),
   });
+
   setUser(response.data.data, expiryDate);
+
+  //Share cookie
+  let host, domainParts, domain;
+  host = location.host;
+  if (host.split('.').length > 1) {
+    domainParts = host.split('.');
+    domainParts.shift();
+    domain = '.' + domainParts.join('.');
+  }
+  Cookies.set('chat_auth_data', response.headers, { domain });
 };
 
 export const clearCookiesOnLogout = () => {
@@ -44,5 +55,7 @@ export const clearCookiesOnLogout = () => {
 
   Cookies.remove('auth_data');
   Cookies.remove('user');
-  window.location = frontendURL('login');
+  //window.location = frontendURL('login');
+  window.location.href =
+    window.chatwootConfig.admin_frontend_url + '/login?auto_logout=true';
 };
