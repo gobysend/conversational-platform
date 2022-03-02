@@ -45,6 +45,8 @@ class Contact < ApplicationRecord
   has_many :messages, as: :sender, dependent: :destroy_async
   has_many :notes, dependent: :destroy_async
 
+  attr_accessor :skip_update_callbacks
+
   before_validation :prepare_contact_attributes
   after_create_commit :dispatch_create_event, :ip_lookup
   after_update_commit :dispatch_update_event
@@ -163,13 +165,21 @@ class Contact < ApplicationRecord
 
   def dispatch_create_event
     Rails.configuration.dispatcher.dispatch(CONTACT_CREATED, Time.zone.now, contact: self)
+
+    Publishers::RabbitPublisher.publish_control_message(queue_name: ENV.fetch('RABBITMQ_MESSAGE_CONTROL_QUEUE'), event_type: 'contact_created', payload: self)
   end
 
   def dispatch_update_event
     Rails.configuration.dispatcher.dispatch(CONTACT_UPDATED, Time.zone.now, contact: self)
+
+    return if @skip_update_callbacks
+
+    Publishers::RabbitPublisher.publish_control_message(queue_name: ENV.fetch('RABBITMQ_MESSAGE_CONTROL_QUEUE'), event_type: 'contact_updated', payload: self)
   end
 
   def dispatch_destroy_event
     Rails.configuration.dispatcher.dispatch(CONTACT_DELETED, Time.zone.now, contact: self)
+
+    Publishers::RabbitPublisher.publish_control_message(queue_name: ENV.fetch('RABBITMQ_MESSAGE_CONTROL_QUEUE'), event_type: 'contact_destroyed', payload: self)
   end
 end
