@@ -167,7 +167,7 @@ export default {
       if (data.type === 'integration' && data.goby_integration === 'zalo') {
         try {
           this.inbox = await this.$store.dispatch('inboxes/createZaloChannel', {
-            code: data.code,
+            ...data,
           });
 
           this.inboxName = this.inbox.name;
