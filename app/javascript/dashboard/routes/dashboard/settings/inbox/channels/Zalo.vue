@@ -84,8 +84,8 @@ export default {
       });
     },
 
-    openSignInWindow() {
-      const url = this.getZaloOauthUrl();
+    async openSignInWindow() {
+      const url = await this.$store.dispatch('inboxes/getZaloLoginUrl');
       const window_name = 'zaloOauth';
 
       // remove any existing event listeners
