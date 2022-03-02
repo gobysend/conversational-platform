@@ -5,7 +5,7 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
   def request_auth_url
     pkce_challenge = ::PkceChallenge.challenge(char_length: 43)
 
-    redirect_uri = "#{ENV['FRONTEND_URL']}/integrations/redirect-page?goby_integration=zalo"
+    redirect_uri = "#{ENV['FRONTEND_URL']}/app/oauth-redirect?goby_integration=zalo"
     auth_url = 'https://oauth.zaloapp.com/v4/oa/permission'
     auth_url += "?app_id=#{ENV['ZALO_APP_ID']}&code_challenge=#{pkce_challenge.code_challenge}&redirect_uri=#{redirect_uri}"
 
