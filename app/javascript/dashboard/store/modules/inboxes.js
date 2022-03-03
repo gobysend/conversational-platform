@@ -164,6 +164,14 @@ export const actions = {
       throw new Error(error);
     }
   },
+  getZaloLoginUrl: async () => {
+    try {
+      const response = await ZaloChannel.getLoginUrl();
+      return response.data.login_url;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
   updateInbox: async ({ commit }, { id, formData = true, ...inboxParams }) => {
     commit(types.default.SET_INBOXES_UI_FLAG, {
       isUpdatingAutoAssignment: true,

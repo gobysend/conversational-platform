@@ -2,13 +2,34 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
   before_action :oa_access_token
   before_action :oa_detail, only: [:register_zalo_oa]
 
+  def request_auth_url
+    pkce_challenge = ::PkceChallenge.challenge(char_length: 43)
+
+    redirect_uri = "#{ENV['FRONTEND_URL']}/app/oauth-redirect?goby_integration=zalo"
+    auth_url = 'https://oauth.zaloapp.com/v4/oa/permission'
+    auth_url += "?app_id=#{ENV['ZALO_APP_ID']}&code_challenge=#{pkce_challenge.code_challenge}&redirect_uri=#{redirect_uri}"
+
+    # Store verifier and challenge to redis
+    ::Redis::Alfred.setex(pkce_challenge.code_challenge, pkce_challenge.code_verifier, 5.minutes)
+
+    render json: {
+      code_challenge: pkce_challenge.code_challenge,
+      login_url: auth_url
+    }
+  end
+
   def oa_access_token
     auth_code = params[:code]
+    code_challenge = params[:code_challenge]
+    verifier_code = ::Redis::Alfred.get(code_challenge)
+
+    return if verifier_code.blank?
+
     payload = {
       code: auth_code,
       app_id: ENV['ZALO_APP_ID'],
       grant_type: 'authorization_code',
-      code_verifier: ENV['ZALO_CODE_VERIFIER']
+      code_verifier: verifier_code
     }
 
     begin

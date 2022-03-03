@@ -12,6 +12,12 @@ class WebChannel extends ApiClient {
       params
     );
   }
+
+  getLoginUrl() {
+    return axios.get(
+      `${this.url.replace(this.resource, '')}zalo_callbacks/request_auth_url`
+    );
+  }
 }
 
 export default new WebChannel();

@@ -84,8 +84,8 @@ export default {
       });
     },
 
-    openSignInWindow() {
-      const url = this.getZaloOauthUrl();
+    async openSignInWindow() {
+      const url = await this.$store.dispatch('inboxes/getZaloLoginUrl');
       const window_name = 'zaloOauth';
 
       // remove any existing event listeners
@@ -167,7 +167,7 @@ export default {
       if (data.type === 'integration' && data.goby_integration === 'zalo') {
         try {
           this.inbox = await this.$store.dispatch('inboxes/createZaloChannel', {
-            code: data.code,
+            ...data,
           });
 
           this.inboxName = this.inbox.name;

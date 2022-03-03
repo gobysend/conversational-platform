@@ -126,6 +126,11 @@ gem 'procore-sift'
 gem 'email_reply_trimmer'
 gem 'html2text'
 
+# RabbitMQ pubsub
+gem 'bunny', '>= 2.19.0'
+
+gem 'pkce_challenge'
+
 group :production, :staging do
   # we dont want request timing out in development while using byebug
   gem 'rack-timeout'

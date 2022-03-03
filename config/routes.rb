@@ -61,6 +61,7 @@ Rails.application.routes.draw do
             collection do
               post :register_zalo_oa
               post :oa_detail
+              get :request_auth_url
             end
           end
 

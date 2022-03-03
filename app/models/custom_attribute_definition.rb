@@ -34,4 +34,21 @@ class CustomAttributeDefinition < ApplicationRecord
   enum attribute_display_type: { text: 0, number: 1, currency: 2, percent: 3, link: 4, date: 5, list: 6, checkbox: 7 }
 
   belongs_to :account
+
+  attr_accessor :skip_commit_callbacks
+
+  after_commit :notify_changes
+
+  def notify_changes
+    return if self.attribute_model == 'conversation_attribute' || @skip_commit_callbacks
+
+    event_type = 'custom_attribute_destroyed'
+    if transaction_include_any_action?([:create])
+      event_type = 'custom_attribute_created'
+    elsif transaction_include_any_action?([:update])
+      event_type = 'custom_attribute_updated'
+    end
+
+    Publishers::RabbitPublisher.publish_control_message(queue_name: ENV.fetch('RABBITMQ_MESSAGE_CONTROL_QUEUE'), event_type: event_type, payload: self)
+  end
 end
