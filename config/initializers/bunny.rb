@@ -50,7 +50,6 @@ class BunnyConnectionManager
   end
 
   def subscribe_sync_to_chat
-    puts '===========================Subscribing to sync-to-chat queue...'
     ch = channel
     sync_queue = ch.queue(ENV.fetch('RABBITMQ_SYNC_TO_CHAT_QUEUE', 'sync-to-chat'), durable: true, auto_delete: false)
     sync_queue.subscribe(manual_ack: true, block: false) do |delivery_info, metadata, payload|

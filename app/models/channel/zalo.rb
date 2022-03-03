@@ -10,6 +10,7 @@
 #  oa_cover       :string
 #  oa_description :string
 #  oa_name        :string           not null
+#  refresh_token  :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  account_id     :integer          not null
