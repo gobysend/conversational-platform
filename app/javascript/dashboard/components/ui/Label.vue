@@ -55,6 +55,7 @@ export default {
   },
   computed: {
     textColor() {
+      if (this.bgColor == '#fff') return '#000000';
       return getContrastingTextColor(this.bgColor);
     },
     labelClass() {
