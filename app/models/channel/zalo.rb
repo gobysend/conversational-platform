@@ -42,6 +42,6 @@ class Channel::Zalo < ApplicationRecord
   private
 
   def sync_conversation_history
-    SyncConversationHistoryJob.perform_later(id, self.class.name) unless is_synced == false
+    Inboxes::SyncConversationHistoryJob.perform_later(id, self.class.name) unless is_synced == false
   end
 end

@@ -77,6 +77,7 @@ gem 'wisper', '2.0.0'
 ##--- gems for channels ---##
 # TODO: bump up gem to 2.0
 gem 'facebook-messenger', git: 'https://github.com/gobysend/facebook-messenger'
+gem 'fb_graph2'
 gem 'line-bot-api'
 gem 'telegram-bot-ruby'
 gem 'twilio-ruby', '~> 5.32.0'

@@ -15,15 +15,15 @@ class Zalo::DownloadConversationsService
     inbox
 
     # Load only 100 recent conversations
-    max_count = 1
+    max_count = 100
 
     loop do
       Rails.logger.info "Fetching conversations for OA #{channel.oa_name} from #{@offset} to #{@offset + @count}..."
       url = "#{ENV['ZALO_OA_API_BASE_URL']}/listrecentchat?data=#{{ offset: @offset, count: @count }.to_json}"
       response = RestClient.get(url, { content_type: 'application/json', access_token: channel.access_token })
       if response.code == -32
-        Rails.logger.info "API request for OA #{channel.oa_name} is exceeded the rate limit. Sleeping 1 minute before retrying again...zzzzz"
-        sleep(1.minute)
+        Rails.logger.info "API request for OA #{channel.oa_name} is exceeded the rate limit. Sleeping 1 minute before retrying again..."
+        sleep(60) # Sleep 60 seconds
       elsif response.code.negative?
         Rails.logger.info "Get error response for OA #{channel.oa_name}. Exiting conversation history download."
         break
@@ -74,7 +74,7 @@ class Zalo::DownloadConversationsService
       response = RestClient.get(url, { content_type: 'application/json', access_token: channel.access_token })
       if response.code == -32
         Rails.logger.info "API request for OA #{channel.oa_name} is exceeded the rate limit. Sleeping 1 minute before retrying again..."
-        sleep(1.minute)
+        sleep(60)
       elsif response.code.negative?
         Rails.logger.info "Get error response for OA #{channel.oa_name}. Exiting conversation history download."
         break
@@ -102,7 +102,7 @@ class Zalo::DownloadConversationsService
 
     # Set last activity for conversation
     last_activity_at = Time.zone.at(messages.last[:time]).to_datetime
-    @conversation.update(last_activity_at: last_activity_at, status: 1)
+    @conversation.update(last_activity_at: last_activity_at, status: 0)
     @contact.update(last_activity_at: last_activity_at)
   end
 

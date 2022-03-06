@@ -60,6 +60,9 @@ class Channel::FacebookPage < ApplicationRecord
   rescue => e
     Rails.logger.debug { "Rescued: #{e.inspect}" }
     true
+
+    # Download history conversations
+    Inboxes::SyncConversationHistoryJob.perform_later(id, self.class.name)
   end
 
   def unsubscribe

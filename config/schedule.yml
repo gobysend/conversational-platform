@@ -23,6 +23,6 @@ trigger_imap_email_inboxes_job:
 # executed At every 10th minute to renew Zalo access token
 refresh_zalo_access_token_job:
   cron: '*/10 * * * *'
-  class: 'RefreshZaloAccessTokenJob'
+  class: 'Zalo::RefreshZaloAccessTokenJob'
   queue: scheduled_jobs
 

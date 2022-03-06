@@ -29,7 +29,7 @@ class Zalo::HistoryMessageBuilder
   def build_message(message)
     @message = @conversation.messages.build(message_params(message))
 
-    unless message[:type] == 'text' || message[:type] == 'nosupport'
+    unless message[:type] == 'text'
       params = attachment_params(message)
       attachment = @message.attachments.new(params.except(:remote_file_url))
       attach_file(attachment, params[:remote_file_url])
@@ -46,7 +46,7 @@ class Zalo::HistoryMessageBuilder
       account_id: @conversation.account_id,
       inbox_id: @conversation.inbox_id,
       message_type: message[:src].zero? ? 'outgoing' : 'incoming',
-      content: message[:message],
+      content: format_message_content(message[:message]),
       private: false,
       sender: message[:src].zero? ? Current.user : @contact,
       content_type: nil,
@@ -60,6 +60,15 @@ class Zalo::HistoryMessageBuilder
     end
 
     params
+  end
+
+  def format_message_content(message)
+    if message.start_with?('query:')
+      last_index = message.rindex(/@/) + 1
+      message = message[last_index..(message.length - 1)]
+    end
+
+    message
   end
 
   def attach_file(attachment, file_url)

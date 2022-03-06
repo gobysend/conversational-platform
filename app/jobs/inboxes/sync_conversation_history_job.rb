@@ -1,4 +1,4 @@
-class SyncConversationHistoryJob < ApplicationJob
+class Inboxes::SyncConversationHistoryJob < ApplicationJob
   queue_as :scheduled_jobs
 
   def perform(channel_id, channel_class)
@@ -9,6 +9,13 @@ class SyncConversationHistoryJob < ApplicationJob
       service = Zalo::DownloadConversationsService.new
       service.channel = channel
       service.perform
+
+    when 'Channel::FacebookPage'
+      channel = Channel::FacebookPage.find(channel_id)
+
+      service = Facebook::DownloadConversationsService.new
+      service.channel = channel
+      # service.perform
     end
   end
 end

@@ -7,6 +7,7 @@ Sidekiq.configure_client do |config|
 end
 
 Sidekiq.configure_server do |config|
+  config.logger.level = Logger::WARN
   config.redis = Redis::Config.app
 end
 

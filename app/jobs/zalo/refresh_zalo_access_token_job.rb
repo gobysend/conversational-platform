@@ -1,4 +1,4 @@
-class RefreshZaloAccessTokenJob < ApplicationJob
+class Zalo::RefreshZaloAccessTokenJob < ApplicationJob
   queue_as :scheduled_jobs
 
   def perform
