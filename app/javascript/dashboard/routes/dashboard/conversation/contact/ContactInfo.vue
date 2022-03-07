@@ -194,7 +194,8 @@ export default {
   computed: {
     ...mapGetters({ uiFlags: 'contacts/getUIFlags' }),
     contactProfileLink() {
-      return `/app/accounts/${this.$route.params.accountId}/contacts/${this.contact.id}`;
+      return `${window.chatwootConfig.admin_frontend_url}/integrations/redirect-page?team_box_id=${this.contact.id}`;
+      //return `/app/accounts/${this.$route.params.accountId}/contacts/${this.contact.id}`;
     },
     additionalAttributes() {
       return this.contact.additional_attributes || {};
