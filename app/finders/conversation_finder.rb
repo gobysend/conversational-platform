@@ -131,7 +131,7 @@ class ConversationFinder
     if params[:conversation_type] == 'mention'
       @conversations.page(current_page)
     else
-      @conversations.latest.page(current_page)
+      @conversations.oldest.page(current_page)
     end
   end
 end

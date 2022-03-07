@@ -15,7 +15,7 @@ class Inboxes::SyncConversationHistoryJob < ApplicationJob
 
       service = Facebook::DownloadConversationsService.new
       service.channel = channel
-      # service.perform
+      service.perform
     end
   end
 end

@@ -16,9 +16,7 @@ class Facebook::DownloadConversationsService
   def perform
     # Get inbox for current channel
     inbox
-
     return if @inbox.nil?
-
 
     FbGraph2.api_version = 'v13.0'
     fb = FbGraph2::Page.new(channel.page_id).authenticate(channel.page_access_token)
@@ -30,26 +28,39 @@ class Facebook::DownloadConversationsService
 
       index = 0
       threads.each do |thread|
-        @conversation = create_conversation(thread)
+        # Find or create new contact_inbox and conversation
+        ActiveRecord::Base.transaction do
+          contact_inbox(thread)
+          create_conversation(thread)
+        end
 
-        messages = threads.messages(limit: MESSAGES_LIMIT, fields: 'message,to,tags,id,from,created_time')
+        begin
+          # Loop to download messages of the conversation
+          messages = thread.messages(limit: MESSAGES_LIMIT, fields: 'message,to,tags,id,from,created_time')
 
-        loop do
-          offset = index * MESSAGES_LIMIT
-          Rails.logger.info "Fetching messages for thread #{thread.id} from #{offset} to #{offset + MESSAGES_LIMIT}"
+          loop do
+            offset = index * MESSAGES_LIMIT
+            Rails.logger.info "Fetching messages for thread #{thread.id} from #{offset} to #{offset + MESSAGES_LIMIT}"
 
-          break if messages.nil? || messages.blank?
+            break if messages.nil? || messages.blank?
 
-          save_conversation_messages(messages)
+            save_conversation_messages(messages)
 
-          index += 1
-          break if (offset + MESSAGES_LIMIT) >= MAX_MESSAGES_IN_CONVERSATION
+            index += 1
+            break if (offset + MESSAGES_LIMIT) >= MAX_MESSAGES_IN_CONVERSATION
 
-          messages = messages.next!
+            # Get the next page of the messages within the conversation
+            messages = messages.next
+          end
+        rescue StandardError => e
+          Rails.logger.error(e)
+        ensure
+          # Set conversation status to open
+          @conversation.update(status: 0)
         end
       end
 
-      threads = threads.next!
+      threads = threads.next
     end
   end
 
@@ -60,13 +71,24 @@ class Facebook::DownloadConversationsService
   end
 
   def save_conversation_messages(messages = [])
+    return if messages.nil? || messages.blank?
+
+    ActiveRecord::Base.transaction do
+      messages = messages.reverse
+
+      messages.each do |message|
+        @conversation.messages.build(message_params(message))
+      end
+
+      @conversation.save
+    end
   end
 
   def contact_inbox(thread)
     sender = thread.senders.find { |sender| sender.id != channel.page_id }
     @sender_id = sender.id
     @contact = Contact.find_by(identifier: @sender_id)
-    @contact ||= Contact.create!(contact_params(sender).except(:remote_avatar_url))
+    @contact ||= Contact.create!(contact_params(sender))
 
     @contact_inbox = @inbox.contact_inboxes.find_by(source_id: @sender_id)
     @contact_inbox ||= ContactInbox.create(contact: @contact, inbox: @inbox, source_id: @sender_id)
@@ -92,7 +114,10 @@ class Facebook::DownloadConversationsService
       inbox_id: @inbox.id,
       contact_id: @contact.id,
       contact_last_seen_at: Time.zone.at(thread.updated_time).to_datetime,
-      agent_last_seen_at: Time.zone.at(thread.updated_time).to_datetime
+      agent_last_seen_at: Time.zone.at(thread.updated_time).to_datetime,
+      last_activity_at: Time.zone.at(thread.updated_time).to_datetime,
+      created_at: Time.zone.at(thread.updated_time).to_datetime,
+      updated_at: Time.zone.at(thread.updated_time).to_datetime
     }
   end
 
@@ -100,23 +125,25 @@ class Facebook::DownloadConversationsService
     {
       name: sender.name,
       account_id: @inbox.account_id,
+      identifier: sender.id
     }
-    if thread[:src].zero?
-      # Outgoing
-      {
-        name: thread[:to_display_name] || 'Unknown',
-        account_id: @inbox.account_id,
-        remote_avatar_url: thread[:to_avatar],
-        identifier: thread[:to_id]
-      }
-    else
-      # Incoming
-      {
-        name: thread[:from_display_name] || 'Unknown',
-        account_id: @inbox.account_id,
-        remote_avatar_url: thread[:from_avatar],
-        identifier: thread[:from_id]
-      }
-    end
+  end
+
+  def message_params(message)
+    {
+      account_id: @conversation.account_id,
+      inbox_id: @conversation.inbox_id,
+      message_type: message.from.id == channel.page_id ? 'outgoing' : 'incoming',
+      content: message.message,
+      private: false,
+      sender: message.from.id == channel.page_id ? @contact : nil,
+      content_type: 0,
+      in_reply_to: nil,
+      echo_id: nil,
+      skip_create_callbacks: true,
+      source_id: message.id,
+      created_at: Time.zone.at(message.created_time).to_datetime,
+      updated_at: Time.zone.at(message.created_time).to_datetime
+    }
   end
 end

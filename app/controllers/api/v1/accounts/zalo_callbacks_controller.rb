@@ -46,6 +46,7 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
 
     response = JSON.parse(response.body, { symbolize_names: true })
     @oa_access_token = response[:access_token] if response[:access_token].present?
+    @oa_refresh_token = response[:refresh_token] if response[:refresh_token].present?
   end
 
   ##
@@ -89,7 +90,8 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
           oa_avatar: @oa[:avatar],
           oa_cover: @oa[:cover],
           access_token: @oa_access_token,
-          expires_at: (DateTime.now + 1.year)
+          expires_at: (DateTime.now + 1.hour),
+          refresh_token: @oa_refresh_token
         )
       else
         # Otherwise, create new Zalo channel
@@ -100,8 +102,9 @@ class Api::V1::Accounts::ZaloCallbacksController < Api::V1::Accounts::BaseContro
           oa_avatar: @oa[:avatar],
           oa_cover: @oa[:cover],
           access_token: @oa_access_token,
-          expires_at: (DateTime.now + 1.year),
-          is_synced: true
+          expires_at: (DateTime.now + 1.hour),
+          is_synced: true,
+          refresh_token: @oa_refresh_token
         )
       end
 
