@@ -63,6 +63,8 @@ class Zalo::HistoryMessageBuilder
   end
 
   def format_message_content(message)
+    return nil if message.nil?
+
     if message.start_with?('query:')
       last_index = message.rindex(/@/) + 1
       message = message[last_index..(message.length - 1)]

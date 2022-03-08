@@ -10,7 +10,7 @@ class Zalo::RefreshZaloAccessTokenJob < ApplicationJob
       return if oa_list.blank?
 
       oa_list.each do |zalo_channel|
-        Rails.logger.info "Refreshing access token for OA #{zalo_channel.oa_name}"
+        puts "Refreshing access token for OA #{zalo_channel.oa_name}"
         refresh_access_token(zalo_channel)
       end
     end
@@ -31,7 +31,18 @@ class Zalo::RefreshZaloAccessTokenJob < ApplicationJob
       grant_type: 'refresh_token'
     }
 
-    response = RestClient.post(url, params.to_json, { secret_key: ENV['ZALO_APP_SECRET'] })
+    begin
+      response = HTTParty.post(
+        'https://oauth.zaloapp.com/v4/oa/access_token',
+        query: params,
+        headers: {
+          'secret_key' => ENV['ZALO_APP_SECRET']
+        }
+      )
+    rescue RestClient::ExceptionWithResponse
+      return
+    end
+
     response = JSON.parse(response, { symbolize_names: true })
     return if response[:access_token].blank?
 
