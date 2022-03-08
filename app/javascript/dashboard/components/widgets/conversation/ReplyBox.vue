@@ -325,7 +325,9 @@ export default {
     document.addEventListener('keydown', this.handleKeyEvents);
     document.addEventListener('paste', this.onPaste);
 
-    this.$nextTick(() => this.$refs.messageInput.focus());
+    this.$nextTick(() => {
+      if (this.$refs.messageInput) this.$refs.messageInput.focus();
+    });
   },
   destroyed() {
     document.removeEventListener('keydown', this.handleKeyEvents);
