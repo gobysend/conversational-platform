@@ -52,7 +52,7 @@ class Zalo::RefreshZaloAccessTokenJob < ApplicationJob
 
     zalo_channel.access_token = response[:access_token]
     zalo_channel.refresh_token = response[:refresh_token]
-    zalo_channel.expires_at = DateTime.now + response[:expires_in].seconds
+    zalo_channel.expires_at = DateTime.now + response[:expires_in].to_i.seconds
     zalo_channel.save
   end
 end
