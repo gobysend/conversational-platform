@@ -44,7 +44,7 @@ class Zalo::RefreshZaloAccessTokenJob < ApplicationJob
     end
 
     response = JSON.parse(response.body, { symbolize_names: true })
-    if (response[:error]).negative?
+    if response[:error].present? && (response[:error]).negative?
       zalo_channel.expires_at = DateTime.now - 10.seconds
       zalo_channel.save
       return
