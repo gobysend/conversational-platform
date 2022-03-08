@@ -43,8 +43,12 @@ class Zalo::RefreshZaloAccessTokenJob < ApplicationJob
       return
     end
 
-    response = JSON.parse(response, { symbolize_names: true })
-    return if response[:access_token].blank?
+    response = JSON.parse(response.body, { symbolize_names: true })
+    if (response[:error]).negative?
+      zalo_channel.expires_at = DateTime.now - 10.seconds
+      zalo_channel.save
+      return
+    end
 
     zalo_channel.access_token = response[:access_token]
     zalo_channel.refresh_token = response[:refresh_token]
