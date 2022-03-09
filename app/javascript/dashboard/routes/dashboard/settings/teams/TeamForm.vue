@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="small-12 medium-8 columns">
+    <div class="small-12 large-10 columns">
       <form class="row" @submit.prevent="handleSubmit">
         <woot-input
           v-model.trim="title"

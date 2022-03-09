@@ -119,9 +119,9 @@
     }
   },
   "ONBOARDING": {
-    "TITLE": "Hey 👋, Welcome to %{installationName}!",
-    "DESCRIPTION": "Thanks for signing up. We want you to get the most out of %{installationName}. Here are a few things you can do in %{installationName} to make the experience delightful.",
-    "READ_LATEST_UPDATES": "Read our latest updates",
+    "TITLE": "👋, Chào mừng bạn đến với %{installationName}!",
+    "DESCRIPTION": "Cảm ơn bạn đã đăng ký. Chúng tôi muốn bạn tận dụng tối đa %{installationName}. Dưới đây là một số điều bạn có thể làm trong %{installationName} để làm cho trải nghiệm thú vị.",
+    "READ_LATEST_UPDATES": "Xem cập nhật mới nhất của chúng tôi",
     "ALL_CONVERSATION": {
       "TITLE": "Tất cả các cuộc trò chuyện của bạn ở một nơi",
       "DESCRIPTION": "Xem tất cả các cuộc trò chuyện từ khách hàng của bạn trong một trang tổng quan duy nhất. Bạn có thể lọc các cuộc trò chuyện theo kênh, nhãn và trạng thái."

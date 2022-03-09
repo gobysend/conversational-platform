@@ -13,61 +13,47 @@
             </router-link>
           </p>
 
-          <div v-else style="overflow:auto">
-            <table class="woot-table">
-              <tbody>
-                <tr v-for="item in teamsList" :key="item.id">
-                  <td>
-                    <span class="agent-name">{{ item.name }}</span>
-                    <p>{{ item.description }}</p>
-                  </td>
+          <table class="woot-table">
+            <tbody>
+              <tr v-for="item in teamsList" :key="item.id">
+                <td>
+                  <span class="agent-name">{{ item.name }}</span>
+                  <p>{{ item.description }}</p>
+                </td>
 
-                  <td>
-                    <div class="button-wrapper">
-                      <router-link
-                        :to="
-                          addAccountScoping(`settings/teams/${item.id}/edit`)
-                        "
-                      >
-                        <woot-button
-                          v-if="isAdmin"
-                          v-tooltip.top="$t('TEAMS_SETTINGS.LIST.EDIT_TEAM')"
-                          variant="smooth"
-                          size="tiny"
-                          color-scheme="secondary"
-                          class-names="grey-btn"
-                          icon="settings"
-                        >
-                        </woot-button>
-                      </router-link>
+                <td>
+                  <div class="button-wrapper">
+                    <router-link
+                      :to="addAccountScoping(`settings/teams/${item.id}/edit`)"
+                    >
                       <woot-button
                         v-if="isAdmin"
-                        v-tooltip.top="$t('TEAMS_SETTINGS.DELETE.BUTTON_TEXT')"
+                        v-tooltip.top="$t('TEAMS_SETTINGS.LIST.EDIT_TEAM')"
                         variant="smooth"
-                        color-scheme="alert"
                         size="tiny"
-                        icon="dismiss-circle"
+                        color-scheme="secondary"
                         class-names="grey-btn"
-                        :is-loading="loading[item.id]"
-                        @click="openDelete(item)"
+                        icon="settings"
                       >
                       </woot-button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="small-4 columns">
-            <span
-              v-html="
-                $t('TEAMS_SETTINGS.SIDEBAR_TXT', {
-                  installationName: globalConfig.installationName,
-                })
-              "
-            />
-          </div>
+                    </router-link>
+                    <woot-button
+                      v-if="isAdmin"
+                      v-tooltip.top="$t('TEAMS_SETTINGS.DELETE.BUTTON_TEXT')"
+                      variant="smooth"
+                      color-scheme="alert"
+                      size="tiny"
+                      icon="dismiss-circle"
+                      class-names="grey-btn"
+                      :is-loading="loading[item.id]"
+                      @click="openDelete(item)"
+                    >
+                    </woot-button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <woot-confirm-delete-modal
           v-if="showDeletePopup"
@@ -76,10 +62,20 @@
           :message="$t('TEAMS_SETTINGS.DELETE.CONFIRM.MESSAGE')"
           :confirm-text="deleteConfirmText"
           :reject-text="deleteRejectText"
-          :confirm-value="selectedTeam.name"
+          confirm-value="Delete"
           :confirm-place-holder-text="confirmPlaceHolderText"
           @on-confirm="confirmDeletion"
           @on-close="closeDelete"
+        />
+      </div>
+
+      <div class="small-4 columns">
+        <span
+          v-html="
+            $t('TEAMS_SETTINGS.SIDEBAR_TXT', {
+              installationName: globalConfig.installationName,
+            })
+          "
         />
       </div>
     </div>
@@ -108,9 +104,7 @@ export default {
       globalConfig: 'globalConfig/get',
     }),
     deleteConfirmText() {
-      return `${this.$t('TEAMS_SETTINGS.DELETE.CONFIRM.YES')} ${
-        this.selectedTeam.name
-      }`;
+      return `${this.$t('TEAMS_SETTINGS.DELETE.CONFIRM.YES')}`;
     },
     deleteRejectText() {
       return this.$t('TEAMS_SETTINGS.DELETE.CONFIRM.NO');
@@ -122,7 +116,7 @@ export default {
     },
     confirmPlaceHolderText() {
       return `${this.$t('TEAMS_SETTINGS.DELETE.CONFIRM.PLACE_HOLDER', {
-        teamName: this.selectedTeam.name,
+        teamName: 'Delete',
       })}`;
     },
   },

@@ -164,7 +164,6 @@ export default {
       content: ' ';
       position: absolute;
       pointer-events: none;
-      z-index: 10000;
       left: 50%;
       bottom: 100%;
       transform: translateX(-50%);
@@ -191,7 +190,6 @@ export default {
         content: ' ';
         position: absolute;
         pointer-events: none;
-        z-index: 10000;
         top: 15px;
         width: 0px;
         left: -11px;

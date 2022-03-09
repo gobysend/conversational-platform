@@ -112,11 +112,15 @@ export default {
 }
 
 .scroll-wrap {
-  padding: var(--space-larger) 13.6rem;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 25px;
+
+  @media (min-width: 1800px) {
+    padding: var(--space-larger) 13.6rem;
+  }
 }
 
 .features-item {
@@ -136,7 +140,7 @@ export default {
 .block-title {
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--space-smaller);
-  margin-left: var(--space-minus-large);
+  //margin-left: var(--space-minus-large);
 }
 
 .intro-body {

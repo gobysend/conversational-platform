@@ -89,3 +89,4 @@ export default {
 </style>
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style src="vue-swatches/dist/vue-swatches.css"></style>

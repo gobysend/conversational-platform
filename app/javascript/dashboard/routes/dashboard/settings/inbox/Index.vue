@@ -162,14 +162,10 @@ export default {
     }),
     // Delete Modal
     deleteConfirmText() {
-      return `${this.$t('INBOX_MGMT.DELETE.CONFIRM.YES')} ${
-        this.selectedInbox.name
-      }`;
+      return `${this.$t('INBOX_MGMT.DELETE.CONFIRM.YES')}`;
     },
     deleteRejectText() {
-      return `${this.$t('INBOX_MGMT.DELETE.CONFIRM.NO')} ${
-        this.selectedInbox.name
-      }`;
+      return `${this.$t('INBOX_MGMT.DELETE.CONFIRM.NO')}`;
     },
     confirmDeleteMessage() {
       return `${this.$t('INBOX_MGMT.DELETE.CONFIRM.MESSAGE')} ${

@@ -31,8 +31,9 @@
             <thead>
               <!-- Header -->
               <th
-                v-for="thHeader in $t('CANNED_MGMT.LIST.TABLE_HEADER')"
+                v-for="(thHeader, index) in $t('CANNED_MGMT.LIST.TABLE_HEADER')"
                 :key="thHeader"
+                :class="{ 'text-right': index == 2 }"
               >
                 {{ thHeader }}
               </th>
@@ -75,10 +76,10 @@
             </tbody>
           </table>
         </div>
+      </div>
 
-        <div class="small-4 columns">
-          <span v-html="$t('CANNED_MGMT.SIDEBAR_TXT')"></span>
-        </div>
+      <div class="small-4 columns">
+        <span v-html="$t('CANNED_MGMT.SIDEBAR_TXT')"></span>
       </div>
       <!-- Add Agent -->
       <woot-modal :show.sync="showAddPopup" :on-close="hideAddPopup">

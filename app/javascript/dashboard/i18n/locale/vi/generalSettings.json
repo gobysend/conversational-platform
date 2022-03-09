@@ -15,7 +15,7 @@
       },
       "ACCOUNT_ID": {
         "TITLE": "Account ID",
-        "NOTE": "Sử dụng ID này khi banj kết nối tới hệ thống qua API."
+        "NOTE": "Sử dụng ID này khi bạn kết nối tới hệ thống qua API."
       },
       "NAME": {
         "LABEL": "Tên tài khoản",
@@ -51,9 +51,9 @@
   },
   "FORMS": {
     "MULTISELECT": {
-      "ENTER_TO_SELECT": "Press enter to select",
-      "ENTER_TO_REMOVE": "Press enter to remove",
-      "SELECT_ONE": "Select one"
+      "ENTER_TO_SELECT": "Nhấn enter để chọn",
+      "ENTER_TO_REMOVE": "Nhấn enter để xóa",
+      "SELECT_ONE": "Chọn một lựa chọn"
     }
   },
   "NOTIFICATIONS_PAGE": {
@@ -78,22 +78,22 @@
   },
   "NETWORK": {
     "NOTIFICATION": {
-      "TEXT": "Disconnected from Chatwoot"
+      "TEXT": "Mất kết nối từ hệ thống"
     },
     "BUTTON": {
-      "REFRESH": "Refresh"
+      "REFRESH": "Làm mới"
     }
   },
   "COMMAND_BAR": {
-    "SEARCH_PLACEHOLDER": "Search or jump to",
+    "SEARCH_PLACEHOLDER": "Tìm kiếm hoặc chuyển đến",
     "SECTIONS": {
       "GENERAL": "General",
       "REPORTS": "Báo cáo",
-      "CONVERSATION": "Conversation",
-      "CHANGE_ASSIGNEE": "Change Assignee",
-      "CHANGE_TEAM": "Change Team",
-      "ADD_LABEL": "Add label to the conversation",
-      "REMOVE_LABEL": "Remove label from the conversation",
+      "CONVERSATION": "Hội thoại",
+      "CHANGE_ASSIGNEE": "Thay đổi người phụ trách",
+      "CHANGE_TEAM": "Thay đổi nhóm",
+      "ADD_LABEL": "Gắn nhãn cho cuộc hội thoại",
+      "REMOVE_LABEL": "Xóa nhãn cho cuộc hội thoại",
       "SETTINGS": "Cài đặt"
     },
     "COMMANDS": {

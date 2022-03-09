@@ -29,7 +29,7 @@
           "body": "Thêm nhân viên vào nhóm."
         },
         {
-          "title": "Finish",
+          "title": "Hoàn thành",
           "route": "settings_teams_finish",
           "body": "Thiết lập đã sẵn sàng."
         }
@@ -88,7 +88,7 @@
     "FINISH": {
       "TITLE": "Nhóm của bạn đã sẵn sàng!",
       "MESSAGE": "Hãy bắt đầu nâng cao hiệu quả làm việc bằng cách chăm sóc khách hàng của bạn theo nhóm.",
-      "BUTTON_TEXT": "Hoàn thành"
+      "BUTTON_TEXT": "Hoàn thành"  
     },
     "DELETE": {
       "BUTTON_TEXT": "Xoá",
@@ -100,7 +100,7 @@
         "TITLE": "Bạn có chắc muốn xóa nhóm - %{teamName}",
         "PLACE_HOLDER": "Vui lòng nhập {teamName} để xác nhận.",
         "MESSAGE": "Khi một nhóm bị xóa, tất cả các cuộc hội thoại đã gán cho nhóm này sẽ chuyển về trạng thái Chưa được gán (Unassigned).",
-        "YES": "Xoá ",
+        "YES": "Xoá nhóm",
         "NO": "Huỷ"
       }
     },

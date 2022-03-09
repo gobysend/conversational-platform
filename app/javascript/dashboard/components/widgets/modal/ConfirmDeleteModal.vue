@@ -3,6 +3,7 @@
     <woot-modal-header :header-title="title" :header-content="message" />
     <form @submit.prevent="onConfirm">
       <woot-input
+        ref="input"
         v-model="value"
         type="text"
         :class="{ error: $v.value.$error }"
@@ -59,6 +60,10 @@ export default {
       type: String,
       default: '',
     },
+  },
+  mounted() {
+    //console.log('test', this.$refs.input.$el.children[0].focus());
+    this.$refs.input.$el.children[0].focus();
   },
   data() {
     return {
