@@ -18,6 +18,8 @@ class Facebook::DownloadConversationsService
     inbox
     return if @inbox.nil?
 
+    oldest_date = Time.zone.current.beginning_of_day - OLDEST_CONVERSATION_BACK_DAYS.days
+
     FbGraph2.api_version = 'v13.0'
     fb = FbGraph2::Page.new(channel.page_id).authenticate(channel.page_access_token)
 
@@ -26,8 +28,15 @@ class Facebook::DownloadConversationsService
     loop do
       break if threads.nil? || threads.blank?
 
+      reach_oldest = false
       index = 0
+
       threads.each do |thread|
+        if Time.zone.at(thread.updated_time).to_datetime <= oldest_date
+          reach_oldest = true
+          break
+        end
+
         # Find or create new contact_inbox and conversation
         ActiveRecord::Base.transaction do
           contact_inbox(thread)
@@ -59,6 +68,9 @@ class Facebook::DownloadConversationsService
           @conversation.update(status: 0)
         end
       end
+
+      # Stop getting older threads if reach the oldest
+      break if reach_oldest
 
       threads = threads.next
     end
