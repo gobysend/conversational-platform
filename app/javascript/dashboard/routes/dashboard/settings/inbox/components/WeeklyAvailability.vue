@@ -71,8 +71,8 @@ import {
 } from '../helpers/businessHour';
 
 const DEFAULT_TIMEZONE = {
-  label: 'America/Los_Angeles',
-  key: 'America/Los_Angeles',
+  label: 'Hanoi (GMT+07:00)',
+  key: 'Asia/Ho_Chi_Minh',
 };
 
 export default {
@@ -95,13 +95,13 @@ export default {
       ),
       timeZone: DEFAULT_TIMEZONE,
       dayNames: {
-        0: 'Sunday',
-        1: 'Monday',
-        2: 'Tuesday',
-        3: 'Wednesday',
-        4: 'Thursday',
-        5: 'Friday',
-        6: 'Saturday',
+        0: this.$t('INBOX_MGMT.BUSINESS_HOURS.DAY.SUNDAY'),
+        1: this.$t('INBOX_MGMT.BUSINESS_HOURS.DAY.MONDAY'),
+        2: this.$t('INBOX_MGMT.BUSINESS_HOURS.DAY.TUESDAY'),
+        3: this.$t('INBOX_MGMT.BUSINESS_HOURS.DAY.WEDNESDAY'),
+        4: this.$t('INBOX_MGMT.BUSINESS_HOURS.DAY.THURSDAY'),
+        5: this.$t('INBOX_MGMT.BUSINESS_HOURS.DAY.FRIDAY'),
+        6: this.$t('INBOX_MGMT.BUSINESS_HOURS.DAY.SATURDAY'),
       },
       timeSlots: [...defaultTimeSlot],
     };

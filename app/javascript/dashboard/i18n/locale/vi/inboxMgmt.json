@@ -303,18 +303,26 @@
       },
       "AUTO_ASSIGNMENT": {
         "ENABLED": "Bật",
-        "DISABLED": "Không bật"
+        "DISABLED": "Tắt"
       },
       "EMAIL_COLLECT_BOX": {
         "ENABLED": "Bật",
-        "DISABLED": "Không bật"
+        "DISABLED": "Tắt"
       },
       "ENABLE_CSAT": {
         "ENABLED": "Bật",
-        "DISABLED": "Không bật"
+        "DISABLED": "Tắt"
+      },
+      "ALLOW_MESSAGES_AFTER_RESOLVED": {
+        "ENABLED": "Bật",
+        "DISABLED": "Tắt"
+      },
+      "ENABLE_CONTINUITY_VIA_EMAIL": {
+        "ENABLED": "Bật",
+        "DISABLED": "Tắt"
       },
       "ENABLE_HMAC": {
-        "LABEL": "Enable"
+        "LABEL": "Bật"
       }
     },
     "DELETE": {
@@ -354,11 +362,13 @@
       "INBOX_AGENTS": "Nhân viên hỗ trợ",
       "INBOX_AGENTS_SUB_TEXT": "Thêm hoặc xóa nhân viên hỗ trợ khỏi kênh chat này",
       "UPDATE": "Cập nhật",
-      "ENABLE_EMAIL_COLLECT_BOX": "Hiển thị ô thu thập địa chỉ email của khách hàng",
-      "ENABLE_EMAIL_COLLECT_BOX_SUB_TEXT": "Enable or disable email collect box on new conversation",
-      "AUTO_ASSIGNMENT": "Bật tự động chuyển nhượng",
-      "ENABLE_CSAT": "Enable CSAT",
-      "ENABLE_CSAT_SUB_TEXT": "Enable/Disable CSAT(Customer satisfaction) survey after resolving a conversation",
+      "ENABLE_EMAIL_COLLECT_BOX": "Hiển thị ô nhập địa chỉ email của khách hàng",
+      "ENABLE_EMAIL_COLLECT_BOX_SUB_TEXT": "Bật hoặc tắt ô nhập email trên cuộc trò chuyện mới",
+      "AUTO_ASSIGNMENT": "Tự động gán người phụ trách",
+      "ENABLE_CSAT": "Bật CSAT (Customer satisfaction)",
+      "ENABLE_CSAT_SUB_TEXT": "Bật/Tắt khảo sát mức độ hài lòng của khách hàng sau khi kết thúc một cuộc trò chuyện",
+      "ENABLE_CONTINUITY_VIA_EMAIL": "Cho phép cuộc trò chuyện liên tục qua email",
+      "ENABLE_CONTINUITY_VIA_EMAIL_SUB_TEXT": "Các cuộc trò chuyện sẽ tiếp tục qua email nếu địa chỉ email liên hệ có sẵn.",
       "INBOX_UPDATE_TITLE": "Cài đặt Kênh chat",
       "INBOX_UPDATE_SUB_TEXT": "Cập nhật cài đặt kênh chat của bạn",
       "AUTO_ASSIGNMENT_SUB_TEXT": "Bật hoặc tắt tính năng tự động gán các cuộc hội thoại mới cho các tác nhân được thêm vào kênh chat này.",
@@ -368,8 +378,10 @@
       "HMAC_MANDATORY_DESCRIPTION": "If enabled, Chatwoot SDKs setUser method will not work unless the `identifier_hash` is provided for each user.",
       "INBOX_IDENTIFIER": "Inbox Identifier",
       "INBOX_IDENTIFIER_SUB_TEXT": "Use the `inbox_identifier` token shown here to authentication your API clients.",
-      "FORWARD_EMAIL_TITLE": "Forward to Email",
-      "FORWARD_EMAIL_SUB_TEXT": "Bắt đầu chuyển tiếp email của bạn tới địa chỉ email sau."
+      "FORWARD_EMAIL_TITLE": "Chuyển hướng đến Email",
+      "FORWARD_EMAIL_SUB_TEXT": "Bắt đầu chuyển tiếp email của bạn tới địa chỉ email sau.",
+      "ALLOW_MESSAGES_AFTER_RESOLVED": "Cho phép nhắn tin sau khi cuộc hội thoại đánh dấu là được giải quyết",
+      "ALLOW_MESSAGES_AFTER_RESOLVED_SUB_TEXT": "Cho phép người dùng cuối gửi tin nhắn ngay cả khi cuộc trò chuyện đã được giải quyết."
     },
     "FACEBOOK_REAUTHORIZE": {
       "TITLE": "Ủy quyền lại",
@@ -395,21 +407,29 @@
       }
     },
     "BUSINESS_HOURS": {
-      "TITLE": "Set your availability",
-      "SUBTITLE": "Set your availability on your livechat widget",
-      "WEEKLY_TITLE": "Set your weekly hours",
-      "TIMEZONE_LABEL": "Select timezone",
-      "UPDATE": "Update business hours settings",
-      "TOGGLE_AVAILABILITY": "Enable business availability for this inbox",
-      "UNAVAILABLE_MESSAGE_LABEL": "Unavailable message for visitors",
-      "UNAVAILABLE_MESSAGE_DEFAULT": "We are unavailable at the moment. Leave a message we will respond once we are back.",
-      "TOGGLE_HELP": "Enabling business availability will show the available hours on live chat widget even if all the agents are offline. Outside available hours vistors can be warned with a message and a pre-chat form.",
+      "TITLE": "Cài đặt giờ làm việc",
+      "SUBTITLE": "Cài đặt thời gian trực tuyến livechat trên website của bạn",
+      "WEEKLY_TITLE": "Cài đặt thời gian làm việc trong tuần của bạn",
+      "TIMEZONE_LABEL": "Chọn múi giờ",
+      "UPDATE": "Cập nhật thời gian trực tuyến",
+      "TOGGLE_AVAILABILITY": "Kích hoạt thời gian trực tuyến cho kênh chat này",
+      "UNAVAILABLE_MESSAGE_LABEL": "Nội dung thông báo sẽ hiển thị cho khách hàng khi truy cập ngoài giờ làm việc",
+      "UNAVAILABLE_MESSAGE_DEFAULT": "Chúng tôi đang không trực tuyến tại thời điểm này. Vui lòng để lại tin nhắn, chúng tôi sẽ trả lời bạn trong thời gian sớm nhất có thể khi chúng tôi quay lại.",
+      "TOGGLE_HELP": "Việc kích hoạt tính năng Giờ làm việc sẽ hiển thị thời gian trực tuyến trên tiện ích livechat ngay cả khi tất cả các nhân viên ngoại tuyến. Ngoài giờ làm việc, khách hàng truy cập có thể được cảnh báo bằng tin nhắn và biểu mẫu trò chuyện soạn trước.",
       "DAY": {
-        "ENABLE": "Enable availability for this day",
-        "UNAVAILABLE": "Unavailable",
-        "HOURS": "hours",
-        "VALIDATION_ERROR": "Starting time should be before closing time.",
-        "CHOOSE": "Choose"
+        "ENABLE": "Trực tuyến ngày này",
+        "UNAVAILABLE": "Không trực tuyến",
+        "HOURS": "giờ",
+        "VALIDATION_ERROR": "Thời gian bắt đầu phải trước thời gian kết thúc.",
+        "CHOOSE": "Chọn giờ",
+
+        "SUNDAY": "Chủ nhật",
+        "MONDAY": "Thứ hai",
+        "TUESDAY": "Thứ ba",
+        "WEDNESDAY": "Thứ tư",
+        "THURSDAY": "Thứ năm",
+        "FRIDAY": "Thứ sáu",
+        "SATURDAY": "Thứ bảy"
       }
     },
     "IMAP": {

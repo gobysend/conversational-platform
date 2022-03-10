@@ -18,8 +18,8 @@
       "not_equal_to": "Khác",
       "contains": "Có chứa",
       "does_not_contain": "Không chứa",
-      "is_present": "Is present",
-      "is_not_present": "Is not present"
+      "is_present": "Không trống",
+      "is_not_present": "Trống"
     },
     "ATTRIBUTES": {
       "STATUS": "Trạng thái",
@@ -27,8 +27,8 @@
       "INBOX_NAME": "Tên kênh chat",
       "TEAM_NAME": "Tên nhóm",
       "CONVERSATION_IDENTIFIER": "Mã định danh cuộc hội thoại",
-      "CAMPAIGN_NAME": "Tên chiến dịch",
-      "LABELS": "Nhãn",
+      "CAMPAIGN_NAME": "Tên tin nhắn tự động",
+      "LABELS": "Nhãn/Thẻ",
       "BROWSER_LANGUAGE": "Ngôn ngữ trình duyệt",
       "COUNTRY_NAME": "Tên quốc gia",
       "REFERER_LINK": "Liên kết giới thiệu"
