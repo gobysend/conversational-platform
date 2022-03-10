@@ -165,6 +165,7 @@ class Conversation < ApplicationRecord
   def execute_after_update_commit_callbacks
     notify_status_change
     create_activity
+    notify_conversation_updation
   end
 
   def ensure_snooze_until_reset
@@ -193,6 +194,13 @@ class Conversation < ApplicationRecord
     return unless auto_resolve_duration
 
     AutoResolveConversationsJob.set(wait_until: (last_activity_at || created_at) + auto_resolve_duration.days).perform_later(id)
+  end
+
+  def notify_conversation_updation
+    return unless previous_changes.keys.present? && (previous_changes.keys & %w[team_id assignee_id status snoozed_until
+                                                                                custom_attributes]).present?
+
+    dispatcher_dispatch(CONVERSATION_UPDATED)
   end
 
   def self_assign?(assignee_id)

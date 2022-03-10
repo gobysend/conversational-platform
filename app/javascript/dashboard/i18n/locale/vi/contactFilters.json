@@ -1,46 +1,46 @@
 {
-    "CONTACTS_FILTER": {
-        "TITLE": "Lọc danh sách liên hệ",
-        "SUBTITLE": "Thêm các điều kiện để lọc danh sách liên hệ của bạn",
-        "ADD_NEW_FILTER": "Thêm điều kiện",
-        "CLEAR_ALL_FILTERS": "Xóa tất cả điều kiện",
-        "FILTER_DELETE_ERROR": "Cần có ít nhất một điều kiện",
-        "SUBMIT_BUTTON_LABEL": "Gửi",
-        "CANCEL_BUTTON_LABEL": "Huỷ",
-        "CLEAR_BUTTON_LABEL": "Xóa điều kiện",
-        "EMPTY_VALUE_ERROR": "Giá trị là bắt buộc",
-        "TOOLTIP_LABEL": "Lọc danh sách liên hệ",
-        "QUERY_DROPDOWN_LABELS": {
-            "AND": "Và",
-            "OR": "Hoặc"
-        },
-        "OPERATOR_LABELS": {
-            "equal_to": "Bằng với",
-            "not_equal_to": "Khác với",
-            "contains": "Có chứa",
-            "does_not_contain": "Không chứa",
-            "is_present": "Is present",
-            "is_not_present": "Is not present",
-            "is_greater_than": "Lớn hơn",
-            "is_lesser_than": "Bé hơn"
-        },
-        "ATTRIBUTES": {
-            "NAME": "Tên",
-            "EMAIL": "Email",
-            "PHONE_NUMBER": "Số điện thoại",
-            "IDENTIFIER": "Định danh",
-            "CITY": "Thành phố",
-            "COUNTRY": "Quốc gia",
-            "CUSTOM_ATTRIBUTE_LIST": "List",
-            "CUSTOM_ATTRIBUTE_TEXT": "Text",
-            "CUSTOM_ATTRIBUTE_NUMBER": "Number",
-            "CUSTOM_ATTRIBUTE_LINK": "Link",
-            "CUSTOM_ATTRIBUTE_CHECKBOX": "Checkbox"
-        },
-        "GROUPS": {
-            "STANDARD_FILTERS": "Bộ lọc tiêu chuẩn",
-            "ADDITIONAL_FILTERS": "Bộ lọc bổ sung",
-            "CUSTOM_ATTRIBUTES": "Các thuộc tính tùy chọn"
-        }
+  "CONTACTS_FILTER": {
+    "TITLE": "Lọc danh sách liên hệ",
+    "SUBTITLE": "Thêm các điều kiện để lọc danh sách liên hệ của bạn",
+    "ADD_NEW_FILTER": "Thêm điều kiện",
+    "CLEAR_ALL_FILTERS": "Xóa tất cả điều kiện",
+    "FILTER_DELETE_ERROR": "Cần có ít nhất một điều kiện",
+    "SUBMIT_BUTTON_LABEL": "Gửi",
+    "CANCEL_BUTTON_LABEL": "Huỷ",
+    "CLEAR_BUTTON_LABEL": "Xóa điều kiện",
+    "EMPTY_VALUE_ERROR": "Giá trị là bắt buộc",
+    "TOOLTIP_LABEL": "Lọc danh sách liên hệ",
+    "QUERY_DROPDOWN_LABELS": {
+      "AND": "Và",
+      "OR": "Hoặc"
+    },
+    "OPERATOR_LABELS": {
+      "equal_to": "Bằng với",
+      "not_equal_to": "Khác với",
+      "contains": "Có chứa",
+      "does_not_contain": "Không chứa",
+      "is_present": "Không trống",
+      "is_not_present": "Trống",
+      "is_greater_than": "Lớn hơn",
+      "is_lesser_than": "Bé hơn"
+    },
+    "ATTRIBUTES": {
+      "NAME": "Tên",
+      "EMAIL": "Email",
+      "PHONE_NUMBER": "Số điện thoại",
+      "IDENTIFIER": "Định danh",
+      "CITY": "Thành phố",
+      "COUNTRY": "Quốc gia",
+      "CUSTOM_ATTRIBUTE_LIST": "Danh sách",
+      "CUSTOM_ATTRIBUTE_TEXT": "Văn bản",
+      "CUSTOM_ATTRIBUTE_NUMBER": "Số",
+      "CUSTOM_ATTRIBUTE_LINK": "Liên kết",
+      "CUSTOM_ATTRIBUTE_CHECKBOX": "Checkbox"
+    },
+    "GROUPS": {
+      "STANDARD_FILTERS": "Bộ lọc tiêu chuẩn",
+      "ADDITIONAL_FILTERS": "Bộ lọc bổ sung",
+      "CUSTOM_ATTRIBUTES": "Các thuộc tính tùy chọn"
     }
+  }
 }

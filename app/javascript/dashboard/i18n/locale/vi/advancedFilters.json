@@ -31,7 +31,54 @@
       "LABELS": "Nhãn/Thẻ",
       "BROWSER_LANGUAGE": "Ngôn ngữ trình duyệt",
       "COUNTRY_NAME": "Tên quốc gia",
-      "REFERER_LINK": "Liên kết giới thiệu"
+      "REFERER_LINK": "Liên kết giới thiệu",
+      "CUSTOM_ATTRIBUTE_LIST": "Danh sách",
+      "CUSTOM_ATTRIBUTE_TEXT": "Văn bản",
+      "CUSTOM_ATTRIBUTE_NUMBER": "Số",
+      "CUSTOM_ATTRIBUTE_LINK": "Liên kết",
+      "CUSTOM_ATTRIBUTE_CHECKBOX": "Checkbox"
+    },
+    "GROUPS": {
+      "STANDARD_FILTERS": "Bộ lọc tiêu chuẩn",
+      "ADDITIONAL_FILTERS": "Bộ lọc bổ sung",
+      "CUSTOM_ATTRIBUTES": "Thuộc tính tùy chỉnh"
+    },
+    "CUSTOM_VIEWS": {
+      "ADD": {
+        "TITLE": "Bạn có muốn lưu bộ lọc này không?",
+        "LABEL": "Đặt tên bộ lọc này",
+        "PLACEHOLDER": "Điền tên cho bộ lọc này",
+        "ERROR_MESSAGE": "Tên bắt buộc có",
+        "SAVE_BUTTON": "Lưu bộ lọc",
+        "CANCEL_BUTTON": "Huỷ",
+        "API_FOLDERS": {
+          "SUCCESS_MESSAGE": "Thư mục được tạo thành công",
+          "ERROR_MESSAGE": "Có lỗi xảy ra lúc tạo thư mục"
+        },
+        "API_SEGMENTS": {
+          "SUCCESS_MESSAGE": "Phân khúc được tạo thành công",
+          "ERROR_MESSAGE": "Có lỗi xảy ra lúc tạo phân khúc"
+        }
+      },
+      "DELETE": {
+        "DELETE_BUTTON": "Xoá bộ lọc",
+        "MODAL": {
+          "CONFIRM": {
+            "TITLE": "Xác nhận xoá",
+            "MESSAGE": "Bạn có chắc chắn muốn xoá bộ lọc ",
+            "YES": "Có, Xoá",
+            "NO": "Không, Giữ"
+          }
+        },
+        "API_FOLDERS": {
+          "SUCCESS_MESSAGE": "Thư mục bị xoá thành công",
+          "ERROR_MESSAGE": "Có lỗi xảy ra lúc xoá thư mục"
+        },
+        "API_SEGMENTS": {
+          "SUCCESS_MESSAGE": "Phân khúc được xoá thành công",
+          "ERROR_MESSAGE": "Có lỗi xảy ra lúc xoá phân khúc"
+        }
+      }
     }
   }
 }

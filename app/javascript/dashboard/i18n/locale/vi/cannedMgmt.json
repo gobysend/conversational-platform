@@ -10,7 +10,7 @@
       "TITLE": "Quản lý câu trả lời mẫu",
       "DESC": "Câu trả lời mẫu là các mẫu trả lời được xác định trước có thể được sử dụng để nhanh chóng gửi trả lời cho vé.",
       "TABLE_HEADER": [
-        "Short Code",
+        "Mã Ngắn",
         "Nội dung",
         "Hành động"
       ]
@@ -21,8 +21,8 @@
       "CANCEL_BUTTON_TEXT": "Huỷ",
       "FORM": {
         "SHORT_CODE": {
-          "LABEL": "Short Code",
-          "PLACEHOLDER": "Vui lòng nhập một shortcode",
+          "LABEL": "Mã Ngắn",
+          "PLACEHOLDER": "Vui lòng nhập một mã ngắn",
           "ERROR": "Short Code là bắt buộc"
         },
         "CONTENT": {
@@ -42,7 +42,7 @@
       "CANCEL_BUTTON_TEXT": "Huỷ",
       "FORM": {
         "SHORT_CODE": {
-          "LABEL": "Short Code",
+          "LABEL": "Mã Ngắn",
           "PLACEHOLDER": "Vui lòng nhập shortcode",
           "ERROR": "Short Code là bắt buộc"
         },

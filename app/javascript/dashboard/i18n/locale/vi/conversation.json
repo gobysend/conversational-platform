@@ -22,9 +22,11 @@
     "LOADING_CONVERSATIONS": "Đang tải cuộc trò chuyện",
     "CANNOT_REPLY": "Bạn không thể trả lời do",
     "24_HOURS_WINDOW": "Giới hạn thời lượng tin nhắn 24 giờ",
-    "TWILIO_WHATSAPP_CAN_REPLY": "You can only reply to this conversation using a template message due to",
+    "NOT_ASSIGNED_TO_YOU": "Cuộc trò chuyện này không được phân công cho bạn. Bạn có muốn phân công cuộc trò chuyện này cho chính mình?",
+    "ASSIGN_TO_ME": "Phân công cho tôi",
+    "TWILIO_WHATSAPP_CAN_REPLY": "Bạn chỉ có thể phản hồi cuộc trò chuyện này dùng tin nhắn mẫu vì",
     "TWILIO_WHATSAPP_24_HOURS_WINDOW": "Giới hạn thời lượng tin nhắn 24 giờ",
-    "SELECT_A_TWEET_TO_REPLY": "Please select a tweet to reply to.",
+    "SELECT_A_TWEET_TO_REPLY": "Xin chọn một tweet để trả lời.",
     "REPLYING_TO": "Bạn đang trả lời:",
     "REMOVE_SELECTION": "Xóa lựa chọn",
     "DOWNLOAD": "Tải xuống",
@@ -41,9 +43,9 @@
       "OPEN": "Xem",
       "CLOSE": "Đóng",
       "DETAILS": "chi tiết",
-      "SNOOZED_UNTIL_TOMORROW": "Snoozed until tomorrow",
-      "SNOOZED_UNTIL_NEXT_WEEK": "Snoozed until next week",
-      "SNOOZED_UNTIL_NEXT_REPLY": "Snoozed until next reply"
+      "SNOOZED_UNTIL_TOMORROW": "Tạm dừng đến ngày mai",
+      "SNOOZED_UNTIL_NEXT_WEEK": "Tạm dừng đến tuần sau",
+      "SNOOZED_UNTIL_NEXT_REPLY": "Tạm dừng đến khi có phản hồi"
     },
     "RESOLVE_DROPDOWN": {
       "OPEN_BOT": "Mở bằng bot",
@@ -56,6 +58,9 @@
       }
     },
     "FOOTER": {
+      "MESSAGE_SIGN_TOOLTIP": "Message signature",
+      "ENABLE_SIGN_TOOLTIP": "Enable signature",
+      "DISABLE_SIGN_TOOLTIP": "Disable signature",
       "MSG_INPUT": "Shift + enter cho dòng mới. Bắt đầu với '/' để chọn Câu trả lời soạn trước.",
       "PRIVATE_MSG_INPUT": "Shift + enter cho dòng mới. Tin nhắn này chỉ nhân viên nội bộ mới đọc được."
     },
@@ -91,10 +96,13 @@
     "FILE_SIZE_LIMIT": "Dung lượng tệp vượt quá giới hạn {MAXIMUM_FILE_UPLOAD_SIZE}",
     "SENT_BY": "Được gửi bởi:",
     "MESSAGE_ERROR": "Không thể gửi tin nhắn này, vui lòng thử lại sau",
+    "BOT": "Bot",
+    "SEND_FAILED": "Không thể gửi tin nhắn! Thử lại",
+    "TRY_AGAIN": "thử lại",
     "ASSIGNMENT": {
       "SELECT_AGENT": "Chọn nhân viên",
       "REMOVE": "Xoá",
-      "ASSIGN": "Assign"
+      "ASSIGN": "Phân công"
     },
     "CONTEXT_MENU": {
       "COPY": "Sao Chép",
@@ -180,9 +188,10 @@
     }
   },
   "EMAIL_HEADER": {
-    "TO": "To",
+    "FROM": "From",
+    "TO": "Đến",
     "BCC": "Bcc",
     "CC": "Cc",
-    "SUBJECT": "Subject"
+    "SUBJECT": "Chủ đề"
   }
 }

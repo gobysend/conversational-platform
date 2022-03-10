@@ -1,8 +1,20 @@
 import queryString from 'query-string';
+import { DEFAULT_REDIRECT_URL } from '../constants';
 
 export const frontendURL = (path, params) => {
   const stringifiedParams = params ? `?${queryString.stringify(params)}` : '';
   return `/app/${path}${stringifiedParams}`;
+};
+
+export const getLoginRedirectURL = (ssoAccountId, user) => {
+  const { accounts = [] } = user || {};
+  const ssoAccount = accounts.find(
+    account => account.id === Number(ssoAccountId)
+  );
+  if (ssoAccount) {
+    return frontendURL(`accounts/${ssoAccountId}/dashboard`);
+  }
+  return DEFAULT_REDIRECT_URL;
 };
 
 export const conversationUrl = ({
@@ -36,4 +48,10 @@ export const accountIdFromPathname = pathname => {
   const isScoped = isInsideAccountScopedURLs && !isNaN(urlParam);
   const accountId = isScoped ? Number(urlParam) : '';
   return accountId;
+};
+
+export const isValidURL = value => {
+  /* eslint-disable no-useless-escape */
+  const URL_REGEX = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/gm;
+  return URL_REGEX.test(value);
 };

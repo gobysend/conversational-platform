@@ -1,8 +1,8 @@
 {
   "INTEGRATION_APPS": {
-    "FETCHING": "Fetching Integrations",
+    "FETCHING": "Đang tải dữ liệu",
     "NO_HOOK_CONFIGURED": "Không có tích hợp %{integrationId} nào trong tài khoản này.",
-    "HEADER": "Applications",
+    "HEADER": "Ứng dụng",
     "STATUS": {
       "ENABLED": "Bật",
       "DISABLED": "Không bật"
@@ -11,26 +11,26 @@
     "ADD_BUTTON": "Thêm mới",
     "DELETE": {
       "TITLE": {
-        "INBOX": "Confirm deletion",
-        "ACCOUNT": "Disconnect"
+        "INBOX": "Xác nhận xoá",
+        "ACCOUNT": "Ngắt kết nối"
       },
       "MESSAGE": {
-        "INBOX": "Are you sure to delete?",
-        "ACCOUNT": "Are you sure to disconnect?"
+        "INBOX": "Bạn có chắc muốn xoá?",
+        "ACCOUNT": "Bạn có chắc muốn ngắt kết nối?"
       },
       "CONFIRM_BUTTON_TEXT": {
         "INBOX": "Có, Xoá",
-        "ACCOUNT": "Yes, Disconnect"
+        "ACCOUNT": "Có, ngắt kết nối"
       },
       "CANCEL_BUTTON_TEXT": "Huỷ",
       "API": {
-        "SUCCESS_MESSAGE": "Hook deleted successfully",
+        "SUCCESS_MESSAGE": "Hook đã được xoá thành công",
         "ERROR_MESSAGE": "Có lỗi xảy ra. Vui lòng thử lại sau."
       }
     },
     "LIST": {
-      "FETCHING": "Fetching integration hooks",
-      "INBOX": "Inbox",
+      "FETCHING": "Đang lấy hook tích hợp",
+      "INBOX": "Hộp thư đến",
       "DELETE": {
         "BUTTON_TEXT": "Xoá"
       }
@@ -45,7 +45,7 @@
         "CANCEL": "Huỷ"
       },
       "API": {
-        "SUCCESS_MESSAGE": "Integration hook added successfully",
+        "SUCCESS_MESSAGE": "Hook tích hợp đã được thêm thành công",
         "ERROR_MESSAGE": "Có lỗi xảy ra. Vui lòng thử lại sau."
       }
     },
@@ -53,7 +53,7 @@
       "BUTTON_TEXT": "Kết nối"
     },
     "DISCONNECT": {
-      "BUTTON_TEXT": "Disconnect"
+      "BUTTON_TEXT": "Ngắt kết nối"
     },
     "SIDEBAR_DESCRIPTION": {
       "DIALOGFLOW": "Dialogflow là một nền tảng hiểu ngôn ngữ tự nhiên giúp bạn dễ dàng thiết kế và tích hợp giao diện người dùng trò chuyện vào ứng dụng di động, ứng dụng web, thiết bị, bot, hệ thống phản hồi giọng nói tương tác, v.v. <br /> <br /> Tích hợp Dialogflow với %{installationName} cho phép bạn định cấu hình bot Dialogflow với hộp thư đến của bạn, điều này cho phép bot xử lý các truy vấn ban đầu và giao chúng cho một nhân viên khi cần. Dialogflow có thể được sử dụng để đánh giá các khách hàng tiềm năng, giảm khối lượng công việc của các đại lý bằng cách cung cấp các câu hỏi thường gặp, v.v. <br /> <br /> Để thêm Dialogflow, bạn cần tạo Tài khoản dịch vụ trong bảng điều khiển dự án của Google và chia sẻ thông tin đăng nhập. Vui lòng tham khảo tài liệu Dialogflow để biết thêm thông tin."

@@ -17,7 +17,7 @@
 #To learn more, please read the Rails Internationalization guide
 #available at https://guides.rubyonrails.org/i18n.html.
 vi:
-  hello: 'Hello world'
+  hello: "Xin chào bạn"
   messages:
     reset_password_success: Chà! Yêu cầu đặt lại mật khẩu thành công. Kiểm tra thư của bạn để biết hướng dẫn.
     reset_password_failure: Uh ho! Chúng tôi không thể tìm thấy bất kỳ người dùng nào có email được chỉ định.
@@ -29,19 +29,19 @@ vi:
       failed: Đăng ký thât bại
     contacts:
       import:
-        failed: File is blank
+        failed: Chưa chọn file
   reports:
-    period: Reporting period %{since} to %{until}
+    period: Thời gian báo cáo từ %{since} đến %{until}
     agent_csv:
-      agent_name: Agent name
-      conversations_count: Conversations count
-      avg_first_response_time: Avg first response time (Minutes)
-      avg_resolution_time: Avg resolution time (Minutes)
+      agent_name: Tên nhà cung cấp
+      conversations_count: Số cuộc trò chuyện
+      avg_first_response_time: Thời gian trung bình của phản hồi đầu tiên (phút)
+      avg_resolution_time: Thời gian giải quyết trung bình (phút)
     team_csv:
-      team_name: Team name
-      conversations_count: Conversations count
-      avg_first_response_time: Avg first response time (Minutes)
-      avg_resolution_time: Avg resolution time (Minutes)
+      team_name: Tên nhóm
+      conversations_count: Số cuộc trò chuyện
+      avg_first_response_time: Thời gian trung bình của phản hồi đầu tiên (phút)
+      avg_resolution_time: Thời gian giải quyết trung bình (phút)
   notifications:
     notification_title:
       conversation_creation: '[Cuộc trò chuyện mới] - #%{display_id} đã được tạo trong %{inbox_name}'
@@ -82,23 +82,25 @@ vi:
       transcript_subject: 'Bản ghi cuộc hội thoại'
       email:
         header:
-          from_with_name: '%{assignee_name} from %{inbox_name} <%{from_email}>'
-          reply_with_name: '%{assignee_name} from %{inbox_name} <reply+%{reply_email}>'
+          from_with_name: '%{assignee_name} từ %{inbox_name} <%{from_email}>'
+          reply_with_name: '%{assignee_name} từ %{inbox_name} <reply+%{reply_email}>'
+      email_subject: "Tin nhắn mới về cuộc trò chuyện này"
+      transcript_subject: "Bản ghi cuộc hội thoại"
     survey:
-      response: "Please rate this conversation, %{link}"
+      response: "Bạn hãy vui lòng đánh giá cuộc trò chuyện, %{link}"
   contacts:
     online:
-      delete: "%{contact_name} is Online, please try again later"
+      delete: "%{contact_name} đang trực tiếng, vui lòng thử lại sau"
   integration_apps:
     slack:
-      name: 'Slack'
-      description: 'Slack is a chat tool that brings all your communication together in one place. By integrating Slack, you can get notified of all the new conversations in your account right inside your Slack.'
+      name: "Slack"
+      description: "Slack là một công cụ trò chuyện giúp mang tất cả các cuộc giao tiếp của bạn lại với nhau ở một nơi. Bằng cách tích hợp Slack, bạn có thể nhận được thông báo về tất cả các cuộc trò chuyện mới trong tài khoản của mình ngay bên trong Slack."
     webhooks:
-      name: 'Webhooks'
-      description: 'Sự kiện webhook cung cấp cho bạn thông tin thời gian thực về những gì đang xảy ra trong tài khoản của bạn. Bạn có thể sử dụng webhook để truyền tải các sự kiện tới các ứng dụng yêu thích của mình như Slack hoặc Github. Nhấn vào Cấu hình để thiết lập webhook của bạn.'
+      name: "Webhooks"
+      description: "Sự kiện webhook cung cấp cho bạn thông tin thời gian thực về những gì đang xảy ra trong tài khoản của bạn. Bạn có thể sử dụng webhook để truyền tải các sự kiện tới các ứng dụng yêu thích của mình như Slack hoặc Github. Nhấp vào Cấu hình để thiết lập webhook của bạn."
     dialogflow:
-      name: 'Dialogflow'
-      description: 'Xây dựng chatbot bằng Dialogflow và kết nối chúng với hộp thư đến của bạn một cách nhanh chóng. Hãy để các bot xử lý các truy vấn trước khi giao chúng cho nhân viên phụ trách dịch vụ khách hàng.'
+      name: "Dialogflow"
+      description: "Xây dựng chatbot bằng Dialogflow và kết nối chúng với hộp thư đến của bạn một cách nhanh chóng. Hãy để các bot xử lý các truy vấn trước khi giao chúng cho đại lý dịch vụ khách hàng."
     fullcontact:
-      name: 'Fullcontact'
-      description: 'FullContact integration helps to enrich visitor profiles. Identify the users as soon as they share their email address and offer them tailored customer service. Connect your FullContact to your account by sharing the FullContact API Key.'
+      name: "Fullcontact"
+      description: "Tích hợp FullContact giúp làm phong phú hồ sơ khách truy cập. Xác định người dùng ngay khi họ chia sẻ địa chỉ email và cung cấp cho họ dịch vụ khách hàng phù hợp. Kết nối FullContact với tài khoản của bạn bằng cách chia sẻ Khóa API FullContact."

@@ -100,6 +100,7 @@ class Account < ApplicationRecord
 
   enum locale: LANGUAGES_CONFIG.to_h { |key, val| [val[:iso_639_1_code], key] }
 
+  before_validation :validate_limit_keys
   after_create_commit :notify_creation
 
   def agents
@@ -137,8 +138,8 @@ class Account < ApplicationRecord
 
   def usage_limits
     {
-      agents: ChatwootApp.max_limit,
-      inboxes: ChatwootApp.max_limit
+      agents: ChatwootApp.max_limit.to_i,
+      inboxes: ChatwootApp.max_limit.to_i
     }
   end
 
@@ -154,5 +155,9 @@ class Account < ApplicationRecord
 
   trigger.name('camp_dpid_before_insert').after(:insert).for_each(:row) do
     "execute format('create sequence IF NOT EXISTS camp_dpid_seq_%s', NEW.id);"
+  end
+
+  def validate_limit_keys
+    # method overridden in enterprise module
   end
 end

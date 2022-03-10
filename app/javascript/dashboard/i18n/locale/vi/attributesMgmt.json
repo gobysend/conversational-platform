@@ -80,7 +80,7 @@
       "CONTACT": "Liên hệ"
     },
     "LIST": {
-      "TABLE_HEADER": ["Tên", "Mô tả", "Type", "Key"],
+      "TABLE_HEADER": ["Tên", "Mô tả", "Loại", "Key"],
       "BUTTONS": {
         "EDIT": "Chỉnh sửa",
         "DELETE": "Xoá"
