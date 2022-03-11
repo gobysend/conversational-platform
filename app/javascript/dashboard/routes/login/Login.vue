@@ -78,6 +78,7 @@ import { required, email } from 'vuelidate/lib/validators';
 import globalConfigMixin from 'shared/mixins/globalConfigMixin';
 import WootSubmitButton from '../../components/buttons/FormSubmitButton';
 import { mapGetters } from 'vuex';
+import { getLoginRedirectURL } from '../../helper/URLHelper';
 
 export default {
   components: {
@@ -154,6 +155,7 @@ export default {
           this.showAlert(this.$t('LOGIN.API.SUCCESS_MESSAGE'));
 
           let account_ids = response.accounts.map(({ id }) => id);
+          debugger;
 
           if (
             this.redirectUrl &&
@@ -162,7 +164,7 @@ export default {
           ) {
             window.location.href = this.redirectUrl;
           } else {
-            window.location = '/app/';
+            window.location = getLoginRedirectURL(this.accountId, response);
           }
         })
         .catch(response => {

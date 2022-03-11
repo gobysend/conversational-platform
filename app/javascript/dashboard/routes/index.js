@@ -104,6 +104,7 @@ const routeValidators = [
 export const validateAuthenticateRoutePermission = (to, from, next) => {
   const isLoggedIn = auth.isLoggedIn();
   const isProtectedRoute = !unProtectedRoutes.includes(to.name);
+  debugger;
   const strategy = routeValidators.find(
     validator =>
       validator.protected === isProtectedRoute &&
@@ -145,6 +146,8 @@ const validateRouteAccess = (to, from, next) => {
 router.beforeEach((to, from, next) => {
   if (!to.name) {
     const user = auth.getCurrentUser();
+    console.log('user', user);
+    debugger;
     if (user) {
       return next(frontendURL(`accounts/${user.account_id}/dashboard`));
     }

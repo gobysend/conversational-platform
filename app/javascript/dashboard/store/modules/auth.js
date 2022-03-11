@@ -6,7 +6,6 @@ import authAPI from '../../api/auth';
 import createAxios from '../../helper/APIHelper';
 import actionCable from '../../helper/actionCable';
 import { setUser, getHeaderExpiry, clearCookiesOnLogout } from '../utils/api';
-import { getLoginRedirectURL } from '../../helper/URLHelper';
 
 const state = {
   currentUser: {
