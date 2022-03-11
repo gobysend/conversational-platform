@@ -1,13 +1,13 @@
 <template>
   <div class="flex-container flex-dir-column medium-flex-dir-row">
-    <div class="small-12 medium-3 pull-right">
+    <div class="small-12 medium-2 pull-right">
       <multiselect
         v-model="currentDateRangeSelection"
         track-by="name"
         label="name"
         :placeholder="$t('FORMS.MULTISELECT.SELECT_ONE')"
         selected-label
-        :select-label="$t('FORMS.MULTISELECT.ENTER_TO_SELECT')"
+        :select-label="''"
         deselect-label=""
         :options="dateRange"
         :searchable="false"
@@ -25,7 +25,7 @@
     />
     <div
       v-if="notLast7Days && groupByFilter"
-      class="small-12 medium-3 pull-right margin-left-small"
+      class="small-12 medium-2 pull-right margin-left-small"
     >
       <p aria-hidden="true" class="hide">
         {{ $t('REPORT.GROUP_BY_FILTER_DROPDOWN_LABEL') }}
@@ -56,7 +56,7 @@
         :hide-selected="true"
         :placeholder="$t('CSAT_REPORTS.FILTERS.AGENTS.PLACEHOLDER')"
         selected-label
-        :select-label="$t('FORMS.MULTISELECT.ENTER_TO_SELECT')"
+        :select-label="''"
         :deselect-label="$t('FORMS.MULTISELECT.ENTER_TO_REMOVE')"
         @input="handleAgentsFilterSelection"
       />
@@ -155,6 +155,11 @@ export default {
     },
   },
   mounted() {
+    this.$nextTick(() => {
+      this.currentDateRangeSelection = this.$t('REPORT.DATE_RANGE')[0];
+      this.dateRange = this.$t('REPORT.DATE_RANGE');
+    });
+
     this.onDateRangeChange();
   },
   methods: {

@@ -97,29 +97,29 @@ export default {
           align: 'left',
           width: 400,
         },
-        {
-          field: 'converstionId',
-          key: 'converstionId',
-          title: '',
-          align: 'left',
-          width: 100,
-          renderBodyCell: ({ row }) => {
-            const routerParams = {
-              name: 'inbox_conversation',
-              params: { conversation_id: row.conversationId },
-            };
-            return (
-              <div class="text-right">
-                <router-link to={routerParams}>
-                  {`#${row.conversationId}`}
-                </router-link>
-                <div class="csat--timestamp" v-tooltip={row.createdAt}>
-                  {row.createdAgo}
-                </div>
-              </div>
-            );
-          },
-        },
+        // {
+        //   field: 'converstionId',
+        //   key: 'converstionId',
+        //   title: '',
+        //   align: 'left',
+        //   width: 100,
+        //   renderBodyCell: ({ row }) => {
+        //     const routerParams = {
+        //       name: 'inbox_conversation',
+        //       params: { conversation_id: row.conversationId },
+        //     };
+        //     return (
+        //       <div class="text-right">
+        //         <router-link to={routerParams}>
+        //           {`#${row.conversationId}`}
+        //         </router-link>
+        //         <div class="csat--timestamp" v-tooltip={row.createdAt}>
+        //           {row.createdAgo}
+        //         </div>
+        //       </div>
+        //     );
+        //   },
+        // },
       ];
     },
     tableData() {
