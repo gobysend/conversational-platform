@@ -3,104 +3,106 @@
     <!-- List Canned Response -->
     <div class="row">
       <div class="small-8 columns with-right-space">
-        <p v-if="!inboxesList.length" class="no-items-error-message">
-          {{ $t('INBOX_MGMT.LIST.404') }}
-          <router-link
-            v-if="isAdmin"
-            :to="addAccountScoping('settings/inboxes/new')"
-          >
-            {{ $t('SETTINGS.INBOXES.NEW_INBOX') }}
-          </router-link>
-        </p>
+        <div class="card-goby">
+          <p v-if="!inboxesList.length" class="no-items-error-message">
+            {{ $t('INBOX_MGMT.LIST.404') }}
+            <router-link
+              v-if="isAdmin"
+              :to="addAccountScoping('settings/inboxes/new')"
+            >
+              {{ $t('SETTINGS.INBOXES.NEW_INBOX') }}
+            </router-link>
+          </p>
 
-        <table v-if="inboxesList.length" class="woot-table">
-          <tbody>
-            <tr v-for="item in inboxesList" :key="item.id">
-              <td>
-                <img
-                  v-if="item.avatar_url"
-                  class="woot-thumbnail"
-                  :src="item.avatar_url"
-                  alt="No Page Image"
-                />
-                <img
-                  v-else
-                  class="woot-thumbnail"
-                  src="~dashboard/assets/images/flag.svg"
-                  alt="No Page Image"
-                />
-              </td>
-              <!-- Short Code  -->
-              <td>
-                <span class="agent-name">{{ item.name }}</span>
-                <span v-if="item.channel_type === 'Channel::FacebookPage'">
-                  Facebook
-                </span>
-                <span v-if="item.channel_type === 'Channel::WebWidget'">
-                  Website
-                </span>
-                <span v-if="item.channel_type === 'Channel::TwitterProfile'">
-                  Twitter
-                </span>
-                <span v-if="item.channel_type === 'Channel::TwilioSms'">
-                  {{ twilioChannelName(item) }}
-                </span>
-                <span v-if="item.channel_type === 'Channel::Whatsapp'">
-                  Whatsapp
-                </span>
-                <span v-if="item.channel_type === 'Channel::Sms'">
-                  Sms
-                </span>
-                <span v-if="item.channel_type === 'Channel::Email'">
-                  Email
-                </span>
-                <span v-if="item.channel_type === 'Channel::Zalo'">
-                  Zalo
-                </span>
-                <span v-if="item.channel_type === 'Channel::Telegram'">
-                  Telegram
-                </span>
-                <span v-if="item.channel_type === 'Channel::Line'">Line</span>
-                <span v-if="item.channel_type === 'Channel::Api'">
-                  {{ globalConfig.apiChannelName || 'API' }}
-                </span>
-              </td>
+          <table v-if="inboxesList.length" class="woot-table">
+            <tbody>
+              <tr v-for="item in inboxesList" :key="item.id">
+                <td>
+                  <img
+                    v-if="item.avatar_url"
+                    class="woot-thumbnail"
+                    :src="item.avatar_url"
+                    alt="No Page Image"
+                  />
+                  <img
+                    v-else
+                    class="woot-thumbnail"
+                    src="~dashboard/assets/images/flag.svg"
+                    alt="No Page Image"
+                  />
+                </td>
+                <!-- Short Code  -->
+                <td>
+                  <span class="agent-name">{{ item.name }}</span>
+                  <span v-if="item.channel_type === 'Channel::FacebookPage'">
+                    Facebook
+                  </span>
+                  <span v-if="item.channel_type === 'Channel::WebWidget'">
+                    Website
+                  </span>
+                  <span v-if="item.channel_type === 'Channel::TwitterProfile'">
+                    Twitter
+                  </span>
+                  <span v-if="item.channel_type === 'Channel::TwilioSms'">
+                    {{ twilioChannelName(item) }}
+                  </span>
+                  <span v-if="item.channel_type === 'Channel::Whatsapp'">
+                    Whatsapp
+                  </span>
+                  <span v-if="item.channel_type === 'Channel::Sms'">
+                    Sms
+                  </span>
+                  <span v-if="item.channel_type === 'Channel::Email'">
+                    Email
+                  </span>
+                  <span v-if="item.channel_type === 'Channel::Zalo'">
+                    Zalo
+                  </span>
+                  <span v-if="item.channel_type === 'Channel::Telegram'">
+                    Telegram
+                  </span>
+                  <span v-if="item.channel_type === 'Channel::Line'">Line</span>
+                  <span v-if="item.channel_type === 'Channel::Api'">
+                    {{ globalConfig.apiChannelName || 'API' }}
+                  </span>
+                </td>
 
-              <!-- Action Buttons -->
-              <td>
-                <div class="button-wrapper">
-                  <router-link
-                    :to="addAccountScoping(`settings/inboxes/${item.id}`)"
-                  >
+                <!-- Action Buttons -->
+                <td>
+                  <div class="button-wrapper">
+                    <router-link
+                      :to="addAccountScoping(`settings/inboxes/${item.id}`)"
+                    >
+                      <woot-button
+                        v-if="isAdmin"
+                        v-tooltip.top="$t('INBOX_MGMT.SETTINGS')"
+                        variant="smooth"
+                        size="tiny"
+                        icon="settings"
+                        color-scheme="secondary"
+                        class-names="grey-btn"
+                      >
+                      </woot-button>
+                    </router-link>
+
                     <woot-button
                       v-if="isAdmin"
-                      v-tooltip.top="$t('INBOX_MGMT.SETTINGS')"
+                      v-tooltip.top="$t('INBOX_MGMT.DELETE.BUTTON_TEXT')"
                       variant="smooth"
+                      color-scheme="alert"
                       size="tiny"
-                      icon="settings"
-                      color-scheme="secondary"
                       class-names="grey-btn"
+                      :is-loading="loading[item.id]"
+                      icon="dismiss-circle"
+                      @click="openDelete(item)"
                     >
                     </woot-button>
-                  </router-link>
-
-                  <woot-button
-                    v-if="isAdmin"
-                    v-tooltip.top="$t('INBOX_MGMT.DELETE.BUTTON_TEXT')"
-                    variant="smooth"
-                    color-scheme="alert"
-                    size="tiny"
-                    class-names="grey-btn"
-                    :is-loading="loading[item.id]"
-                    icon="dismiss-circle"
-                    @click="openDelete(item)"
-                  >
-                  </woot-button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <div class="small-4 columns">

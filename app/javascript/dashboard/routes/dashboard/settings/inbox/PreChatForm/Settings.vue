@@ -1,47 +1,61 @@
 <template>
   <div class="settings--content">
-    <div class="prechat--title">
-      {{ $t('INBOX_MGMT.PRE_CHAT_FORM.DESCRIPTION') }}
-    </div>
-    <form class="medium-6" @submit.prevent="updateInbox">
-      <label class="medium-9 columns">
-        {{ $t('INBOX_MGMT.PRE_CHAT_FORM.ENABLE.LABEL') }}
-        <select v-model="preChatFormEnabled">
-          <option :value="true">
-            {{ $t('INBOX_MGMT.PRE_CHAT_FORM.ENABLE.OPTIONS.ENABLED') }}
-          </option>
-          <option :value="false">
-            {{ $t('INBOX_MGMT.PRE_CHAT_FORM.ENABLE.OPTIONS.DISABLED') }}
-          </option>
-        </select>
-      </label>
-
-      <label class="medium-9">
-        {{ $t('INBOX_MGMT.PRE_CHAT_FORM.PRE_CHAT_MESSAGE.LABEL') }}
-        <textarea
-          v-model.trim="preChatMessage"
-          type="text"
-          :placeholder="
-            $t('INBOX_MGMT.PRE_CHAT_FORM.PRE_CHAT_MESSAGE.PLACEHOLDER')
-          "
-        />
-      </label>
-      <div>
-        <input
-          v-model="preChatFieldOptions"
-          type="checkbox"
-          value="requireEmail"
-          @input="handlePreChatFieldOptions"
-        />
-        <label for="requireEmail">
-          {{ $t('INBOX_MGMT.PRE_CHAT_FORM.REQUIRE_EMAIL.LABEL') }}
-        </label>
+    <div class="row settings--section">
+      <div class="medium-4 small-12 title--section">
+        <p class="sub-block-title">
+          {{ $t('INBOX_MGMT.PRE_CHAT_FORM.TITLE') }}
+        </p>
+        <p class="sub-head">
+          {{ $t('INBOX_MGMT.PRE_CHAT_FORM.DESCRIPTION') }}
+        </p>
       </div>
-      <woot-submit-button
-        :button-text="$t('INBOX_MGMT.SETTINGS_POPUP.UPDATE')"
-        :loading="uiFlags.isUpdatingInbox"
-      />
-    </form>
+
+      <div class="medium-8 small-12">
+        <form @submit.prevent="updateInbox">
+          <label>
+            {{ $t('INBOX_MGMT.PRE_CHAT_FORM.ENABLE.LABEL') }}
+            <select v-model="preChatFormEnabled">
+              <option :value="true">
+                {{ $t('INBOX_MGMT.PRE_CHAT_FORM.ENABLE.OPTIONS.ENABLED') }}
+              </option>
+              <option :value="false">
+                {{ $t('INBOX_MGMT.PRE_CHAT_FORM.ENABLE.OPTIONS.DISABLED') }}
+              </option>
+            </select>
+          </label>
+
+          <label>
+            {{ $t('INBOX_MGMT.PRE_CHAT_FORM.PRE_CHAT_MESSAGE.LABEL') }}
+            <textarea
+              v-model.trim="preChatMessage"
+              type="text"
+              :placeholder="
+                $t('INBOX_MGMT.PRE_CHAT_FORM.PRE_CHAT_MESSAGE.PLACEHOLDER')
+              "
+              rows="5"
+            />
+          </label>
+
+          <div>
+            <input
+              id="requireEmail"
+              v-model="preChatFieldOptions"
+              type="checkbox"
+              value="requireEmail"
+              @input="handlePreChatFieldOptions"
+            />
+            <label for="requireEmail">
+              {{ $t('INBOX_MGMT.PRE_CHAT_FORM.REQUIRE_EMAIL.LABEL') }}
+            </label>
+          </div>
+
+          <woot-submit-button
+            :button-text="$t('INBOX_MGMT.SETTINGS_POPUP.UPDATE')"
+            :loading="uiFlags.isUpdatingInbox"
+          />
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 <script>

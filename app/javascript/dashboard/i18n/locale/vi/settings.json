@@ -142,6 +142,7 @@
     }
   },
   "SIDEBAR": {
+    "CURRENTLY_VIEWING_ACCOUNT": "Tài khoản:",
     "CONVERSATIONS": "Cuộc trò chuyện",
     "ALL_CONVERSATIONS": "Tất cả cuộc trò chuyện",
     "MENTIONED_CONVERSATIONS": "Nhắn đến",

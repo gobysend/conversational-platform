@@ -438,6 +438,7 @@
       "MESSAGE_ERROR": "There was an error, please try again"
     },
     "PRE_CHAT_FORM": {
+      "TITLE": "Pre chat form settings",
       "DESCRIPTION": "Pre chat forms enable you to capture user information before they start conversation with you.",
       "ENABLE": {
         "LABEL": "Enable pre chat form",

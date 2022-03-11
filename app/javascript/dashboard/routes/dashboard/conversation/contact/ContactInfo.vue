@@ -133,7 +133,7 @@
       :message="confirmDeleteMessage"
       :confirm-text="deleteConfirmText"
       :reject-text="deleteRejectText"
-      :confirm-value="contact.name"
+      :confirm-value="'Delete'"
       :confirm-place-holder-text="confirmPlaceHolderText"
       @on-confirm="confirmDeletion"
       @on-close="closeDelete"
@@ -235,7 +235,7 @@ export default {
     },
     confirmPlaceHolderText() {
       return `${this.$t('DELETE_CONTACT.CONFIRM.PLACE_HOLDER', {
-        contactName: this.contact.name,
+        contactName: 'Delete',
       })}`;
     },
   },

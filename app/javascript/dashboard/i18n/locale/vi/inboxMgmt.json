@@ -438,12 +438,13 @@
       "MESSAGE_ERROR": "Đã có lỗi, vui lòng thử lại"
     },
     "PRE_CHAT_FORM": {
+      "TITLE": "Cài đặt biểu mẫu",
       "DESCRIPTION": "Biểu mẫu trước khi trò chuyện cho phép bạn nắm bắt thông tin người dùng trước khi họ bắt đầu cuộc trò chuyện với bạn.",
       "ENABLE": {
-        "LABEL": "Bật biểu mẫu trước khi trò chuyện",
+        "LABEL": "Hiển thị biểu mẫu trước khi trò chuyện",
         "OPTIONS": {
-          "ENABLED": "Có",
-          "DISABLED": "Không"
+          "ENABLED": "Bật",
+          "DISABLED": "Tắt"
         }
       },
       "PRE_CHAT_MESSAGE": {
@@ -451,7 +452,7 @@
         "PLACEHOLDER": "Tin nhắn này sẽ hiện cho những người dùng cùng với biểu mẫu"
       },
       "REQUIRE_EMAIL": {
-        "LABEL": "Khách truy cập nên cung cấp tên và địa chỉ email của họ trước khi bắt đầu trò chuyện"
+        "LABEL": "Hỏi tên và địa chỉ email của khách hàng trước khi bắt đầu trò chuyện"
       }
     },
     "BUSINESS_HOURS": {
@@ -478,7 +479,8 @@
         "THURSDAY": "Thứ năm",
         "FRIDAY": "Thứ sáu",
         "SATURDAY": "Thứ bảy"
-      }
+      },
+      "ALL_DAY": "Cả ngày"
     },
     "IMAP": {
       "TITLE": "IMAP",

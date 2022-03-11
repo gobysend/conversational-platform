@@ -23,12 +23,12 @@ export const SHORTCUT_KEYS = [
     firstkey: 'Alt / ⌥',
     secondKey: 'A',
   },
-  {
-    id: 5,
-    label: 'GO_TO_CONTACTS_DASHBOARD',
-    firstkey: 'Alt / ⌥',
-    secondKey: 'V',
-  },
+  // {
+  //   id: 5,
+  //   label: 'GO_TO_CONTACTS_DASHBOARD',
+  //   firstkey: 'Alt / ⌥',
+  //   secondKey: 'V',
+  // },
   {
     id: 6,
     label: 'TOGGLE_SIDEBAR',
