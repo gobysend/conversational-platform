@@ -81,7 +81,8 @@ const routeValidators = [
     loggedIn: false,
     // handler: () => 'login',
     handler: () => {
-      window.location.href = window.ssoUrl + '?referer=' + window.location.href;
+      console.log('Required login sso');
+      //window.location.href = window.ssoUrl + '?referer=' + window.location.href;
     },
   },
   {
@@ -147,12 +148,13 @@ router.beforeEach((to, from, next) => {
   if (!to.name) {
     const user = auth.getCurrentUser();
     console.log('user', user);
-    debugger;
+
     if (user) {
       return next(frontendURL(`accounts/${user.account_id}/dashboard`));
     }
     // return next(window.ssoUrl);
-    window.location.href = window.ssoUrl;
+    console.log('beforeEach redirect sso', user);
+    //window.location.href = window.ssoUrl;
   }
 
   return validateRouteAccess(to, from, next);
