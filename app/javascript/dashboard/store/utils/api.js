@@ -22,9 +22,10 @@ export const setUser = (user, expiryDate, options = {}) => {
     window.bus.$emit(CHATWOOT_SET_USER, { user });
     window.bus.$emit(ANALYTICS_IDENTITY, { user });
   }
-  Cookies.set('user', user, {
-    expires: differenceInDays(expiryDate, new Date()),
-  });
+  // Cookies.set('user', user, {
+  //   expires: differenceInDays(expiryDate, new Date()),
+  // });
+  localStorage.setItem('user', JSON.stringify(user));
 };
 
 export const getHeaderExpiry = response =>
@@ -49,13 +50,16 @@ export const setAuthCredentials = response => {
   Cookies.set('chat_auth_data', response.headers, { domain });
 };
 
+export const clearBrowserSessionCookies = () => {
+  Cookies.remove('auth_data');
+  Cookies.remove('user');
+};
+
 export const clearCookiesOnLogout = () => {
   window.bus.$emit(CHATWOOT_RESET);
   window.bus.$emit(ANALYTICS_RESET);
 
-  Cookies.remove('auth_data');
-  Cookies.remove('user');
-  //window.location = frontendURL('login');
+  clearBrowserSessionCookies();
   window.location.href =
     window.chatwootConfig.admin_frontend_url + '/login?auto_logout=true';
 };

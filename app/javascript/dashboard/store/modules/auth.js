@@ -6,7 +6,6 @@ import authAPI from '../../api/auth';
 import createAxios from '../../helper/APIHelper';
 import actionCable from '../../helper/actionCable';
 import { setUser, getHeaderExpiry, clearCookiesOnLogout } from '../utils/api';
-import { DEFAULT_REDIRECT_URL } from '../../constants';
 
 const state = {
   currentUser: {
@@ -65,11 +64,30 @@ export const getters = {
   getCurrentUser(_state) {
     return _state.currentUser;
   },
+
+  getMessageSignature(_state) {
+    const { message_signature: messageSignature } = _state.currentUser;
+
+    return messageSignature || '';
+  },
+
+  getCurrentAccount(_state) {
+    const { accounts = [] } = _state.currentUser;
+    const [currentAccount = {}] = accounts.filter(
+      account => account.id === _state.currentAccountId
+    );
+    return currentAccount || {};
+  },
+
+  getUserAccounts(_state) {
+    const { accounts = [] } = _state.currentUser;
+    return accounts;
+  },
 };
 
 // actions
 export const actions = {
-  login({ commit }, credentials) {
+  login({ commit }, { ssoAccountId, ...credentials }) {
     return new Promise((resolve, reject) => {
       authAPI
         .login(credentials)
@@ -77,7 +95,6 @@ export const actions = {
           commit(types.default.SET_CURRENT_USER);
           window.axios = createAxios(axios);
           actionCable.init(Vue);
-          // window.location = DEFAULT_REDIRECT_URL;
           resolve(response);
         })
         .catch(error => {

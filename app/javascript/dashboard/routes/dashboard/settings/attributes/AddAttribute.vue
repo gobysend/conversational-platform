@@ -9,7 +9,7 @@
             {{ $t('ATTRIBUTES_MGMT.ADD.FORM.MODEL.LABEL') }}
             <select v-model="attributeModel">
               <option v-for="model in models" :key="model.id" :value="model.id">
-                {{ model.option }}
+                {{ $t(`ATTRIBUTES_MGMT.TABS.${model.option}`) }}
               </option>
             </select>
             <span v-if="$v.attributeModel.$error" class="message">

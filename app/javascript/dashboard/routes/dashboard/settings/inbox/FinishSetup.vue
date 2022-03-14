@@ -37,7 +37,7 @@
           >
           </woot-code>
         </div>
-        <div class="medium-6 small-offset-3">
+        <div class="medium-8 small-offset-2">
           <woot-code
             v-if="isAEmailInbox"
             lang="html"
@@ -56,7 +56,7 @@
             {{ $t('INBOX_MGMT.FINISH.MORE_SETTINGS') }}
           </router-link>
           <router-link
-            class="button success"
+            class="button primary"
             :to="{
               name: 'inbox_dashboard',
               params: { inboxId: this.$route.params.inbox_id },

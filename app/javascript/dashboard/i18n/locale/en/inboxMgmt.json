@@ -438,6 +438,7 @@
       "MESSAGE_ERROR": "There was an error, please try again"
     },
     "PRE_CHAT_FORM": {
+      "TITLE": "Pre chat form settings",
       "DESCRIPTION": "Pre chat forms enable you to capture user information before they start conversation with you.",
       "ENABLE": {
         "LABEL": "Enable pre chat form",
@@ -469,8 +470,17 @@
         "UNAVAILABLE": "Unavailable",
         "HOURS": "hours",
         "VALIDATION_ERROR": "Starting time should be before closing time.",
-        "CHOOSE": "Choose"
-      }
+        "CHOOSE": "Choose",
+
+        "SUNDAY": "Sunday",
+        "MONDAY": "Monday",
+        "TUESDAY": "Tuesday",
+        "WEDNESDAY": "Wednesday",
+        "THURSDAY": "Thursday",
+        "FRIDAY": "Friday",
+        "SATURDAY": "Saturday"
+      },
+      "ALL_DAY": "All-Day"
     },
     "IMAP": {
       "TITLE": "IMAP",
@@ -529,7 +539,11 @@
       "DOMAIN": {
         "LABEL": "Domain",
         "PLACE_HOLDER": "Domain"
-      }
+      },
+      "ENCRYPTION": "Encryption",
+      "SSL_TLS": "SSL/TLS",
+      "START_TLS": "STARTTLS",
+      "OPEN_SSL_VERIFY_MODE": "Open SSL Verify Mode"
     }
   }
 }

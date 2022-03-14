@@ -253,7 +253,7 @@ export default {
           this.$store.dispatch('contacts/get', requestParams);
         } else {
           this.$store.dispatch('contacts/search', {
-            search: value,
+            search: encodeURIComponent(value),
             ...requestParams,
           });
         }
@@ -340,7 +340,7 @@ export default {
     },
     onApplyFilter(payload) {
       this.closeContactInfoPanel();
-      this.segmentsQuery = { payload };
+      this.segmentsQuery = filterQueryGenerator(payload);
       this.$store.dispatch('contacts/filter', {
         queryPayload: filterQueryGenerator(payload),
       });

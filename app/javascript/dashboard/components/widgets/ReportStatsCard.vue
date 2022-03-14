@@ -7,12 +7,14 @@
     <h3 class="heading">
       {{ heading }}
     </h3>
-    <h4 class="metric">
-      {{ point }}
+
+    <h4 class="point">
+      <span>{{ point }}</span>
+
+      <small class="desc">
+        {{ desc }}
+      </small>
     </h4>
-    <p class="desc">
-      {{ desc }}
-    </p>
   </div>
 </template>
 <script>
@@ -27,3 +29,22 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.report-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .heading {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .point {
+    span {
+      font-weight: 400;
+    }
+  }
+}
+</style>

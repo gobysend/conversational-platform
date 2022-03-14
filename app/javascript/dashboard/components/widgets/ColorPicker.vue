@@ -1,6 +1,6 @@
 <template>
   <div class="colorpicker">
-    <div
+    <!-- <div
       class="colorpicker--selected"
       :style="`background-color: ${value}`"
       @click.prevent="toggleColorPicker"
@@ -12,17 +12,21 @@
       :value="value"
       class="colorpicker--chrome"
       @input="updateColor"
-    />
+    /> -->
+
+    <v-swatches :value="value" @input="updateColor" inline></v-swatches>
   </div>
 </template>
 
 <script>
 import { Chrome } from 'vue-color';
 import { mixin as clickaway } from 'vue-clickaway';
+import VSwatches from 'vue-swatches';
 
 export default {
   components: {
     Chrome,
+    VSwatches,
   },
   mixins: [clickaway],
   props: {
@@ -46,7 +50,7 @@ export default {
       this.isPickerOpen = !this.isPickerOpen;
     },
     updateColor(e) {
-      this.$emit('input', e.hex);
+      this.$emit('input', e);
     },
   },
 };

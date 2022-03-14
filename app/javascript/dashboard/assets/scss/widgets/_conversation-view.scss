@@ -67,10 +67,10 @@
   @include flex;
   flex-direction: column;
 
-  .search {
-    height: 60px;
-    padding: 10px 16px !important;
-  }
+  // .search {
+  //   height: 60px;
+  //   padding: 10px 16px 4px !important;
+  // }
 
   .load-more-conversations {
     font-size: $font-size-small;

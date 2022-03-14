@@ -2,8 +2,8 @@
   "ATTRIBUTES_MGMT": {
     "HEADER": "Thuộc tính tùy chỉnh",
     "HEADER_BTN_TXT": "Thêm thuộc tính tùy chọn",
-    "LOADING": "Fetching custom attributes",
-    "SIDEBAR_TXT": "<p><b>Custom Attributes</b> <p>A custom attribute tracks facts about your contacts/conversation — like the subscription plan, or when they ordered the first item etc. <br /><br />For creating a Custom Attribute, just click on the <b>Add Custom Attribute.</b> You can also edit or delete an existing  Custom Attribute by clicking on the Edit or Delete button.</p>",
+    "LOADING": "Đang tải dữ liệu",
+    "SIDEBAR_TXT": "<p><b>Thuộc tính tùy chỉnh</b> <p>Thuộc tính tùy chỉnh theo dõi thông tin thực tế về các liên hệ hoặc cuộc trò chuyện - như gói đăng ký hoặc khi khách hàng có đơn hàng đầu tiên, v.v.",
     "ADD": {
       "TITLE": "Thêm thuộc tính tùy chọn",
       "SUBMIT": "Tạo",
@@ -56,7 +56,7 @@
         "TITLE": "Bạn có chắc chắn muốn xóa thuộc tính - %{attributeName}",
         "PLACE_HOLDER": "Vui lòng nhập {attributeName} để xác nhận",
         "MESSAGE": "Hành động này sẽ xóa thuộc tính",
-        "YES": "Xoá ",
+        "YES": "Xoá thuộc tính",
         "NO": "Huỷ"
       }
     },
@@ -80,12 +80,7 @@
       "CONTACT": "Liên hệ"
     },
     "LIST": {
-      "TABLE_HEADER": [
-        "Tên",
-        "Mô tả",
-        "Type",
-        "Key"
-      ],
+      "TABLE_HEADER": ["Tên", "Mô tả", "Loại", "Key"],
       "BUTTONS": {
         "EDIT": "Chỉnh sửa",
         "DELETE": "Xoá"

@@ -202,6 +202,8 @@ ActiveRecord::Schema.define(version: 2022_03_03_080005) do
     t.string "smtp_domain", default: ""
     t.boolean "smtp_enable_starttls_auto", default: true
     t.string "smtp_authentication", default: "login"
+    t.string "smtp_openssl_verify_mode", default: "none"
+    t.boolean "smtp_enable_ssl_tls", default: false
     t.index ["email"], name: "index_channel_email_on_email", unique: true
     t.index ["forward_to_email"], name: "index_channel_email_on_forward_to_email", unique: true
   end
@@ -449,22 +451,6 @@ ActiveRecord::Schema.define(version: 2022_03_03_080005) do
     t.index ["name", "account_id"], name: "index_email_templates_on_name_and_account_id", unique: true
   end
 
-  create_table "events", force: :cascade do |t|
-    t.string "name"
-    t.float "value"
-    t.integer "account_id"
-    t.integer "inbox_id"
-    t.integer "user_id"
-    t.integer "conversation_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["account_id"], name: "index_events_on_account_id"
-    t.index ["created_at"], name: "index_events_on_created_at"
-    t.index ["inbox_id"], name: "index_events_on_inbox_id"
-    t.index ["name"], name: "index_events_on_name"
-    t.index ["user_id"], name: "index_events_on_user_id"
-  end
-
   create_table "inbox_members", id: :serial, force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "inbox_id", null: false
@@ -679,6 +665,22 @@ ActiveRecord::Schema.define(version: 2022_03_03_080005) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "reporting_events", force: :cascade do |t|
+    t.string "name"
+    t.float "value"
+    t.integer "account_id"
+    t.integer "inbox_id"
+    t.integer "user_id"
+    t.integer "conversation_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_reporting_events_on_account_id"
+    t.index ["created_at"], name: "index_reporting_events_on_created_at"
+    t.index ["inbox_id"], name: "index_reporting_events_on_inbox_id"
+    t.index ["name"], name: "index_reporting_events_on_name"
+    t.index ["user_id"], name: "index_reporting_events_on_user_id"
+  end
+
   create_table "super_admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -774,7 +776,6 @@ ActiveRecord::Schema.define(version: 2022_03_03_080005) do
     t.jsonb "ui_settings", default: {}
     t.jsonb "custom_attributes", default: {}
     t.string "type"
-    t.boolean "message_signature_enabled", default: false, null: false
     t.text "message_signature"
     t.boolean "allowed_log_in", default: true, null: false
     t.index ["email"], name: "index_users_on_email"
@@ -804,6 +805,7 @@ ActiveRecord::Schema.define(version: 2022_03_03_080005) do
     t.integer "close_minutes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "open_all_day", default: false
     t.index ["account_id"], name: "index_working_hours_on_account_id"
     t.index ["inbox_id"], name: "index_working_hours_on_inbox_id"
   end

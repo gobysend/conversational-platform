@@ -30,6 +30,7 @@ export default {
           user_full_name: creds.fullName.trim(),
           email: creds.email,
           password: creds.password,
+          h_captcha_client_response: creds.hCaptchaClientResponse,
         })
         .then(response => {
           setAuthCredentials(response);
@@ -63,13 +64,15 @@ export default {
 
   isLoggedIn() {
     const hasAuthCookie = !!Cookies.getJSON('auth_data');
-    const hasUserCookie = !!Cookies.getJSON('user');
+    //const hasUserCookie = !!Cookies.getJSON('user');
+    const hasUserCookie = !!localStorage.getItem('user');
     return hasAuthCookie && hasUserCookie;
   },
 
   isAdmin() {
     if (this.isLoggedIn()) {
-      return Cookies.getJSON('user').role === 'administrator';
+      //return Cookies.getJSON('user').role === 'administrator';
+      return JSON.parse(localStorage.getItem('user')).role === 'administrator';
     }
     return false;
   },
@@ -82,7 +85,8 @@ export default {
   },
   getPubSubToken() {
     if (this.isLoggedIn()) {
-      const user = Cookies.getJSON('user') || {};
+      //const user = Cookies.getJSON('user') || {};
+      const user = JSON.parse(localStorage.getItem('user')) || {};
       const { pubsub_token: pubsubToken } = user;
       return pubsubToken;
     }
@@ -90,7 +94,8 @@ export default {
   },
   getCurrentUser() {
     if (this.isLoggedIn()) {
-      return Cookies.getJSON('user');
+      //return Cookies.getJSON('user');
+      return JSON.parse(localStorage.getItem('user'));
     }
     return null;
   },
@@ -138,19 +143,23 @@ export default {
     password,
     password_confirmation,
     displayName,
+    avatar,
     ...profileAttributes
   }) {
     const formData = new FormData();
     Object.keys(profileAttributes).forEach(key => {
-      const value = profileAttributes[key];
-      if (value) {
-        formData.append(`profile[${key}]`, value);
+      const hasValue = profileAttributes[key] === undefined;
+      if (!hasValue) {
+        formData.append(`profile[${key}]`, profileAttributes[key]);
       }
     });
     formData.append('profile[display_name]', displayName || '');
     if (password && password_confirmation) {
       formData.append('profile[password]', password);
       formData.append('profile[password_confirmation]', password_confirmation);
+    }
+    if (avatar) {
+      formData.append('profile[avatar]', avatar);
     }
     return axios.put(endPoints('profileUpdate').url, formData);
   },

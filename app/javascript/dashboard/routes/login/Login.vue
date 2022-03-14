@@ -56,7 +56,7 @@
           </div>
         </form>
         <div class="column text-center sigin__footer">
-          <p>
+          <p v-if="!globalConfig.disableUserProfileUpdate">
             <router-link to="auth/reset/password">
               {{ $t('LOGIN.FORGOT_PASSWORD') }}
             </router-link>
@@ -78,6 +78,7 @@ import { required, email } from 'vuelidate/lib/validators';
 import globalConfigMixin from 'shared/mixins/globalConfigMixin';
 import WootSubmitButton from '../../components/buttons/FormSubmitButton';
 import { mapGetters } from 'vuex';
+import { getLoginRedirectURL } from '../../helper/URLHelper';
 
 export default {
   components: {
@@ -86,6 +87,7 @@ export default {
   mixins: [globalConfigMixin],
   props: {
     ssoAuthToken: { type: String, default: '' },
+    ssoAccountId: { type: String, default: '' },
     redirectUrl: { type: String, default: '' },
     config: { type: String, default: '' },
     email: { type: String, default: '' },
@@ -140,10 +142,9 @@ export default {
     login() {
       this.loginApi.showLoading = true;
       const credentials = {
-        email: (this.email ? this.email : this.credentials.email).replace(
-          /\s/g,
-          '+'
-        ),
+        email: this.email
+          ? decodeURIComponent(this.email)
+          : this.credentials.email,
         password: this.credentials.password,
         sso_auth_token: this.ssoAuthToken,
         account_id: this.accountId,
@@ -162,7 +163,7 @@ export default {
           ) {
             window.location.href = this.redirectUrl;
           } else {
-            window.location = '/app/';
+            window.location = getLoginRedirectURL(this.accountId, response);
           }
         })
         .catch(response => {

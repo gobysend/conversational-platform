@@ -146,7 +146,7 @@ export default {
 .search {
   display: flex;
   padding: 0;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid var(--s-75);
   padding: var(--space-one) var(--space-normal) var(--space-smaller)
     var(--space-normal);
 

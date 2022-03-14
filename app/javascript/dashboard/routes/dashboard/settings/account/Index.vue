@@ -1,13 +1,11 @@
 <template>
-  <div class="columns profile--settings">
-    <form v-if="!uiFlags.isFetchingItem" @submit.prevent="updateAccount">
-      <div class="small-12 row profile--settings--row card-goby">
-        <div class="columns small-3">
-          <h4 class="block-title">
-            {{ $t('GENERAL_SETTINGS.FORM.GENERAL_SECTION.TITLE') }}
-          </h4>
-          <p>{{ $t('GENERAL_SETTINGS.FORM.GENERAL_SECTION.NOTE') }}</p>
-        </div>
+  <div class="columns profile--settings ">
+    <form
+      v-if="!uiFlags.isFetchingItem"
+      @submit.prevent="updateAccount"
+      class="card-goby"
+    >
+      <div class="row">
         <div class="columns small-9 medium-5">
           <label :class="{ error: $v.name.$error }">
             {{ $t('GENERAL_SETTINGS.FORM.NAME.LABEL') }}
@@ -36,9 +34,9 @@
               {{ $t('GENERAL_SETTINGS.FORM.LANGUAGE.ERROR') }}
             </span>
           </label>
-          <label v-if="featureInboundEmailEnabled">
+          <!-- <label v-if="featureInboundEmailEnabled">
             {{ $t('GENERAL_SETTINGS.FORM.FEATURES.INBOUND_EMAIL_ENABLED') }}
-          </label>
+          </label> -->
           <label v-if="featureCustomDomainEmailEnabled">
             {{
               $t('GENERAL_SETTINGS.FORM.FEATURES.CUSTOM_EMAIL_DOMAIN_ENABLED')
@@ -79,7 +77,7 @@
         </div>
       </div>
 
-      <div class="profile--settings--row row">
+      <!-- <div class="profile--settings--row row">
         <div class="columns small-3">
           <h4 class="block-title">
             {{ $t('GENERAL_SETTINGS.FORM.ACCOUNT_ID.TITLE') }}
@@ -91,20 +89,10 @@
         <div class="columns small-9 medium-5">
           <woot-code :script="getAccountId"></woot-code>
         </div>
-      </div>
-<!--      <div class="current-version">
-        <div>{{ `v${globalConfig.appVersion}` }}</div>
-        <div v-if="hasAnUpdateAvailable && globalConfig.displayManifest">
-          {{
-            $t('GENERAL_SETTINGS.UPDATE_CHATWOOT', {
-              latestChatwootVersion: latestChatwootVersion,
-            })
-          }}
-        </div>
-      </div>-->
+      </div> -->
 
       <woot-submit-button
-        class="button nice primary button--fixed-right-top"
+        class="button nice primary"
         :button-text="$t('GENERAL_SETTINGS.SUBMIT')"
         :loading="isUpdating"
       >

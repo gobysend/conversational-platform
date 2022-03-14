@@ -41,6 +41,7 @@ export default {
     margin-top: 0;
     position: absolute;
     right: 0;
+    background: #71809e;
   }
 }
 </style>

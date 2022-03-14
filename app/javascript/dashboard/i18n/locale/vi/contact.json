@@ -7,7 +7,7 @@
     "COMPANY": "Công ty",
     "LOCATION": "Vị trí",
     "CONVERSATION_TITLE": "Chi tiết của cuộc trò chuyện",
-    "VIEW_PROFILE": "View Profile",
+    "VIEW_PROFILE": "Xem hồ sơ cá nhân",
     "BROWSER": "Trình duyệt",
     "OS": "Hệ điều hành",
     "INITIATED_FROM": "Bắt đầu từ",
@@ -33,17 +33,17 @@
         "NO_RESULT": "Không tìm thấy nhãn"
       }
     },
-    "MERGE_CONTACT": "Merge contact",
-    "CONTACT_ACTIONS": "Contact actions",
+    "MERGE_CONTACT": "Gộp liên lạc",
+    "CONTACT_ACTIONS": "Hành động của liên lạc",
     "MUTE_CONTACT": "Tắt tiếng cuộc trò chuyện",
     "UNMUTE_CONTACT": "Bật tiếng cuộc trò chuyện",
     "MUTED_SUCCESS": "Cuộc trò chuyện này bị tắt tiếng trong 6 giờ",
-    "UNMUTED_SUCCESS": "Cuộc trò chuyện này không bị tắt tiếng",
+    "UNMUTED_SUCCESS": "Cuộc trò chuyện này được bật tiếng",
     "SEND_TRANSCRIPT": "Gửi bản ghi",
     "EDIT_LABEL": "Chỉnh sửa",
     "SIDEBAR_SECTIONS": {
       "CUSTOM_ATTRIBUTES": "Thuộc tính tùy chỉnh",
-      "CONTACT_LABELS": "Contact Labels",
+      "CONTACT_LABELS": "Nhãn danh bạ",
       "PREVIOUS_CONVERSATIONS": "Cuộc trò chuyện trước đó"
     }
   },
@@ -58,13 +58,13 @@
     "DESC": "Thêm thông tin chi tiết cho liên hệ."
   },
   "IMPORT_CONTACTS": {
-    "BUTTON_LABEL": "Import",
-    "TITLE": "Import Contacts",
-    "DESC": "Import contacts through a CSV file.",
-    "DOWNLOAD_LABEL": "Download a sample csv.",
+    "BUTTON_LABEL": "Nhập",
+    "TITLE": "Nhập liên lạc",
+    "DESC": "Nhập liên lạc qua một file CSV.",
+    "DOWNLOAD_LABEL": "Tải xuống file CSV mẫu.",
     "FORM": {
       "LABEL": "CSV File",
-      "SUBMIT": "Import",
+      "SUBMIT": "Nhập",
       "CANCEL": "Huỷ"
     },
     "SUCCESS_MESSAGE": "Lưu liên hệ thành công",
@@ -158,9 +158,9 @@
         "ERROR": "Chọn kênh chat"
       },
       "SUBJECT": {
-        "LABEL": "Subject",
-        "PLACEHOLDER": "Subject",
-        "ERROR": "Subject can't be empty"
+        "LABEL": "Chủ đề",
+        "PLACEHOLDER": "Chủ đề",
+        "ERROR": "Chủ đề không được rỗng"
       },
       "MESSAGE": {
         "LABEL": "Tin nhắn",
@@ -179,6 +179,8 @@
     "SEARCH_BUTTON": "Tìm kiếm",
     "SEARCH_INPUT_PLACEHOLDER": "Tìm liên hệ",
     "FILTER_CONTACTS": "Lọc",
+    "FILTER_CONTACTS_SAVE": "Lưu bộ lọc",
+    "FILTER_CONTACTS_DELETE": "Xoá bộ lọc",
     "LIST": {
       "LOADING_MESSAGE": "Đang tải...",
       "404": "Không tìm thấy liên hệ nào 🔍",
@@ -237,8 +239,8 @@
       "TITLE": "Hoạt động"
     },
     "BUTTON": {
-      "PILL_BUTTON_NOTES": "notes",
-      "PILL_BUTTON_EVENTS": "events",
+      "PILL_BUTTON_NOTES": "ghi chú",
+      "PILL_BUTTON_EVENTS": "sự kiện",
       "PILL_BUTTON_CONVO": "các cuộc hội thoại"
     }
   },

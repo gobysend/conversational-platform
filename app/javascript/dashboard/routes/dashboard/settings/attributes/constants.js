@@ -1,11 +1,11 @@
 export const ATTRIBUTE_MODELS = [
   {
     id: 0,
-    option: 'Conversation',
+    option: 'CONVERSATION',
   },
   {
     id: 1,
-    option: 'Contact',
+    option: 'CONTACT',
   },
 ];
 

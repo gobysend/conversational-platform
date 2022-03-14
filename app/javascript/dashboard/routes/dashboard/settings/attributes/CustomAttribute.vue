@@ -1,80 +1,86 @@
 <template>
   <div class="row table-wrap">
-    <div class="column">
-      <woot-tabs :index="selectedTabIndex" @change="onClickTabChange">
-        <woot-tabs-item
-          v-for="tab in tabs"
-          :key="tab.key"
-          :name="tab.name"
-          :show-badge="false"
-        />
-      </woot-tabs>
+    <div class="small-8 columns with-right-space">
+      <div class="card-goby">
+        <woot-tabs :index="selectedTabIndex" @change="onClickTabChange">
+          <woot-tabs-item
+            v-for="tab in tabs"
+            :key="tab.key"
+            :name="tab.name"
+            :show-badge="false"
+          />
+        </woot-tabs>
 
-      <div class="columns with-right-space">
-        <p
-          v-if="!uiFlags.isFetching && !attributes.length"
-          class="no-items-error-message"
-        >
-          {{ $t('ATTRIBUTES_MGMT.LIST.EMPTY_RESULT.404') }}
-        </p>
-        <woot-loading-state
-          v-if="uiFlags.isFetching"
-          :message="$t('ATTRIBUTES_MGMT.LOADING')"
-        />
-        <table
-          v-if="!uiFlags.isFetching && attributes.length"
-          class="woot-table"
-        >
-          <thead>
-            <th
-              v-for="tableHeader in $t('ATTRIBUTES_MGMT.LIST.TABLE_HEADER')"
-              :key="tableHeader"
-              class="item"
-            >
-              {{ tableHeader }}
-            </th>
-          </thead>
-          <tbody>
-            <tr v-for="attribute in attributes" :key="attribute.attribute_key">
-              <td class="item text-truncate">
-                {{ attribute.attribute_display_name }}
-              </td>
-              <td class="item-description text-truncate">
-                {{ attribute.attribute_description }}
-              </td>
-              <td class="item text-truncatee">
-                {{ attribute.attribute_display_type }}
-              </td>
-              <td class="item key text-truncate">
-                {{ attribute.attribute_key }}
-              </td>
-              <td class="button-wrapper">
-                <woot-button
-                  v-tooltip.top="$t('ATTRIBUTES_MGMT.LIST.BUTTONS.EDIT')"
-                  variant="smooth"
-                  size="tiny"
-                  color-scheme="secondary"
-                  class-names="grey-btn"
-                  icon="edit"
-                  @click="openEditPopup(attribute)"
-                >
-                </woot-button>
-                <woot-button
-                  v-tooltip.top="$t('ATTRIBUTES_MGMT.LIST.BUTTONS.DELETE')"
-                  variant="smooth"
-                  color-scheme="alert"
-                  size="tiny"
-                  icon="dismiss-circle"
-                  class-names="grey-btn"
-                  @click="openDelete(attribute)"
-                >
-                </woot-button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div>
+          <p
+            v-if="!uiFlags.isFetching && !attributes.length"
+            class="no-items-error-message"
+          >
+            {{ $t('ATTRIBUTES_MGMT.LIST.EMPTY_RESULT.404') }}
+          </p>
+          <woot-loading-state
+            v-if="uiFlags.isFetching"
+            :message="$t('ATTRIBUTES_MGMT.LOADING')"
+          />
+          <table
+            v-if="!uiFlags.isFetching && attributes.length"
+            class="woot-table"
+          >
+            <thead>
+              <th
+                v-for="tableHeader in $t('ATTRIBUTES_MGMT.LIST.TABLE_HEADER')"
+                :key="tableHeader"
+                class="item"
+              >
+                {{ tableHeader }}
+              </th>
+            </thead>
+            <tbody>
+              <tr
+                v-for="attribute in attributes"
+                :key="attribute.attribute_key"
+              >
+                <td class="item text-truncate">
+                  {{ attribute.attribute_display_name }}
+                </td>
+                <td class="item-description text-truncate">
+                  {{ attribute.attribute_description }}
+                </td>
+                <td class="item text-truncatee">
+                  {{ attribute.attribute_display_type }}
+                </td>
+                <td class="item key text-truncate">
+                  {{ attribute.attribute_key }}
+                </td>
+                <td class="button-wrapper">
+                  <woot-button
+                    v-tooltip.top="$t('ATTRIBUTES_MGMT.LIST.BUTTONS.EDIT')"
+                    variant="smooth"
+                    size="tiny"
+                    color-scheme="secondary"
+                    class-names="grey-btn"
+                    icon="edit"
+                    @click="openEditPopup(attribute)"
+                  >
+                  </woot-button>
+                  <woot-button
+                    v-tooltip.top="$t('ATTRIBUTES_MGMT.LIST.BUTTONS.DELETE')"
+                    variant="smooth"
+                    color-scheme="alert"
+                    size="tiny"
+                    icon="dismiss-circle"
+                    class-names="grey-btn"
+                    @click="openDelete(attribute)"
+                  >
+                  </woot-button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
+
     <div class="small-4 columns">
       <span v-html="$t('ATTRIBUTES_MGMT.SIDEBAR_TXT')"></span>
     </div>
@@ -92,7 +98,7 @@
       :message="$t('ATTRIBUTES_MGMT.DELETE.CONFIRM.MESSAGE')"
       :confirm-text="deleteConfirmText"
       :reject-text="deleteRejectText"
-      :confirm-value="selectedAttribute.attribute_display_name"
+      :confirm-value="'Delete'"
       :confirm-place-holder-text="confirmPlaceHolderText"
       @on-confirm="confirmDeletion"
       @on-close="closeDelete"
@@ -144,9 +150,7 @@ export default {
       ];
     },
     deleteConfirmText() {
-      return `${this.$t('ATTRIBUTES_MGMT.DELETE.CONFIRM.YES')} ${
-        this.selectedAttribute.attribute_display_name
-      }`;
+      return `${this.$t('ATTRIBUTES_MGMT.DELETE.CONFIRM.YES')}`;
     },
     deleteRejectText() {
       return this.$t('ATTRIBUTES_MGMT.DELETE.CONFIRM.NO');
@@ -158,7 +162,7 @@ export default {
     },
     confirmPlaceHolderText() {
       return `${this.$t('ATTRIBUTES_MGMT.DELETE.CONFIRM.PLACE_HOLDER', {
-        attributeName: this.selectedAttribute.attribute_display_name,
+        attributeName: 'Delete',
       })}`;
     },
   },
