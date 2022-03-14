@@ -22,9 +22,10 @@ export const setUser = (user, expiryDate, options = {}) => {
     window.bus.$emit(CHATWOOT_SET_USER, { user });
     window.bus.$emit(ANALYTICS_IDENTITY, { user });
   }
-  Cookies.set('user', user, {
-    expires: differenceInDays(expiryDate, new Date()),
-  });
+  // Cookies.set('user', user, {
+  //   expires: differenceInDays(expiryDate, new Date()),
+  // });
+  localStorage.setItem('user', JSON.stringify(user));
 };
 
 export const getHeaderExpiry = response =>

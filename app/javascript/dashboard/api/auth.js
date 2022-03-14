@@ -14,7 +14,6 @@ export default {
         .then(response => {
           setAuthCredentials(response);
           resolve(response.data.data);
-
         })
         .catch(error => {
           reject(error.response);
@@ -65,13 +64,15 @@ export default {
 
   isLoggedIn() {
     const hasAuthCookie = !!Cookies.getJSON('auth_data');
-    const hasUserCookie = !!Cookies.getJSON('user');
+    //const hasUserCookie = !!Cookies.getJSON('user');
+    const hasUserCookie = !!localStorage.getItem('user');
     return hasAuthCookie && hasUserCookie;
   },
 
   isAdmin() {
     if (this.isLoggedIn()) {
-      return Cookies.getJSON('user').role === 'administrator';
+      //return Cookies.getJSON('user').role === 'administrator';
+      return JSON.parse(localStorage.getItem('user')).role === 'administrator';
     }
     return false;
   },
@@ -84,7 +85,8 @@ export default {
   },
   getPubSubToken() {
     if (this.isLoggedIn()) {
-      const user = Cookies.getJSON('user') || {};
+      //const user = Cookies.getJSON('user') || {};
+      const user = JSON.parse(localStorage.getItem('user')) || {};
       const { pubsub_token: pubsubToken } = user;
       return pubsubToken;
     }
@@ -92,7 +94,8 @@ export default {
   },
   getCurrentUser() {
     if (this.isLoggedIn()) {
-      return Cookies.getJSON('user');
+      //return Cookies.getJSON('user');
+      return JSON.parse(localStorage.getItem('user'));
     }
     return null;
   },
