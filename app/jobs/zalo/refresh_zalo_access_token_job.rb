@@ -26,7 +26,6 @@ class Zalo::RefreshZaloAccessTokenJob < ApplicationJob
   def refresh_access_token(zalo_channel)
     zalo_channel ||= Channel::Zalo.new
 
-    url = 'https://oauth.zaloapp.com/v4/oa/access_token'
     params = {
       refresh_token: zalo_channel.refresh_token,
       app_id: ENV['ZALO_APP_ID'],
@@ -47,6 +46,7 @@ class Zalo::RefreshZaloAccessTokenJob < ApplicationJob
 
     response = JSON.parse(response.body, { symbolize_names: true })
     if response[:error].present? && (response[:error]).negative?
+      puts "Failed to refresh access token for Zalo OA #{zalo_channel.oa_name} due to: #{response.inspect}"
       zalo_channel.expires_at = DateTime.now - 10.seconds
       zalo_channel.save
       return

@@ -320,7 +320,7 @@ export default {
         conversationList = [...this.chatLists];
       }
 
-      return conversationList;
+      return conversationList.reverse();
     },
     activeFolder() {
       if (this.foldersId) {
