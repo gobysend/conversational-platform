@@ -40,7 +40,7 @@
             {{ $t('ONBOARDING.ALL_CONVERSATION.DESCRIPTION') }}
           </p>
         </div>
-        <div class="features-item">
+        <!-- <div class="features-item">
           <h2 class="block-title">
             <span class="emoji">👥</span>
             {{ $t('ONBOARDING.TEAM_MEMBERS.TITLE') }}
@@ -51,7 +51,7 @@
           <router-link :to="newAgentURL" class="onboarding--link">
             {{ $t('ONBOARDING.TEAM_MEMBERS.NEW_LINK') }}
           </router-link>
-        </div>
+        </div> -->
         <div class="features-item">
           <h2 class="block-title">
             <span class="emoji">📥</span>{{ $t('ONBOARDING.INBOXES.TITLE') }}
@@ -70,9 +70,9 @@
           <p class="intro-body">
             {{ $t('ONBOARDING.LABELS.DESCRIPTION') }}
           </p>
-          <router-link :to="newLabelsURL" class="onboarding--link">
+          <a :href="newLabelsURL" class="onboarding--link">
             {{ $t('ONBOARDING.LABELS.NEW_LINK') }}
-          </router-link>
+          </a>
         </div>
       </div>
     </div>
@@ -93,7 +93,8 @@ export default {
       return this.addAccountScoping('settings/agents/list');
     },
     newLabelsURL() {
-      return this.addAccountScoping('settings/labels/list');
+      return `${window.chatwootConfig.admin_frontend_url}/customers/tags`;
+      //return this.addAccountScoping('settings/labels/list');
     },
   },
 };

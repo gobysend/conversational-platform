@@ -73,14 +73,14 @@ const GO_TO_COMMANDS = [
     path: accountId => `accounts/${accountId}/reports/teams`,
     role: ['administrator'],
   },
-  {
-    id: 'open_agent_settings',
-    section: 'COMMAND_BAR.SECTIONS.SETTINGS',
-    title: 'COMMAND_BAR.COMMANDS.GO_TO_SETTINGS_AGENTS',
-    icon: ICON_AGENT_REPORTS,
-    path: accountId => `accounts/${accountId}/settings/agents/list`,
-    role: ['administrator'],
-  },
+  // {
+  //   id: 'open_agent_settings',
+  //   section: 'COMMAND_BAR.SECTIONS.SETTINGS',
+  //   title: 'COMMAND_BAR.COMMANDS.GO_TO_SETTINGS_AGENTS',
+  //   icon: ICON_AGENT_REPORTS,
+  //   path: accountId => `accounts/${accountId}/settings/agents/list`,
+  //   role: ['administrator'],
+  // },
   {
     id: 'open_team_settings',
     title: 'COMMAND_BAR.COMMANDS.GO_TO_SETTINGS_TEAMS',
