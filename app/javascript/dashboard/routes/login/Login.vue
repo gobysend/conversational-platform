@@ -155,8 +155,6 @@ export default {
           this.showAlert(this.$t('LOGIN.API.SUCCESS_MESSAGE'));
 
           let account_ids = response.accounts.map(({ id }) => id);
-          debugger;
-          console.log(account_ids);
 
           if (
             this.redirectUrl &&
@@ -169,7 +167,6 @@ export default {
           }
         })
         .catch(response => {
-          console.log('login fail', response);
           // Reset URL Params if the authentication is invalid
           if (this.email) {
             window.location = window.ssoUrl + '?status=401';

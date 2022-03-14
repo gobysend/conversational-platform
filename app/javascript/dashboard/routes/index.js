@@ -81,8 +81,7 @@ const routeValidators = [
     loggedIn: false,
     // handler: () => 'login',
     handler: () => {
-      console.log('Required login sso');
-      //window.location.href = window.ssoUrl + '?referer=' + window.location.href;
+      window.location.href = window.ssoUrl + '?referer=' + window.location.href;
     },
   },
   {
@@ -105,7 +104,6 @@ const routeValidators = [
 export const validateAuthenticateRoutePermission = (to, from, next) => {
   const isLoggedIn = auth.isLoggedIn();
   const isProtectedRoute = !unProtectedRoutes.includes(to.name);
-  debugger;
   const strategy = routeValidators.find(
     validator =>
       validator.protected === isProtectedRoute &&
@@ -147,14 +145,11 @@ const validateRouteAccess = (to, from, next) => {
 router.beforeEach((to, from, next) => {
   if (!to.name) {
     const user = auth.getCurrentUser();
-    console.log('user', user);
 
     if (user) {
       return next(frontendURL(`accounts/${user.account_id}/dashboard`));
     }
-    // return next(window.ssoUrl);
-    console.log('beforeEach redirect sso', user);
-    //window.location.href = window.ssoUrl;
+    window.location.href = window.ssoUrl;
   }
 
   return validateRouteAccess(to, from, next);
