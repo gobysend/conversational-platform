@@ -8,7 +8,8 @@ class Zalo::SendOnZaloService < Base::SendOnChannelService
   end
 
   def perform_reply
-    send_message_to_zalo zalo_message_params
+    # TODO: Uncomment this line
+    # send_message_to_zalo zalo_message_params
   rescue *ExceptionList::REST_CLIENT_EXCEPTIONS => e
     Rails.logger.info e
   end

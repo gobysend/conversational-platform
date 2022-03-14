@@ -4,6 +4,8 @@ class Zalo::RefreshZaloAccessTokenJob < ApplicationJob
   def perform
     next_15_minutes = DateTime.now + 15.minutes
 
+    puts '====================================Refreshing Zalo OA access token...'
+
     loop do
       # Load list of Zalo OAs that have access_token expired in next 15 minutes
       oa_list = Channel::Zalo.where(expires_at: DateTime.now..next_15_minutes)

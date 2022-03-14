@@ -21,12 +21,12 @@ json.accounts do
   json.array! resource.account_users do |account_user|
     json.id account_user.account_id
     json.name account_user.account.name
-    json.active_at account_user.active_at
+    # json.active_at account_user.active_at
     json.role account_user.role
     # the actual availability user has configured
-    json.availability account_user.availability
+    # json.availability account_user.availability
     # availability derived from presence
-    json.availability_status account_user.availability_status
-    json.auto_offline account_user.auto_offline
+    # json.availability_status account_user.availability_status
+    # json.auto_offline account_user.auto_offline
   end
 end
