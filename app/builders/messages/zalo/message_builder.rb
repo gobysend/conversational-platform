@@ -160,8 +160,8 @@ class Messages::Zalo::MessageBuilder
       remote_avatar_url: (result[:avatars].present? ? result[:avatars][:'240'] : nil) || nil,
       identifier: result[:user_id],
       custom_attributes: {
-        gender: (result[:user_gender]).zero? ? 'Nữ' : 'Name',
-        birth_date: result[:birth_date].present? ? Time.zone.at(result[:birth_date].to_i).to_datetime : nil
+        gender: (result[:user_gender].present? && result[:user_gender].zero?) ? 'Nữ' : 'Nam',
+        birth_date: result[:birth_date].present? ? Time.zone.at(result[:birth_date].to_i).strftime('%Y-%m-%d') : nil
       }
     }
   end
