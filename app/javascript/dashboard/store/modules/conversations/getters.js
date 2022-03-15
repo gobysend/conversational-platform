@@ -12,8 +12,8 @@ export const getSelectedChatConversation = ({
 const getters = {
   getAllConversations: ({ allConversations }) =>
     allConversations.sort(
-      // (a, b) => b.messages.last()?.created_at - a.messages.last()?.created_at
-      (a, b) => b.last_activity_at - a.last_activity_at
+      (a, b) => b.messages.last()?.created_at - a.messages.last()?.created_at
+      // (a, b) => b.last_activity_at - a.last_activity_at
     ),
   getSelectedChat: ({ selectedChatId, allConversations }) => {
     const selectedChat = allConversations.find(
