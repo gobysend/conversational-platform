@@ -80,7 +80,7 @@ Vue.component('woot-wizard', WootWizard);
 Vue.component('fluent-icon', FluentIcon);
 
 const i18nConfig = new VueI18n({
-  locale: 'en',
+  locale: 'vi',
   messages: i18n,
 });
 

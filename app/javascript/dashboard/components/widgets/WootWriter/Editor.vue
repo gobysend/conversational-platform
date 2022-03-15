@@ -165,6 +165,14 @@ export default {
         this.view.updateState(this.state);
       }
     },
+    // placeholder(value) {
+    //   this.state = createState(
+    //     this.value || '',
+    //     this.placeholder,
+    //     this.plugins
+    //   );
+    //   this.view.updateState(this.state);
+    // },
   },
   created() {
     this.state = createState(this.value, this.placeholder, this.plugins);
