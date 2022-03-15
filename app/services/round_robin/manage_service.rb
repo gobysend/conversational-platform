@@ -51,6 +51,8 @@ class RoundRobin::ManageService
   end
 
   def round_robin_key
+    return if inbox.nil?
+
     format(::Redis::Alfred::ROUND_ROBIN_AGENTS, inbox_id: inbox.id)
   end
 end

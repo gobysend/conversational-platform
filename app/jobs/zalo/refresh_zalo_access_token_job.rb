@@ -4,6 +4,8 @@ class Zalo::RefreshZaloAccessTokenJob < ApplicationJob
   def perform
     next_15_minutes = DateTime.now + 15.minutes
 
+    puts '====================================Refreshing Zalo OA access token...'
+
     loop do
       # Load list of Zalo OAs that have access_token expired in next 15 minutes
       oa_list = Channel::Zalo.where(expires_at: DateTime.now..next_15_minutes)
@@ -24,7 +26,6 @@ class Zalo::RefreshZaloAccessTokenJob < ApplicationJob
   def refresh_access_token(zalo_channel)
     zalo_channel ||= Channel::Zalo.new
 
-    url = 'https://oauth.zaloapp.com/v4/oa/access_token'
     params = {
       refresh_token: zalo_channel.refresh_token,
       app_id: ENV['ZALO_APP_ID'],
@@ -45,6 +46,7 @@ class Zalo::RefreshZaloAccessTokenJob < ApplicationJob
 
     response = JSON.parse(response.body, { symbolize_names: true })
     if response[:error].present? && (response[:error]).negative?
+      puts "Failed to refresh access token for Zalo OA #{zalo_channel.oa_name} due to: #{response.inspect}"
       zalo_channel.expires_at = DateTime.now - 10.seconds
       zalo_channel.save
       return
