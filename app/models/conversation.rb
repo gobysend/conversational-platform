@@ -48,7 +48,7 @@ class Conversation < ApplicationRecord
   include RoundRobinHandler
   include ActivityMessageHandler
 
-  attr_accessor :skip_notify_creation
+  attr_accessor :skip_notify_creation, :skip_update_status_callbacks
 
   after_initialize :set_skip_notify_creation
 
@@ -164,6 +164,8 @@ class Conversation < ApplicationRecord
   private
 
   def execute_after_update_commit_callbacks
+    return if skip_update_status_callbacks
+
     notify_status_change
     create_activity
     notify_conversation_updation

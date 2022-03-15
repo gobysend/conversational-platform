@@ -18,7 +18,7 @@ class Facebook::DownloadConversationsService
     inbox
     return if @inbox.nil?
 
-    oldest_date = Time.zone.current.beginning_of_day - OLDEST_CONVERSATION_BACK_DAYS.days
+    oldest_date = Time.zone.now.beginning_of_day - OLDEST_CONVERSATION_BACK_DAYS.days
 
     FbGraph2.api_version = 'v13.0'
     fb = FbGraph2::Page.new(channel.page_id).authenticate(channel.page_access_token)
@@ -42,6 +42,9 @@ class Facebook::DownloadConversationsService
           contact_inbox(thread)
           create_conversation(thread)
         end
+
+        # Skip update callbacks
+        @conversation.skip_update_status_callbacks = true
 
         begin
           # Loop to download messages of the conversation

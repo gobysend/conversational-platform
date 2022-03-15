@@ -40,6 +40,9 @@ class Zalo::DownloadConversationsService
           create_conversation(thread)
         end
 
+        # Skip update callbacks
+        @conversation.skip_update_status_callbacks = true
+
         begin
           offset = 0
           count = 10
