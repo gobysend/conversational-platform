@@ -59,8 +59,8 @@ class Zalo::DownloadConversationsService
         rescue StandardError => e
           Rails.logger.error(e)
         ensure
-          # Set conversation status to open
-          @conversation.update(status: 0)
+          # Set conversation status to resolved for all old conversations
+          @conversation.update(status: 1)
         end
       end
 
@@ -188,6 +188,7 @@ class Zalo::DownloadConversationsService
       content: format_message_content(message[:message]),
       private: false,
       sender: message[:src].zero? ? Current.user : @contact,
+      skip_create_callbacks: true,
       content_type: nil,
       in_reply_to: nil,
       echo_id: nil,

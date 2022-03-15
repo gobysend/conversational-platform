@@ -64,8 +64,8 @@ class Facebook::DownloadConversationsService
         rescue StandardError => e
           Rails.logger.error(e)
         ensure
-          # Set conversation status to open
-          @conversation.update(status: 0)
+          # Set conversation status to resolved
+          @conversation.update(status: 1)
         end
       end
 
