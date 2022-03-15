@@ -20,16 +20,16 @@
         "NOTE": "Địa chỉ email của bạn là danh tính của bạn và được sử dụng để đăng nhập."
       },
       "MESSAGE_SIGNATURE_SECTION": {
-        "TITLE": "Personal message signature",
-        "NOTE": "Create a personal message signature that would be added to all the messages you send from the platform. Use the rich content editor to create a highly personalised signature.",
-        "BTN_TEXT": "Save message signature",
-        "API_ERROR": "Couldn't save signature! Try again",
-        "API_SUCCESS": "Signature saved successfully"
+        "TITLE": "Chữ ký cá nhân",
+        "NOTE": "Chữ ký cá nhân sẽ tự động được thêm vào tất cả các tin nhắn bạn gửi. Sử dụng trình chỉnh sửa nội dung để tạo chữ ký cá nhân hóa cao.",
+        "BTN_TEXT": "Lưu chữ ký",
+        "API_ERROR": "Không thể lưu chữ ký! Vui lòng thử lại",
+        "API_SUCCESS": "Lưu chữ ký thành công"
       },
       "MESSAGE_SIGNATURE": {
-        "LABEL": "Message Signature",
-        "ERROR": "Message Signature cannot be empty",
-        "PLACEHOLDER": "Insert your personal message signature here."
+        "LABEL": "Chữ ký",
+        "ERROR": "Chữ ký không thể bỏ trống",
+        "PLACEHOLDER": "Nhập chữ ký cá nhận của bạn."
       },
       "PASSWORD_SECTION": {
         "TITLE": "Mật khẩu",
@@ -145,7 +145,7 @@
     "CURRENTLY_VIEWING_ACCOUNT": "Tài khoản:",
     "CONVERSATIONS": "Cuộc trò chuyện",
     "ALL_CONVERSATIONS": "Tất cả cuộc trò chuyện",
-    "MENTIONED_CONVERSATIONS": "Nhắn đến",
+    "MENTIONED_CONVERSATIONS": "Đề cập",
     "REPORTS": "Báo cáo",
     "CONTACTS": "Liên hệ",
     "SETTINGS": "Cài Đặt",
@@ -172,7 +172,7 @@
     "AUTOMATION": "Tự động hóa",
     "NEW_LABEL": "Nhãn mới",
     "NEW_TEAM": "Nhóm mới",
-    "NEW_INBOX": "Hộp thư mới",
+    "NEW_INBOX": "Kênh chat mới",
     "REPORTS_AGENT": "Nhân viên hỗ trợ",
     "REPORTS_LABEL": "Nhãn",
     "REPORTS_INBOX": "Kênh chat",

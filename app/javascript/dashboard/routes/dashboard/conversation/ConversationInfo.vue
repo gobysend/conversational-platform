@@ -3,7 +3,12 @@
     <contact-details-item
       v-if="initiatedAt"
       :title="$t('CONTACT_PANEL.INITIATED_AT')"
-      :value="initiatedAt.timestamp"
+      :value="
+        messageStamp(
+          new Date(initiatedAt.timestamp).getTime() / 1000,
+          'd LLLL yyyy, HH:mm'
+        )
+      "
       class="conversation--attribute"
     />
     <contact-details-item
@@ -47,6 +52,7 @@
 import ContactDetailsItem from './ContactDetailsItem.vue';
 import CustomAttributes from './customAttributes/CustomAttributes.vue';
 import CustomAttributeSelector from './customAttributes/CustomAttributeSelector.vue';
+import timeMixin from '../../../mixins/time';
 
 export default {
   components: {
@@ -54,6 +60,7 @@ export default {
     CustomAttributes,
     CustomAttributeSelector,
   },
+  mixins: [timeMixin],
   props: {
     conversationAttributes: {
       type: Object,
@@ -91,6 +98,10 @@ export default {
       return this.conversationAttributes.referer;
     },
     initiatedAt() {
+      if (this.conversationAttributes.initiated_at)
+        console.log(
+          new Date(this.conversationAttributes.initiated_at.timestamp)
+        );
       return this.conversationAttributes.initiated_at;
     },
     browserName() {

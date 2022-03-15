@@ -7,7 +7,7 @@
       "404": "Không có bất kì hoạt động trò chuyện nào trong nhóm."
     },
     "TAB_HEADING": "Các cuộc hội thoại",
-    "MENTION_HEADING": "Nhắn đến",
+    "MENTION_HEADING": "Đề cập",
     "SEARCH": {
       "INPUT": "Tìm kiếm cho người, đoạn chat, lưu trữ trả lời .."
     },
@@ -18,7 +18,7 @@
         "KEY": "openCount"
       },
       {
-        "NAME": "Đã được giải quyết",
+        "NAME": "Đã giải quyết",
         "KEY": "allConvCount"
       }
     ],
@@ -50,7 +50,7 @@
         "TEXT": "Chờ giải quyết"
       },
       "snoozed": {
-        "TEXT": "Tạm dừng"
+        "TEXT": "Nhắc lại"
       }
     },
     "ATTACHMENTS": {

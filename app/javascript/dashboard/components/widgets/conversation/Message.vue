@@ -62,7 +62,7 @@
       <spinner v-if="isPending" size="tiny" />
       <div
         v-if="showAvatar"
-        v-tooltip.top="tooltipForSender"
+        v-tooltip.left="tooltipForSender"
         class="sender--info"
       >
         <woot-thumbnail
