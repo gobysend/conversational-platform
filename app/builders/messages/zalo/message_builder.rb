@@ -157,12 +157,11 @@ class Messages::Zalo::MessageBuilder
     {
       name: result[:display_name] || 'Unknown',
       account_id: @inbox.account_id,
-      remote_avatar_url: result[:avatars][:'240'],
+      remote_avatar_url: (result[:avatars].present? ? result[:avatars][:'240'] : nil) || nil,
       identifier: result[:user_id],
       custom_attributes: {
-        gender: result[:user_gender],
-        birth_date: result[:birth_date],
-        tags_and_notes_info: result[:tags_and_notes_info]
+        gender: (result[:user_gender]).zero? ? 'Nữ' : 'Name',
+        birth_date: result[:birth_date].present? ? Time.zone.at(result[:birth_date].to_i).to_datetime : nil
       }
     }
   end
@@ -183,7 +182,8 @@ class Messages::Zalo::MessageBuilder
       end
     rescue RestClient::ExceptionWithResponse => e
       result = {}
-      Sentry.capture_exception(e)
+      Rails.logger.error(e)
+      puts "Error getting Zalo profile #{e.message}"
     end
 
     result
