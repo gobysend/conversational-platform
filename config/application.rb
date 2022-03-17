@@ -13,6 +13,10 @@ module Chatwoot
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
+    # Autoload
+    config.enable_dependency_loading = true
+    config.autoload_paths << Rails.root.join('lib')
+
     config.eager_load_paths << Rails.root.join('lib')
     config.eager_load_paths << Rails.root.join('enterprise/lib')
     config.eager_load_paths += Dir["#{Rails.root}/enterprise/app/**"]
