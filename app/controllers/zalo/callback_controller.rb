@@ -9,6 +9,7 @@ class Zalo::CallbackController < ApplicationController
 
     # Special process for following event
     if params[:event_name].to_s == 'follow'
+      puts "User followed OA #{params.to_json}"
       update_follower_info(params)
       head :ok and return
     end
@@ -52,7 +53,7 @@ class Zalo::CallbackController < ApplicationController
     channel_ids = Channel::Zalo.where(oa_id: params[:oa_id]).pluck(:id)
     return if channel_ids.blank?
 
-    inbox_ids = Inbox.where(channel_api: channel_ids).where(channel_type: 'Channel::Zalo').pluck(:id)
+    inbox_ids = Inbox.where(channel_id: channel_ids).where(channel_type: 'Channel::Zalo').pluck(:id)
     return if inbox_ids.blank?
 
     source_id = params[:follower][:id]
@@ -72,12 +73,12 @@ class Zalo::CallbackController < ApplicationController
     ActiveRecord::Base.transaction do
       contacts.each do |contact|
         contact.name = profile[:display_name] || nil
-        contact.remote_avatar_url = (profile[:avatars].present? ? profile[:avatars][:'240'] : nil)
-
         contact.custom_attributes = {} if contact.custom_attributes.nil?
-        contact.custom_attributes.gender = (profile[:user_gender].present? && profile[:user_gender].zero?) ? 'Nữ' : 'Nam'
+        contact.custom_attributes[:gender] = (profile[:user_gender].present? && profile[:user_gender].zero?) ? 'Nữ' : 'Nam'
 
         contact.save
+
+        ContactAvatarJob.perform_later(contact, profile[:avatars][:'240']) if profile[:avatars].present?
       end
     end
   end
