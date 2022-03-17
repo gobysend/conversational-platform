@@ -19,6 +19,8 @@ class Zalo::SendOnZaloService < Base::SendOnChannelService
     url = "#{ENV['ZALO_OA_API_BASE_URL']}/message"
     response = RestClient.post(url, delivery_params.to_json, { content_type: 'application/json', access_token: channel.access_token })
     response = JSON.parse(response, { symbolize_names: true })
+    return if response[:data].nil?
+
     message_id = response[:data][:message_id] || nil
 
     # Cache message_id
