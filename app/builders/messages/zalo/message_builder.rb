@@ -5,8 +5,6 @@
 #    Hence there is no need to set user_id in message for outgoing echo messages.
 
 class Messages::Zalo::MessageBuilder
-  include Zalo::Profile
-
   attr_reader :response
 
   def initialize(response, inbox, outgoing_echo: false)
@@ -166,5 +164,25 @@ class Messages::Zalo::MessageBuilder
         birth_date: result[:birth_date].present? ? Time.zone.at(result[:birth_date].to_i).strftime('%Y-%m-%d') : nil
       }
     }
+  end
+
+  def zalo_profile(user_id, access_token)
+    begin
+      response = RestClient::Request.execute(
+        method: :get,
+        url: "#{ENV['ZALO_OA_API_BASE_URL']}/getprofile?data={\"user_id\":\"#{user_id}\"}",
+        headers: { content_type: 'application/json', access_token: access_token }
+      )
+
+      response = JSON.parse(response.body, { symbolize_names: true })
+
+      result = response[:data] || {}
+    rescue RestClient::ExceptionWithResponse => e
+      result = {}
+      Rails.logger.error(e)
+      puts "Error getting Zalo profile #{e.message}"
+    end
+
+    result
   end
 end
