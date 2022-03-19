@@ -19,7 +19,7 @@ class RoundRobin::ManageService
   def available_agent(priority_list: [])
     reset_queue unless validate_queue?
     user_id = get_agent_via_priority_list(priority_list)
-    # incase priority list was empty or inbox members weren't present
+    # in case priority list was empty or inbox members weren't present
     user_id ||= ::Redis::Alfred.rpoplpush(round_robin_key, round_robin_key)
     inbox.inbox_members.find_by(user_id: user_id)&.user if user_id.present?
   end

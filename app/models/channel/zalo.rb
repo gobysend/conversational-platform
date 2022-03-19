@@ -35,6 +35,10 @@ class Channel::Zalo < ApplicationRecord
     'Zalo OA'
   end
 
+  def expired?
+    expires_at.before?(DateTime.now)
+  end
+
   def has_24_hour_messaging_window?
     false
   end

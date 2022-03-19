@@ -14,11 +14,18 @@ class Zalo::SendOnZaloService < Base::SendOnChannelService
   end
 
   def send_message_to_zalo(delivery_params)
-    return if delivery_params.blank?
+    return if delivery_params.blank? || channel.expired?
 
     url = "#{ENV['ZALO_OA_API_BASE_URL']}/message"
     response = RestClient.post(url, delivery_params.to_json, { content_type: 'application/json', access_token: channel.access_token })
     response = JSON.parse(response, { symbolize_names: true })
+
+    # If the access_token is invalid, update channel status
+    if response[:error] == 216
+      channel.expires_at = DateTime.now
+      channel.save
+    end
+
     return if response[:data].nil?
 
     message_id = response[:data][:message_id] || nil

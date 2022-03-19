@@ -77,3 +77,5 @@ if resource.api?
   json.webhook_url resource.channel.try(:webhook_url)
   json.inbox_identifier resource.channel.try(:identifier)
 end
+
+json.is_valid resource.zalo? ? !resource.channel.expired? : true
