@@ -35,6 +35,7 @@
   },
   "POWERED_BY": "Powered by Gobysend",
   "EMAIL_PLACEHOLDER": "Vui lòng nhập email",
+  "PHONE_PLACEHOLDER": "Vui lòng nhập số điện thoại",
   "CHAT_PLACEHOLDER": "Gõ tin nhắn của bạn",
   "TODAY": "Hôm nay",
   "YESTERDAY": "Hôm qua",
@@ -49,6 +50,11 @@
         "LABEL": "Email",
         "PLACEHOLDER": "Vui lòng nhập email",
         "ERROR": "Email không hợp lệ"
+      },
+      "PHONE_NUMBER": {
+        "LABEL": "Số điện thoại",
+        "PLACEHOLDER": "Vui lòng nhập số điện thoại",
+        "ERROR": "Số điện thoại không đúng"
       },
       "MESSAGE": {
         "LABEL": "Tin nhắn",

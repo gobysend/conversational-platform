@@ -12,6 +12,11 @@
         :message-id="messageId"
         :message-content-attributes="messageContentAttributes"
       />
+      <phone-input
+        v-if="isTemplatePhone"
+        :message-id="messageId"
+        :message-content-attributes="messageContentAttributes"
+      />
     </div>
     <div v-if="isOptions">
       <chat-options
@@ -59,6 +64,7 @@ import ChatForm from 'shared/components/ChatForm';
 import ChatOptions from 'shared/components/ChatOptions';
 import ChatArticle from './template/Article';
 import EmailInput from './template/EmailInput';
+import PhoneInput from './template/PhoneInput';
 import CustomerSatisfaction from 'shared/components/CustomerSatisfaction';
 
 export default {
@@ -69,6 +75,7 @@ export default {
     ChatForm,
     ChatOptions,
     EmailInput,
+    PhoneInput,
     CustomerSatisfaction,
   },
   mixins: [messageFormatterMixin],
@@ -88,6 +95,9 @@ export default {
     },
     isTemplateEmail() {
       return this.contentType === 'input_email';
+    },
+    isTemplatePhone() {
+      return this.contentType === 'input_phone';
     },
     isCards() {
       return this.contentType === 'cards';

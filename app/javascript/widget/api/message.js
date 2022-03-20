@@ -9,4 +9,12 @@ export default {
       message: { submitted_values: values },
     });
   },
+
+  updatePhone: ({ messageId, phoneNumber, values }) => {
+    const urlData = authEndPoint.updateMessage(messageId);
+    return API.patch(urlData.url, {
+      contact: { phone_number: phoneNumber },
+      message: { submitted_values: values },
+    });
+  },
 };

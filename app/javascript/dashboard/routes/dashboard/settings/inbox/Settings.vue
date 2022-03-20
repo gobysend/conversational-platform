@@ -629,6 +629,7 @@ export default {
         this.greetingMessage = this.inbox.greeting_message || '';
         this.autoAssignment = this.inbox.enable_auto_assignment;
         this.emailCollectEnabled = this.inbox.enable_email_collect;
+        this.phoneCollectEnabled = this.inbox.enable_phone_collect;
         this.csatSurveyEnabled = this.inbox.csat_survey_enabled;
         this.allowMessagesAfterResolved = this.inbox.allow_messages_after_resolved;
         this.continuityViaEmail = this.inbox.continuity_via_email;
@@ -673,6 +674,7 @@ export default {
           name: this.selectedInboxName,
           enable_auto_assignment: this.autoAssignment,
           enable_email_collect: this.emailCollectEnabled,
+          enable_phone_collect: this.phoneCollectEnabled,
           csat_survey_enabled: this.csatSurveyEnabled,
           allow_messages_after_resolved: this.allowMessagesAfterResolved,
           greeting_enabled: this.greetingEnabled,

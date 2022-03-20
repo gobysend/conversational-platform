@@ -72,8 +72,33 @@ class Api::V1::Widget::BaseController < ApplicationController
     end
   end
 
+  def update_contact_phone(phone_number)
+    contact_with_phone = @current_account.contacts.find_by(phone_number: phone_number)
+    if contact_with_phone
+      @contact = ::ContactMergeAction.new(
+        account: @current_account,
+        base_contact: contact_with_phone,
+        mergee_contact: @contact
+      ).perform
+    elsif params[:contact].present? && params[:contact][:name].present?
+      @contact.update!(phone_number: phone_number, name: contact_name)
+    else
+      @contact.update!(phone_number: phone_number)
+    end
+  end
+
   def contact_email
     permitted_params[:contact][:email].downcase
+  end
+
+  def contact_phone
+    phone_number = permitted_params[:contact][:phone_number]
+    return nil if phone_number.nil? || phone_number.blank?
+
+    telephone = TelephoneNumber.parse(phone_number)
+    telephone = TelephoneNumber.parse(phone_number, :vn) if !telephone.valid?
+
+    telephone.e164_number
   end
 
   def contact_name

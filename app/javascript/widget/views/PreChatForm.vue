@@ -35,7 +35,13 @@ export default {
     },
   },
   methods: {
-    onSubmit({ fullName, emailAddress, message, activeCampaignId }) {
+    onSubmit({
+      fullName,
+      emailAddress,
+      phoneNumber,
+      message,
+      activeCampaignId,
+    }) {
       if (activeCampaignId) {
         bus.$emit('execute-campaign', activeCampaignId);
         this.$store.dispatch('contacts/update', {
@@ -48,6 +54,7 @@ export default {
         this.$store.dispatch('conversation/createConversation', {
           fullName: fullName,
           emailAddress: emailAddress,
+          phoneNumber: phoneNumber,
           message: message,
         });
       }

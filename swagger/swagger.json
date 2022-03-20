@@ -4277,6 +4277,7 @@
           "type": "string",
           "enum": [
             "input_email",
+            "input_phone",
             "cards",
             "input_select",
             "form",

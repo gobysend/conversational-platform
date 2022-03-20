@@ -38,7 +38,7 @@ class Message < ApplicationRecord
   validates :content_type, presence: true
   validates :content, length: { maximum: 150_000 }
 
-  # when you have a temperory id in your frontend and want it echoed back via action cable
+  # when you have a temporary id in your frontend and want it echoed back via action cable
   attr_accessor :echo_id
 
   # Temporary disable create commit callback
@@ -50,6 +50,7 @@ class Message < ApplicationRecord
     input_text: 1,
     input_textarea: 2,
     input_email: 3,
+    input_phone: 10,
     input_select: 4,
     cards: 5,
     form: 6,
@@ -58,12 +59,12 @@ class Message < ApplicationRecord
     input_csat: 9
   }
   enum status: { sent: 0, delivered: 1, read: 2, failed: 3 }
-  # [:submitted_email, :items, :submitted_values] : Used for bot message types
+  # [:submitted_email, :submitted_phone, :items, :submitted_values] : Used for bot message types
   # [:email] : Used by conversation_continuity incoming email messages
   # [:in_reply_to] : Used to reply to a particular tweet in threads
   # [:deleted] : Used to denote whether the message was deleted by the agent
   # [:external_created_at] : Can specify if the message was created at a different timestamp externally
-  store :content_attributes, accessors: [:submitted_email, :items, :submitted_values, :email, :in_reply_to, :deleted,
+  store :content_attributes, accessors: [:submitted_email, :submitted_phone, :items, :submitted_values, :email, :in_reply_to, :deleted,
                                          :external_created_at], coder: JSON
 
   store :external_source_ids, accessors: [:slack], coder: JSON, prefix: :external_source_id

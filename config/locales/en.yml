@@ -43,7 +43,7 @@ en:
       failed: Signup failed
     contacts:
       import:
-        failed: File is blank  
+        failed: File is blank
 
   reports:
     period: Reporting period %{since} to %{until}
@@ -92,6 +92,7 @@ en:
       greeting_message_body: "%{account_name} typically replies in a few hours."
       ways_to_reach_you_message_body: "Give the team a way to reach you."
       email_input_box_message_body: "Get notified by email"
+      phone_input_box_message_body: "Get notified by phone"
       csat_input_message_body: "Please rate the conversation"
     reply:
       email:

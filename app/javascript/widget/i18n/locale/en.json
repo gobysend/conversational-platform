@@ -35,6 +35,7 @@
   },
   "POWERED_BY": "Powered by Gobysend",
   "EMAIL_PLACEHOLDER": "Please enter your email",
+  "PHONE_PLACEHOLDER": "Please enter your phone",
   "CHAT_PLACEHOLDER": "Type your message",
   "TODAY": "Today",
   "YESTERDAY": "Yesterday",
@@ -49,6 +50,11 @@
         "LABEL": "Email Address",
         "PLACEHOLDER": "Please enter your email address",
         "ERROR": "Invalid email address"
+      },
+      "PHONE_NUMBER": {
+        "LABEL": "Phone Number",
+        "PLACEHOLDER": "Please enter your phone number",
+        "ERROR": "Invalid phone number"
       },
       "MESSAGE": {
         "LABEL": "Message",

@@ -13,9 +13,13 @@ class Api::V1::Widget::MessagesController < Api::V1::Widget::BaseController
   end
 
   def update
-    if @message.content_type == 'input_email'
+    case @message.content_type
+    when 'input_email'
       @message.update!(submitted_email: contact_email)
       update_contact(contact_email)
+    when 'input_phone'
+      @message.update!(submitted_phone: contact_phone)
+      update_contact_phone(contact_phone)
     else
       @message.update!(message_update_params[:message])
     end
@@ -59,7 +63,7 @@ class Api::V1::Widget::MessagesController < Api::V1::Widget::BaseController
 
   def permitted_params
     # timestamp parameter is used in create conversation method
-    params.permit(:id, :before, :website_token, contact: [:name, :email], message: [:content, :referer_url, :timestamp, :echo_id])
+    params.permit(:id, :before, :website_token, contact: [:name, :email, :phone_number], message: [:content, :referer_url, :timestamp, :echo_id])
   end
 
   def set_message

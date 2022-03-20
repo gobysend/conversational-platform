@@ -8,6 +8,7 @@ class Api::V1::Widget::ConversationsController < Api::V1::Widget::BaseController
   def create
     ActiveRecord::Base.transaction do
       update_contact(contact_email) if @contact.email.blank? && contact_email.present?
+      update_contact_phone(contact_phone) if @contact.phone_number.blank? && contact_phone.present?
       @conversation = create_conversation
       conversation.messages.create(message_params)
     end
@@ -51,6 +52,6 @@ class Api::V1::Widget::ConversationsController < Api::V1::Widget::BaseController
   end
 
   def permitted_params
-    params.permit(:id, :typing_status, :website_token, :email, contact: [:name, :email], message: [:content, :referer_url, :timestamp, :echo_id])
+    params.permit(:id, :typing_status, :website_token, :email, contact: [:name, :email, :phone_number], message: [:content, :referer_url, :timestamp, :echo_id])
   end
 end

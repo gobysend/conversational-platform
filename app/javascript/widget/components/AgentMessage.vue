@@ -137,6 +137,7 @@ export default {
     hasRecordedResponse() {
       return (
         this.messageContentAttributes.submitted_email ||
+        this.messageContentAttributes.submitted_phone ||
         (this.messageContentAttributes.submitted_values &&
           !['form', 'input_csat'].includes(this.contentType))
       );
@@ -144,6 +145,10 @@ export default {
     responseMessage() {
       if (this.messageContentAttributes.submitted_email) {
         return { content: this.messageContentAttributes.submitted_email };
+      }
+
+      if (this.messageContentAttributes.submitted_phone) {
+        return { content: this.messageContentAttributes.submitted_phone };
       }
 
       if (this.messageContentAttributes.submitted_values) {

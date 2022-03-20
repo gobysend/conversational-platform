@@ -39,6 +39,35 @@ export const actions = {
     }
     commit('toggleUpdateStatus', false);
   },
+
+  updatePhone: async (
+    { commit, dispatch },
+    { phoneNumber, messageId, submittedValues }
+  ) => {
+    commit('toggleUpdateStatus', true);
+    try {
+      await MessageAPI.updatePhone({
+        phoneNumber,
+        messageId,
+        values: submittedValues,
+      });
+      commit(
+        'conversation/updateMessage',
+        {
+          id: messageId,
+          content_attributes: {
+            submitted_phone: phoneNumber,
+            submitted_values: phoneNumber ? null : submittedValues,
+          },
+        },
+        { root: true }
+      );
+      dispatch('contacts/get', {}, { root: true });
+    } catch (error) {
+      // Ignore error
+    }
+    commit('toggleUpdateStatus', false);
+  },
 };
 
 export const mutations = {

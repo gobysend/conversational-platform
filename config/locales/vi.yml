@@ -75,7 +75,8 @@ vi:
     templates:
       greeting_message_body: '%{account_name} thường trả lời trong vài giờ.'
       ways_to_reach_you_message_body: 'Cung cấp cho nhóm một cách để tiếp cận bạn.'
-      email_input_box_message_body: 'Nhận thông báo qua email'
+      email_input_box_message_body: 'Vui lòng để lại email'
+      phone_input_box_message_body: 'Vui lòng để lại số điện thoại'
       csat_input_message_body: 'Vui lòng đánh giá cuộc trò chuyện'
     reply:
       email_subject: 'Tin nhắn mới về cuộc trò chuyện này'

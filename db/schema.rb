@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_03_080005) do
+ActiveRecord::Schema.define(version: 2022_03_20_154030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -475,9 +475,10 @@ ActiveRecord::Schema.define(version: 2022_03_03_080005) do
     t.boolean "working_hours_enabled", default: false
     t.string "out_of_office_message"
     t.string "timezone", default: "UTC"
-    t.boolean "enable_email_collect", default: true
+    t.boolean "enable_email_collect", default: false
     t.boolean "csat_survey_enabled", default: false
     t.boolean "allow_messages_after_resolved", default: true
+    t.boolean "enable_phone_collect", default: true
     t.index ["account_id"], name: "index_inboxes_on_account_id"
   end
 

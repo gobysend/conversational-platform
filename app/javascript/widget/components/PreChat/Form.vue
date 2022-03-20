@@ -20,7 +20,7 @@
         $v.fullName.$error ? $t('PRE_CHAT_FORM.FIELDS.FULL_NAME.ERROR') : ''
       "
     />
-    <form-input
+    <!--    <form-input
       v-if="areContactFieldsVisible"
       v-model="emailAddress"
       class="mt-5"
@@ -30,6 +30,19 @@
       :error="
         $v.emailAddress.$error
           ? $t('PRE_CHAT_FORM.FIELDS.EMAIL_ADDRESS.ERROR')
+          : ''
+      "
+    />-->
+    <form-input
+      v-if="areContactFieldsVisible"
+      v-model="phoneNumber"
+      class="mt-5"
+      :label="$t('PRE_CHAT_FORM.FIELDS.PHONE_NUMBER.LABEL')"
+      :placeholder="$t('PRE_CHAT_FORM.FIELDS.PHONE_NUMBER.PLACEHOLDER')"
+      type="text"
+      :error="
+        $v.phoneNumber.$error
+          ? $t('PRE_CHAT_FORM.FIELDS.PHONE_NUMBER.ERROR')
           : ''
       "
     />
@@ -61,7 +74,7 @@ import FormTextArea from '../Form/TextArea';
 import Spinner from 'shared/components/Spinner';
 import { mapGetters } from 'vuex';
 import { getContrastingTextColor } from '@chatwoot/utils';
-import { required, minLength, email } from 'vuelidate/lib/validators';
+import { required, minLength } from 'vuelidate/lib/validators';
 import { isEmptyObject } from 'widget/helpers/utils';
 import routerMixin from 'widget/mixins/routerMixin';
 export default {
@@ -87,9 +100,12 @@ export default {
       fullName: {
         required,
       },
-      emailAddress: {
+      // emailAddress: {
+      //   required,
+      //   email,
+      // },
+      phoneNumber: {
         required,
-        email,
       },
     };
 
@@ -115,6 +131,7 @@ export default {
     return {
       fullName: '',
       emailAddress: '',
+      phoneNumber: '',
       message: '',
     };
   },
@@ -152,6 +169,7 @@ export default {
       this.$emit('submit', {
         fullName: this.fullName,
         emailAddress: this.emailAddress,
+        phoneNumber: this.phoneNumber,
         message: this.message,
         activeCampaignId: this.activeCampaign.id,
       });
