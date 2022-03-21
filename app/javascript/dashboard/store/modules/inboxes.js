@@ -152,11 +152,17 @@ export const actions = {
       throw new Error(error);
     }
   },
-  createZaloChannel: async ({ commit }, params) => {
+  createZaloChannel: async ({ commit, state }, params) => {
     try {
       commit(types.default.SET_INBOXES_UI_FLAG, { isCreating: true });
       const response = await ZaloChannel.create(params);
-      commit(types.default.ADD_INBOXES, response.data);
+
+      if (state.records.map(({ id }) => id).includes(response.data.id)) {
+        commit(types.default.EDIT_INBOXES, response.data);
+      } else {
+        commit(types.default.ADD_INBOXES, response.data);
+      }
+
       commit(types.default.SET_INBOXES_UI_FLAG, { isCreating: false });
       return response.data;
     } catch (error) {

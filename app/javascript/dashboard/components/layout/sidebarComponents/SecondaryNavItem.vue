@@ -34,6 +34,7 @@
         :label-color="child.color"
         :should-truncate="child.truncateLabel"
         :icon="computedInboxClass(child)"
+        :is_valid="child.is_valid"
       />
       <router-link
         v-if="showItem(menuItem)"

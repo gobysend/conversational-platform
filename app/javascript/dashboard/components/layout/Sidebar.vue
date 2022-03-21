@@ -54,6 +54,7 @@
 <script>
 import { mapGetters } from 'vuex';
 
+import { INBOX_TYPES } from 'shared/mixins/inboxMixin';
 import adminMixin from '../../mixins/isAdmin';
 import { getSidebarItems } from './config/default-sidebar';
 import alertMixin from 'shared/mixins/alertMixin';
@@ -161,7 +162,15 @@ export default {
   },
   mounted() {
     this.$store.dispatch('labels/get');
-    this.$store.dispatch('inboxes/get');
+    this.$store.dispatch('inboxes/get').then(() => {
+      let channelTypes = this.inboxes.map(({ channel_type }) => channel_type);
+
+      if (channelTypes.includes(INBOX_TYPES.ZALO)) {
+        setInterval(() => {
+          this.$store.dispatch('inboxes/get');
+        }, 30000);
+      }
+    });
     this.$store.dispatch('notifications/unReadCount');
     this.$store.dispatch('teams/get');
     this.$store.dispatch('attributes/get');

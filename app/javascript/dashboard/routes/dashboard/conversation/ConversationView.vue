@@ -16,6 +16,8 @@
       @contact-panel-toggle="onToggleContactPanel"
     >
     </conversation-box>
+
+    <zalo-auth-modal :show="showAuthModal" @close="showAuthModal = false" />
   </section>
 </template>
 
@@ -25,6 +27,7 @@ import ChatList from '../../../components/ChatList';
 import ConversationBox from '../../../components/widgets/conversation/ConversationBox';
 import PopOverSearch from './search/PopOverSearch';
 import uiSettingsMixin from 'dashboard/mixins/uiSettings';
+import ZaloAuthModal from './ZaloAuthModal.vue';
 import { BUS_EVENTS } from 'shared/constants/busEvents';
 
 export default {
@@ -32,6 +35,7 @@ export default {
     ChatList,
     ConversationBox,
     PopOverSearch,
+    ZaloAuthModal,
   },
   mixins: [uiSettingsMixin],
   props: {
@@ -63,6 +67,7 @@ export default {
   data() {
     return {
       showSearchModal: false,
+      showAuthModal: false,
     };
   },
   computed: {
@@ -78,6 +83,19 @@ export default {
         return isContactSidebarOpen;
       }
       return false;
+    },
+    inbox() {
+      let inbox = {};
+
+      if (this.inboxId) {
+        inbox = this.$store.getters['inboxes/getInbox'](this.inboxId);
+
+        if (inbox.is_valid == false) {
+          this.showAuthModal = true;
+        }
+      }
+
+      return inbox;
     },
   },
 

@@ -42,7 +42,9 @@
         "CONNECT": "Connect Zalo OA",
         "API": {
           "ERROR_MESSAGE": "We were not able to authenticate Zalo credentials, please try again"
-        }
+        },
+        "INVALID_TOKEN": "Disconnect with Zalo OA",
+        "LOGIN_AGAIN": "Login again"
       },
       "FB": {
         "HELP": "PS: By signing in, we only get access to your Page's messages. Your private messages can never be accessed by Gobysend.",
