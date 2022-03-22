@@ -85,17 +85,7 @@ export default {
       return false;
     },
     inbox() {
-      let inbox = {};
-
-      if (this.inboxId) {
-        inbox = this.$store.getters['inboxes/getInbox'](this.inboxId);
-
-        if (inbox.is_valid == false) {
-          this.showAuthModal = true;
-        }
-      }
-
-      return inbox;
+      return this.$store.getters['inboxes/getInbox'](this.inboxId);
     },
   },
 
@@ -105,6 +95,11 @@ export default {
     this.$watch('$store.state.route', () => this.initialize());
     this.$watch('chatList.length', () => {
       this.setActiveChat();
+    });
+    this.$watch('inbox', () => {
+      if (this.inboxId && this.inbox.is_valid == false) {
+        this.showAuthModal = true;
+      }
     });
   },
 
