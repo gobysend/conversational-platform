@@ -92,6 +92,7 @@ export default {
           toState: frontendURL(`accounts/${this.accountId}/inbox/${inbox.id}`),
           type: inbox.channel_type,
           phoneNumber: inbox.phone_number,
+          is_valid: inbox.is_valid
         })),
       };
     },

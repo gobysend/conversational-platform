@@ -9,16 +9,27 @@
       <a
         :href="href"
         class="button clear menu-item text-truncate"
-        :class="{ 'is-active': isActive, 'text-truncate': shouldTruncate }"
+        :class="{
+          'is-active': isActive,
+          'text-truncate': shouldTruncate,
+          invalid: is_valid == false,
+        }"
         @click="navigate"
       >
         <span v-if="icon" class="badge--icon">
+          <fluent-icon
+            class="inbox-icon"
+            icon="error-circle"
+            size="12"
+            v-if="is_valid == false"
+          />
+
           <svg
             viewBox="0 0 460.1 436.6"
             width="12"
             height="12"
             class="inbox-icon"
-            v-if="icon == 'brand-zalo'"
+            v-else-if="icon == 'brand-zalo'"
           >
             <g>
               <path
@@ -79,6 +90,9 @@
 <script>
 export default {
   props: {
+    is_valid: {
+      type: Boolean,
+    },
     to: {
       type: String,
       default: '',
@@ -145,6 +159,15 @@ $label-badge-size: var(--space-slab);
     background: var(--w-25);
     color: var(--w-500);
     border-color: var(--w-25);
+  }
+
+  &.invalid {
+    ::v-deep .inbox-icon path {
+      fill: #f94d5c;
+    }
+    .menu-label {
+      color: #f94d5c;
+    }
   }
 }
 

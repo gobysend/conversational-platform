@@ -42,7 +42,9 @@
         "CONNECT": "Tích hợp Zalo OA",
         "API": {
           "ERROR_MESSAGE": "Không thể xác thực thông tin đăng nhập Zalo, vui lòng thử lại"
-        }
+        },
+        "INVALID_TOKEN": "Mất kết nối với tài khoản Zalo OA",
+        "LOGIN_AGAIN": "Đăng nhập lại"
       },
       "FB": {
         "HELP": "Tái bút: Bằng cách đăng nhập, chúng tôi chỉ có quyền truy cập vào các tin nhắn trên Trang Facebook của bạn. Gobysend không bao giờ có thể truy cập tin nhắn riêng tư của bạn.",
