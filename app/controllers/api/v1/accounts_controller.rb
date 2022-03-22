@@ -34,6 +34,9 @@ class Api::V1::AccountsController < Api::BaseController
     render 'api/v1/accounts/show.json'
   end
 
+  def unread_count
+  end
+
   def update
     @account.update!(account_params.slice(:name, :locale, :domain, :support_email, :auto_resolve_duration))
   end
