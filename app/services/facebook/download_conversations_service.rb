@@ -102,7 +102,8 @@ class Facebook::DownloadConversationsService
   def contact_inbox(thread)
     sender = thread.senders.find { |sender| sender.id != channel.page_id }
     @sender_id = sender.id
-    @contact = Contact.find_by(identifier: @sender_id)
+
+    @contact ||= @inbox.contact_inboxes.find_by(source_id: @sender_id)&.contact
     @contact ||= Contact.create!(contact_params(sender))
 
     @contact_inbox = @inbox.contact_inboxes.find_by(source_id: @sender_id)
