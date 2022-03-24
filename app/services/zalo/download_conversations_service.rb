@@ -117,7 +117,7 @@ class Zalo::DownloadConversationsService
     @sender_id = thread[:src] == 1 ? thread[:from_id] : thread[:to_id]
 
     @contact_inbox = @inbox.contact_inboxes.find_by(source_id: @sender_id)
-    @contact ||= @contact_inbox&.contact
+    @contact = @contact_inbox&.contact
 
     return if @contact.present?
 
