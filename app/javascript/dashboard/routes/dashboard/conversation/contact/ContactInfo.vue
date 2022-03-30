@@ -63,7 +63,7 @@
           />
         </div>
       </div>
-      <!-- <div class="contact-actions">
+      <div class="contact-actions">
         <woot-button
           v-if="showNewMessage"
           v-tooltip="$t('CONTACT_PANEL.NEW_MESSAGE')"
@@ -106,7 +106,7 @@
           :disabled="uiFlags.isDeleting"
           @click="toggleDeleteModal"
         />
-      </div> -->
+      </div>
       <edit-contact
         v-if="showEditModal"
         :show="showEditModal"

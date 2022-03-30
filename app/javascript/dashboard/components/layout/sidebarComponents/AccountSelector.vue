@@ -27,7 +27,7 @@
         </label>
       </a>
     </div>
-    <div
+    <!-- <div
       v-if="globalConfig.createNewAccountFromDashboard"
       class="modal-footer delete-item"
     >
@@ -37,7 +37,7 @@
       >
         {{ $t('CREATE_ACCOUNT.NEW_ACCOUNT') }}
       </button>
-    </div>
+    </div> -->
   </woot-modal>
 </template>
 

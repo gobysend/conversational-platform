@@ -3,6 +3,7 @@ export const DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER = [
   { name: 'conversation_actions' },
   { name: 'conversation_info' },
   { name: 'contact_attributes' },
+  { name: 'contact_labels' },
   { name: 'previous_conversation' },
 ];
 export const DEFAULT_CONTACT_SIDEBAR_ITEMS_ORDER = [
@@ -17,6 +18,14 @@ export default {
     }),
     conversationSidebarItemsOrder() {
       const { conversation_sidebar_items_order: itemsOrder } = this.uiSettings;
+
+      if (
+        itemsOrder &&
+        !itemsOrder.map(({ name }) => name).includes('contact_labels')
+      ) {
+        itemsOrder.splice(3, 0, { name: 'contact_labels' });
+      }
+
       return itemsOrder || DEFAULT_CONVERSATION_SIDEBAR_ITEMS_ORDER;
     },
     contactSidebarItemsOrder() {

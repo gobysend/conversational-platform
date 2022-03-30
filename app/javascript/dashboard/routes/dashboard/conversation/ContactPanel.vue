@@ -54,6 +54,15 @@
               </conversation-info>
             </accordion-item>
           </div>
+          <div v-else-if="element.name === 'contact_labels'">
+            <accordion-item
+              :title="$t('CONTACT_PANEL.SIDEBAR_SECTIONS.CONTACT_LABELS')"
+              :is-open="isContactSidebarItemOpen('is_ct_labels_open')"
+              @click="value => toggleSidebarUIState('is_ct_labels_open', value)"
+            >
+              <contact-label :contact-id="contact.id" class="contact-labels" />
+            </accordion-item>
+          </div>
           <div v-else-if="element.name === 'contact_attributes'">
             <accordion-item
               :title="$t('CONVERSATION_SIDEBAR.ACCORDION.CONTACT_ATTRIBUTES')"
@@ -107,9 +116,11 @@ import ContactConversations from './ContactConversations.vue';
 import ConversationAction from './ConversationAction.vue';
 
 import ContactInfo from './contact/ContactInfo';
+import ContactLabel from 'dashboard/routes/dashboard/contacts/components/ContactLabels.vue';
 import ConversationInfo from './ConversationInfo';
 import CustomAttributes from './customAttributes/CustomAttributes.vue';
 import CustomAttributeSelector from './customAttributes/CustomAttributeSelector.vue';
+
 import draggable from 'vuedraggable';
 import uiSettingsMixin from 'dashboard/mixins/uiSettings';
 
@@ -118,6 +129,7 @@ export default {
     AccordionItem,
     ContactConversations,
     ContactInfo,
+    ContactLabel,
     ConversationInfo,
     CustomAttributes,
     CustomAttributeSelector,
