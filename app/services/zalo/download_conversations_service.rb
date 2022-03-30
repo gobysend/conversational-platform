@@ -115,10 +115,13 @@ class Zalo::DownloadConversationsService
 
   def contact_inbox(thread)
     @sender_id = thread[:src] == 1 ? thread[:from_id] : thread[:to_id]
-    @contact = Contact.find_by(identifier: @sender_id)
-    @contact ||= Contact.create!(contact_params(thread).except(:remote_avatar_url))
 
     @contact_inbox = @inbox.contact_inboxes.find_by(source_id: @sender_id)
+    @contact = @contact_inbox&.contact
+
+    return if @contact.present?
+
+    @contact = Contact.create!(contact_params(thread).except(:remote_avatar_url))
     @contact_inbox ||= ContactInbox.create(contact: @contact, inbox: @inbox, source_id: @sender_id)
   end
 

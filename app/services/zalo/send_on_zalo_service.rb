@@ -21,7 +21,7 @@ class Zalo::SendOnZaloService < Base::SendOnChannelService
     response = JSON.parse(response, { symbolize_names: true })
 
     # If the access_token is invalid, update channel status
-    if response[:error] == 216
+    if response[:error] == -216
       channel.expires_at = DateTime.now
       channel.save
     end
